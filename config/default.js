@@ -1,5 +1,9 @@
-var dev_port 					 = 3000;
-var dev_domain 			   = 'localhost';
+// var dev_port 					 = 3000;
+// var dev_domain 			   = 'localhost';
+
+var dev_port 					 = 6969;
+var dev_domain 			   = 'campcoders.com';
+
 
 exports.port           =  dev_port;
 

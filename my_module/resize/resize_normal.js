@@ -10,8 +10,8 @@ var path = require('path');
 	
 module.exports 					=	function(path_url, url_full_size, type,  callback){
 
-	// var gm = require('gm').subClass({ imageMagick: true });	    // gm with server
-	var gm = require('gm');																			// gm with location
+	var gm = require('gm').subClass({ imageMagick: true });	    // gm with server
+	// var gm = require('gm');																			// gm with location
 	console.log('./public' + url.parse(url_full_size).path);
 	gm('./public' + url.parse(url_full_size).path)
 		.resize(600, 600)
