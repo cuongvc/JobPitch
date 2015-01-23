@@ -50,12 +50,12 @@ module.exports = function(req, res){
 			function(next){
 			  graph.setAccessToken(access_token);
 			  graph.extendAccessToken({
-			    "access_token":      access_token
-			    , "client_id":       client_id
-			    , "client_secret":   client_secret
+			      "access_token"	:      access_token
+			    , "client_id"			:       client_id
+			    , "client_secret"	:   client_secret
 			  }, function (err, facebookRes) {
 			    if (err) {
-			    	res.json({error_code : 100, msg : err.message});			  //	Access_token is incorrect
+			    	res.json({error_code : 1, msg : err.message});			  //	Access_token is incorrect
 			   		res.status(200).end();
 			    } else {
 			      next(null);
@@ -76,7 +76,7 @@ module.exports = function(req, res){
 			    API("/me", function(err, data){
 			    	if (err){
 			    		console.log(err);
-			       	res.json({error_code : 600, msg : err.message});			//	Have error
+			       	res.json({error_code : 1, msg : err.message});			//	Have error
 			       	res.status(200).end();
 			    	} else{
 			    		profile = data;
@@ -89,7 +89,7 @@ module.exports = function(req, res){
 			    	console.log(data);
 			    	if (err){
 			    		console.log(err);
-			       	res.json({error_code : 600, msg : err.message});			//	Have error
+			       	res.json({error_code : 1, msg : err.message});			//	Have error
 			       	res.status(200).end();
 			    	} else{
 				    	friends = data.data;
@@ -102,7 +102,7 @@ module.exports = function(req, res){
 			    API("me?fields=picture.width(800).height(800)&redirect=false", function(err, data){
 			    	if (err){
 			    		console.log(err);
-			       	res.json({error_code : 600, msg : err.message});			//	Have error
+			       	res.json({error_code : 1, msg : err.message});			//	Have error
 			       	res.status(200).end();
 			    	} else{
 					    avatar = data.picture.data.url;												  // GET AVATAR
