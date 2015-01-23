@@ -13,3 +13,4 @@ exports.logo_default   = 'http://' + dev_domain + ':' + dev_port + '/img/full_si
 exports.domain_default = 'http://' + dev_domain + ':' + dev_port;
 
 exports.database       = 'mongodb://' + dev_domain + '/jobpitch';
+
