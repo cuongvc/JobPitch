@@ -1,9 +1,7 @@
-var express = require('express');
-var router = express.Router();
+exports.login					=		require('./login');
 
-/* GET home page. */
-router.get('/', function(req, res) {
-  res.render('index', { title: 'Express' });
-});
+exports.signup				=		require('./signup');
 
-module.exports = router;
+exports.logout				=		require('./logout');
+
+exports.job   				=		require('./job');

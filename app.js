@@ -1,30 +1,50 @@
-var debug = require('debug')('JobPitch');
-var express = require('express');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
+var debug 					= 	require('debug')('JobPitch');
+var express 				= 	require('express');
+var app 						= 	express();
+var favicon 				= 	require('serve-favicon');
+var logger 					= 	require('morgan');
+var cookieParser 		= 	require('cookie-parser');
+var bodyParser 			= 	require('body-parser');
+var mongoose        =   require('mongoose');
 
-var routes = require('./routes/index');
-var users = require('./routes/users');
+var ip              =   'localhost';
+var port            =   require('./config/default').port;
+var db_url   				= require('./config/default').database;
 
-var app = express();
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.engine('html', require('ejs').renderFile);
+// config router type
+var Router_body 		=   express.Router();
+var Router_formdata =   express.Router();
 
-// uncomment after placing your favicon in /public
-//app.use(favicon(__dirname + '/public/favicon.ico'));
-app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+// ============================CONFIGURATION===================================
 
-app.use('/', routes);
-app.use('/users', users);
+// connect to our database
+mongoose.connect(db_url); 
+
+require('./config/index.js')(app, Router_formdata, Router_body);
+
+app.get('/login_fb', function(req, res){
+	res.render('login_fb.html');
+})
+
+// ============================ API ============================================
+var routes 					= require('./routes/index');
+
+	// LOGIN
+Router_body.post('/login/talent/facebook', routes.login.talent.facebook);
+Router_body.post('/login/company/email', 	 routes.login.company.email);
+
+	// SIGN UP
+Router_body.post('/signup/company/email',  routes.signup.company.email);
+
+	// LOG OUT
+Router_body.post('/logout',  							 routes.logout);
+
+  // CREATE JOB
+Router_formdata.post('/create_job',  			 routes.job.create);
+
+
+// =================================== LISTEN BY IP AND PORT ========================
 
 app.set('port', process.env.PORT || 3000);
 
