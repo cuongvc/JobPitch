@@ -18,7 +18,6 @@ module.exports				=	function(req, res){
   try{
     var form = new formidable.IncomingForm();
 
-    console.log('Request : ', req);
     form.parse(req, function(err, fields, files) { 
 
       if (err){
