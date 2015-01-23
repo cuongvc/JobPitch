@@ -86,7 +86,6 @@ module.exports = function(req, res){
 			},
 			function( next){
 			    API("/me/friends", function(err, data){											// GET FRIENDS
-			    	console.log(data);
 			    	if (err){
 			    		console.log(err);
 			       	res.json({error_code : 1, msg : err.message});			//	Have error
@@ -111,7 +110,6 @@ module.exports = function(req, res){
 			    });
 
 			}], function(err){
-					console.log(profile);
 					acc_exist_fb_id(Talent, profile.id, function(exist, talent){
 						if (exist){
 
