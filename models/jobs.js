@@ -54,15 +54,20 @@ var jobSchema = mongoose.Schema({
     },
 
     likes            : {
-        number       : Number,
-        list         : [{
+        number       : {
+            type        : Number,
+            default     : 0
+        },        list         : [{
             type        : ObjectId,
             ref         : 'talents'
         }]
     },
 
     shares           : {
-        number       : Number,
+        number       : {
+            type        : Number,
+            default     : 0
+        },
         list         : [{
             type        : ObjectId,
             ref         : 'talents'
@@ -70,24 +75,30 @@ var jobSchema = mongoose.Schema({
     },
 
     applications     : {
-        number       : Number,
-        list         : [{
+        number       : {
+            type        : Number,
+            default     : 0
+        },        list         : [{
             type        : ObjectId,
             ref         : 'applications'
         }]
     },
 
     interviews       : {
-        number       : Number,
-        list         : [{
+        number       : {
+            type        : Number,
+            default     : 0
+        },        list         : [{
             type        : ObjectId,
             ref         : 'talents'
         }]
     },
 
     hires            : {
-        number       : Number,
-        list         : [{
+        number       : {
+            type        : Number,
+            default     : 0
+        },        list         : [{
             type        : ObjectId,
             ref         : 'talents'
         }]
