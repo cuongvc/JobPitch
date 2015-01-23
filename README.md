@@ -123,13 +123,3 @@ Cache-Control: no-cache
     }
 }
 ```
-
-=======
-##Link Postman
-
-## API
-
-### 1. Login as a talent
-### 2. Login as a company
-### 3. Signup as a company
->>>>>>> 0c2bb00f917800d716bf5b1ded41ae65f42cdbeb
