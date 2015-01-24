@@ -14,8 +14,8 @@ module.exports 		= function(){
 	return {
 
 		// FACEBOOK LOSTY}
-		client_id_fb    	:   '1026293317387061',
-		client_secret_fb  :   'e3645e7145e5366c14bf703635e1cd94',
+		client_id_fb    	:   '1591004764464608',
+		client_secret_fb  :   '61523e341f71684d14ad9f0e7c58c32b',
 		
 		// TWITTER LOSTY
 		consumer_key      :   'hXiNkPaPrOaEhvV6fANrQWIjY',
