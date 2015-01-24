@@ -1,25 +1,27 @@
 // load the things we need
-var mongoose     = require('mongoose');
-var ObjectId     = mongoose.Schema.Types.ObjectId;
-var bcrypt       = require('bcrypt-nodejs');
-var domain       = require('./../config/default').domain_default;
+var mongoose        = require('mongoose');
+var ObjectId        = mongoose.Schema.Types.ObjectId;
+var bcrypt          = require('bcrypt-nodejs');
+var domain          = require('./../config/default').domain_default;
+var avatar_default  = require('./../config/default').avatar_default;
+
 
 // define the schema for our talent model
 var talentSchema = mongoose.Schema({
 
     avatar           : {
         type         : String,
-        default      : domain + '/img/full_size/avatar/default-avatar.png'
+        default      : avatar_default
     },
 
     avatar_small     : {
         type         : String,
-        default      : domain + '/img/full_size/avatar/default-avatar.png'
+        default      : avatar_default
     },    
 
     avatar_normal     : {
         type         : String,
-        default      : domain + '/img/full_size/avatar/default-avatar.png'
+        default      : avatar_default
     },  
 
     talentName       : {

@@ -3,23 +3,25 @@ var mongoose     = require('mongoose');
 var ObjectId     = mongoose.Schema.Types.ObjectId;
 var bcrypt       = require('bcrypt-nodejs');
 var domain       = require('./../config/default').domain_default;
+var logo_default = require('./../config/default').logo_default;
+
 
 // define the schema for our company model
 var companySchema = mongoose.Schema({
 
     logo             : {
         type         : String,
-        default      : domain + '/img/full_size/logo/default-logo.png'
+        default      : logo_default
     },
 
     logo_small       : {
         type         : String,
-        default      : domain + '/img/full_size/logo/default-logo.png'
+        default      : logo_default
     },    
 
     logo_normal      : {
         type         : String,
-        default      : domain + '/img/full_size/logo/default-logo.png'
+        default      : logo_default'
     },  
 
     companyName      : {

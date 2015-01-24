@@ -3,23 +3,24 @@ var mongoose     = require('mongoose');
 var ObjectId     = mongoose.Schema.Types.ObjectId;
 var bcrypt       = require('bcrypt-nodejs');
 var domain       = require('./../config/default').domain_default;
+var image_default = require('./../config/default').jobImage_default;
 
 // define the schema for our job model
 var jobSchema = mongoose.Schema({
 
     image             : {
         type         : String,
-        default      : domain + '/img/full_size/job_image/default-image.png'
+        default      : image_default
     },
 
     image_small       : {
         type         : String,
-        default      : domain + '/img/full_size/job_image/default-image.png'
+        default      : image_default
     },    
 
     image_normal      : {
         type         : String,
-        default      : domain + '/img/full_size/job_image/default-image.png'
+        default      : image_default
     },  
 
     companyId        : {
