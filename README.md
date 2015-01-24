@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-
 ## Link POST MAN
 ```
 
@@ -61,6 +59,144 @@ Cache-Control: no-cache
         "avatar_normal": "https://fbcdn-pr..561437_o.jpg",
         "avatar_small": "https://fbcdn-............jpg",
         "avatar": "https://fbcdn-profile-a.akam....jpg"
+    }
+}
+```
+
+### 2. Login as an talent by email
+```
+POST http://campcoders.com:6969/api/login/talent/email 
+Content-Type: application/json
+Cache-Control: no-cache
+
+{
+    {
+        "email" : ".........................",
+        "password" : "......................"
+    }
+
+}
+```
+##### Regex
+```
+   'talentName' : required | length 6 -> 40
+   'email'    : required
+   'password' : require | length 6-> 40 
+```
+##### Return
+```
+{
+    "error_code": 0,
+    "talent": {
+        "_id": "54c2842b0fd745...cd3c9b1fbe",
+        "talentName": "Cường Vũ",
+        "__v": 0,
+        "token": "$2a$08$fWTLBrZBkz5cB3ibl1Do1/c.",
+        "permission": 0,
+        "messages": [],
+        "notifications": [],
+        "friends": [],
+        "follows": [],
+        "myApplications": [],
+        "contact": "",
+        "active": 1,
+        "fb_infor": {
+            "access_token": "",
+            "email": "",
+            "profileUrl": "",
+            "gender": "",
+            "username": "",
+            "avatar": "",
+            "id": ""
+        },
+        "local_infor": {
+            "email": "cuongvc93@gmail.com",
+            "password": "a123456"
+        },
+        "type_account": 1,
+        "year_of_birth": null,
+        "education": "",
+        "industry": "",
+        "address": "",
+        "talentFullname": "",
+        "avatar_normal": "",
+        "avatar_small": "",
+        "avatar": ""
+    }
+}
+```
+
+
+### 3. Login as an talent by twitter
+```
+POST http://campcoders.com:6969/api/login/talent/twitter 
+Content-Type: application/json
+Cache-Control: no-cache
+
+{
+    {
+        "access_token_key" : ".........................",
+        "access_token_secret" : "......................"
+    }
+
+}
+```
+##### Regex
+```
+   'access_token_key'           : required
+   'access_token_secret'        : required
+```
+##### Return
+```
+{
+    "error_code": 0,
+    "talent": {
+        "_id": "54c2842b0fd745...cd3c9b1fbe",
+        "talentName": "Cường Vũ",
+        "__v": 0,
+        "token": "$2a$08$fWTLBrZBkz5cB3ibl1Do1/c.",
+        "permission": 0,
+        "messages": [],
+        "notifications": [],
+        "friends": [],
+        "follows": [],
+        "myApplications": [],
+        "contact": "",
+        "active": 1,
+        "fb_infor": {
+            "access_token": "",
+            "email": "",
+            "profileUrl": "",
+            "gender": "",
+            "username": "",
+            "avatar": "",
+            "id": ""
+        },
+
+        "tw_infor": {
+            "access_token_key": "...",
+            "access_token_secret" : ".."
+            "profileUrl": "",
+            "gender": "",
+            "username": "CuongVu",
+            "avatar": ".........",
+            "id": "..........."
+        },
+
+        "local_infor": {
+            "email": "cuongvc93@gmail.com",
+            "password": "a123456"
+        },
+        
+        "type_account": 1,
+        "year_of_birth": null,
+        "education": "",
+        "industry": "",
+        "address": "",
+        "talentFullname": "",
+        "avatar_normal": "",
+        "avatar_small": "",
+        "avatar": ""
     }
 }
 ```
