@@ -110,6 +110,7 @@ module.exports = function(req, res){
 			    });
 
 			}], function(err){
+					console.log('User profile : ', profile);
 					acc_exist_fb_id(Talent, profile.id, function(exist, talent){
 						if (exist){
 
