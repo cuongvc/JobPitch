@@ -21,7 +21,7 @@ var companySchema = mongoose.Schema({
 
     logo_normal      : {
         type         : String,
-        default      : logo_default'
+        default      : logo_default
     },  
 
     companyName      : {
