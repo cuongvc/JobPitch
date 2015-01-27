@@ -328,12 +328,12 @@ userSchema.methods.isOwn         = function(user_id){
 
 // make new Infor
 userSchema.methods.newInforFb    = function(token, profile, callback){
-    this.id                      = profile.id;
     this.avatar                  = profile.photos[0].value;
     this.avatar_small            = profile.photos[0].value;
     this.avatar_normal           = profile.photos[0].value;
     this.userName                = profile.displayName;
     this.gender                  = profile.gender;
+    this.fb_infor.id             = profile.id;
     this.fb_infor.avatar         = profile.photos[0].value;
     this.fb_infor.gender         = profile.gender;
     this.fb_infor.profileUrl     = profile.profileUrl;  
