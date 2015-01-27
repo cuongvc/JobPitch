@@ -143,80 +143,22 @@ module.exports = function(passport) {
         console.log('PROFILE FACEBOOK : ', profile);
         process.nextTick(function() {
 
-            // check if the user is already logged in
-            if (!req.user) {
-
-                User.findOne({ 'fb_infor.id' : profile.id }, function(err, user) {
-                    if (err)
-                        return done(err);
-
-                    if (user) {
-
-                        // if there is a user id already but no token (user was linked at one point and then removed)
-                        if (!user.fb_infor.token) {
-                            user.avatar             = profile.photos[0].value;
-                            user.avatar_small       = profile.photos[0].value;
-                            user.avatar_normal      = profile.photos[0].value;
-                            user.userName           = profile.displayName;
-                            user.gender             = profile.gender;
-                            user.fb_infor.avatar    = profile.photos[0].value;
-                            user.fb_infor.gender         = profile.gender;
-                            user.fb_infor.profileUrl     = profile.profileUrl;  
-                            user.fb_infor.access_token = token;
-                            user.fb_infor.name      = profile.displayName;
-                            user.fb_infor.email     = profile.emails[0].value;
-                            user.makeToken();
-                            user.save(function(err) {
-                                if (err)
-                                    throw err;
-                                return done(null, user);
-                            });
-                        }
-
+            User.findOne({ 'fb_infor.id' : profile.id }, function(err, user) {
+                if (err)
+                    return done(err);
+                if(!user){
+                    // if there is no user, create them
+                    var newUser                = new User();
+                    newUser.newInforFb(token, profile, function(user){
                         return done(null, user); // user found, return that user
-                    } else {
-                        // if there is no user, create them
-                        var newUser            = new User();
-                        newUser.avatar         = profile.photos[0].value;
-                        newUser.avatar_small   = profile.photos[0].value;
-                        newUser.avatar_normal  = profile.photos[0].value;
-
-                        newUser.userName       = profile.displayName;
-                        newUser.fb_infor.id    = profile.id;
-                        newUser.fb_infor.token = token;
-                        newUser.fb_infor.name  = profile.name.givenName + ' ' + profile.name.familyName;
-                        newUser.fb_infor.email = profile.emails[0].value;
-
-                        newUser.save(function(err) {
-                            if (err)
-                                throw err;
-                            return done(null, newUser);
-                        });
-                    }
-                });
-
-            } else {
-                // user already exists and is logged in, we have to link accounts
-                var user                = req.user; // pull the user out of the session
-                user.userName           = profile.displayName;
-                user.avatar             = profile.photos[0].value;
-                user.avatar_small       = profile.photos[0].value;
-                user.avatar_normal      = profile.photos[0].value;
-
-                user.fb_infor.id        = profile.id;
-                user.fb_infor.avatar    = profile.photos[0].value;
-
-                user.fb_infor.token     = token;
-                user.fb_infor.username  = profile.displayName;
-                user.fb_infor.email     = profile.emails[0].value;
-
-                user.save(function(err) {
-                    if (err)
-                        throw err;
-                    return done(null, user);
-                });
-
-            }
+                    }); 
+                } else{
+                    user.makeToken();
+                    user.save(function(err){
+                        return done(null, user);
+                    })
+                }               
+            });
         });
 
     }));

@@ -327,22 +327,26 @@ userSchema.methods.isOwn         = function(user_id){
 }
 
 // make new Infor
-userSchema.methods.newInforFb    = function(avatar, user, callback){
-    this.type_account           = 1;    // faebook account
-    this.avatar                 = avatar;
-    this.avatar_small           = avatar;
-    this.avatar_normal          = avatar;
-    this.userName             = user.name;
-    this.gender                 = user.gender;
+userSchema.methods.newInforFb    = function(token, profile, callback){
+    this.avatar                  = profile.photos[0].value;
+    this.avatar_small            = profile.photos[0].value;
+    this.avatar_normal           = profile.photos[0].value;
+    this.userName                = profile.displayName;
+    this.gender                  = profile.gender;
+    this.fb_infor.avatar         = profile.photos[0].value;
+    this.fb_infor.gender         = profile.gender;
+    this.fb_infor.profileUrl     = profile.profileUrl;  
+    this.fb_infor.access_token   = token;
+    this.fb_infor.name           = profile.displayName;
+    this.fb_infor.email          = profile.emails[0].value;
 
-    this.fb_infor.id            = user.id;
-    this.fb_infor.avatar        = avatar;
-    this.fb_infor.username      = user.name;
-    this.fb_infor.gender        = user.gender;
-    this.fb_infor.profileUrl    = user.link;
-    this.fb_infor.email         = user.email;
-    this.fb_infor.access_token  = user.access_token;
-    callback(this);
+    this.makeToken();
+    this.save(function(err) {
+        if (err)
+             throw err;
+        callback(this);
+    });                    
+    
 }   
 
 // edit Infor
