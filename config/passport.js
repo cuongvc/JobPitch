@@ -154,6 +154,10 @@ module.exports = function(passport) {
 
                         // if there is a user id already but no token (user was linked at one point and then removed)
                         if (!user.fb_infor.token) {
+                            user.avatar         = profile.photos[0].value;
+                            user.avatar_small   = profile.photos[0].value;
+                            user.avatar_normal  = profile.photos[0].value;
+
                             user.userName       = profile.displayName;
                             user.fb_infor.token = token;
                             user.fb_infor.name  = profile.name.givenName + ' ' + profile.name.familyName;
@@ -170,6 +174,10 @@ module.exports = function(passport) {
                     } else {
                         // if there is no user, create them
                         var newUser            = new User();
+                        newUser.avatar         = profile.photos[0].value;
+                        newUser.avatar_small   = profile.photos[0].value;
+                        newUser.avatar_normal  = profile.photos[0].value;
+
                         newUser.userName       = profile.displayName;
                         newUser.fb_infor.id    = profile.id;
                         newUser.fb_infor.token = token;
@@ -188,6 +196,9 @@ module.exports = function(passport) {
                 // user already exists and is logged in, we have to link accounts
                 var user            = req.user; // pull the user out of the session
                 user.userName       = profile.displayName;
+                user.avatar         = profile.photos[0].value;
+                user.avatar_small   = profile.photos[0].value;
+                user.avatar_normal  = profile.photos[0].value;
 
                 user.fb_infor.id    = profile.id;
                 user.fb_infor.token = token;
