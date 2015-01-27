@@ -1,7 +1,7 @@
-var Company			=	require('./../../models/companys');
+var Users			=	require('./../../models/users');
 
 module.exports				=	function(companyName, callback){
-	Company.findOne({companyName : companyName}, function(err, object_exist){
+	Users.findOne({companyName : companyName}, function(err, object_exist){
 		
 		if (err){
 			console.log('Error : ', err.toString());

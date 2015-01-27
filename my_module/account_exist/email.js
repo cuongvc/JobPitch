@@ -1,5 +1,7 @@
-module.exports				=	function(Model, email, callback){
-	Model.findOne({'local_infor.email' : email}, function(err, object_exist){
+var Users			=	require('./../../models/users');
+
+module.exports				=	function(email, callback){
+	Users.findOne({'local_infor.email' : email}, function(err, object_exist){
 		
 		if (err){
 			console.log('Error : ', err.toString());

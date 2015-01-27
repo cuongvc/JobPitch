@@ -1,6 +1,7 @@
-var Talent			=	require('./../../models/talents');
-module.exports				=	function(talentname, callback){
-	Talent.findOne({talentname : talentname}, function(err, object_exist){
+var Users			=	require('./../../models/users');
+
+module.exports				=	function(userName, callback){
+	Users.findOne({userName : userName}, function(err, object_exist){
 		
 		if (err){
 			console.log('Error : ', err.toString());

@@ -1,5 +1,7 @@
-module.exports				=	function(Model, id, callback){
-	Model.findOne({_id : id}, function(err, object_exist){
+var Users			=	require('./../../models/users');
+
+module.exports				=	function(id, callback){
+	Users.findOne({_id : id}, function(err, object_exist){
 		
 		if (err){
 			console.log('Error : ', err.toString());

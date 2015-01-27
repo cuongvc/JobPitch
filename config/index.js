@@ -10,7 +10,7 @@ var express      = require('express');
 var favicon = require('serve-favicon');
 
 // module.exports = function(app, id, Router_raw, Router_formdata, Router_body){
-module.exports = function(app, Router_formdata, Router_body){
+module.exports = function(app, Router_formdata, Router_body, passport){
    
     app.use(morgan('dev')); // log every request to the console
     app.use(cookieParser()); // read cookies (needed for auth)
@@ -22,6 +22,13 @@ module.exports = function(app, Router_formdata, Router_body){
     app.use(bodyParser.json({limit: '50mb'}));
     app.use(bodyParser.urlencoded({limit: '50mb'}));
     
+    require('./passport')(passport); // pass passport for configuration
+
+    // required for passport
+    app.use(session({ secret: 'wearecampcoders.com123456' })); // session secret
+    app.use(passport.initialize());
+    app.use(passport.session()); // persistent login sessions
+    app.use(flash()); // use connect-flash for flash messages stored in session
 
     // view engine setup
     app.set('views', path.join(__dirname, 'views'));

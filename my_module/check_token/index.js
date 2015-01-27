@@ -1,16 +1,10 @@
-var Talent            = require('./../../models/talents');
-var Company           = require('./../../models/companys');
+var User           = require('./../../models/users');
 
 // type_acc = 1 : user is Talent
 // type_acc = 2 : user is Company
-module.exports				=	function(type_acc, id, token, callback){
+module.exports				=	function(id, token, callback){
 
-	if (type_acc == 1)
-			var Model = Talent;
-	else
-			var Model = Company;
-
-	Model.findOne({_id : id}, function(err, object_exist){
+	User.findOne({_id : id}, function(err, object_exist){
 
 		if (err){
 			console.log(err);
