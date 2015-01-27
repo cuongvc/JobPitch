@@ -144,8 +144,6 @@ module.exports = function(passport) {
         process.nextTick(function() {
 
             // check if the user is already logged in
-            if (!req.user) {
-
                 User.findOne({ 'fb_infor.id' : profile.id }, function(err, user) {
                     if (err)
                         return done(err);
@@ -156,32 +154,13 @@ module.exports = function(passport) {
                         newUser.newInforFb(token, profile, function(object){
                             return done(null, user); // user found, return that user
                         }); 
-                    } else 
-                        return done(null, user);
+                    } else{
+                        user.makeToken();
+                        user.save(function(err){
+                            return done(null, user);    
+                        })
+                    }
                 });
-
-            } else {
-                // user already exists and is logged in, we have to link accounts
-                var user                = req.user; // pull the user out of the session
-                user.userName           = profile.displayName;
-                user.avatar             = profile.photos[0].value;
-                user.avatar_small       = profile.photos[0].value;
-                user.avatar_normal      = profile.photos[0].value;
-
-                user.fb_infor.id        = profile.id;
-                user.fb_infor.avatar    = profile.photos[0].value;
-
-                user.fb_infor.token     = token;
-                user.fb_infor.username  = profile.displayName;
-                user.fb_infor.email     = profile.emails[0].value;
-
-                user.save(function(err) {
-                    if (err)
-                        throw err;
-                    return done(null, user);
-                });
-
-            }
         });
 
     }));
@@ -210,42 +189,19 @@ module.exports = function(passport) {
 
                     if (user) {
                         // if there is a user id already but no token (user was linked at one point and then removed)
-                        if (!user.twitter_infor.token) {
-                            user.userName                  = profile.displayName;
-                            user.avatar                    = profile._json.profile_image_url;
-                            user.avatar_small              = profile._json.profile_image_url;
-                            user.avatar_normal             = profile._json.profile_image_url;
-
-                            user.twitter_infor.token       = token;
-                            user.twitter_infor.username    = profile.username;
-                            user.twitter_infor.displayName = profile.displayName;
-
-                            user.save(function(err) {
-                                if (err)
-                                    throw err;
-                                return done(null, user);
-                            });
-                        }
-
-                        return done(null, user); // user found, return that user
+                        user.twitter_infor.access_token       = token;
+                        user.makeToken();
+                        user.save(function(err) {
+                            if (err)
+                                throw err;
+                            return done(null, user);
+                        });
                     } else {
                         // if there is no user, create them
                         var newUser                       = new User();
-                        newUser.userName                  = profile.displayName;
-                        newUser.avatar                    = profile._json.profile_image_url;
-                        newUser.avatar_small              = profile._json.profile_image_url;
-                        newUser.avatar_normal             = profile._json.profile_image_url;
-
-                        newUser.twitter_infor.id          = profile.id;
-                        newUser.twitter_infor.token       = token;
-                        newUser.twitter_infor.username    = profile.username;
-                        newUser.twitter_infor.displayName = profile.displayName;
-
-                        newUser.save(function(err) {
-                            if (err)
-                                throw err;
+                        newUser.newInforTw(token, profile, function(user){
                             return done(null, newUser);
-                        });
+                        })
                     }
                 });
         });

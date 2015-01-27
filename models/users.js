@@ -89,7 +89,11 @@ var userSchema = mongoose.Schema({
             type     : String,
             default  : ''
         },
-        access_token :{
+        access_token : {
+            type     : String,
+            default  : ''
+        },
+        token_secret : {
             type     : String,
             default  : ''
         }
@@ -348,8 +352,27 @@ userSchema.methods.newInforFb    = function(token, profile, callback){
              throw err;
         callback(this);
     });                    
-    
 }   
+
+
+userSchema.methods.newInforTw    = function(access_token, token_secret, profile, callback){
+    this.userName                   = profile.displayName;
+    this.avatar                     = profile._json.profile_image_url;
+    this.avatar_small               = profile._json.profile_image_url;
+    this.avatar_normal              = profile._json.profile_image_url;
+
+    this.twitter_infor.id           = profile.id;
+    this.twitter_infor.access_token = access_token;
+    this.twitter_infor.token_secret = token_secret;
+    this.twitter_infor.username     = profile.displayName;
+
+    this.makeToken();
+    this.save(function(err) {
+        if (err)
+            throw err;
+        callback(this);
+    });
+}
 
 // edit Infor
 // { Avatar, Avatar_small, Avatar_normal, Fullname, YearOfBirth
