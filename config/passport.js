@@ -233,6 +233,9 @@ module.exports = function(passport) {
                         // if there is a user id already but no token (user was linked at one point and then removed)
                         if (!user.twitter_infor.token) {
                             user.userName                  = profile.displayName;
+                            user.avatar                    = profile._json.profile_image_url;
+                            user.avatar_small              = profile._json.profile_image_url;
+                            user.avatar_normal             = profile._json.profile_image_url;
 
                             user.twitter_infor.token       = token;
                             user.twitter_infor.username    = profile.username;
@@ -250,6 +253,9 @@ module.exports = function(passport) {
                         // if there is no user, create them
                         var newUser                       = new User();
                         newUser.userName                  = profile.displayName;
+                        newUser.avatar                    = profile._json.profile_image_url;
+                        newUser.avatar_small              = profile._json.profile_image_url;
+                        newUser.avatar_normal             = profile._json.profile_image_url;
 
                         newUser.twitter_infor.id          = profile.id;
                         newUser.twitter_infor.token       = token;
@@ -272,6 +278,9 @@ module.exports = function(passport) {
                 user.twitter_infor.token       = token;
                 user.twitter_infor.username    = profile.username;
                 user.twitter_infor.displayName = profile.displayName;
+                user.avatar                    = profile._json.profile_image_url;
+                user.avatar_small              = profile._json.profile_image_url;
+                user.avatar_normal             = profile._json.profile_image_url;
 
                 user.save(function(err) {
                     if (err)
