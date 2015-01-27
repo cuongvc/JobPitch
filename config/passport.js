@@ -204,8 +204,6 @@ module.exports = function(passport) {
         process.nextTick(function() {
 
             // check if the user is already logged in
-            if (!req.user) {
-
                 User.findOne({ 'twitter_infor.id' : profile.id }, function(err, user) {
                     if (err)
                         return done(err);
@@ -250,26 +248,6 @@ module.exports = function(passport) {
                         });
                     }
                 });
-
-            } else {
-                // user already exists and is logged in, we have to link accounts
-                var user                       = req.user; // pull the user out of the session
-                user.userName                  = profile.displayName;
-                user.twitter_infor.id          = profile.id;
-                user.twitter_infor.token       = token;
-                user.twitter_infor.username    = profile.username;
-                user.twitter_infor.displayName = profile.displayName;
-                user.avatar                    = profile._json.profile_image_url;
-                user.avatar_small              = profile._json.profile_image_url;
-                user.avatar_normal             = profile._json.profile_image_url;
-
-                user.save(function(err) {
-                    if (err)
-                        throw err;
-                    return done(null, user);
-                });
-            }
-
         });
 
     }));
