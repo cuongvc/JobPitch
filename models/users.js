@@ -338,7 +338,7 @@ userSchema.methods.newInforFb    = function(token, profile, callback){
     this.fb_infor.gender         = profile.gender;
     this.fb_infor.profileUrl     = profile.profileUrl;  
     this.fb_infor.access_token   = token;
-    this.fb_infor.name           = profile.displayName;
+    this.fb_infor.username       = profile.displayName;
     this.fb_infor.email          = profile.emails[0].value;
 
     this.makeToken();
