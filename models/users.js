@@ -298,7 +298,7 @@ var userSchema = mongoose.Schema({
         default      : ''
     },
 
-    sex              : {
+    gender           : {
         type         : String
     },
 

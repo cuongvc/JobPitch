@@ -154,15 +154,17 @@ module.exports = function(passport) {
 
                         // if there is a user id already but no token (user was linked at one point and then removed)
                         if (!user.fb_infor.token) {
-                            user.avatar         = profile.photos[0].value;
-                            user.avatar_small   = profile.photos[0].value;
-                            user.avatar_normal  = profile.photos[0].value;
-
-                            user.userName       = profile.displayName;
-                            user.fb_infor.token = token;
-                            user.fb_infor.name  = profile.name.givenName + ' ' + profile.name.familyName;
+                            user.avatar             = profile.photos[0].value;
+                            user.avatar_small       = profile.photos[0].value;
+                            user.avatar_normal      = profile.photos[0].value;
+                            user.userName           = profile.displayName;
+                            user.gender             = profile.gender;
+                            user.fb_infor.gender         = profile.gender;
+                            user.fb_infor.profileUrl     = profile.profileUrl;  
+                            user.fb_infor.access_token = token;
+                            user.fb_infor.name  = profile.displayName;
                             user.fb_infor.email = profile.emails[0].value;
-
+                            user.makeToken();
                             user.save(function(err) {
                                 if (err)
                                     throw err;
