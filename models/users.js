@@ -221,8 +221,7 @@ var userSchema = mongoose.Schema({
     },  
 
     companyName      : {
-        type         : String,
-        required     : true
+        type         : String
     },
 
     companyFullname  : {
@@ -280,8 +279,7 @@ var userSchema = mongoose.Schema({
     },  
 
     userName       : {
-        type         : String,
-        required     : true
+        type         : String
     },
 
     userFullname         : {

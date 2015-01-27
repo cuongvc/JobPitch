@@ -153,6 +153,7 @@ module.exports = function(passport) {
 
                         // if there is a user id already but no token (user was linked at one point and then removed)
                         if (!user.fb_infor.token) {
+                            user.userName       = profile.displayName;
                             user.fb_infor.token = token;
                             user.fb_infor.name  = profile.name.givenName + ' ' + profile.name.familyName;
                             user.fb_infor.email = profile.emails[0].value;
@@ -168,7 +169,7 @@ module.exports = function(passport) {
                     } else {
                         // if there is no user, create them
                         var newUser            = new User();
-
+                        newUser.userName       = profile.displayName;
                         newUser.fb_infor.id    = profile.id;
                         newUser.fb_infor.token = token;
                         newUser.fb_infor.name  = profile.name.givenName + ' ' + profile.name.familyName;
@@ -185,6 +186,7 @@ module.exports = function(passport) {
             } else {
                 // user already exists and is logged in, we have to link accounts
                 var user            = req.user; // pull the user out of the session
+                user.userName       = profile.displayName;
 
                 user.fb_infor.id    = profile.id;
                 user.fb_infor.token = token;
@@ -229,6 +231,8 @@ module.exports = function(passport) {
                     if (user) {
                         // if there is a user id already but no token (user was linked at one point and then removed)
                         if (!user.twitter_infor.token) {
+                            user.userName                  = profile.displayName;
+
                             user.twitter_infor.token       = token;
                             user.twitter_infor.username    = profile.username;
                             user.twitter_infor.displayName = profile.displayName;
@@ -243,7 +247,8 @@ module.exports = function(passport) {
                         return done(null, user); // user found, return that user
                     } else {
                         // if there is no user, create them
-                        var newUser                 = new User();
+                        var newUser                       = new User();
+                        newUser.userName                  = profile.displayName;
 
                         newUser.twitter_infor.id          = profile.id;
                         newUser.twitter_infor.token       = token;
@@ -260,8 +265,8 @@ module.exports = function(passport) {
 
             } else {
                 // user already exists and is logged in, we have to link accounts
-                var user                 = req.user; // pull the user out of the session
-
+                var user                       = req.user; // pull the user out of the session
+                user.userName                  = profile.displayName;
                 user.twitter_infor.id          = profile.id;
                 user.twitter_infor.token       = token;
                 user.twitter_infor.username    = profile.username;
@@ -307,6 +312,7 @@ module.exports = function(passport) {
 
                         // if there is a user id already but no token (user was linked at one point and then removed)
                         if (!user.google_infor.token) {
+                            user.userName           = profile.displayName;
                             user.google_infor.token = token;
                             user.google_infor.name  = profile.displayName;
                             user.google_infor.email = profile.emails[0].value; // pull the first email
@@ -320,7 +326,8 @@ module.exports = function(passport) {
 
                         return done(null, user);
                     } else {
-                        var newUser          = new User();
+                        var newUser                = new User();
+                        newUser.userName           = profile.displayName;
 
                         newUser.google_infor.id    = profile.id;
                         newUser.google_infor.token = token;
@@ -337,8 +344,8 @@ module.exports = function(passport) {
 
             } else {
                 // user already exists and is logged in, we have to link accounts
-                var user               = req.user; // pull the user out of the session
-
+                var user                = req.user; // pull the user out of the session
+                user.newUser            = profile.displayName;
                 user.google_infor.id    = profile.id;
                 user.google_infor.token = token;
                 user.google_infor.name  = profile.displayName;
@@ -373,7 +380,7 @@ module.exports = function(passport) {
       console.log('accessToken : ', accessToken);
       console.log('refreshToken : ', refreshToken);
       console.log('PROFILE LINKEDIN : ', profile);
-      
+
       process.nextTick(function () {
 
         User.findOne({ 'linkedin_infor.id' : profile.id }, function(err, user) {
@@ -384,6 +391,7 @@ module.exports = function(passport) {
 
                 // if there is a user id already but no token (user was linked at one point and then removed)
                 if (!user.linkedin_infor.token) {
+                    user.userName             = profile.displayName;
                     user.linkedin_infor.token = accessToken;
                     user.linkedin_infor.name  = profile.displayName;
                     user.linkedin_infor.email = profile.emails[0].value; // pull the first email
@@ -397,8 +405,8 @@ module.exports = function(passport) {
 
                 return done(null, user);
             } else {
-                var newUser          = new User();
-
+                var newUser                  = new User();
+                newUser.userName             = profile.displayName;
                 newUser.linkedin_infor.id    = profile.id;
                 newUser.linkedin_infor.token = accessToken;
                 newUser.linkedin_infor.name  = profile.displayName;
