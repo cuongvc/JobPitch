@@ -313,6 +313,9 @@ module.exports = function(passport) {
 
                         // if there is a user id already but no token (user was linked at one point and then removed)
                         if (!user.google_infor.token) {
+                            user.avatar             = profile._json.picture;
+                            user.avatar_small       = profile._json.picture;
+                            user.avatar_normal      = profile._json.picture;
                             user.userName           = profile.displayName;
                             user.google_infor.token = token;
                             user.google_infor.name  = profile.displayName;
@@ -329,6 +332,9 @@ module.exports = function(passport) {
                     } else {
                         var newUser                = new User();
                         newUser.userName           = profile.displayName;
+                        newUser.avatar             = profile._json.picture;
+                        newUser.avatar_small       = profile._json.picture;
+                        newUser.avatar_normal      = profile._json.picture;
 
                         newUser.google_infor.id    = profile.id;
                         newUser.google_infor.token = token;
@@ -346,6 +352,10 @@ module.exports = function(passport) {
             } else {
                 // user already exists and is logged in, we have to link accounts
                 var user                = req.user; // pull the user out of the session
+                user.avatar             = profile._json.picture;
+                user.avatar_small       = profile._json.picture;
+                user.avatar_normal      = profile._json.picture;
+
                 user.newUser            = profile.displayName;
                 user.google_infor.id    = profile.id;
                 user.google_infor.token = token;
