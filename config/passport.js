@@ -134,7 +134,7 @@ module.exports = function(passport) {
         clientID        : configAuth.facebookAuth.clientID,
         clientSecret    : configAuth.facebookAuth.clientSecret,
         callbackURL     : configAuth.facebookAuth.callbackURL,
-        profileFields   : ['id', 'displayName', 'email', 'photos'],
+        profileFields   : ['id', 'displayName', 'email', 'photos', 'gender', 'profileUrl'],
         passReqToCallback : true // allows us to pass in the req from our route (lets us check if a user is logged in or not)
 
     },
@@ -194,16 +194,18 @@ module.exports = function(passport) {
 
             } else {
                 // user already exists and is logged in, we have to link accounts
-                var user            = req.user; // pull the user out of the session
-                user.userName       = profile.displayName;
-                user.avatar         = profile.photos[0].value;
-                user.avatar_small   = profile.photos[0].value;
-                user.avatar_normal  = profile.photos[0].value;
+                var user                = req.user; // pull the user out of the session
+                user.userName           = profile.displayName;
+                user.avatar             = profile.photos[0].value;
+                user.avatar_small       = profile.photos[0].value;
+                user.avatar_normal      = profile.photos[0].value;
 
-                user.fb_infor.id    = profile.id;
-                user.fb_infor.token = token;
-                user.fb_infor.name  = profile.name.givenName + ' ' + profile.name.familyName;
-                user.fb_infor.email = profile.emails[0].value;
+                user.fb_infor.id        = profile.id;
+                user.fb_infor.avatar    = profile.photos[0].value;
+
+                user.fb_infor.token     = token;
+                user.fb_infor.username  = profile.displayName;
+                user.fb_infor.email     = profile.emails[0].value;
 
                 user.save(function(err) {
                     if (err)
