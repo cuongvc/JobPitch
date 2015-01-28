@@ -33,6 +33,11 @@ var jobSchema = mongoose.Schema({
         default      : ''
     },
 
+    tag              : {
+        type         : String,
+        default      : ''
+    },
+
     description      : {
         type         : String,
         default      : ''

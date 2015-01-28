@@ -29,6 +29,7 @@ module.exports				=	function(req, res){
         var user_id  			= fields['user_id'];
         var token    			= fields['token'];
         var tagLine  			= fields['tagLine'];
+        var tag           = fields['tag'];
         var desc     			= fields['desc'];
         var link_direct   = fields['link_direct'];
         var lat           = fields['lat'];
@@ -37,6 +38,8 @@ module.exports				=	function(req, res){
         var time          = new Date;
 
         var image, image_small, image_normal;
+
+
 
         check_token(user_id, token, function(exist, company_exist){
           if (!exist){
@@ -61,9 +64,9 @@ module.exports				=	function(req, res){
               else{
                 var temp_path   =   files.image.path;
                 var extension   =   mime.extension(files.image.type).toLowerCase();  
-                var file_name   =   Math.floor(Math.random() * 1000000 + 1) + 
-                                    new Date().getTime() + '.' + extension;
+                var file_name   =   Math.floor(Math.random() * 1000000 + 1) + new Date().getTime() + '.' + extension;
                 var new_location = '/images/full_size/JobImages/'; 
+
                 fs.rename(temp_path, './public' + new_location + file_name, 
                   function(err){
                     if (err){
@@ -87,10 +90,10 @@ module.exports				=	function(req, res){
               var newJob = new Job();
               newJob.newInfor(image, image_small, image_normal, company_exist.id, 
                               tagLine, desc, lat, lng, address, link_direct, time,
-                                  function(object){
-                                    console.log(object);
-                                    respon_object(res, object);
-                                  }
+                              function(object){
+                                console.log(object);
+                                respon_object(res, object);
+                              }
               ) 
             })
         })
