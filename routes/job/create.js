@@ -1,4 +1,5 @@
-var   async             = require('async'),
+var   fs                = require('fs-extra'),
+      async             = require('async'),
       mime			    		= require('mime');
 
 var resize_small        = require('./../../my_module/resize/resize_small');

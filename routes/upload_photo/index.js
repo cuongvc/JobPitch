@@ -30,7 +30,7 @@ module.exports				=	function(req, res){
 
     form.on('error', function(err) {
       console.log(err);
-      res.write(JSON.stringify({error_code : 1, msg : err.toString()}));         //  Input is invalid
+      res.write(JSON.stringify({error_code : 1, msg : err.toString()}));       
       res.status(200).end();
     });
 
@@ -39,7 +39,7 @@ module.exports				=	function(req, res){
   }
 
   catch(err){
-    res.write(JSON.stringify({error_code : 201, msg : err.toString()}));             //  Input is invalid
+    res.write(JSON.stringify({error_code : 1, msg : err.toString()}));         
     res.status(200).end();
   }
 

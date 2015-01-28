@@ -5,11 +5,37 @@
 ## API
 
 
-### 1. Create Job
+### 1. Upload photo
+
+```
+POST http://jobpitch.campcoders.com:6969/api/upload_photo
+Content-Type: form-data
+Cache-Control: no-cache
+
+{
+    "image"         : FILE
+}
+```
+##### Regex
+```
+    file        : File
+
+```
+##### Return
+```
+{
+    "error_code": 0,
+    "path": "/tmp/upload_f2ffeff9cfb68e0e8bbac882f01e538b",
+    "extension": "jpeg"
+}
+
+```
+
+### 2. Create Job
 
 ```
 POST http://jobpitch.campcoders.com:6969/api/create_job
-Content-Type: form-data
+Content-Type: application/json
 Cache-Control: no-cache
 
 {
