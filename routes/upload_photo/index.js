@@ -22,7 +22,7 @@ module.exports				=	function(req, res){
         else{
           var temp_path   =   files.image.path;
           var extension   =   mime.extension(files.image.type).toLowerCase();  
-          res.json({error_code : 0, path : temp_path, extension : extension});
+          res.write({error_code : 0, path : temp_path, extension : extension});
           res.status(200).end();
         }
       };
