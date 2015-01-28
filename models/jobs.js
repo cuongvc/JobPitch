@@ -159,6 +159,8 @@ jobSchema.methods.newInfor    = function(image, image_small, image_normal, user_
 jobSchema.methods.distance      = function(lat, lng){
     var location1 = {lat : lat, lng : lng};
     var location2 = {lat : this.lat, lng : this.lng};
+    console.log(location2);
+    console.log(location1);
     console.log('Distance : ', distance(location1, location2));
     return distance(location1, location2) < distanceLimit;
 }
