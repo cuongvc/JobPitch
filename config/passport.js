@@ -141,25 +141,32 @@ module.exports = function(passport) {
         // asynchronous
         console.log('PROFILE FACEBOOK : ', profile);
         process.nextTick(function() {
+            if (!req.user){
+                User.findOne({ 'fb_infor.id' : profile.id }, function(err, user) {
+                    if (err)
+                        return done(err);
 
-            // check if the user is already logged in
-            User.findOne({ 'fb_infor.id' : profile.id }, function(err, user) {
-                if (err)
-                    return done(err);
-
-                if (!user) {
-                    // if there is no user, create them
-                    var newUser                = new User();
-                    newUser.newInforFb(token, profile, function(object){
-                        return done(null, user); // user found, return that user
-                    }); 
-                } else{
-                    user.makeToken();
-                    user.save(function(err){
-                        return done(null, user);    
-                    })
-                }
-            });
+                    if (!user) {
+                        // if there is no user, create them
+                        var newUser                = new User();
+                        newUser.newInforFb(token, profile, function(object){
+                            return done(null, user); // user found, return that user
+                        }); 
+                    } else{
+                        user.makeToken();
+                        user.save(function(err){
+                            return done(null, user);    
+                        })
+                    }
+                });
+            } else{
+                var user            = req.user; // pull the user out of the session
+                user.fb_infor.access_token = token;
+                user.makeToken();
+                user.save(function(err){
+                    return done(null, user);    
+                })
+            }
         });
     }));
 
@@ -179,7 +186,7 @@ module.exports = function(passport) {
         console.log('TOKEN : ', token , ' ; tokenSecret : ', tokenSecret);
         // asynchronous
         process.nextTick(function() {
-
+            if (!req.user){
             // check if the user is already logged in
                 User.findOne({ 'twitter_infor.id' : profile.id }, function(err, user) {
                     if (err)
@@ -202,6 +209,15 @@ module.exports = function(passport) {
                         })
                     }
                 });
+            } else{
+                var user = req.user;
+                user.twitter_infor.access_token = token;
+                user.twitter_infor.token_secret = tokenSecret;
+                user.makeToken();
+                user.save(function(err){
+                    return done(null, user);
+                })
+            }
         });
 
     }));
