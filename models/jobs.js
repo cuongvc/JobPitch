@@ -54,6 +54,11 @@ var jobSchema = mongoose.Schema({
         type         : String
     },
 
+    status           : {
+        type         : Number,
+        default      : 1        // 1 : hiring, 2: hired
+    },
+
     likes            : {
         number       : {
             type        : Number,
