@@ -372,7 +372,7 @@ userSchema.methods.getAvatarFb   = function(access_token, callback){
 
         async.waterfall([
             function(next){
-                API("me?fields=picture.width(800).height(800)&redirect=false", function(err, data){
+                API_FB("me?fields=picture.width(800).height(800)&redirect=false", function(err, data){
                     if (err){
                         console.log(err);
                         next(err);
@@ -387,7 +387,7 @@ userSchema.methods.getAvatarFb   = function(access_token, callback){
             },
 
             function(next){
-                API("me?fields=picture.width(200).height(200)&redirect=false", function(err, data){
+                API_FB("me?fields=picture.width(200).height(200)&redirect=false", function(err, data){
                     if (err){
                         console.log(err);
                         next(err);
