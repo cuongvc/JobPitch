@@ -15,26 +15,26 @@ module.exports         = function(req, res){
 	}
 
 	catch(err){
-		res.json({error_code : 1, msg : err.toString()});
+		res.write(JSON.stringify({error_code : 1, msg : err.toString()}));
 		res.status(200).end();
 	}
 
 	finally{
 		check_token(user_id, token, function(exist, user_exist){
 			if (!exist){
-				res.json({error_code : 1, msg : 'User is not exist'});
+				res.write(JSON.stringify({error_code : 1, msg : 'User is not exist'}));
 				res.status(200).end();
 				return 0;
 			};
 
 			check_job(job_id, function(exist2, job_exist){
 				if (!exist2){
-					res.json({error_code : 1, msg : 'Job is not exist'});
+					res.write(JSON.stringify({error_code : 1, msg : 'Job is not exist'}));
 					res.status(200).end();
 					return 0;
 				};
 
-				res.json({error_code : 0, job : job_exist});
+				res.write(JSON.stringify({error_code : 0, job : job_exist}));
 				res.status(200).end();
 			})
 
