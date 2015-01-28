@@ -1,6 +1,8 @@
 
 var Job                = require('./../../models/jobs');
 var check_token        = require('./../../my_module/check_exist').token;
+var check_job          = require('./../../my_module/check_exist').check_job;
+
 
 module.exports         = function(req, res){
 
@@ -35,7 +37,7 @@ module.exports         = function(req, res){
 				res.json({error_code : 0, job : job_exist});
 				res.status(200).end();
 			})
-			
+
 		})
 	}
 }
