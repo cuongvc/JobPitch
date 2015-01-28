@@ -122,10 +122,6 @@ jobSchema.methods.isOwn         = function(companyId){
     return (companyId == this.companyId);
 }
 
-// make new Infor of Job
-// infor : {image, image_small, image_normal, companyId, tagLine, description, location, 
-//          link_direct, time, contact}
-
 jobSchema.methods.newInfor    = function(image, image_small, image_normal, companyId
                                         ,tagLine, tag, description, lat, lng, address
                                         ,link_direct, time , callback){
@@ -171,11 +167,6 @@ jobSchema.methods.editInfor    = function(image, image_small, image_normal, comp
     callback(this);       
 }   
 
-
-
-// edit Infor
-// { logo, logo_small, logo_normal, Fullname, YearOfBirth
-//   Address, Industry, Sex, Contact }
 jobSchema.methods.editInfor     = function(job){
        return this;
 }

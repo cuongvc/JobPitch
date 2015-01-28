@@ -74,12 +74,13 @@ module.exports				=	function(req, res){
                           next(null);
                         })
                       })
-                      }
+                    }
                 })  
               }
           }
         ], function(err){
-          console.log('edit Infor');
+          console.log('edit Infor', job_exist);
+
           job_exist.editInfor(image, image_small, image_normal, company_exist.id, 
                             tagLine, tag, desc, lat, lng, address, link_direct, time,
                             function(object){
