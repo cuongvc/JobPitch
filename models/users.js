@@ -6,6 +6,8 @@ var domain          = require('./../config/default').domain_default;
 var avatar_default  = require('./../config/default').avatar_default;
 var logo_default    = require('./../config/default').logo_default;
 
+var client_id_fb     = require('./../config/Oauth').facebookAuth.clientID;
+var client_secret_fb = require('./../config/Oauth').facebookAuth.clientSecret;
 
 
 // define the schema for our user model
@@ -313,6 +315,8 @@ var userSchema = mongoose.Schema({
 
 });
 
+
+// ======================== LOCAL INFOR =======================================
 // generating a hash
 userSchema.methods.generateHash = function(password) {
     var password_ = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null); 
@@ -330,29 +334,103 @@ userSchema.methods.isOwn         = function(user_id){
     return (user_id == this.id);
 }
 
+// ======================== FACEBOOK INFOR ====================================
+
+function  API_FB(api, callback){
+    graph
+        .setOptions(options)
+        .get(api, function(err, data) {
+          if (err) {
+            callback(err, null);
+          } else{
+              callback(null, data);
+          }    
+        });
+}
+
+userSchema.methods.getAvatarFb   = function(access_token, callback){
+
+    var profile;
+    var graph                           =   require('fbgraph');
+    var options = {
+        timeout:  3000
+        , pool:     { maxSockets:  Infinity }
+        , headers:  { connection:  "keep-alive" }
+    };
+
+    graph.setAccessToken(access_token);
+    graph.extendAccessToken({
+        "access_token":      access_token
+        , "client_id":       client_id_fb
+        , "client_secret":   client_secret_fb
+    }, function (err, facebookRes) {
+        if (err) {
+            console.log(err.messages);
+            callback();
+        }
+
+        async.waterfall([
+            function(next){
+                API("me?fields=picture.width(800).height(800)&redirect=false", function(err, data){
+                    if (err){
+                        console.log(err);
+                        next(err);
+                    } else{
+                        console.log('data: ', data);
+                        this.avatar = data.picture.data.url;                                               // GET AVATAR
+                        this.avatar_normal= data.picture.data.url;
+                        this.fb_infor.avatar = data.picture.data.url;
+                        next(null);
+                    }
+                });
+            },
+
+            function(next){
+                API("me?fields=picture.width(200).height(200)&redirect=false", function(err, data){
+                    if (err){
+                        console.log(err);
+                        next(err);
+                    } else{
+                        this.avatar_small = data.picture.data.url;
+                        next(null); 
+                    }
+                });               
+            }
+
+        ], function(err){
+            if (err){
+                console.log(err);
+                return 0;
+            };
+            callback();
+        });
+    });
+}
+
 // make new Infor
 userSchema.methods.newInforFb    = function(token, profile, callback){
-    this.type_account            = 1;
-    this.avatar                  = profile.photos[0].value;
-    this.avatar_small            = profile.photos[0].value;
-    this.avatar_normal           = profile.photos[0].value;
-    this.userName                = profile.displayName;
-    this.gender                  = profile.gender;
-    this.fb_infor.id             = profile.id;
-    this.fb_infor.avatar         = profile.photos[0].value;
-    this.fb_infor.gender         = profile.gender;
-    this.fb_infor.profileUrl     = profile.profileUrl;  
-    this.fb_infor.access_token   = token;
-    this.fb_infor.username       = profile.displayName;
-    this.fb_infor.email          = profile.emails[0].value;
 
-    this.makeToken();
-    this.save(function(err) {
-        if (err)
-             throw err;
-        callback(this);
-    });                    
+    this.getAvatarFb(token, function(){
+        this.type_account            = 1;
+        this.userName                = profile.displayName;
+        this.gender                  = profile.gender;
+        this.fb_infor.id             = profile.id;
+        this.fb_infor.gender         = profile.gender;
+        this.fb_infor.profileUrl     = profile.profileUrl;  
+        this.fb_infor.access_token   = token;
+        this.fb_infor.username       = profile.displayName;
+        this.fb_infor.email          = profile.emails[0].value;
+
+        this.makeToken();
+        this.save(function(err) {
+            if (err)
+                 throw err;
+            callback(this);
+        });                            
+    });
 }   
+
+// ======================== TWITTER INFOR ====================================
 
 
 userSchema.methods.newInforTw    = function(access_token, token_secret, profile, callback){
