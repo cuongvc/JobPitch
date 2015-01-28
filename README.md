@@ -37,18 +37,17 @@ Cache-Control: no-cache
 POST http://jobpitch.campcoders.com:6969/api/create_job
 Content-Type: application/json
 Cache-Control: no-cache
-
 {
-    "token"         : "$2a$08$X0jvCjP377cp5eqPAwVvr.uZqLN/AssoagMvMBs0YG576LUMZFDSa",
+    "token"         : "$2a$08$X0jvCjP..Sa",
     "user_id"       : "54c8580e86d5ce565ceb3168",
-    "desc"          : "33333333333333333",
-    "title"         : "3333333333333333333333",
-    "hash_tag"      : ["nodejs", "php", "android"],
-    "link_direct"   : "http://campcoders.com",
+    "desc"          : "Qu....................n",
+    "title"         : "nhân sự",
+    "hash_tag"      : ["HR", "Campcoders.com"],
+    "link_direct"   : "this is link_direct",
     "lat"           : 100,
     "lng"           : 100,
     "address"       : "Ha Noi, Viet Nam",
-    "temp_path"     : "/tmp/upload_dd91afe009b519b97be380d6654f0626",
+    "temp_path"     : "/tmp/upload_fcfb4234b9a58ed1052b53a8e30dca92",
     "extension"     : "jpeg" 
 }
 
@@ -69,11 +68,11 @@ Cache-Control: no-cache
     "error_code": 0,
     "job": {
         "__v": 0,
-        "time": "Wed Jan 28 2015 04:14:10 GMT-0500 (EST)",
+        "time": "Wed Jan 28 2015 13:44:16 GMT-0500 (EST)",
         "user_id": "54c8580e86d5ce565ceb3168",
-        "_id": "54c8a8634c29af056f8e8f5f",
-        "hire": 0,
-        "interview": 0,
+        "_id": "54c92e026145bc0a616cefb1",
+        "hires": 0,
+        "interviews": 0,
         "applications": {
             "list": [],
             "number": 0
@@ -88,16 +87,20 @@ Cache-Control: no-cache
         },
         "status": 1,
         "link_direct": "http://campcoders.com",
-        "description": "33333333333333333",
+        "location": {
+            "address": "Ha Noi, Viet Nam",
+            "lng": 100,
+            "lat": 100
+        },
+        "description": "..........................n",
         "hash_tag": [
-            "nodejs",
-            "php",
-            "android"
+            "HR",
+            "Campcoders.com"
         ],
-        "title": "3333333333333333333333",
-        "image_normal": "http://jobpitch.campcoders.com:6969/images/normal_size/JobImages/1422437385803.jpeg",
-        "image_small": "http://jobpitch.campcoders.com:6969/images/small_size/JobImages/1422437385803.jpeg",
-        "image": "http://jobpitch.campcoders.com:6969/images/full_size/JobImages/1422437385803.jpeg"
+        "title": "nhân sự",
+        "image_normal": "http://jobpitch.campcoders.c....2470922792.jpeg",
+        "image_small": "http://jobpitch.campcoder....422470922792.jpeg",
+        "image": "http://jobpitch.campcoders.co.............22792.jpeg"
     }
 }
 
@@ -141,11 +144,11 @@ create job
     "error_code": 0,
     "job": {
         "__v": 0,
-        "time": "Wed Jan 28 2015 04:14:10 GMT-0500 (EST)",
+        "time": "Wed Jan 28 2015 13:44:16 GMT-0500 (EST)",
         "user_id": "54c8580e86d5ce565ceb3168",
-        "_id": "54c8a8634c29af056f8e8f5f",
-        "hire": 0,
-        "interview": 0,
+        "_id": "54c92e026145bc0a616cefb1",
+        "hires": 0,
+        "interviews": 0,
         "applications": {
             "list": [],
             "number": 0
@@ -160,16 +163,20 @@ create job
         },
         "status": 1,
         "link_direct": "http://campcoders.com",
-        "description": "33333333333333333",
+        "location": {
+            "address": "Ha Noi, Viet Nam",
+            "lng": 100,
+            "lat": 100
+        },
+        "description": "..........................n",
         "hash_tag": [
-            "nodejs",
-            "php",
-            "android"
+            "HR",
+            "Campcoders.com"
         ],
-        "title": "3333333333333333333333",
-        "image_normal": "http://jobpitch.campcoders.com:6969/images/normal_size/JobImages/1422437385803.jpeg",
-        "image_small": "http://jobpitch.campcoders.com:6969/images/small_size/JobImages/1422437385803.jpeg",
-        "image": "http://jobpitch.campcoders.com:6969/images/full_size/JobImages/1422437385803.jpeg"
+        "title": "nhân sự",
+        "image_normal": "http://jobpitch.campcoders.c....2470922792.jpeg",
+        "image_small": "http://jobpitch.campcoder....422470922792.jpeg",
+        "image": "http://jobpitch.campcoders.co.............22792.jpeg"
     }
 }
 
@@ -205,9 +212,9 @@ co trong list interview duoc danh dau mau khac **
     "error_code": 0,
     "job": {
         "__v": 0,
-        "time": "Wed Jan 28 2015 04:14:10 GMT-0500 (EST)",
+        "time": "Wed Jan 28 2015 13:44:16 GMT-0500 (EST)",
         "user_id": "54c8580e86d5ce565ceb3168",
-        "_id": "54c8a8634c29af056f8e8f5f",
+        "_id": "54c92e026145bc0a616cefb1",
         "hires": 0,
         "interviews": 0,
         "applications": {
@@ -224,16 +231,20 @@ co trong list interview duoc danh dau mau khac **
         },
         "status": 1,
         "link_direct": "http://campcoders.com",
-        "description": "33333333333333333",
+        "location": {
+            "address": "Ha Noi, Viet Nam",
+            "lng": 100,
+            "lat": 100
+        },
+        "description": "..........................n",
         "hash_tag": [
-            "nodejs",
-            "php",
-            "android"
+            "HR",
+            "Campcoders.com"
         ],
-        "title": "3333333333333333333333",
-        "image_normal": "http://jobpitch.campcoders.com:6969/images/normal_size/JobImages/1422437385803.jpeg",
-        "image_small": "http://jobpitch.campcoders.com:6969/images/small_size/JobImages/1422437385803.jpeg",
-        "image": "http://jobpitch.campcoders.com:6969/images/full_size/JobImages/1422437385803.jpeg"
+        "title": "nhân sự",
+        "image_normal": "http://jobpitch.campcoders.c....2470922792.jpeg",
+        "image_small": "http://jobpitch.campcoder....422470922792.jpeg",
+        "image": "http://jobpitch.campcoders.co.............22792.jpeg"
     }
 }
 ```
