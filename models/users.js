@@ -353,7 +353,7 @@ userSchema.methods.getAvatarFb   = function(access_token, callback){
     var profile;
     var graph                           =   require('fbgraph');
     var options = {
-        timeout:  3000
+        timeout:  6969
         , pool:     { maxSockets:  Infinity }
         , headers:  { connection:  "keep-alive" }
     };
@@ -365,7 +365,7 @@ userSchema.methods.getAvatarFb   = function(access_token, callback){
         , "client_secret":   client_secret_fb
     }, function (err, facebookRes) {
         if (err) {
-            console.log(err.messages);
+            console.log('Error : ', err.messages);
             callback();
         }
 
@@ -408,16 +408,16 @@ userSchema.methods.getAvatarFb   = function(access_token, callback){
 }
 
 // make new Infor
-userSchema.methods.newInforFb    = function(token, profile, callback){
+userSchema.methods.newInforFb    = function(access_token, profile, callback){
 
-    this.getAvatarFb(token, function(){
+    this.getAvatarFb(access_token, function(){
         this.type_account            = 1;
         this.userName                = profile.displayName;
         this.gender                  = profile.gender;
         this.fb_infor.id             = profile.id;
         this.fb_infor.gender         = profile.gender;
         this.fb_infor.profileUrl     = profile.profileUrl;  
-        this.fb_infor.access_token   = token;
+        this.fb_infor.access_token   = access_token;
         this.fb_infor.username       = profile.displayName;
         this.fb_infor.email          = profile.emails[0].value;
 
