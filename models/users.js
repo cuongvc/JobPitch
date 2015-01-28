@@ -1,5 +1,6 @@
 // load the things we need
 var mongoose        = require('mongoose');
+var async           = require('async');
 var ObjectId        = mongoose.Schema.Types.ObjectId;
 var bcrypt          = require('bcrypt-nodejs');
 var domain          = require('./../config/default').domain_default;

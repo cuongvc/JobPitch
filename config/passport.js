@@ -143,25 +143,24 @@ module.exports = function(passport) {
         process.nextTick(function() {
 
             // check if the user is already logged in
-                User.findOne({ 'fb_infor.id' : profile.id }, function(err, user) {
-                    if (err)
-                        return done(err);
+            User.findOne({ 'fb_infor.id' : profile.id }, function(err, user) {
+                if (err)
+                    return done(err);
 
-                    if (!user) {
-                        // if there is no user, create them
-                        var newUser                = new User();
-                        newUser.newInforFb(token, profile, function(object){
-                            return done(null, user); // user found, return that user
-                        }); 
-                    } else{
-                        user.makeToken();
-                        user.save(function(err){
-                            return done(null, user);    
-                        })
-                    }
-                });
+                if (!user) {
+                    // if there is no user, create them
+                    var newUser                = new User();
+                    newUser.newInforFb(token, profile, function(object){
+                        return done(null, user); // user found, return that user
+                    }); 
+                } else{
+                    user.makeToken();
+                    user.save(function(err){
+                        return done(null, user);    
+                    })
+                }
+            });
         });
-
     }));
 
     // =========================================================================
