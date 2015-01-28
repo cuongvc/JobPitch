@@ -40,12 +40,14 @@ module.exports				=	function(req, res){
 
         check_token(user_id, token, function(exist, company_exist){
           if (!exist){
+            console.log('Authenticate is incorrect');
   	       	res.write(JSON.stringify({error_code : 1, msg : 'Authenticate is incorrect'}));
   	       	res.status(200).end();
             return 0;
           }
 
           if (company_exist.type_account != 1){
+            console.log('Talent cannot create job');
             res.write(JSON.stringify({error_code : 1, msg : 'Talent cannot create job'}));
             res.status(200).end();
             return 0;
@@ -65,6 +67,7 @@ module.exports				=	function(req, res){
                 fs.rename(temp_path, './public' + new_location + file_name, 
                   function(err){
                     if (err){
+                      console.log('Err : ', err);
                       res.write(JSON.stringify({error_code : 1, msg : err.toString()}));     
                       res.status(200).end()
                     } else{
