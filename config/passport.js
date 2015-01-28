@@ -63,11 +63,13 @@ module.exports = function(passport) {
                 // all is well, return user
                 else{
                     user.makeToken();
-                    return done(null, user);
+                    user.save(function(err){
+                        return done(null, user);    
+                    })
+                    
                 }
             });
         });
-
     }));
 
     // =========================================================================
