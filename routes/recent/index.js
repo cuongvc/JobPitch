@@ -1,3 +1,4 @@
+var async               = require('async');
 var Job                 = require('./../../models/jobs');
 var check_token         = require('./../../my_module/check_exist').token;
 var distance            = require('./../../my_module/map/distance');
