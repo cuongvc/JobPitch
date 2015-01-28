@@ -38,14 +38,14 @@ module.exports				=	function(req, res){
 
         var image, image_small, image_normal;
 
-        check_token(user_id, token, function(exist, object){
+        check_token(user_id, token, function(exist, company_exist){
           if (!exist){
   	       	res.write(JSON.stringify({error_code : 1, msg : 'Authenticate is incorrect'}));
   	       	res.status(200).end();
             return 0;
           }
 
-          if (object.type_account != 1){
+          if (company_exist.type_account != 1){
             res.write(JSON.stringify({error_code : 1, msg : 'Talent cannot create job'}));
             res.status(200).end();
             return 0;
