@@ -29,6 +29,7 @@ module.exports				=	function(req, res){
     var time          = new Date;
     var temp_path     = data['temp_path'];
     var extension     = data['extension'];
+    var job_id        = data['job_id'];
 
     var image, image_small, image_normal;
         
