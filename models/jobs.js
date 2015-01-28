@@ -134,12 +134,13 @@ jobSchema.methods.newInfor    = function(image, image_small, image_normal, user_
     this.title                  = title;
     this.hash_tag               = hash_tag;
     this.description            = description;
+    this.link_direct            = link_direct;
+    this.time                   = time;
+
     this.location.lat           = lat;
     this.location.lng           = lng;
     this.location.address       = address;
-    this.link_direct            = link_direct;
-    this.time                   = time;
-    console.log('callback');
+
     callback(this);       
 }   
 
