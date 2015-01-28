@@ -376,6 +376,7 @@ userSchema.methods.getAvatarFb   = function(access_token, callback){
                         console.log(err);
                         next(err);
                     } else{
+                        console.log('data: ', data);
                         this.avatar = data.picture.data.url;                                               // GET AVATAR
                         this.avatar_normal= data.picture.data.url;
                         this.fb_infor.avatar = data.picture.data.url;
