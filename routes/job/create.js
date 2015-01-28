@@ -22,7 +22,7 @@ module.exports				=	function(req, res){
 
       if (err){
       	console.log('Error : ', err);
-        res.json({error_code : 1, msg : err.toString()});
+        res.write(JSON.stringify({error_code : 1, msg : err.toString()}));
         res.status(200).end();
       } else{
 
@@ -40,13 +40,13 @@ module.exports				=	function(req, res){
 
         check_token(user_id, token, function(exist, object){
           if (!exist){
-  	       	res.json({error_code : 1, msg : 'Authenticate is incorrect'});
+  	       	res.write(JSON.stringify({error_code : 1, msg : 'Authenticate is incorrect'}));
   	       	res.status(200).end();
             return 0;
           }
 
           if (object.type_account != 1){
-            res.json({error_code : 1, msg : 'Talent cannot create job'});
+            res.write(JSON.stringify({error_code : 1, msg : 'Talent cannot create job'}));
             res.status(200).end();
             return 0;
           }
@@ -59,13 +59,13 @@ module.exports				=	function(req, res){
               else{
                 var temp_path   =   files.image.path;
                 var extension   =   mime.extension(files.image.type).toLowerCase();  
-                var file_name   = Math.floor(Math.random() * 1000000 + 1) + 
-                                new Date().getTime() + '.' + extension;
+                var file_name   =   Math.floor(Math.random() * 1000000 + 1) + 
+                                    new Date().getTime() + '.' + extension;
                 var new_location = '/images/full_size/JobImages/'; 
                 fs.rename(temp_path, './public' + new_location + file_name, 
                   function(err){
                     if (err){
-                      res.json({error_code : 1, msg : err.toString()});     
+                      res.write(JSON.stringify({error_code : 1, msg : err.toString()}));     
                       res.status(200).end()
                     } else{
                       image = domain + new_location + file_name;
@@ -96,7 +96,7 @@ module.exports				=	function(req, res){
 
     form.on('error', function(err) {
       console.log(err);
-      res.json({error_code : 1, msg : err.toString()});         //  Input is invalid
+      res.write(JSON.stringify({error_code : 1, msg : err.toString()}));         //  Input is invalid
       res.status(200).end();
     });
 
@@ -105,7 +105,7 @@ module.exports				=	function(req, res){
   }
 
   catch(err){
-    res.json({error_code : 201, msg : err.toString()});             //  Input is invalid
+    res.write(JSON.stringify({error_code : 201, msg : err.toString()}));             //  Input is invalid
     res.status(200).end();
   }
 
