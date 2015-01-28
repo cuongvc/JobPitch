@@ -81,7 +81,7 @@ module.exports				=	function(req, res){
         ], function(err){
           console.log('edit Infor', job_exist);
 
-          job_exist.editInfor(image, image_small, image_normal, company_exist.id, 
+          job_exist.newInfor(image, image_small, image_normal, company_exist.id, 
                             tagLine, tag, desc, lat, lng, address, link_direct, time,
                             function(object){
                               console.log(object);
