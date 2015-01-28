@@ -89,7 +89,7 @@ module.exports				=	function(req, res){
             ], function(err){
               var newJob = new Job();
               newJob.newInfor(image, image_small, image_normal, company_exist.id, 
-                              tagLine, desc, lat, lng, address, link_direct, time,
+                              tagLine, tag, desc, lat, lng, address, link_direct, time,
                               function(object){
                                 console.log(object);
                                 respon_object(res, object);

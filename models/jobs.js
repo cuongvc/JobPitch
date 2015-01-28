@@ -127,7 +127,7 @@ jobSchema.methods.isOwn         = function(companyId){
 //          link_direct, time, contact}
 
 jobSchema.methods.newInfor    = function(image, image_small, image_normal, companyId
-                                        ,tagLine, description, lat, lng, address
+                                        ,tagLine, tag, description, lat, lng, address
                                         ,link_direct, time , callback){
     if (image != '')
         this.image            = image;
@@ -137,6 +137,7 @@ jobSchema.methods.newInfor    = function(image, image_small, image_normal, compa
         this.image_normal     = image_normal;
     this.companyId        = companyId;
     this.tagLine          = tagLine;
+    this.tag              = tag;
     this.description      = description;
     this.lat              = lat;
     this.lng              = lng;
