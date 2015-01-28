@@ -248,17 +248,10 @@ module.exports = function(passport) {
                         return done(err);
 
                     if (user) {
-
                         // if there is a user id already but no token (user was linked at one point and then removed)
                         if (!user.google_infor.token) {
-                            user.avatar             = profile._json.picture;
-                            user.avatar_small       = profile._json.picture;
-                            user.avatar_normal      = profile._json.picture;
-                            user.userName           = profile.displayName;
-                            user.google_infor.token = token;
-                            user.google_infor.name  = profile.displayName;
-                            user.google_infor.email = profile.emails[0].value; // pull the first email
-
+                            user.access_token = token;
+                            user.makeToken();
                             user.save(function(err) {
                                 if (err)
                                     throw err;
@@ -269,47 +262,25 @@ module.exports = function(passport) {
                         return done(null, user);
                     } else {
                         var newUser                = new User();
-                        newUser.userName           = profile.displayName;
-                        newUser.avatar             = profile._json.picture;
-                        newUser.avatar_small       = profile._json.picture;
-                        newUser.avatar_normal      = profile._json.picture;
-
-                        newUser.google_infor.id    = profile.id;
-                        newUser.google_infor.token = token;
-                        newUser.google_infor.name  = profile.displayName;
-                        newUser.google_infor.email = profile.emails[0].value; // pull the first email
-
-                        newUser.save(function(err) {
-                            if (err)
-                                throw err;
-                            return done(null, newUser);
-                        });
+                        newUser.newInforGg(token, profile, function(user){
+                            return done(null, newUser); 
+                        })
                     }
                 });
 
             } else {
                 // user already exists and is logged in, we have to link accounts
                 var user                = req.user; // pull the user out of the session
-                user.avatar             = profile._json.picture;
-                user.avatar_small       = profile._json.picture;
-                user.avatar_normal      = profile._json.picture;
-
-                user.newUser            = profile.displayName;
-                user.google_infor.id    = profile.id;
-                user.google_infor.token = token;
-                user.google_infor.name  = profile.displayName;
-                user.google_infor.email = profile.emails[0].value; // pull the first email
+                user.access_token = token;
+                user.makeToken();
 
                 user.save(function(err) {
                     if (err)
                         throw err;
                     return done(null, user);
                 });
-
             }
-
         });
-
     }));
 
     // =========================================================================
