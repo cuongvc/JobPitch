@@ -17,6 +17,7 @@ var db_url   					= 	require('./config/default').database;
 // config router type
 var Router_body 					=   express.Router();
 var Router_formdata 			=   express.Router();
+var routes 						= require('./routes/index');
 
 // ============================CONFIGURATION===================================
 
@@ -29,16 +30,17 @@ app.get('/login_fb', function(req, res){
 	res.render('login_fb.html');
 })
 
-
-
 // ============================ API ============================================
-var routes 						= require('./routes/index');
 
-	// api login------------------------------------------
+
+//  ----- LOGIN --------
 	require('./routes/login')(app, passport);
 
-  // CREATE JOB
+//  ----- JOB --------
 	Router_formdata.post('/create_job',  			 routes.job.create);
+	Router_formdata.post('/edit_job',   			 routes.job.edit);
+
+	
 
 // =================================== LISTEN BY IP AND PORT ========================
 app.set('port', process.env.PORT || port);

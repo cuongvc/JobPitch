@@ -76,7 +76,7 @@ Cache-Control: no-cache
 ### 2. Edit Job
 
 ```
-POST http://jobpitch.campcoders.com:6969/api/create_job
+POST http://jobpitch.campcoders.com:6969/api/edit_job
 Content-Type: form-data
 Cache-Control: no-cache
 
