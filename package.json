@@ -36,6 +36,7 @@
     "passport-google-oauth": "~0.1.5",
     "passport-linkedin-oauth2": "~1.2.1",
     "passport-yahoo-oauth": "~0.1.2",
-    "passport-windowslive": "~1.0.1"
+    "passport-windowslive": "~1.0.1",
+    "helmet": "~0.6.0"
   }
 }

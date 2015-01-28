@@ -6,12 +6,14 @@ var cookieParser = require('cookie-parser');
 var bodyParser   = require('body-parser');
 var session      = require('express-session');
 var express      = require('express');
+var helmet       = require('helmet');
+
 
 var favicon = require('serve-favicon');
 
 // module.exports = function(app, id, Router_raw, Router_formdata, Router_body){
 module.exports = function(app, Router_formdata, Router_body, passport){
-   
+    app.use(helmet());
     app.use(morgan('dev')); // log every request to the console
     app.use(cookieParser()); // read cookies (needed for auth)
     //app.use(bodyParser()); // get information from html forms
