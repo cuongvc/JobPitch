@@ -31,7 +31,7 @@ module.exports				=	function(req, res){
     var extension     = data['extension'];
     var job_id        = data['job_id'];
 
-    var image, image_small, image_normal;
+    var image = '', image_small = '', image_normal = '';
         
     check_token(user_id, token, function(exist, company_exist){
       if (!exist){
