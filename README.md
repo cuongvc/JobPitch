@@ -53,7 +53,7 @@ Cache-Control: no-cache
     "extension"     : "jpeg" 
 }
 
-    temp_path va extension la tu api #upload_photo#
+    temp_path va extension la tu api upload_photo
 
 ```
 ##### Regex
@@ -131,7 +131,7 @@ Cache-Control: no-cache
     "extension"     : "jpeg" 
 }
 
-Tat ca cac truong khong sua doi thi gui noi dung cu. Neu khong upload image moi thì #temp_path# và #extension = ''#. Neu upload image moi thi gui tuong tu create job
+Tat ca cac truong khong sua doi thi gui noi dung cu. Neu khong upload image moi thì temp_path và extension = ''. Neu upload image moi thi gui tuong tu create job
 
 ```
 ##### Regex
