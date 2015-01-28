@@ -419,7 +419,7 @@ userSchema.methods.newInforFb    = function(access_token, profile, callback){
         this.avatar                  = avatar;
         this.avatar_small            = avatar_small;
         this.avatar_normal           = avatar_normal;
-        this.type_account            = 1;
+        this.type_account            = 2;
         this.userName                = profile.displayName;
         this.gender                  = profile.gender;
         this.fb_infor.avatar         = avatar_normal;
@@ -447,6 +447,7 @@ userSchema.methods.newInforTw    = function(access_token, token_secret, profile,
     this.avatar                     = profile._json.profile_image_url;
     this.avatar_small               = profile._json.profile_image_url;
     this.avatar_normal              = profile._json.profile_image_url;
+    this.type_account               = 3;
 
     this.twitter_infor.id           = profile.id;
     this.twitter_infor.access_token = access_token;
@@ -467,7 +468,8 @@ userSchema.methods.newInforGg    = function(access_token, profile, callback){
     this.avatar                     = profile._json.picture;
     this.avatar_small               = profile._json.picture;
     this.avatar_normal              = profile._json.picture;
-    this.gender                    = profile._json.gender;
+    this.gender                     = profile._json.gender;
+    this.type_account               = 4;
 
     this.google_infor.id           = profile.id;
     this.google_infor.access_token = access_token;

@@ -26,7 +26,6 @@ module.exports				=	function(req, res){
         res.status(200).end();
       } else{
 
-      	var type_acc 			= fields['type_acc'];
         var user_id  			= fields['user_id'];
         var token    			= fields['token'];
         var tagLine  			= fields['tagLine'];
@@ -39,61 +38,59 @@ module.exports				=	function(req, res){
 
         var image, image_small, image_normal;
 
-        if (type_acc == 1){
-          res.json({error_code : 1, msg : 'Talent is have not enough permission to create job'});
-          res.status(200).end();
-        } else{
-          check_token(type_acc, user_id, token, function(exist, company_exist){
-          	if (!exist){
-  	        	res.json({error_code : 1, msg : 'Authenticate is incorrect'});
-  	        	res.status(200).end();
-          	} else{
+        check_token(user_id, token, function(exist, object){
+          if (!exist){
+  	       	res.json({error_code : 1, msg : 'Authenticate is incorrect'});
+  	       	res.status(200).end();
+            return 0;
+          }
 
-              async.waterfall([
+          if (object.type_account != 1){
+            res.json({error_code : 1, msg : 'Talent cannot create job'});
+            res.status(200).end();
+            return 0;
+          }
+          
+          async.waterfall([
                 
-                function(next){
-                  if (Object.keys(files).length == 0)
-                    next(null);
-                  else{
-                    var temp_path   =   files.image.path;
-                    var extension   =   mime.extension(files.image.type).toLowerCase();  
-                    var file_name = Math.floor(Math.random() * 1000000 + 1) + 
-                                    new Date().getTime() + '.' + extension;
-                    var new_location = '/images/full_size/JobImages/'; 
-                    fs.rename(temp_path, './public' + new_location + file_name, 
-                            function(err){
-                      if (err){
-                        res.json({error_code : 1, msg : err.toString()});     
-                        res.status(200).end()
-                      } else{
-                        image = domain + new_location + file_name;
-                        resize_small('/images/small_size/', image, 'JobImages', function(image_link_resize){
-                          image_small = image_link_resize;
-                          resize_normal('/images/normal_size/', image, 'JobImages', function(image_link_resize){
-                            image_normal = image_link_resize;
-                            next(null);
-                          })
+            function(next){
+              if (Object.keys(files).length == 0)
+                next(null);
+              else{
+                var temp_path   =   files.image.path;
+                var extension   =   mime.extension(files.image.type).toLowerCase();  
+                var file_name   = Math.floor(Math.random() * 1000000 + 1) + 
+                                new Date().getTime() + '.' + extension;
+                var new_location = '/images/full_size/JobImages/'; 
+                fs.rename(temp_path, './public' + new_location + file_name, 
+                  function(err){
+                    if (err){
+                      res.json({error_code : 1, msg : err.toString()});     
+                      res.status(200).end()
+                    } else{
+                      image = domain + new_location + file_name;
+                      resize_small('/images/small_size/', image, 'JobImages', function(image_link_resize){
+                        image_small = image_link_resize;
+                        resize_normal('/images/normal_size/', image, 'JobImages', function(image_link_resize){
+                          image_normal = image_link_resize;
+                          next(null);
                         })
-
+                      })
                       }
-                    })  
-                  }
-                }
-
-                ], function(err){
-                  var newJob = new Job();
-                  newJob.newInfor(image, image_small, image_normal, company_exist.id, 
-                                  tagLine, desc, lat, lng, address, link_direct, time,
+                })  
+              }
+            }
+            ], function(err){
+              var newJob = new Job();
+              newJob.newInfor(image, image_small, image_normal, company_exist.id, 
+                              tagLine, desc, lat, lng, address, link_direct, time,
                                   function(object){
                                     console.log(object);
                                     respon_object(res, object);
                                   }
-                  ) 
-                })
-          	}
-          })
-        }
-
+              ) 
+            })
+        })
       }
     });
 

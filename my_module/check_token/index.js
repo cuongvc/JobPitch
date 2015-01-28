@@ -1,7 +1,5 @@
 var User           = require('./../../models/users');
 
-// type_acc = 1 : user is Talent
-// type_acc = 2 : user is Company
 module.exports				=	function(id, token, callback){
 
 	User.findOne({_id : id}, function(err, object_exist){
