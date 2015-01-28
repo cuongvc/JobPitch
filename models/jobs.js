@@ -148,6 +148,27 @@ jobSchema.methods.newInfor    = function(image, image_small, image_normal, compa
     callback(this);       
 }   
 
+jobSchema.methods.editInfor    = function(image, image_small, image_normal, companyId
+                                        ,tagLine, tag, description, lat, lng, address
+                                        ,link_direct, time , callback){
+    if (image != '')
+        this.image            = image;
+    if (image_small != '')
+        this.image_small      = image_small;
+    if (image_normal != '')
+        this.image_normal     = image_normal;
+    this.companyId        = companyId;
+    this.tagLine          = tagLine;
+    this.tag              = tag;
+    this.description      = description;
+    this.lat              = lat;
+    this.lng              = lng;
+    this.address          = address;
+    this.link_direct      = link_direct;
+    this.time             = time;
+
+    callback(this);       
+}   
 
 
 

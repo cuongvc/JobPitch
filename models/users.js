@@ -439,8 +439,8 @@ userSchema.methods.newInforFb    = function(access_token, profile, callback){
     });
 }   
 
-// ======================== TWITTER INFOR ====================================
 
+// ======================== TWITTER INFOR ====================================
 
 userSchema.methods.newInforTw    = function(access_token, token_secret, profile, callback){
     this.userName                   = profile.displayName;

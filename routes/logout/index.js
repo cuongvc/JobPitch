@@ -1,4 +1,4 @@
-var check_token       = require('./../../my_module/check_token');
+var check_token       = require('./../../my_module/check_exist').token;
 
 module.exports				=	function(req, res){
 	try{

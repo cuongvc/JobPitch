@@ -8,7 +8,7 @@ var resize_small        = require('./../../my_module/resize/resize_small');
 var resize_normal       = require('./../../my_module/resize/resize_normal');
 var domain              = require('./../../config/default').domain_default;
 
-var check_token         = require('./../../my_module/check_token');
+var check_token         = require('./../../my_module/check_exist').token;
 var respon_object       = require('./../../my_module/respon_object').job;
 
 var Job                 = require('./../../models/jobs');
