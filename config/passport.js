@@ -135,8 +135,7 @@ module.exports = function(passport) {
         clientSecret    : configAuth.facebookAuth.clientSecret,
         callbackURL     : configAuth.facebookAuth.callbackURL,
         profileFields   : ['id', 'displayName', 'email', 'photos', 'gender', 'profileUrl'],
-        passReqToCallback : true // allows us to pass in the req from our route (lets us check if a user is logged in or not)
-
+        passReqToCallback : true 
     },
     function(req, token, refreshToken, profile, done) {
         // asynchronous

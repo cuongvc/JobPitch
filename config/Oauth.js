@@ -4,7 +4,7 @@ module.exports = {
 
     'facebookAuth' : {
         'clientID'              : '1591004764464608', // your App ID
-        'clientSecret'          : '61523e341f71684d14ad9f0e7c58c32b', // your App Secret
+        'clientSecret'          : '075794c218de978d70a7450477af2025', // your App Secret
         'callbackURL'           : 'http://jobpitch.campcoders.com:6969/auth/facebook/callback'
     },
 
