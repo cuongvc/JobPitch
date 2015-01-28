@@ -52,7 +52,6 @@ module.exports				=	function(req, res){
            
         async.waterfall([    
           function(next){
-
               if(temp_path == ''){
                 next(null);
               } else{

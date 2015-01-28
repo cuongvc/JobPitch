@@ -151,6 +151,7 @@ jobSchema.methods.newInfor    = function(image, image_small, image_normal, compa
 jobSchema.methods.editInfor    = function(image, image_small, image_normal, companyId
                                         ,tagLine, tag, description, lat, lng, address
                                         ,link_direct, time , callback){
+    console.log('in edit Infor');
     if (image != '')
         this.image            = image;
     if (image_small != '')
