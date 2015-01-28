@@ -1,5 +1,6 @@
 // load the things we need
 var mongoose        = require('mongoose');
+var graph           =   require('fbgraph');
 var async           = require('async');
 var ObjectId        = mongoose.Schema.Types.ObjectId;
 var bcrypt          = require('bcrypt-nodejs');
@@ -352,7 +353,6 @@ function  API_FB(api, callback){
 userSchema.methods.getAvatarFb   = function(access_token, callback){
 
     var profile;
-    var graph                           =   require('fbgraph');
     var options = {
         timeout:  6969
         , pool:     { maxSockets:  Infinity }
