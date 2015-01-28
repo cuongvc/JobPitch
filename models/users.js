@@ -467,11 +467,15 @@ userSchema.methods.newInforGg    = function(access_token, profile, callback){
     this.avatar                     = profile._json.picture;
     this.avatar_small               = profile._json.picture;
     this.avatar_normal              = profile._json.picture;
+    this.gender                    = profile._json.gender;
 
     this.google_infor.id           = profile.id;
     this.google_infor.access_token = access_token;
     this.google_infor.username     = profile.displayName;
-    this.gender                    = profile._json.gender;
+    this.google_infor.gender       = profile.gender;
+    this.google_infor.avatar       = profile._json.picture;
+    this.google_infor.email        = profile.emails[0].value;   
+    this.google_infor.profileUrl   = profile._json.link;  
 
     this.makeToken();
     this.save(function(err) {
