@@ -25,7 +25,7 @@ var jobSchema = mongoose.Schema({
 
     companyId        : {
         type         : ObjectId,
-        ref          : 'companys' 
+        ref          : 'users' 
     },
 
     tagLine  : {
@@ -71,7 +71,7 @@ var jobSchema = mongoose.Schema({
         },
         list         : [{
             type        : ObjectId,
-            ref         : 'talents'
+            ref         : 'users'
         }]
     },
 
@@ -91,7 +91,7 @@ var jobSchema = mongoose.Schema({
             default     : 0
         },        list         : [{
             type        : ObjectId,
-            ref         : 'talents'
+            ref         : 'users'
         }]
     },
 
@@ -101,7 +101,7 @@ var jobSchema = mongoose.Schema({
             default     : 0
         },        list         : [{
             type        : ObjectId,
-            ref         : 'talents'
+            ref         : 'users'
         }]
     }
 
