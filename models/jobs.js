@@ -169,5 +169,10 @@ jobSchema.methods.editInfor     = function(job){
        return this;
 }
 
+
+jobSchema.methods.addApply      = function(application){
+    console.log(application);
+}
+
 // create the model for jobs and expose it to our app
 module.exports = mongoose.model('jobs', jobSchema);

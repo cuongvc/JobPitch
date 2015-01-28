@@ -75,26 +75,12 @@ applicationSchema.methods.isOwn         = function(companyId){
     return (companyId == this.companyId);
 }
 
-applicationSchema.methods.newInfor    = function(image, image_small, image_normal, companyId
-                                        ,title, tag, hash_tag, description, lat, lng, address
-                                        ,link_direct, time , callback){
-    if (image != '')
-        this.image            = image;
-    if (image_small != '')
-        this.image_small      = image_small;
-    if (image_normal != '')
-        this.image_normal     = image_normal;
-    this.companyId        = companyId;
-    this.title            = title;
-    this.tag              = tag;
-    this.hash_tag         = hash_tag;
-    this.description      = description;
-    this.lat              = lat;
-    this.lng              = lng;
-    this.address          = address;
-    this.link_direct      = link_direct;
-    this.time             = time;
-    console.log('callback');
+applicationSchema.methods.newInfor    = function(user_id, title, hash_tag, description, time,  callback){
+    this.user_id        = user_id;
+    this.title          = title;
+    this.hash_tag       = hash_tag;
+    this.description    = description;
+    this.time           = time;
     callback(this);       
 }   
 

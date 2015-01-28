@@ -267,7 +267,10 @@ Cache-Control: no-cache
 
     + lat, lng, address la  required. Gui location cua user da luu.
 
-        Neu user doi location hoac thong tin user khong co location (khi lan dau dang nhap - de mac dinh lat = 40.681966, lng =  -73.998220, address = "417 Clinton St Brooklyn, NY 11231, Hoa Kỳ") thi xin quyen lay location roi gui. 
+        Neu user doi location hoac thong tin user khong co location (khi lan 
+        dau dang nhap - de mac dinh lat = 40.681966, lng =  -73.998220, 
+        address = "417 Clinton St Brooklyn, NY 11231, Hoa Kỳ") thi xin 
+        quyen lay location roi gui. 
 
     + tag : filter job theo tag
 
@@ -361,12 +364,12 @@ Cache-Control: no-cache
 ### 6. Apply
 
 ```
-POST http://jobpitch.campcoders.com:6969/api/recent
+POST http://jobpitch.campcoders.com:6969/api/apply
 Content-Type: application/json
 Cache-Control: no-cache
 
 {
-    "token"          : "$2a$08$X0jvCjP377cp5eqPAwVvr.AssoagMvMBs0YG576LUMZFDSa",
+    "token"          : "$2a$08$X0......6LUMZFDSa",
     "user_id"        : "54c8580e86d5ce565ceb3168",
     "job_id"         : "54c8580e86d5ce565ceb3168",
     "title"          : "I can do it",
