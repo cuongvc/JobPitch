@@ -42,6 +42,7 @@ app.get('/login_fb', function(req, res){
 //  ----- JOB ----------------------------
 	Router_body.post('/create_job',  			 		 routes.job.create);
 	Router_body.post('/edit_job',   			 		 routes.job.edit);
+	Router_body.post('/job_detail',  			 		 routes.job.detail);
 
 	
 

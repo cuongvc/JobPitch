@@ -43,7 +43,6 @@ Cache-Control: no-cache
     "user_id"       : "54c8580e86d5ce565ceb3168",
     "desc"          : "33333333333333333",
     "title"         : "3333333333333333333333",
-    "tag"           : "3333333333333333",
     "hash_tag"      : ["nodejs", "php", "android"],
     "link_direct"   : "http://campcoders.com",
     "lat"           : 100,
@@ -71,14 +70,8 @@ Cache-Control: no-cache
         "time": "Wed Jan 28 2015 04:14:10 GMT-0500 (EST)",
         "companyId": "54c8580e86d5ce565ceb3168",
         "_id": "54c8a8634c29af056f8e8f5f",
-        "hires": {
-            "list": [],
-            "number": 0
-        },
-        "interviews": {
-            "list": [],
-            "number": 0
-        },
+        "hire": 0,
+        "interview": 0,
         "applications": {
             "list": [],
             "number": 0
@@ -99,7 +92,6 @@ Cache-Control: no-cache
             "php",
             "android"
         ],
-        "tag": "3333333333333333",
         "title": "3333333333333333333333",
         "image_normal": "http://jobpitch.campcoders.com:6969/images/normal_size/JobImages/1422437385803.jpeg",
         "image_small": "http://jobpitch.campcoders.com:6969/images/small_size/JobImages/1422437385803.jpeg",
@@ -121,7 +113,6 @@ Cache-Control: no-cache
     "user_id"       : "54c8580e86d5ce565ceb3168",
     "desc"          : "33333333333333333",
     "title"         : "3333333333333333333333",
-    "tag"           : "3333333333333333",
     "hash_tag"      : ["nodejs", "php", "android"],
     "link_direct"   : "http://campcoders.com",
     "lat"           : 100,
@@ -131,7 +122,9 @@ Cache-Control: no-cache
     "extension"     : "jpeg" 
 }
 
-Tat ca cac truong khong sua doi thi gui noi dung cu. Neu khong upload image moi thì temp_path và extension = ''. Neu upload image moi thi gui tuong tu create job
+Tat ca cac truong khong sua doi thi gui noi dung cu. Neu khong upload image 
+moi thì temp_path và extension = ''. Neu upload image moi thi gui tuong tu 
+create job
 
 ```
 ##### Regex
@@ -149,14 +142,8 @@ Tat ca cac truong khong sua doi thi gui noi dung cu. Neu khong upload image moi 
         "time": "Wed Jan 28 2015 04:14:10 GMT-0500 (EST)",
         "companyId": "54c8580e86d5ce565ceb3168",
         "_id": "54c8a8634c29af056f8e8f5f",
-        "hires": {
-            "list": [],
-            "number": 0
-        },
-        "interviews": {
-            "list": [],
-            "number": 0
-        },
+        "hire": 0,
+        "interview": 0,
         "applications": {
             "list": [],
             "number": 0
@@ -177,7 +164,6 @@ Tat ca cac truong khong sua doi thi gui noi dung cu. Neu khong upload image moi 
             "php",
             "android"
         ],
-        "tag": "3333333333333333",
         "title": "3333333333333333333333",
         "image_normal": "http://jobpitch.campcoders.com:6969/images/normal_size/JobImages/1422437385803.jpeg",
         "image_small": "http://jobpitch.campcoders.com:6969/images/small_size/JobImages/1422437385803.jpeg",
@@ -201,6 +187,10 @@ Cache-Control: no-cache
     "user_id"       : "54c8580e86d5ce565ceb3168",
     "job_id"         : "54c8580e86d5ce565ceb3168"
 }
+
+** Chi la chu cua job moi co quyen nhin duoc list interview. Nhung application
+co trong list interview duoc danh dau mau khac **
+
 ```
 ##### Regex
 ```
@@ -216,14 +206,8 @@ Cache-Control: no-cache
         "time": "Wed Jan 28 2015 04:14:10 GMT-0500 (EST)",
         "companyId": "54c8580e86d5ce565ceb3168",
         "_id": "54c8a8634c29af056f8e8f5f",
-        "hires": {
-            "list": [],
-            "number": 0
-        },
-        "interviews": {
-            "list": [],
-            "number": 0
-        },
+        "hires": 0,
+        "interviews": 0,
         "applications": {
             "list": [],
             "number": 0
@@ -244,7 +228,6 @@ Cache-Control: no-cache
             "php",
             "android"
         ],
-        "tag": "3333333333333333",
         "title": "3333333333333333333333",
         "image_normal": "http://jobpitch.campcoders.com:6969/images/normal_size/JobImages/1422437385803.jpeg",
         "image_small": "http://jobpitch.campcoders.com:6969/images/small_size/JobImages/1422437385803.jpeg",

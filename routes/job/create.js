@@ -19,7 +19,6 @@ module.exports				=	function(req, res){
     var user_id  			= data['user_id'];
     var token    			= data['token'];
     var title  			  = data['title'];
-    var tag           = data['tag'];
     var hash_tag      = data['hash_tag'];
     var desc     			= data['desc'];
     var link_direct   = data['link_direct'];
@@ -81,7 +80,7 @@ module.exports				=	function(req, res){
       ], function(err){
         var newJob = new Job();
         newJob.newInfor(image, image_small, image_normal, company_exist.id, 
-                        title, tag, hash_tag, desc, lat, lng, address, link_direct, time,
+                        title, hash_tag, desc, lat, lng, address, link_direct, time,
                         function(object){
                           console.log(object);
                           respon_object(res, object);
