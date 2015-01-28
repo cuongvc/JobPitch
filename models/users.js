@@ -410,14 +410,14 @@ userSchema.methods.getAvatarFb   = function(access_token, callback){
 // make new Infor
 userSchema.methods.newInforFb    = function(access_token, profile, callback){
 
-    // this.getAvatarFb(access_token, function(){
-        this.avatar                  = profile.photos[0].value;
-        this.avatar_small            = profile.photos[0].value;
-        this.avatar_normal           = profile.photos[0].value;
+    this.getAvatarFb(access_token, function(){
+        // this.avatar                  = profile.photos[0].value;
+        // this.avatar_small            = profile.photos[0].value;
+        // this.avatar_normal           = profile.photos[0].value;
         this.type_account            = 1;
         this.userName                = profile.displayName;
         this.gender                  = profile.gender;
-        this.fb_infor.avatar         = profile.photos[0].value;
+        // this.fb_infor.avatar         = profile.photos[0].value;
         this.fb_infor.id             = profile.id;
         this.fb_infor.gender         = profile.gender;
         this.fb_infor.profileUrl     = profile.profileUrl;  
@@ -431,7 +431,7 @@ userSchema.methods.newInforFb    = function(access_token, profile, callback){
                  throw err;
             callback(this);
         });                            
-    // });
+    });
 }   
 
 // ======================== TWITTER INFOR ====================================
