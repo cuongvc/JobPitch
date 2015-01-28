@@ -125,6 +125,7 @@ jobSchema.methods.isOwn         = function(user_id){
 
 jobSchema.methods.containTag    = function(tag){
     for (var i = 0 ; i < this.hash_tag.length ; i ++){
+        console.log(this.hash_tag[i]);
         if (this.hash_tag[i] == tag){
             return 1;
         }
@@ -158,6 +159,7 @@ jobSchema.methods.newInfor    = function(image, image_small, image_normal, user_
 jobSchema.methods.distance      = function(lat, lng){
     var location1 = {lat : lat, lng : lng};
     var location2 = {lat : this.lat, lng : this.lng};
+    console.log('Distance : ', distance(location1, location2));
     return distance(location1, location2) < distanceLimit;
 }
 
