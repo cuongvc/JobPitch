@@ -172,6 +172,10 @@ jobSchema.methods.editInfor     = function(job){
 
 jobSchema.methods.addApply      = function(application){
     console.log(application);
+    this.applications.list.push(application);
+    this.save(function(err){
+        return 1;
+    })
 }
 
 // create the model for jobs and expose it to our app

@@ -75,8 +75,9 @@ applicationSchema.methods.isOwn         = function(companyId){
     return (companyId == this.companyId);
 }
 
-applicationSchema.methods.newInfor    = function(user_id, title, hash_tag, description, time,  callback){
+applicationSchema.methods.newInfor    = function(user_id, job_id, title, hash_tag, description, time,  callback){
     this.user_id        = user_id;
+    this.job_id         = job_id;
     this.title          = title;
     this.hash_tag       = hash_tag;
     this.description    = description;
