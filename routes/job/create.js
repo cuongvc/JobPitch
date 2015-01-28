@@ -50,29 +50,31 @@ module.exports				=	function(req, res){
                 
         function(next){
 
-          if(temp_path == '')
+          if(temp_path == ''){
             next(null);
+          } else{
 
-          var file_name   =   Math.floor(Math.random() * 1000000 + 1) + new Date().getTime() + '.' + extension;
-          var new_location = '/images/full_size/JobImages/'; 
+            var file_name   =   Math.floor(Math.random() * 1000000 + 1) + new Date().getTime() + '.' + extension;
+            var new_location = '/images/full_size/JobImages/'; 
 
-          fs.rename(temp_path, './public' + new_location + file_name, 
-            function(err){
-              if (err){
-                console.log('Err : ', err);
-                res.write(JSON.stringify({error_code : 1, msg : err.toString()}));     
-                res.status(200).end()
-              } else{
-                image = domain + new_location + file_name;
-                resize_small('/images/small_size/', image, 'JobImages', function(image_link_resize){
-                  image_small = image_link_resize;
-                  resize_normal('/images/normal_size/', image, 'JobImages', function(image_link_resize){
-                    image_normal = image_link_resize;
-                    next(null);
+            fs.rename(temp_path, './public' + new_location + file_name, 
+              function(err){
+                if (err){
+                  console.log('Err : ', err);
+                  res.write(JSON.stringify({error_code : 1, msg : err.toString()}));     
+                  res.status(200).end()
+                } else{
+                  image = domain + new_location + file_name;
+                  resize_small('/images/small_size/', image, 'JobImages', function(image_link_resize){
+                    image_small = image_link_resize;
+                    resize_normal('/images/normal_size/', image, 'JobImages', function(image_link_resize){
+                      image_normal = image_link_resize;
+                      next(null);
+                    })
                   })
-                })
-              }
-            })  
+                }
+              })  
+          }
         }
       ], function(err){
         var newJob = new Job();
