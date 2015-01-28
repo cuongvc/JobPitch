@@ -47,6 +47,8 @@ app.get('/login_fb', function(req, res){
 //  ------RECENT --------------------------
 	Router_body.post('/recent',                routes.recent);
 
+//  ------APPLY --------------------------
+	Router_body.post('/apply',                 routes.apply);
 
 	
 
