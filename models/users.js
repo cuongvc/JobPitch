@@ -339,6 +339,11 @@ userSchema.methods.isOwn         = function(user_id){
 // ======================== FACEBOOK INFOR ====================================
 
 function  API_FB(api, callback){
+    var options = {
+        timeout:  6969
+        , pool:     { maxSockets:  Infinity }
+        , headers:  { connection:  "keep-alive" }
+    };
     graph
         .setOptions(options)
         .get(api, function(err, data) {
