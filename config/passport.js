@@ -48,7 +48,7 @@ module.exports = function(passport) {
 
         // asynchronous
         process.nextTick(function() {
-            User.findOne({ 'local.email' :  email }, function(err, user) {
+            User.findOne({ 'local_infor.email' :  email }, function(err, user) {
                 // if there are any errors, return the error
                 if (err)
                     return done(err);
@@ -84,7 +84,7 @@ module.exports = function(passport) {
 
             //  Whether we're signing up or connecting an account, we'll need
             //  to know if the email address is in use.
-            User.findOne({'local.email': email}, function(err, existingUser) {
+            User.findOne({'local_infor.email': email}, function(err, existingUser) {
 
                 // if there are any errors, return the error
                 if (err)
@@ -97,8 +97,8 @@ module.exports = function(passport) {
                 //  If we're logged in, we're connecting a new local account.
                 if(req.user) {
                     var user            = req.user;
-                    user.local.email    = email;
-                    user.local.password = user.generateHash(password);
+                    user.local_infor.email    = email;
+                    user.local_infor.password = user.generateHash(password);
                     user.save(function(err) {
                         if (err)
                             throw err;
@@ -110,8 +110,8 @@ module.exports = function(passport) {
                     // create the user
                     var newUser            = new User();
 
-                    newUser.local.email    = email;
-                    newUser.local.password = newUser.generateHash(password);
+                    newUser.local_infor.email    = email;
+                    newUser.local_infor.password = newUser.generateHash(password);
 
                     newUser.save(function(err) {
                         if (err)
