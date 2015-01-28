@@ -3,259 +3,294 @@
 
 ```
 ## API
-### 1. Login as an talent by facebook
+
+
+### 1. Create Job
+
 ```
-POST http://campcoders.com:6969/api/login/talent/facebook 
-Content-Type: application/json
+POST http://jobpitch.campcoders.com:6969/api/create_job
+Content-Type: form-data
 Cache-Control: no-cache
 
 {
-    {
-        "access_token" : "........................."
-    }
-
+    "token"         : "$2a$08$X0jvCjP377cp5eqPAwVvr.AssoagMvMBs0YG576LUMZFDSa",
+    "user_id"       : "54c8580e86d5ce565ceb3168",
+    "desc"          : "This is desc"
+    "tagLine"       : "This is tagLine"
+    "tag"           : "Nodejs"
+    "link_direct"   : "this is link_direct"
+    "image"         : FILE
+    "lat"           : 100
+    "lng"           : 100
+    "address"       : "Ha Noi, Viet Nam"
 }
 ```
 ##### Regex
 ```
-   'access_token' : access_token for facebook
+    address     : Suggest of Google
+    link_direct : url
+    file        : File
+
 ```
 ##### Return
 ```
 {
     "error_code": 0,
-    "talent": {
-        "_id": "54c2842b0fd745...cd3c9b1fbe",
-        "talentName": "Cường Vũ",
+    "job": {
         "__v": 0,
-        "token": "$2a$08$fWTLBrZBkz5cB3ibl1Do1/c.",
-        "permission": 0,
-        "messages": [],
-        "notifications": [],
-        "friends": [],
-        "follows": [],
-        "myApplications": [],
-        "contact": "",
-        "active": 1,
-        "fb_infor": {
-            "access_token": "CAAOla..UPs",
-            "email": "vcc.bka@gmail.com",
-            "profileUrl": "https://www.facebook.com/...1930490924048/",
-            "gender": "male",
-            "username": "Cường Vũ",
-            "avatar": "https://fbcdn-profile-a.ak...2561437_o.jpg",
-            "id": "691930490924048"
+        "time": "Tue Jan 27 2015 23:17:58 GMT-0500 (EST)",
+        "companyId": "54c8580e86d5ce565ceb3168",
+        "_id": "54c862f6d8f61d810c1f817d",
+        "hires": {
+            "list": [],
+            "number": 0
         },
-        "local_infor": {
-            "email": "",
-            "password": ""
+        "interviews": {
+            "list": [],
+            "number": 0
         },
-        "type_account": 1,
-        "year_of_birth": null,
-        "education": "",
-        "industry": "",
-        "address": "",
-        "talentFullname": "",
-        "avatar_normal": "https://fbcdn-pr..561437_o.jpg",
-        "avatar_small": "https://fbcdn-............jpg",
-        "avatar": "https://fbcdn-profile-a.akam....jpg"
+        "applications": {
+            "list": [],
+            "number": 0
+        },
+        "shares": {
+            "list": [],
+            "number": 0
+        },
+        "likes": {
+            "list": [],
+            "number": 0
+        },
+        "status": 1,
+        "link_direct": "this is link_direct",
+        "description": "This is desc",
+        "tag": "Nodejs",
+        "tagLine": "This is tagLine",
+        "image_normal": "http://jobpitch.campcoders.com:6969/images/normal_size/JobImages/1422418752982.png",
+        "image_small": "http://jobpitch.campcoders.com:6969/images/small_size/JobImages/1422418752982.png",
+        "image": "http://jobpitch.campcoders.com:6969/images/full_size/JobImages/1422418752982.png"
     }
 }
 ```
 
-### 2. Login as an talent by email
+### 2. Edit Job
+
 ```
-POST http://campcoders.com:6969/api/login/talent/email 
-Content-Type: application/json
+POST http://jobpitch.campcoders.com:6969/api/create_job
+Content-Type: form-data
 Cache-Control: no-cache
 
 {
-    {
-        "email" : ".........................",
-        "password" : "......................"
-    }
-
+    "token"         : "$2a$08$X0jvCjP377cp5eqPAwVvr.AssoagMvMBs0YG576LUMZFDSa",
+    "user_id"       : "54c8580e86d5ce565ceb3168",
+    "job_id"        : "54c8580e86d5ce565ceb3168"
+    "desc"          : "This is desc"
+    "tagLine"       : "This is tagLine"
+    "tag"           : "Nodejs"
+    "link_direct"   : "this is link_direct"
+    "image"         : FILE
+    "lat"           : 100
+    "lng"           : 100
+    "address"       : "Ha Noi, Viet Nam"
 }
+
+Neu 1 truong nao do khong thay doi, gui lai thong tin cu cho tien sua chua. image khong thay doi thi khong can gui.
+
 ```
 ##### Regex
 ```
-   'talentName' : required | length 6 -> 40
-   'email'    : required
-   'password' : require | length 6-> 40 
+    address     : Suggest of Google
+    link_direct : url
+    file        : File
+
 ```
 ##### Return
 ```
 {
     "error_code": 0,
-    "talent": {
-        "_id": "54c2842b0fd745...cd3c9b1fbe",
-        "talentName": "Cường Vũ",
+    "job": {
         "__v": 0,
-        "token": "$2a$08$fWTLBrZBkz5cB3ibl1Do1/c.",
-        "permission": 0,
-        "messages": [],
-        "notifications": [],
-        "friends": [],
-        "follows": [],
-        "myApplications": [],
-        "contact": "",
-        "active": 1,
-        "fb_infor": {
-            "access_token": "",
-            "email": "",
-            "profileUrl": "",
-            "gender": "",
-            "username": "",
-            "avatar": "",
-            "id": ""
+        "time": "Tue Jan 27 2015 23:17:58 GMT-0500 (EST)",
+        "companyId": "54c8580e86d5ce565ceb3168",
+        "_id": "54c862f6d8f61d810c1f817d",
+        "hires": {
+            "list": [],
+            "number": 0
         },
-        "local_infor": {
-            "email": "cuongvc93@gmail.com",
-            "password": "a123456"
+        "interviews": {
+            "list": [],
+            "number": 0
         },
-        "type_account": 1,
-        "year_of_birth": null,
-        "education": "",
-        "industry": "",
-        "address": "",
-        "talentFullname": "",
-        "avatar_normal": "",
-        "avatar_small": "",
-        "avatar": ""
+        "applications": {
+            "list": [],
+            "number": 0
+        },
+        "shares": {
+            "list": [],
+            "number": 0
+        },
+        "likes": {
+            "list": [],
+            "number": 0
+        },
+        "status": 1,
+        "link_direct": "this is link_direct",
+        "description": "This is desc",
+        "tag": "Nodejs",
+        "tagLine": "This is tagLine",
+        "image_normal": "http://jobpitch.campcoders.com:6969/images/normal_size/JobImages/1422418752982.png",
+        "image_small": "http://jobpitch.campcoders.com:6969/images/small_size/JobImages/1422418752982.png",
+        "image": "http://jobpitch.campcoders.com:6969/images/full_size/JobImages/1422418752982.png"
     }
 }
 ```
 
+### 2. Recent
 
-### 3. Login as an talent by twitter
 ```
-POST http://campcoders.com:6969/api/login/talent/twitter 
+POST http://jobpitch.campcoders.com:6969/api/recent
 Content-Type: application/json
 Cache-Control: no-cache
 
 {
-    {
-        "access_token_key" : ".........................",
-        "access_token_secret" : "......................"
-    }
-
+    "token"         : "$2a$08$X0jvCjP377cp5eqPAwVvr.AssoagMvMBs0YG576LUMZFDSa",
+    "user_id"       : "54c8580e86d5ce565ceb3168",
+    "tag"           : "Nodejs",
+    "lat"           : 100,
+    "lng"           : 100,
+    "address"       : "Ha Noi, Viet Nam"
 }
 ```
 ##### Regex
 ```
-   'access_token_key'           : required
-   'access_token_secret'        : required
+    address : Suggest of Google
+
 ```
 ##### Return
 ```
 {
     "error_code": 0,
-    "talent": {
-        "_id": "54c2842b0fd745...cd3c9b1fbe",
-        "talentName": "Cường Vũ",
+    "job": [{
         "__v": 0,
-        "token": "$2a$08$fWTLBrZBkz5cB3ibl1Do1/c.",
-        "permission": 0,
-        "messages": [],
-        "notifications": [],
-        "friends": [],
-        "follows": [],
-        "myApplications": [],
-        "contact": "",
-        "active": 1,
-        "fb_infor": {
-            "access_token": "",
-            "email": "",
-            "profileUrl": "",
-            "gender": "",
-            "username": "",
-            "avatar": "",
-            "id": ""
+        "time": "Tue Jan 27 2015 23:17:58 GMT-0500 (EST)",
+        "companyId": "54c8580e86d5ce565ceb3168",
+        "_id": "54c862f6d8f61d810c1f817d",
+        "hires": {
+            "list": [],
+            "number": 0
         },
-
-        "tw_infor": {
-            "access_token_key": "...",
-            "access_token_secret" : ".."
-            "profileUrl": "",
-            "gender": "",
-            "username": "CuongVu",
-            "avatar": ".........",
-            "id": "..........."
+        "interviews": {
+            "list": [],
+            "number": 0
         },
-
-        "local_infor": {
-            "email": "cuongvc93@gmail.com",
-            "password": "a123456"
+        "applications": {
+            "list": [],
+            "number": 0
         },
-        
-        "type_account": 1,
-        "year_of_birth": null,
-        "education": "",
-        "industry": "",
-        "address": "",
-        "talentFullname": "",
-        "avatar_normal": "",
-        "avatar_small": "",
-        "avatar": ""
-    }
+        "shares": {
+            "list": [],
+            "number": 0
+        },
+        "likes": {
+            "list": [],
+            "number": 0
+        },
+        "status": 1,
+        "link_direct": "this is link_direct",
+        "description": "This is desc",
+        "tag": "Nodejs",
+        "tagLine": "This is tagLine",
+        "image_normal": "http://jobpitch.campcoders.com:6969/images/normal_size/JobImages/1422418752982.png",
+        "image_small": "http://jobpitch.campcoders.com:6969/images/small_size/JobImages/1422418752982.png",
+        "image": "http://jobpitch.campcoders.com:6969/images/full_size/JobImages/1422418752982.png"
+    }]
 }
 ```
 
-### 2. Signup as a company - email
+
+### 3. JobDetail
 
 ```
-POST http://campcoders.com:6969/api/signup/company/email
+POST http://jobpitch.campcoders.com:6969/api/job_detail
 Content-Type: application/json
 Cache-Control: no-cache
 
 {
-    "companyName" : "Campcoders",
-    "email"       : "cuongvc93@gmail.com",
-    "password"    : "a123456"
+    "token"         : "$2a$08$X0jvCjP377cp5eqPAwVvr.AssoagMvMBs0YG576LUMZFDSa",
+    "user_id"       : "54c8580e86d5ce565ceb3168",
+    "job_id"         : "54c8580e86d5ce565ceb3168"
 }
 ```
 ##### Regex
 ```
-   'companyName'    => 'require|max:40|min:6'
-   'email'          => 'require'
-   'password'       => 'require|min = 6|max = 40'
+    job_id           : id of Job
+
 ```
 ##### Return
 ```
 {
     "error_code": 0,
-    "company": {
+    "job": {
         "__v": 0,
-        "companyName": "Campcoders.com",
-        "_id": "54c288430fd745cd3c9b1fbf",
-        "token": "$2a$08...o35Cjv74uLRRAxXNmSY6",
-        "permission": 0,
-        "messages": [],
-        "notifications": [],
-        "followMes": [],
-        "myJobs": [],
-        "active": 1,
-        "fb_infor": {
-            "access_token": "",
-            "email": "",
-            "profileUrl": "",
-            "gender": "",
-            "username": "",
-            "logo": "",
-            "id": ""
+        "time": "Tue Jan 27 2015 23:17:58 GMT-0500 (EST)",
+        "companyId": "54c8580e86d5ce565ceb3168",
+        "_id": "54c862f6d8f61d810c1f817d",
+        "hires": {
+            "list": [],
+            "number": 0
         },
-        "local_infor": {
-            "email": "cuongvc@gmail.com",
-            "password": "$2a$08$Bk0GENb5F8...i"
+        "interviews": {
+            "list": [],
+            "number": 0
         },
-        "type_account": 2,
-        "contact": "",
-        "website": "",
-        "address": "",
-        "companyFullname": "",
-        "logo_normal": "http://campcoders...go/default-logo.png",
-        "logo_small": "http://campcoders.com:6969/.../default-logo.png",
-        "logo": "http://campcoders.com:6969/img...fault-logo.png"
+        "applications": {
+            "list": [],
+            "number": 0
+        },
+        "shares": {
+            "list": [],
+            "number": 0
+        },
+        "likes": {
+            "list": [],
+            "number": 0
+        },
+        "status": 1,
+        "link_direct": "this is link_direct",
+        "description": "This is desc",
+        "tag": "Nodejs",
+        "tagLine": "This is tagLine",
+        "image_normal": "http://jobpitch.campcoders.com:.....18752982.png",
+        "image_small": "http://jobpitch.campcoders.com:69..2418752982.png",
+        "image": "http://jobpitch.campcoders.com......s/1422418752982.png"
     }
 }
 ```
+
+### 4. Apply
+
+```
+POST http://jobpitch.campcoders.com:6969/api/recent
+Content-Type: application/json
+Cache-Control: no-cache
+
+{
+    "token"         : "$2a$08$X0jvCjP377cp5eqPAwVvr.AssoagMvMBs0YG576LUMZFDSa",
+    "user_id"       : "54c8580e86d5ce565ceb3168",
+    "job_id"         : "54c8580e86d5ce565ceb3168",
+    "tagLine"       : "I can do it",
+    "description"   : "xxxyyyzzz"
+}
+```
+##### Regex
+```
+    job_id           : id of Job
+
+```
+##### Return
+```
+{
+    "error_code": 0
+}
+```
+
