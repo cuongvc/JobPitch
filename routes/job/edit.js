@@ -43,6 +43,7 @@ module.exports				=	function(req, res){
         
         check_token(user_id, token, function(exist, company_exist){
           if (!exist){
+            console.log('Authenticate is incorrect');
   	       	res.write(JSON.stringify({error_code : 1, msg : 'Authenticate is incorrect'}));
   	       	res.status(200).end();
             return 0;
@@ -51,6 +52,7 @@ module.exports				=	function(req, res){
           check_job(job_id, function(exist, job_exist){
 
             if (!exist){
+              console.log('Job is not exist');
               res.write(JSON.stringify({error_code : 1, msg : 'Job is not exist'}));
               res.status(200).end();
               return 1;
@@ -86,7 +88,7 @@ module.exports				=	function(req, res){
                   }
                 }
                 ], function(err){
-                  
+                  console.log('edit Infor');
                   job_exist.editInfor(image, image_small, image_normal, company_exist.id, 
                                   tagLine, tag, desc, lat, lng, address, link_direct, time,
                                   function(object){
