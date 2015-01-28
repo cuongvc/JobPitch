@@ -61,8 +61,10 @@ module.exports = function(passport) {
                     return done(null, false, req.flash('loginMessage', 'Oops! Wrong password.'));
 
                 // all is well, return user
-                else
+                else{
+                    user.makeToken();
                     return done(null, user);
+                }
             });
         });
 
@@ -91,14 +93,16 @@ module.exports = function(passport) {
                     return done(err);
 
                 // check to see if there's already a user with that email
-                if (existingUser)
+                if (existingUser){
                     return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
+                }
 
                 //  If we're logged in, we're connecting a new local account.
                 if(req.user) {
                     var user            = req.user;
                     user.local_infor.email    = email;
                     user.local_infor.password = user.generateHash(password);
+                    user.makeToken();
                     user.save(function(err) {
                         if (err)
                             throw err;
@@ -112,7 +116,7 @@ module.exports = function(passport) {
 
                     newUser.local_infor.email    = email;
                     newUser.local_infor.password = newUser.generateHash(password);
-
+                    user.makeToken();
                     newUser.save(function(err) {
                         if (err)
                             throw err;
