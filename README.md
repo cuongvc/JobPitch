@@ -68,7 +68,7 @@ Cache-Control: no-cache
     "job": {
         "__v": 0,
         "time": "Wed Jan 28 2015 04:14:10 GMT-0500 (EST)",
-        "companyId": "54c8580e86d5ce565ceb3168",
+        "user_id": "54c8580e86d5ce565ceb3168",
         "_id": "54c8a8634c29af056f8e8f5f",
         "hire": 0,
         "interview": 0,
@@ -140,7 +140,7 @@ create job
     "job": {
         "__v": 0,
         "time": "Wed Jan 28 2015 04:14:10 GMT-0500 (EST)",
-        "companyId": "54c8580e86d5ce565ceb3168",
+        "user_id": "54c8580e86d5ce565ceb3168",
         "_id": "54c8a8634c29af056f8e8f5f",
         "hire": 0,
         "interview": 0,
@@ -204,7 +204,7 @@ co trong list interview duoc danh dau mau khac **
     "job": {
         "__v": 0,
         "time": "Wed Jan 28 2015 04:14:10 GMT-0500 (EST)",
-        "companyId": "54c8580e86d5ce565ceb3168",
+        "user_id": "54c8580e86d5ce565ceb3168",
         "_id": "54c8a8634c29af056f8e8f5f",
         "hires": 0,
         "interviews": 0,

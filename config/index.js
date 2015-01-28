@@ -16,10 +16,8 @@ module.exports = function(app, Router_formdata, Router_body, passport){
     app.use(helmet());
     app.use(morgan('dev')); // log every request to the console
     app.use(cookieParser()); // read cookies (needed for auth)
-    //app.use(bodyParser()); // get information from html forms
     
-    app.use(bodyParser());            //  get information from html form
-
+    // app.use(bodyParser());            //  get information from html form
     app.use(bodyParser.json());
     app.use(bodyParser.json({limit: '50mb'}));
     app.use(bodyParser.urlencoded({limit: '50mb'}));
@@ -42,9 +40,9 @@ module.exports = function(app, Router_formdata, Router_body, passport){
     // app.use(favicon(__dirname + '/public/favicon.ico'));
 
     Router_body.use(function(req, res, next){
-    	console.log('\n' + new Date);
-      console.log('Data request : ', req.body);
-      // console.log('Core process : ', id);
+	   console.log('\n' + new Date);
+       console.log('Data request : ', req.body);
+       // console.log('Core process : ', id);
     	next();
     })
 
@@ -52,7 +50,5 @@ module.exports = function(app, Router_formdata, Router_body, passport){
     app.use('/api', Router_body);
 
     // app.use('/api', Router_raw);
-
-
 }
 

@@ -23,7 +23,7 @@ var jobSchema = mongoose.Schema({
         default      : image_default
     },  
 
-    companyId        : {
+    user_id        : {
         type         : ObjectId,
         ref          : 'users' 
     },
@@ -106,11 +106,11 @@ var jobSchema = mongoose.Schema({
 });
 
 // check job is Own of account
-jobSchema.methods.isOwn         = function(companyId){
-    return (companyId == this.companyId);
+jobSchema.methods.isOwn         = function(user_id){
+    return (user_id == this.user_id);
 }
 
-jobSchema.methods.newInfor    = function(image, image_small, image_normal, companyId
+jobSchema.methods.newInfor    = function(image, image_small, image_normal, user_id
                                         ,title, hash_tag, description, lat, lng, address
                                         ,link_direct, time , callback){
     if (image != '')
@@ -119,7 +119,7 @@ jobSchema.methods.newInfor    = function(image, image_small, image_normal, compa
         this.image_small      = image_small;
     if (image_normal != '')
         this.image_normal     = image_normal;
-    this.companyId        = companyId;
+    this.user_id        = user_id;
     this.title            = title;
     this.hash_tag         = hash_tag;
     this.description      = description;

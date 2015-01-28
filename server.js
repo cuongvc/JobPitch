@@ -17,7 +17,7 @@ var db_url   					= 	require('./config/default').database;
 // config router type
 var Router_body 					=   express.Router();
 var Router_formdata 			=   express.Router();
-var routes 						= require('./routes/index');
+var routes 							  = require('./routes/index');
 
 // ============================CONFIGURATION===================================
 
