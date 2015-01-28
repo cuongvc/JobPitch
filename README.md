@@ -59,6 +59,8 @@ Cache-Control: no-cache
 ```
     address     : Suggest of Google
     link_direct : url
+    Tat ca thong tin deu la require, tru link_direct, temp_path, extension. 
+    Neu khong gui thong tin thi gui voi gia tri la ''.
 
 ```
 ##### Return
@@ -236,7 +238,7 @@ co trong list interview duoc danh dau mau khac **
 }
 ```
 
-### 5. JobDetail
+### 5. Recent
 
 ```
 POST http://jobpitch.campcoders.com:6969/api/recent
@@ -246,15 +248,17 @@ Cache-Control: no-cache
 {
     "token"         : "$2a$08$X0jvCjP377cp5eqPAwVvr.AssoagMvMBs0YG576LUMZFDSa",
     "user_id"       : "54c8580e86d5ce565ceb3168",
-    "job_id"        : "54c8580e86d5ce565ceb3168",
     "lat"           : 100,
     "lng"           : 100,
-    "address"       : "Ngo 26, Nguyen Hong, Ha Noi"
+    "tag"           : "Nodejs",
+    "address"       : "26 Nguyen Hong, Ha Noi, Viet Nam"
 }
 
-    lat, lng, address la optional. Neu user doi location hoac thong tin user 
-    khong co location (khi lan dau dang nhap - de mac dinh lat = 200, 
-    lng = 200, address = '') thi xin quyen lay location roi gui.
+    + lat, lng, address la  required. Gui location cua user da luu.
+
+        Neu user doi location hoac thong tin user khong co location (khi lan dau dang nhap - de mac dinh lat = 40.681966, lng =  -73.998220, address = "417 Clinton St Brooklyn, NY 11231, Hoa Kỳ") thi xin quyen lay location roi gui. 
+
+    + tag : filter job theo tag
 
 ```
 ##### Regex

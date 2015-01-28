@@ -121,6 +121,15 @@ jobSchema.methods.isOwn         = function(user_id){
     return (user_id == this.user_id);
 }
 
+jobSchema.methods.containTag    = function(tag){
+    for (var i = 0 ; i < this.hash_tag.length ; i ++){
+        if (this.hash_tag[i] == tag){
+            return 1;
+        }
+    }
+    return 0;
+}
+
 jobSchema.methods.newInfor    = function(image, image_small, image_normal, user_id
                                         ,title, hash_tag, description, lat, lng, address
                                         ,link_direct, time , callback){
