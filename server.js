@@ -33,12 +33,15 @@ app.get('/login_fb', function(req, res){
 // ============================ API ============================================
 
 
-//  ----- LOGIN --------
+//  ----- LOGIN --------------------------
 	require('./routes/login')(app, passport);
 
-//  ----- JOB --------
-	Router_formdata.post('/create_job',  			 routes.job.create);
-	Router_formdata.post('/edit_job',   			 routes.job.edit);
+//  ----- UPLOAD PHOTO -------------------
+	Router_formdata.post('/upload_photo', 	   routes.upload_photo);
+
+//  ----- JOB ----------------------------
+	Router_body.post('/create_job',  			 		 routes.job.create);
+	Router_body.post('/edit_job',   			 		 routes.job.edit);
 
 	
 
