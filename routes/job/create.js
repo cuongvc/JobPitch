@@ -11,6 +11,7 @@ var respon_object       = require('./../../my_module/respon_object').job;
 
 var Job                 = require('./../../models/jobs');
 
+
 module.exports				=	function(req, res){
 
   try{
@@ -25,7 +26,7 @@ module.exports				=	function(req, res){
     var lat           = data['lat'];
     var lng           = data['lng']
     var address       = data['address'];
-    var time          = new Date;
+    var time          = new Date(new Date().toGMTString()).toJSON();
     var temp_path     = data['temp_path'];
     var extension     = data['extension'];
 

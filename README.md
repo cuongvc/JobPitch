@@ -257,12 +257,12 @@ Content-Type: application/json
 Cache-Control: no-cache
 
 {
-    "token"         : "$2a$08$X0jvCjP377cp5eqPAwVvr.AssoagMvMBs0YG576LUMZFDSa",
+    "token"         : "$2a$08$X0jvCjP37...0YG576LUMZFDSa",
     "user_id"       : "54c8580e86d5ce565ceb3168",
-    "lat"           : 100,
-    "lng"           : 100,
-    "tag"           : "Nodejs",
-    "address"       : "26 Nguyen Hong, Ha Noi, Viet Nam"
+    "lat"           : 21.018549,
+    "lng"           : 105.812198,
+    "tag"           : "HR",
+    "address"       : "9 Nguyên Hong, Thành Công, Ba Đình, Hà Nội, Việt Nam"
 }
 
     + lat, lng, address la  required. Gui location cua user da luu.
@@ -280,39 +280,82 @@ Cache-Control: no-cache
 ```
 {
     "error_code": 0,
-    "job": {
-        "__v": 0,
-        "time": "Wed Jan 28 2015 04:14:10 GMT-0500 (EST)",
-        "user_id": "54c8580e86d5ce565ceb3168",
-        "_id": "54c8a8634c29af056f8e8f5f",
-        "hires": 0,
-        "interviews": 0,
-        "applications": {
-            "list": [],
-            "number": 0
+    "jobs": [
+        {
+            "time": "Wed Jan 28 2015 14:13:47 GMT-0500 (EST)",
+            "user_id": "54c8580e86d5ce565ceb3168",
+            "_id": "54c934eb6e0f58580882aef5",
+            "__v": 0,
+            "hires": 0,
+            "interviews": 0,
+            "applications": {
+                "list": [],
+                "number": 0
+            },
+            "shares": {
+                "list": [],
+                "number": 0
+            },
+            "likes": {
+                "list": [],
+                "number": 0
+            },
+            "status": 1,
+            "link_direct": "http://campcoders.com",
+            "location": {
+                "address": "Ngõ 34 - Nguyên Hồng, Láng Hạ, Đống Đa, Hà Nội, Việt Nam",
+                "lng": 105.811434,
+                "lat": 21.021641
+            },
+            "description": "Quản lý toàn bộ công tác tuyển dụng nhân sự - Hỗ trợ thực hiện các hoạt động đào tạo và tái đào tạo- Quản lý giám sát hoạt động nhân sự trong Khách Sạn- Xây dựng, quản lý, tổ chức và thực hiện các chính sách nhân sự cho nhân viên theo quy định của Khách Sạn",
+            "hash_tag": [
+                "HR",
+                "Campcoders.com"
+            ],
+            "title": "nhân sự",
+            "image_normal": "http://jobpitch.campcoders.com:6969/images/full_size/JobImages/default-image.png",
+            "image_small": "http://jobpitch.campcoders.com:6969/images/full_size/JobImages/default-image.png",
+            "image": "http://jobpitch.campcoders.com:6969/images/full_size/JobImages/default-image.png"
         },
-        "shares": {
-            "list": [],
-            "number": 0
-        },
-        "likes": {
-            "list": [],
-            "number": 0
-        },
-        "status": 1,
-        "link_direct": "http://campcoders.com",
-        "description": "33333333333333333",
-        "hash_tag": [
-            "nodejs",
-            "php",
-            "android"
-        ],
-        "title": "3333333333333333333333",
-        "image_normal": "http://jobpitch.campcoders.com:6969/images/normal_size/JobImages/1422437385803.jpeg",
-        "image_small": "http://jobpitch.campcoders.com:6969/images/small_size/JobImages/1422437385803.jpeg",
-        "image": "http://jobpitch.campcoders.com:6969/images/full_size/JobImages/1422437385803.jpeg"
-    }
+        {
+            "time": "Wed Jan 28 2015 13:59:06 GMT-0500 (EST)",
+            "user_id": "54c8580e86d5ce565ceb3168",
+            "_id": "54c9317bacfb68017b94a021",
+            "__v": 0,
+            "hires": 0,
+            "interviews": 0,
+            "applications": {
+                "list": [],
+                "number": 0
+            },
+            "shares": {
+                "list": [],
+                "number": 0
+            },
+            "likes": {
+                "list": [],
+                "number": 0
+            },
+            "status": 1,
+            "link_direct": "http://campcoders.com",
+            "location": {
+                "address": "Ngõ 34 - Nguyên Hồng, Láng Hạ, Đống Đa, Hà Nội, Việt Nam",
+                "lng": 105.810339,
+                "lat": 21.016481
+            },
+            "description": "Quản lý toàn bộ công tác tuyển dụng nhân sự - Hỗ trợ thực hiện các hoạt động đào tạo và tái đào tạo- Quản lý giám sát hoạt động nhân sự trong Khách Sạn- Xây dựng, quản lý, tổ chức và thực hiện các chính sách nhân sự cho nhân viên theo quy định của Khách Sạn",
+            "hash_tag": [
+                "HR",
+                "Campcoders.com"
+            ],
+            "title": "nhân sự",
+            "image_normal": "http://jobpitch.campcoders.com:6969/images/normal_size/JobImages/1422471783441.jpeg",
+            "image_small": "http://jobpitch.campcoders.com:6969/images/small_size/JobImages/1422471783441.jpeg",
+            "image": "http://jobpitch.campcoders.com:6969/images/full_size/JobImages/1422471783441.jpeg"
+        }
+    ]
 }
+
 ```
 
 ### 6. Apply
