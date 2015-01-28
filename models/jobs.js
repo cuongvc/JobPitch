@@ -1,9 +1,11 @@
 // load the things we need
-var mongoose     = require('mongoose');
-var ObjectId     = mongoose.Schema.Types.ObjectId;
-var bcrypt       = require('bcrypt-nodejs');
-var domain       = require('./../config/default').domain_default;
-var image_default = require('./../config/default').jobImage_default;
+var mongoose                = require('mongoose');
+var ObjectId                = mongoose.Schema.Types.ObjectId;
+var bcrypt                  = require('bcrypt-nodejs');
+var domain                  = require('./../config/default').domain_default;
+var distanceLimit           = require('./../config/default').distanceLimit;
+var image_default           = require('./../config/default').jobImage_default;
+var distance                 = require('./../my_module/map/distance');
 
 // define the schema for our job model
 var jobSchema = mongoose.Schema({
@@ -152,6 +154,12 @@ jobSchema.methods.newInfor    = function(image, image_small, image_normal, user_
 
     callback(this);       
 }   
+
+jobSchema.methods.distance      = function(lat, lng){
+    var location1 = {lat : lat, lng : lng};
+    var location2 = {lat : this.lat, lng : this.lng};
+    return distance(location1, location2) < distanceLimit;
+}
 
 jobSchema.methods.editInfor     = function(job){
        return this;
