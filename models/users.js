@@ -20,6 +20,22 @@ var userSchema = mongoose.Schema({
         default      : ''
     },
 
+    location         : {
+        lat          : {
+            type         : Number,
+            default      : 200
+        },
+
+        lng          : {
+            type         : Number,
+            default      : 200
+        },
+
+        address      : {
+            type         : String,
+            default      : ''
+        }
+    },
 
     type_account     : {
         type         : Number,

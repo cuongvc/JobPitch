@@ -44,6 +44,10 @@ app.get('/login_fb', function(req, res){
 	Router_body.post('/edit_job',   			 		 routes.job.edit);
 	Router_body.post('/job_detail',  			 		 routes.job.detail);
 
+//  ------RECENT --------------------------
+	Router_body.post('/recent',                routes.recent);
+
+
 	
 
 // =================================== LISTEN BY IP AND PORT ========================

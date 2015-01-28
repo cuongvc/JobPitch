@@ -43,11 +43,22 @@ var jobSchema = mongoose.Schema({
     },
 
     location         : {
-        lat          : Number,
-        lng          : Number,
-        address      : String
+        lat          : {
+            type         : Number,
+            default      : 200
+        },
+
+        lng          : {
+            type         : Number,
+            default      : 200
+        },
+
+        address      : {
+            type         : String,
+            default      : ''
+        }
     },
-   
+
     link_direct      : {
         type         : String,
         default      : ''
@@ -114,20 +125,20 @@ jobSchema.methods.newInfor    = function(image, image_small, image_normal, user_
                                         ,title, hash_tag, description, lat, lng, address
                                         ,link_direct, time , callback){
     if (image != '')
-        this.image            = image;
+        this.image              = image;
     if (image_small != '')
-        this.image_small      = image_small;
+        this.image_small        = image_small;
     if (image_normal != '')
-        this.image_normal     = image_normal;
-    this.user_id        = user_id;
-    this.title            = title;
-    this.hash_tag         = hash_tag;
-    this.description      = description;
-    this.lat              = lat;
-    this.lng              = lng;
-    this.address          = address;
-    this.link_direct      = link_direct;
-    this.time             = time;
+        this.image_normal       = image_normal;
+    this.user_id                = user_id;
+    this.title                  = title;
+    this.hash_tag               = hash_tag;
+    this.description            = description;
+    this.location.lat           = lat;
+    this.location.lng           = lng;
+    this.location.address       = address;
+    this.link_direct            = link_direct;
+    this.time                   = time;
     console.log('callback');
     callback(this);       
 }   

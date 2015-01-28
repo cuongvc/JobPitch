@@ -236,7 +236,71 @@ co trong list interview duoc danh dau mau khac **
 }
 ```
 
-### 5. Apply
+### 5. JobDetail
+
+```
+POST http://jobpitch.campcoders.com:6969/api/recent
+Content-Type: application/json
+Cache-Control: no-cache
+
+{
+    "token"         : "$2a$08$X0jvCjP377cp5eqPAwVvr.AssoagMvMBs0YG576LUMZFDSa",
+    "user_id"       : "54c8580e86d5ce565ceb3168",
+    "job_id"        : "54c8580e86d5ce565ceb3168",
+    "lat"           : 100,
+    "lng"           : 100,
+    "address"       : "Ngo 26, Nguyen Hong, Ha Noi"
+}
+
+    lat, lng, address la optional. Neu user doi location hoac thong tin user 
+    khong co location (khi lan dau dang nhap - de mac dinh lat = 200, 
+    lng = 200, address = '') thi xin quyen lay location roi gui.
+
+```
+##### Regex
+```
+
+```
+##### Return
+```
+{
+    "error_code": 0,
+    "job": {
+        "__v": 0,
+        "time": "Wed Jan 28 2015 04:14:10 GMT-0500 (EST)",
+        "user_id": "54c8580e86d5ce565ceb3168",
+        "_id": "54c8a8634c29af056f8e8f5f",
+        "hires": 0,
+        "interviews": 0,
+        "applications": {
+            "list": [],
+            "number": 0
+        },
+        "shares": {
+            "list": [],
+            "number": 0
+        },
+        "likes": {
+            "list": [],
+            "number": 0
+        },
+        "status": 1,
+        "link_direct": "http://campcoders.com",
+        "description": "33333333333333333",
+        "hash_tag": [
+            "nodejs",
+            "php",
+            "android"
+        ],
+        "title": "3333333333333333333333",
+        "image_normal": "http://jobpitch.campcoders.com:6969/images/normal_size/JobImages/1422437385803.jpeg",
+        "image_small": "http://jobpitch.campcoders.com:6969/images/small_size/JobImages/1422437385803.jpeg",
+        "image": "http://jobpitch.campcoders.com:6969/images/full_size/JobImages/1422437385803.jpeg"
+    }
+}
+```
+
+### 6. Apply
 
 ```
 POST http://jobpitch.campcoders.com:6969/api/recent
