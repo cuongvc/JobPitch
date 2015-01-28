@@ -358,6 +358,7 @@ function  API_FB(api, callback){
 userSchema.methods.getAvatarFb   = function(access_token, callback){
 
     var profile;
+    var avatar, avatar_small, avatar_normal;
     var options = {
         timeout:  6969
         , pool:     { maxSockets:  Infinity }
@@ -382,11 +383,8 @@ userSchema.methods.getAvatarFb   = function(access_token, callback){
                         console.log(err);
                         next(err);
                     } else{
-                        console.log('data: ', data);
-                        console.log(this);
-                        this.avatar = data.picture.data.url;                                               // GET AVATAR
-                        this.avatar_normal= data.picture.data.url;
-                        this.fb_infor.avatar = data.picture.data.url;
+                        avatar = data.picture.data.url;                                               // GET AVATAR
+                        avatar_normal= data.picture.data.url;
                         next(null);
                     }
                 });
@@ -398,7 +396,7 @@ userSchema.methods.getAvatarFb   = function(access_token, callback){
                         console.log(err);
                         next(err);
                     } else{
-                        this.avatar_small = data.picture.data.url;
+                        avatar_small = data.picture.data.url;
                         next(null); 
                     }
                 });               
@@ -409,7 +407,7 @@ userSchema.methods.getAvatarFb   = function(access_token, callback){
                 console.log(err);
                 return 0;
             };
-            callback();
+            callback(avatar, avatar_normal, avatar_small);
         });
     });
 }
@@ -417,14 +415,14 @@ userSchema.methods.getAvatarFb   = function(access_token, callback){
 // make new Infor
 userSchema.methods.newInforFb    = function(access_token, profile, callback){
 
-    this.getAvatarFb(access_token, function(){
-        // this.avatar                  = profile.photos[0].value;
-        // this.avatar_small            = profile.photos[0].value;
-        // this.avatar_normal           = profile.photos[0].value;
+    this.getAvatarFb(access_token, function(avatar, avatar_normal, avatar_small){
+        this.avatar                  = avatar;
+        this.avatar_small            = avatar_small;
+        this.avatar_normal           = avatar_normal;
         this.type_account            = 1;
         this.userName                = profile.displayName;
         this.gender                  = profile.gender;
-        // this.fb_infor.avatar         = profile.photos[0].value;
+        this.fb_infor.avatar         = avatar_normal;
         this.fb_infor.id             = profile.id;
         this.fb_infor.gender         = profile.gender;
         this.fb_infor.profileUrl     = profile.profileUrl;  
