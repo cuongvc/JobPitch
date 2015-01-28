@@ -49,9 +49,9 @@ module.exports					=	function(req, res){
 						};						
 						next(null);
 					},
-					console.log('PASS TAG AND DISTANCE : ', result)
 
 					function(next){
+						console.log('PASS TAG AND DISTANCE : ', result)
 						result.sort(function(x, y){
 							return x.time < y.time;
 						});
