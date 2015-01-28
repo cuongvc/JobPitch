@@ -166,7 +166,7 @@ jobSchema.methods.editInfor    = function(image, image_small, image_normal, comp
     this.address          = address;
     this.link_direct      = link_direct;
     this.time             = time;
-
+    console.log('callback');
     callback(this);       
 }   
 
