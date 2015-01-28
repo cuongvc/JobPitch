@@ -28,7 +28,7 @@ var jobSchema = mongoose.Schema({
         ref          : 'users' 
     },
 
-    tagLine  : {
+    title  : {
         type         : String,
         default      : ''
     },
@@ -37,6 +37,10 @@ var jobSchema = mongoose.Schema({
         type         : String,
         default      : ''
     },
+
+    hash_tag         : [{
+        type         : String
+    }],
 
     description      : {
         type         : String,
@@ -49,7 +53,6 @@ var jobSchema = mongoose.Schema({
         address      : String
     },
    
-
     link_direct      : {
         type         : String,
         default      : ''
@@ -123,7 +126,7 @@ jobSchema.methods.isOwn         = function(companyId){
 }
 
 jobSchema.methods.newInfor    = function(image, image_small, image_normal, companyId
-                                        ,tagLine, tag, description, lat, lng, address
+                                        ,title, tag, hash_tag, description, lat, lng, address
                                         ,link_direct, time , callback){
     if (image != '')
         this.image            = image;
@@ -132,31 +135,9 @@ jobSchema.methods.newInfor    = function(image, image_small, image_normal, compa
     if (image_normal != '')
         this.image_normal     = image_normal;
     this.companyId        = companyId;
-    this.tagLine          = tagLine;
+    this.title            = title;
     this.tag              = tag;
-    this.description      = description;
-    this.lat              = lat;
-    this.lng              = lng;
-    this.address          = address;
-    this.link_direct      = link_direct;
-    this.time             = time;
-    console.log('callback');
-    callback(this);       
-}   
-
-jobSchema.methods.editInfor    = function(image, image_small, image_normal, companyId
-                                        ,tagLine, tag, description, lat, lng, address
-                                        ,link_direct, time , callback){
-    console.log('in edit Infor');
-    if (image != '')
-        this.image            = image;
-    if (image_small != '')
-        this.image_small      = image_small;
-    if (image_normal != '')
-        this.image_normal     = image_normal;
-    this.companyId        = companyId;
-    this.tagLine          = tagLine;
-    this.tag              = tag;
+    this.hash_tag          = hash_tag;
     this.description      = description;
     this.lat              = lat;
     this.lng              = lng;

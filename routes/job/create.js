@@ -18,8 +18,9 @@ module.exports				=	function(req, res){
 
     var user_id  			= data['user_id'];
     var token    			= data['token'];
-    var tagLine  			= data['tagLine'];
+    var title  			  = data['title'];
     var tag           = data['tag'];
+    var hash_tag      = data['hash_tag'];
     var desc     			= data['desc'];
     var link_direct   = data['link_direct'];
     var lat           = data['lat'];
@@ -28,6 +29,7 @@ module.exports				=	function(req, res){
     var time          = new Date;
     var temp_path     = data['temp_path'];
     var extension     = data['extension'];
+
 
     var image, image_small, image_normal;
 
@@ -79,7 +81,7 @@ module.exports				=	function(req, res){
       ], function(err){
         var newJob = new Job();
         newJob.newInfor(image, image_small, image_normal, company_exist.id, 
-                        tagLine, tag, desc, lat, lng, address, link_direct, time,
+                        title, tag, hash_tag, desc, lat, lng, address, link_direct, time,
                         function(object){
                           console.log(object);
                           respon_object(res, object);
