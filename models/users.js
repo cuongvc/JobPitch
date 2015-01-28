@@ -464,9 +464,9 @@ userSchema.methods.newInforTw    = function(access_token, token_secret, profile,
 // ======================== GOOGLE INFOR ====================================
 userSchema.methods.newInforGg    = function(access_token, profile, callback){
     this.userName                   = profile.displayName;
-    this.avatar                     = profile._json.picture:;
-    this.avatar_small               = profile._json.picture:;
-    this.avatar_normal              = profile._json.picture:;
+    this.avatar                     = profile._json.picture;
+    this.avatar_small               = profile._json.picture;
+    this.avatar_normal              = profile._json.picture;
 
     this.google_infor.id           = profile.id;
     this.google_infor.access_token = access_token;
