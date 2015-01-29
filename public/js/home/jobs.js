@@ -31,6 +31,7 @@ Jobs.controller('JobCtrl',function($scope,$http){
 	return;
 	$scope.jobs = jobs;
 	$scope.ViewJob = function(){
+		console.log('ViewJob');
 		$('#JobModal').modal('show');
 	}
 	$scope.ViewCompanyProfile = function(evt,id){
