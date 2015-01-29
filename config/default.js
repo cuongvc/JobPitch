@@ -1,8 +1,11 @@
-// var dev_port          =  6969;
-// var dev_domain        =  'jobpitch.campcoders.com';
+if (process.argv[2] == 'dev'){
+	var dev_domain           =  'job.dev';	
+} else{
+	var dev_domain        	 =  'jobpitch.campcoders.com';
+} 
 
 var dev_port             =  6969;
-var dev_domain           =  'job.dev';
+
 
 exports.port             =  dev_port;
 

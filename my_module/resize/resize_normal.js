@@ -15,6 +15,7 @@ module.exports 					=	function(path_url, url_full_size, type,  callback){
 	} else{
 			var gm = require('gm').subClass({ imageMagick: true });	    // gm with server
 	}
+	
 	console.log('./public' + url.parse(url_full_size).path);
 	gm('./public' + url.parse(url_full_size).path)
 		.resize(600, 600)
