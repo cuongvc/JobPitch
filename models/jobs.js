@@ -36,7 +36,8 @@ var jobSchema = mongoose.Schema({
     },
 
     hash_tag         : [{
-        type         : String
+        type         : String,
+        default      : []
     }],
 
     description      : {
@@ -100,7 +101,8 @@ var jobSchema = mongoose.Schema({
         number       : {
             type        : Number,
             default     : 0
-        },        list         : [{
+        },        
+        list         : [{
             type        : ObjectId,
             ref         : 'applications'
         }]
@@ -124,6 +126,7 @@ jobSchema.methods.isOwn         = function(user_id){
 }
 
 jobSchema.methods.containTag    = function(tag){
+    console.log(this.hash_tag);
     for (var i = 0 ; i < this.hash_tag.length ; i ++){
         console.log(this.hash_tag[i]);
         if (this.hash_tag[i] == tag){

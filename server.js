@@ -1,23 +1,23 @@
-var debug 						= 	require('debug')('JobPitch');
-var express 					= 	require('express');
-var app 							= 	express();
-var favicon 					=  	require('serve-favicon');
-var logger 						= 	require('morgan');
-var cookieParser 			= 	require('cookie-parser');
-var bodyParser 				= 	require('body-parser');
-var mongoose        	=   require('mongoose');
-var passport 					= 	require('passport');
+var debug        										= 	require('debug')('JobPitch');
+var express      										= 	require('express');
+var app          										= 	express();
+var favicon      										=  	require('serve-favicon');
+var logger       										= 	require('morgan');
+var cookieParser 										= 	require('cookie-parser');
+var bodyParser   										= 	require('body-parser');
+var mongoose     										=   require('mongoose');
+var passport     										= 	require('passport');
 
 
-var ip              	=   'localhost';
-var port            	=   require('./config/default').port;
-var db_url   					= 	require('./config/default').database;
+var ip              								=   'localhost';
+var port            								=   require('./config/default').port;
+var db_url          								= 	require('./config/default').database;
 
 
 // config router type
-var Router_body 					=   express.Router();
-var Router_formdata 			=   express.Router();
-var routes 							  =   require('./routes/index');
+var Router_body     								=   express.Router();
+var Router_formdata 								=   express.Router();
+var routes          								=   require('./routes/index');
 
 // ============================CONFIGURATION===================================
 

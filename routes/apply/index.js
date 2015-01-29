@@ -38,7 +38,7 @@ module.exports				=	function(req, res){
 				};
 
 				var application = new Application();
-				application.newInfor(user_id, job_id, title, hash_tag, 
+				application.newInfor(user_id, user_exist.userName, user_exist.avatar, job_id, title, hash_tag, 
 					                   description, time, function(application){
 
 					respon_object(res, application);
