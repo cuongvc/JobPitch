@@ -5,14 +5,14 @@
 			<div class="col-md-9 col-sm-12 col-xs-36"ng-repeat="job in jobs">
 				<div class="job" ng-click="ViewJob()">
 					<div class="image">
-						<img src="http://dealport.co/uploads/image/5498671750195fcb37c980d8" alt="">
+						<img ng-src="{{ job.image_small }}" alt="">
 					</div>
-					<p class="company-title cp-title" ng-click="ViewCompanyProfile($event,1)">Campcoders</p>
-					<p class="job-sort-desc">Cần quản lí project có kinh nghiệm</p>
+					<p class="company-title cp-title" ng-click="ViewCompanyProfile($event,1)" ng-bind="job.title"></p>
+					<p class="job-sort-desc" ng-bind="job.description"></p>
 					<div class="like-share">
 						<ul>
-							<li><span>328</span> <span>likes</span></li>
-							<li><span>54</span> <span>shares</span></li>
+							<li><span ng-bind="job.likes.numbers"></span> <span>likes</span></li>
+							<li><span ng-bind="job.shares.numbers"></span> <span>shares</span></li>
 						</ul>
 					</div>
 				</div><!-- job -->

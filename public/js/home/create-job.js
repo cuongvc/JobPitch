@@ -26,6 +26,28 @@ CreateJob.controller('CreateJobCtrl',function($scope,$http){
 		ShowCreateJobForm = stt;
 		$scope.ShowCreateJobForm = ShowCreateJobForm;
 	}
+
+	/**********************************************************************************/
+									/*CREATE JOB*/
+	/**********************************************************************************/
+	$scope.CreateJobImage = {
+		upload: {
+			url: STR_UPLOAD_IMAGE,
+			postData: 'image',
+			dir: {
+				name: 'dir',
+				dir: 'upload/thumb',
+			},
+		},
+		progress : {
+			show: false,
+		},
+	}
+	$scope.$watch(function(){
+		return $scope.CreateJobImage.path;
+	},function(){
+		console.log($scope.user);
+	})
 	$scope.CreateJob = function(JobTitle,JobDesc,ImageLink,Address){
 		console.log(JobTitle,JobDesc,ImageLink,Address);
 		var TitleHashTags = JobTitle.match(/#\S+/g);
@@ -41,12 +63,22 @@ CreateJob.controller('CreateJobCtrl',function($scope,$http){
 				HashTags = TitleHashTags;
 			}
 		}
+		if(HashTags == null) HashTags = [];
 		var newJob = new Object();
+			newJob.user_id = $scope.user._id;
+			newJob.token = $scope.user.token;
 			newJob.title = JobTitle;
-			newJob.description = JobDesc;
-			newJob.tags = HashTags;
-			newJob.imagelink = ImageLink;
+			newJob.desc = JobDesc;
+			newJob.hash_tag = HashTags;
+			newJob.temp_path = $scope.CreateJobImage.path;
+			newJob.link_direct = ImageLink;
+			newJob.extension = $scope.CreateJobImage.extension
+			newJob.lat = 21.016481;
+			newJob.lng = 105.810339;
 			newJob.address = Address;
+		$http.post(STR_API_CREATE_JOB,newJob).success(function(response){
+			console.log(response);
+		})
 		console.log(newJob); 
 	}
 })
