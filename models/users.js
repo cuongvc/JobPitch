@@ -438,6 +438,7 @@ userSchema.methods.getAvatarFb   = function(access_token, callback){
 userSchema.methods.newInforFb    = function(access_token, profile, callback){
     user = this;
     this.getAvatarFb(access_token, function(avatar, avatar_normal, avatar_small){
+        
         user.avatar                  = avatar;
         user.avatar_small            = avatar_small;
         user.avatar_normal           = avatar_normal;
@@ -520,7 +521,7 @@ userSchema.methods.newInforLk    = function(access_token, profile, callback){
     // this.avatar_small               = profile._json.publicProfileUrl;
     // this.avatar_normal              = profile._json.publicProfileUrl;
     // this.linkedin_infor.avatar       = profile._json.publicProfileUrl;
-    
+
     this.userName                   = profile.displayName;
     this.gender                     = profile._json.gender;
     this.type_account               = 5;
