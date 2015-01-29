@@ -80,6 +80,7 @@ IndexApp.controller('IndexCtrl',function($scope,$http,$timeout,DB){
 	DB.getWhere('jobs','_id = "_id"');
 	// DB.drop();
 
+	console.log(user);
 
 	// var user = {
 	// 	_id: '54cab86f186e392a14386427',
