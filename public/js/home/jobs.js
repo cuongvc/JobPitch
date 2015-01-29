@@ -1,4 +1,4 @@
-var Jobs = angular.module('jobs',[]);
+var Jobs = angular.module('jobs',['nightfury-upload']);
 Jobs.directive('jobs',function(){
 	return {
 		restrict: 'E',
@@ -35,4 +35,19 @@ Jobs.controller('JobCtrl',function($scope,$http){
 		evt.stopPropagation();
 		console.log('a');
 	}
+	/*
+	* get job
+	*/
+	var data = {
+		user_id: $scope.user._id,
+		token: $scope.user.token,
+		lat: 21.018549,
+		lng: 105.812198,
+		tag: "HR",
+		address: "9 Nguyên Hong, Thành Công, Ba Đình, Hà Nội, Việt Nam"
+	}
+	console.log(data);
+	$http.post(STR_API_GETP_RECENT,data).success(function(response){
+		console.log(response);
+	})
 })

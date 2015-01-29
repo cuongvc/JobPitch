@@ -79,4 +79,11 @@ IndexApp.controller('IndexCtrl',function($scope,$http,$timeout,DB){
 	// DB.insert('jobs',newJob);
 	DB.getWhere('jobs','_id = "_id"');
 	// DB.drop();
+
+
+	var user = {
+		_id: '54cab86f186e392a14386427',
+		token: '$2a$08$aO2Ta1uxP30Xir7JluahQeeZAlR9TYJE4Vr55Umo1L6YCUPyBngOm',
+	}
+	$scope.user = user;
 })
