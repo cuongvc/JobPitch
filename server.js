@@ -55,6 +55,13 @@ app.get('/login_fb', function(req, res){
 // =================================== LISTEN BY IP AND PORT ========================
 app.set('port', process.env.PORT || port);
 
+if (app.get('env') === 'development') {
+    console.log('development');
+} else{
+	  console.log('product');
+}
+
+
 var server = app.listen(app.get('port'), function() {
   debug('Express server listening on port ' + server.address().port);
 });
