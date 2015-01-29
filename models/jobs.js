@@ -35,10 +35,12 @@ var jobSchema = mongoose.Schema({
         default      : ''
     },
 
-    hash_tag         : [{
-        type         : String,
+    hash_tag         : {
+        type         : [{
+            type         : String,
+        }],
         default      : []
-    }],
+    },
 
     description      : {
         type         : String,
