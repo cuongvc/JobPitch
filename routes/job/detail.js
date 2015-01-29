@@ -1,8 +1,19 @@
 
+var Application        = require('./../../models/applications');
 var Job                = require('./../../models/jobs');
 var check_token        = require('./../../my_module/check_exist').token;
 var check_job          = require('./../../my_module/check_exist').job;
 
+
+function appsOfJob(appIds, callback){
+	Application.find({_id : {$in : appIds}}, function(err, application){
+		if (err){
+			console.log(err);
+			callback(null);
+		}
+		callback(application);
+	})
+}
 
 module.exports         = function(req, res){
 
@@ -34,8 +45,11 @@ module.exports         = function(req, res){
 					return 0;
 				};
 
-				res.write(JSON.stringify({error_code : 0, job : job_exist}));
-				res.status(200).end();
+				appsOfJob(job_exist.applications.list, function(application){
+					res.write(JSON.stringify({error_code : 0, job : job_exist, app : application}));
+					res.status(200).end();					
+				})
+
 			})
 
 		})
