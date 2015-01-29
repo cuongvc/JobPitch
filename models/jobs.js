@@ -143,7 +143,7 @@ jobSchema.methods.containTag    = function(tag){
     return 0;
 }
 
-jobSchema.methods.newInfor    = function(image, image_small, image_normal, user_id, userName,
+jobSchema.methods.newInfor    = function(image, image_small, image_normal, user_id, userName
                                         ,title, hash_tag, description, lat, lng, address
                                         ,link_direct, time , callback){
     if (image != '')
