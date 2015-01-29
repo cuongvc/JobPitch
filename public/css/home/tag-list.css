@@ -1,0 +1,16 @@
+.tags ul{
+	display: inline-block;
+	list-style: none;
+}
+.tags ul li{
+	display: inline-block;
+	margin-right: 20px;
+	padding: 5px 10px;
+	background: #7f8c8d;
+	border-radius: 1px;
+}
+.tags ul li a{
+	text-decoration: none;
+	font-family: 'Proxima Nova';
+	color: #ecf0f1;
+}

@@ -1,0 +1,42 @@
+#company-profile .cover-image{
+	overflow: auto;
+}
+
+#company-profile .cover-image img{
+	width: 100%;
+}
+#company-profile .cover-menu{
+	height: 40px;
+	background: #fff;
+	width: 100%;
+}
+#company-profile .cover-menu ul li a{
+	line-height: 40px;
+	color: #aba;
+	font-size: 19px;
+	text-decoration: none;
+}
+#company-profile .cover-menu ul li a span{
+	font-size: 14px;
+	margin-left: 5px;
+	font-family: 'Proxima Nova';
+}
+#company-profile .cover-menu ul{
+	width: 100%;
+	text-align: center;
+}
+#company-profile .cover-menu ul li{
+	margin: 0px 20px;
+}
+#company-profile .cover{
+	height: auto;
+	position: absolute;
+}
+.company-avatar{
+	position: absolute;
+	bottom: 20px;
+	left: 10px;
+}
+.company-avatar img{
+	border: 3px solid #fff;
+}

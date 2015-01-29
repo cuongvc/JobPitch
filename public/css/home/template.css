@@ -1,0 +1,51 @@
+@font-face{
+	font-family: 'Proxima Nova';
+	src: url('../../fonts/VNF-ProximaNovaCond-Regular.ttf');
+}
+@font-face{
+	font-family: 'Proxima Nova Semi Bold';
+	src: url('../../fonts/Mark Simonson - Proxima Nova Semibold.otf');
+}
+@font-face{
+	font-family: 'Proxima Nova Bold';
+	src: url('../../fonts/Mark Simonson - Proxima Nova Bold.otf');
+}
+body{
+	font-family: 'Proxima Nova';
+	background: #EEEEEE;
+}
+.fa{
+	cursor: pointer;
+}
+.fa-facebook{
+	color: #133783;
+}
+.fa-google-plus{
+	color: #DD4B39;
+}
+.fa-twitter{
+	color: #6CADDF;
+}
+.fa-linkedin{
+	color: #2C8CC0;
+}
+.bold{
+	font-family: 'Proxima Nova Bold';
+}
+.semibold{
+	font-family: 'Proxima Nova Semi Bold';
+}
+ul{
+	list-style: none;
+	display: inline-block;
+	padding: 0px;
+}
+ul li{
+	display: inline-block;
+}
+.dropdown-menu li{
+	width: 100%;
+}
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:hover, .navbar-default .navbar-nav>.open>a:focus {
+	background: none;
+}
