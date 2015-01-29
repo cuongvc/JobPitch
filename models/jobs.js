@@ -134,6 +134,9 @@ jobSchema.methods.isOwn         = function(user_id){
 
 jobSchema.methods.containTag    = function(tag){
     console.log(this.hash_tag);
+    console.log(tag);
+    if (typeof(tag) == 'undefined')
+        return 1;
     for (var i = 0 ; i < this.hash_tag.length ; i ++){
         console.log(this.hash_tag[i]);
         if (this.hash_tag[i] == tag){
