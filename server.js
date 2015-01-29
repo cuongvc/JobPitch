@@ -55,7 +55,9 @@ app.get('/login_fb', function(req, res){
 // =================================== LISTEN BY IP AND PORT ========================
 app.set('port', process.env.PORT || port);
 
-if (app.get('env') === 'development') {
+
+console.log(process.env.USER);
+if (process.env.USER === 'cuongvc') {
     console.log('development');
 } else{
 	  console.log('product');
