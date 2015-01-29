@@ -1,0 +1,18 @@
+#header .navbar{
+	background: #2dbea1;
+	border: none;
+	border-radius: 0px;
+	font-family: 'Proxima Nova'!important;
+}
+.navbar-default .navbar-brand{
+	color: #fff!important;
+}
+.navbar-nav > li  > a{
+	color: #fff!important;
+}
+.navbar-nav > li > img{
+	max-width: 35px;
+	max-height: 35px;
+	border: 1px solid #fff;
+	margin-top: 7px;
+}

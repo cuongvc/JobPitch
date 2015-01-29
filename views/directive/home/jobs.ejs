@@ -1,0 +1,63 @@
+<link rel="stylesheet" type="text/css" href="../css/home/jobs.css">
+<div id="jobs" ng-controller="JobCtrl">
+	<div class="container">
+		<div class="col-md-36 col-sm-36 col-xs-36" id="jobs">
+			<div class="col-md-9 col-sm-12 col-xs-36"ng-repeat="job in jobs">
+				<div class="job" ng-click="ViewJob()">
+					<div class="image">
+						<img src="http://dealport.co/uploads/image/5498671750195fcb37c980d8" alt="">
+					</div>
+					<p class="company-title cp-title" ng-click="ViewCompanyProfile($event,1)">Campcoders</p>
+					<p class="job-sort-desc">Cần quản lí project có kinh nghiệm</p>
+					<div class="like-share">
+						<ul>
+							<li><span>328</span> <span>likes</span></li>
+							<li><span>54</span> <span>shares</span></li>
+						</ul>
+					</div>
+				</div><!-- job -->
+			</div>
+		</div>
+		<!-- modal -->
+
+
+		<div class="modal fade" id="JobModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        <h4 class="modal-title" id="myModalLabel cp-title" ng-click="ViewCompanyProfile($event,1)">Campcoders</h4>
+		      </div>
+		      <div class="modal-body">
+		        <div class="modal-image">
+					<img src="http://www.fbcoverlover.com/covers/know-your-limitations-and-defy-them.jpg?i" alt="">
+		        </div>
+		        <div class="modal-job-body">
+					<div class="job-info">
+						<p class="bold">Senior Project Manager</p>
+						<p class="model-job-desc">Kinh nghiệm java ít nhất 5 năm, muốn chứng tỏ năng lực bản thân, không ngại khó khăn</p>
+					</div>
+					<div class="job-social">
+						<ul>
+							<li><span>422</span> <span>likes</li>
+							<li><span>42</span> <span>Shares</li>
+						</ul>
+					</div>
+					<div class="job-comment">
+						<div class="job-comment-avatar pull-left">
+							<img src="http://img1.wikia.nocookie.net/__cb20100502232308/adventuretimewithfinnandjake/images/e/e4/At_100x100_iconjake.jpg" alt="">
+							<p class="job-comment-user semibold text-center">Cuong Vu</p>
+						</div>
+						<div class="job-comment-body">
+							<p class="job-comment-title semibold">I can do it</p>
+							<p class="job-comment-desc">Kinh nhiều năm, đã là hệ thống lớn 100k user,muốn chứng tỏ bản thân</p>
+						</div>
+					</div>
+		        </div>
+		      </div>
+		    </div>
+		  </div>
+		</div> <!-- modal -->
+
+	</div>
+</div>

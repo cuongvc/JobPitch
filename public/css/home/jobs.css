@@ -1,0 +1,64 @@
+
+#jobs{
+	margin-top: 20px;
+}
+.job{
+	background: #fff;
+	border-radius: 4px;
+	box-shadow: 0 0 3px #333;
+	padding: 5px;
+	margin-bottom: 20px;
+}
+.job .image{
+	float: left;
+	overflow: auto;
+	margin-right: 10px;
+	margin-bottom: 10px;
+}
+.job .image img{
+	width: 100px;
+	height: 100px;
+}
+.company-title{
+	font-family: 'Proxima Nova Bold';
+}
+.like-share ul, .job-social ul{
+	list-style: none;
+	display: inline-block;
+	padding: 0px;
+	width: 100%;
+}
+.like-share ul li , .job-social ul li{
+	display: inline-block;
+	float: right;
+	margin-left: 10px;
+}
+.modal-content{
+	overflow: auto;
+}
+.modal-title{
+	font-family: 'Proxima Nova Bold';
+}
+.modal-body{
+	padding: 0px;
+}
+.modal-image img{
+	width: 100%;
+}
+.modal-job-body{
+	padding: 15px;
+}
+.job-comment-body{
+	overflow: hidden;
+}
+.job-comment-avatar{
+	margin-right: 20px;
+}
+.job-comment-avatar img{
+	width: 60px;
+	border: 1px solid #ababab;
+}
+.cp-title:hover{
+	cursor: pointer;
+	color: blue;
+}

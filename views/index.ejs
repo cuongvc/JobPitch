@@ -1,32 +1,38 @@
-<!doctype html>
 <html>
 <head>
-	<title>Node Authentication</title>
-	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
-	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
-	<style>
-		body 		{ padding-top:80px; }
-	</style>
+	<title>Job Pitch</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<script type="text/javascript" src="/bower_components/jquery/dist/jquery.min.js"></script>
+	<script type="text/javascript" src="/bower_components/angular/angular.min.js"></script>		
+	<script type="text/javascript" src="/bower_components/nightfury_bootstrap_36grid/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/js/global.js"></script>
+	<script type="text/javascript">
+		var STR_API_RECENT = BASE_URL + '/api/recent';
+	</script>
+
+	<script type="text/javascript" src="/bower_components/nightfury/src/database.js"></script>
+
+	<script type="text/javascript" src="/js/home/header.js"></script>
+	<script type="text/javascript" src="/js/home/setting.js"></script>
+	<script type="text/javascript" src="/js/home/tag-list.js"></script>
+	<script type="text/javascript" src="/js/home/create-job.js"></script>
+	<script type="text/javascript" src="/js/home/jobs.js"></script>
+	<script type="text/javascript" src="/js/home/footer.js"></script>
+	<script type="text/javascript" src="/js/home/index.js"></script>
+	<link rel="stylesheet" type="text/css" href="/bower_components/animate.css/animate.min.css">
+	<link rel="stylesheet" type="text/css" href="/bower_components/nightfury_bootstrap_36grid/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/bower_components/nightfury_bootstrap_36grid/css/bootstrap-theme.min.css">
+	<link rel="stylesheet" type="text/css" href="/bower_components/fontawesome/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="/css/home/template.css">
+	<link rel="stylesheet" type="text/css" href="/css/home/index.css">
+
 </head>
-<body>
-<div class="container">
-
-	<div class="jumbotron text-center">
-		<h1><span class="fa fa-lock"></span> Node Authentication</h1>
-
-		<p>Login or Register with:</p>
-
-		<a href="/login_email" class="btn btn-default"><span class="fa fa-user"></span> Local Login</a>
-		<a href="/signup_email" class="btn btn-default"><span class="fa fa-user"></span> Local Signup</a>
-		<a href="/auth/facebook" class="btn btn-primary"><span class="fa fa-facebook"></span> Facebook</a>
-		<a href="/auth/twitter" class="btn btn-info"><span class="fa fa-twitter"></span> Twitter</a>
-		<a href="/auth/google" class="btn btn-danger"><span class="fa fa-google-plus"></span> Google+</a>
-		<a href="/auth/linkedin" class="btn btn-danger"><span class="fa fa-linkedin-plus"></span> Linkedin+</a>
-<!-- 		<a href="/auth/yahoo" class="btn btn-danger"><span class="fa fa-yahoo-plus"></span> Yahoo+</a> -->
-		<a href="/auth/microsoft" class="btn btn-danger"><span class="fa fa-microsoft-plus"></span> Microsoft +</a>
-
-	</div>
-
-</div>
+<body ng-app="IndexApp" ng-controller="IndexCtrl">
+	<header></header>
+	<profile ng-if="PAGE == page.setting" page="{{ page.setting }}"></profile>
+	<tag-list ng-if="PAGE == page.index" page="{{ page.index }}"></tag-list>
+	<jobs ng-if="PAGE == page.index" page="{{ page.index }}"></jobs>
+	<create-job ng-if="PAGE == page.index" page="{{ page.index }}"></create-job>
+	<footer></footer>
 </body>
 </html>
