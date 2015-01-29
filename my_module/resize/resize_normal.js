@@ -10,8 +10,11 @@ var path = require('path');
 	
 module.exports 					=	function(path_url, url_full_size, type,  callback){
 
-	var gm = require('gm').subClass({ imageMagick: true });	    	  // gm with server
-	// var gm = require('gm');																			// gm with location
+	if (process.argv[2] == 'dev'){
+			var gm = require('gm');																			// gm with location
+	} else{
+			var gm = require('gm').subClass({ imageMagick: true });	    // gm with server
+	}
 	console.log('./public' + url.parse(url_full_size).path);
 	gm('./public' + url.parse(url_full_size).path)
 		.resize(600, 600)
@@ -21,6 +24,8 @@ module.exports 					=	function(path_url, url_full_size, type,  callback){
 				console.log('Error : ', err);
 			}
 			else{
+				console.log('RESIZE NORMAL SUCCESS');
+
 				callback(domain + path_url + type + '/' + path.basename(url_full_size));
 			}
 		})

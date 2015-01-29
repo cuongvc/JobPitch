@@ -303,9 +303,7 @@ module.exports = function(User_env, passport) {
 
     }, function(accessToken, refreshToken, profile, done) {
 
-      console.log(profile.emails[0].value);
       console.log('accessToken : ', accessToken);
-      console.log('refreshToken : ', refreshToken);
       console.log('PROFILE LINKEDIN : ', profile);
 
       process.nextTick(function () {
@@ -315,35 +313,21 @@ module.exports = function(User_env, passport) {
                 return done(err);
 
             if (user) {
-
-                // if there is a user id already but no token (user was linked at one point and then removed)
-                if (!user.linkedin_infor.token) {
-                    user.userName             = profile.displayName;
-                    user.linkedin_infor.token = accessToken;
-                    user.linkedin_infor.name  = profile.displayName;
-                    user.linkedin_infor.email = profile.emails[0].value; // pull the first email
-
-                    user.save(function(err) {
-                        if (err)
-                            throw err;
-                        return done(null, user);
-                    });
-                }
-
-                return done(null, user);
-            } else {
-                var newUser                  = new User();
-                newUser.userName             = profile.displayName;
-                newUser.linkedin_infor.id    = profile.id;
-                newUser.linkedin_infor.token = accessToken;
-                newUser.linkedin_infor.name  = profile.displayName;
-                newUser.linkedin_infor.email = profile.emails[0].value; // pull the first email
-
-                newUser.save(function(err) {
+                
+                user.linkedin_infor.access_token = accessToken;
+                user.makeToken();
+                user.save(function(err) {
                     if (err)
                         throw err;
-                    return done(null, newUser);
+                    return done(null, user);
                 });
+
+            } else {
+                var newUser                  = new User();
+                newUser.newInforLk(accessToken, profile, function(user){
+                        return done(null, newUser);
+                });
+                
             }
         });
       });
@@ -425,7 +409,7 @@ module.exports = function(User_env, passport) {
 
             if (user) {
 
-                // if there is a user id already but no token (user was linked at one point and then removed)
+
                 if (!user.microsoft.token) {
                     user.microsoft.token = token;
                     user.microsoft.name  = profile.displayName;

@@ -1,8 +1,8 @@
-var fs = require('fs');
-var url = require('url');
+var fs     = require('fs');
+var url    = require('url');
 var domain = require('./../../config/default').domain_default;
-var im = require('imagemagick');
-var path = require('path');
+var im     = require('imagemagick');
+var path   = require('path');
 
 	
 	// path_url : /images/small_size/
@@ -11,8 +11,12 @@ var path = require('path');
 
 module.exports 					=	function(path_url, url_full_size, type,  callback){
 
-	var gm = require('gm').subClass({ imageMagick: true });	    // gm with server
-	// var gm = require('gm');																			// gm with location
+	if (process.argv[2] == 'dev'){
+			var gm = require('gm');																			// gm with location
+	} else{
+			var gm = require('gm').subClass({ imageMagick: true });	    // gm with server
+	}
+	
 	console.log('./public' + url.parse(url_full_size).path);
 
 	gm('./public' + url.parse(url_full_size).path)
@@ -23,6 +27,7 @@ module.exports 					=	function(path_url, url_full_size, type,  callback){
 				console.log('Error : ', err);
 			}
 			else{
+				console.log('RESIZE SMALL SUCCESS');
 				callback(domain + path_url + type + '/' + path.basename(url_full_size));
 			}
 		})

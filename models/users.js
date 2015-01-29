@@ -512,6 +512,34 @@ userSchema.methods.newInforGg    = function(access_token, profile, callback){
     });
 }
 
+
+// ======================== LINKEDIN INFOR ====================================
+userSchema.methods.newInforLk    = function(access_token, profile, callback){
+
+    // this.avatar                     = profile._json.publicProfileUrl;
+    // this.avatar_small               = profile._json.publicProfileUrl;
+    // this.avatar_normal              = profile._json.publicProfileUrl;
+    // this.linkedin_infor.avatar       = profile._json.publicProfileUrl;
+    
+    this.userName                   = profile.displayName;
+    this.gender                     = profile._json.gender;
+    this.type_account               = 5;
+
+    this.linkedin_infor.id           = profile.id;
+    this.linkedin_infor.access_token = access_token;
+    this.linkedin_infor.username     = profile.displayName;
+    this.linkedin_infor.gender       = profile.gender;
+    this.linkedin_infor.email        = profile.emails[0].value;   
+    this.linkedin_infor.profileUrl   = profile._json.publicProfileUrl;  
+
+    this.makeToken();
+    this.save(function(err) {
+        if (err)
+            throw err;
+        callback(this);
+    });
+}
+
 // edit Infor
 // { Avatar, Avatar_small, Avatar_normal, Fullname, YearOfBirth
 //   Address, Industry, Sex, Contact }
