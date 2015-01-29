@@ -1,10 +1,10 @@
 // load all the things we need
-var LocalStrategy    = require('passport-local').Strategy;
-var FacebookStrategy = require('passport-facebook').Strategy;
-var TwitterStrategy  = require('passport-twitter').Strategy;
-var GoogleStrategy   = require('passport-google-oauth').OAuth2Strategy;
-var LinkedInStrategy = require('passport-linkedin-oauth2').Strategy;
-var YahooStrategy    = require('passport-yahoo-oauth').Strategy;
+var LocalStrategy       = require('passport-local').Strategy;
+var FacebookStrategy    = require('passport-facebook').Strategy;
+var TwitterStrategy     = require('passport-twitter').Strategy;
+var GoogleStrategy      = require('passport-google-oauth').OAuth2Strategy;
+var LinkedInStrategy    = require('passport-linkedin-oauth2').Strategy;
+var YahooStrategy       = require('passport-yahoo-oauth').Strategy;
 var WindowsLiveStrategy = require('passport-windowslive').Strategy;
 
 
@@ -13,9 +13,9 @@ var WindowsLiveStrategy = require('passport-windowslive').Strategy;
 var User            = require('./../models/users');
 
 // load the auth variables
-var configAuth = require('./Oauth'); // use this one for testing
 
-module.exports = function(passport) {
+
+module.exports = function(User_env, passport) {
 
     // =========================================================================
     // passport session setup ==================================================
@@ -23,6 +23,11 @@ module.exports = function(passport) {
     // required for persistent login sessions
     // passport needs ability to serialize and unserialize users out of session
 
+    if (User_env == 'dev'){
+      var configAuth = require('./Oauth_development'); // use this one for testing  
+    }  else{
+      var configAuth = require('./Oauth'); // use this one for testing  
+    }
 
     passport.serializeUser(function(user, done){
         done(null, user.id);
@@ -140,7 +145,6 @@ module.exports = function(passport) {
         clientID        : configAuth.facebookAuth.clientID,
         clientSecret    : configAuth.facebookAuth.clientSecret,
         callbackURL     : configAuth.facebookAuth.callbackURL,
-        profileFields   : ['id', 'displayName', 'email', 'photos', 'gender', 'profileUrl'],
         passReqToCallback : true 
     },
     function(req, token, refreshToken, profile, done) {
@@ -184,12 +188,9 @@ module.exports = function(passport) {
         consumerKey     : configAuth.twitterAuth.consumerKey,
         consumerSecret  : configAuth.twitterAuth.consumerSecret,
         callbackURL     : configAuth.twitterAuth.callbackURL,
-        passReqToCallback : true // allows us to pass in the req from our route (lets us check if a user is logged in or not)
-
     },
     function(req, token, tokenSecret, profile, done) {
         console.log('PROFILE TWITTER : ', profile);
-        console.log('TOKEN : ', token , ' ; tokenSecret : ', tokenSecret);
         // asynchronous
         process.nextTick(function() {
             if (!req.user){
@@ -210,8 +211,8 @@ module.exports = function(passport) {
                     } else {
                         // if there is no user, create them
                         var newUser                       = new User();
-                        newUser.newInforTw(token, profile, function(user){
-                            return done(null, newUser);
+                        newUser.newInforTw(token, tokenSecret, profile, function(user){
+                            return done(null, user);
                         })
                     }
                 });

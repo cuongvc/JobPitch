@@ -22,7 +22,7 @@ module.exports = function(app, Router_formdata, Router_body, passport){
     app.use(bodyParser.json({limit: '50mb'}));
     app.use(bodyParser.urlencoded({limit: '50mb'}));
     
-    require('./passport')(passport); // pass passport for configuration
+    require('./passport')(process.argv[2], passport); // pass passport for configuration
 
     // required for passport
     app.use(session({ secret: 'wearecampcoders.com123456' })); // session secret

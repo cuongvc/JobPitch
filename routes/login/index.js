@@ -7,7 +7,6 @@ module.exports = function(app, passport) {
 
 	// PROFILE SECTION =========================
 	app.get('/profile', isLoggedIn, function(req, res) {
-		console.log(req.user);
 		res.render('profile.ejs', {
 			user : req.user
 		});
@@ -57,7 +56,7 @@ module.exports = function(app, passport) {
 	// facebook -------------------------------
 
 		// send to facebook to do the authentication
-		app.use('/auth/facebook', passport.authenticate('facebook', {	scope : []}));
+		app.get('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
 
 		// handle the callback after facebook has authenticated the user
 		app.get('/auth/facebook/callback',
