@@ -80,8 +80,6 @@ app.get('/directive/home/tag-list',function(req,res){
 //  ------APPLY --------------------------
 	Router_body.post('/apply',                 routes.apply);
 
-	
-
 // =================================== LISTEN BY IP AND PORT ========================
 
 app.set('port', process.env.PORT || port);
