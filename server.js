@@ -84,11 +84,8 @@ app.get('/directive/home/tag-list',function(req,res){
 
 // =================================== LISTEN BY IP AND PORT ========================
 
-<<<<<<< HEAD
 app.set('port', process.env.PORT || port);
-=======
 console.log(process.env);
->>>>>>> 41ee0950807a3c2053b21df3c4373d8f146eb907
 
 if (process.argv[2] === 'dev') {
     console.log('development');
