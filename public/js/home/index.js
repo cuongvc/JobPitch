@@ -82,13 +82,13 @@ IndexApp.controller('IndexCtrl',function($scope,$http,$timeout,DB){
 
 	console.log(user);
 
-	var user = {
-		_id: '54cab86f186e392a14386427',
-		token: '$2a$08$aO2Ta1uxP30Xir7JluahQeeZAlR9TYJE4Vr55Umo1L6YCUPyBngOm',
-	}
 	// var user = {
-	// 	_id: '54c9fb946dddb1361ef8d7fe',
-	// 	token: '$2a$08$l8Lk13ePNGBazTBpuhcoF.SkcEl9wc6tZKBBvoWL6/lOSumwgjaC6',
+	// 	_id: '54cab86f186e392a14386427',
+	// 	token: '$2a$08$aO2Ta1uxP30Xir7JluahQeeZAlR9TYJE4Vr55Umo1L6YCUPyBngOm',
 	// }
+	var user = {
+		_id: '54c9fb946dddb1361ef8d7fe',
+		token: '$2a$08$l8Lk13ePNGBazTBpuhcoF.SkcEl9wc6tZKBBvoWL6/lOSumwgjaC6',
+	}
 	$scope.user = user;
 })
