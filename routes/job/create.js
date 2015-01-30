@@ -75,7 +75,8 @@ module.exports				=	function(req, res){
                     })
                   })
                 }
-              })  
+              }
+            )  
           }
         }
       ], function(err){

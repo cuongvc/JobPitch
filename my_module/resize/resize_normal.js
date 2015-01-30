@@ -26,7 +26,6 @@ module.exports 					=	function(path_url, url_full_size, type,  callback){
 			}
 			else{
 				console.log('RESIZE NORMAL SUCCESS');
-
 				callback(domain + path_url + type + '/' + path.basename(url_full_size));
 			}
 		})
