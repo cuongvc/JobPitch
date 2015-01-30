@@ -1,0 +1,6 @@
+#signup-forgot ul{
+	float: right!important;
+}
+#signup-forgot ul li:hover{
+	color: #cfcfcf;
+}

@@ -22,21 +22,24 @@ Jobs.controller('JobCtrl',function($scope,$http){
 		if(response.error_code == 0){
 			jobs = response.jobs;
 		}
-		jobs.forEach(function(v,k){
-			if(v.description.length > 144){
-				jobs[k].description = jobs[k].description.substring(0,144) + '...';
-			}
-		})
+		if(jobs != undefined){
+			jobs.forEach(function(v,k){
+				if(!(v.link_direct.match(/^http/))) jobs[k].link_direct = 'http://' + v.link_direct;
+				if(v.description.length > 144){
+					jobs[k].shortDesc = v.description.substring(0,144) + '...';
+				}else{
+					jobs[k].shortDesc = v.description;
+				}
+			})
+		}
 		$scope.jobs = jobs;
 	})
 	return;
 	$scope.jobs = jobs;
-	$scope.ViewJob = function(){
-		console.log('ViewJob');
-		$('#JobModal').modal('show');
-	}
+
 	$scope.ViewCompanyProfile = function(evt,id){
 		evt.stopPropagation();
 		console.log('a');
 	}
+	
 })

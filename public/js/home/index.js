@@ -57,8 +57,8 @@ IndexApp.controller('IndexCtrl',function($scope,$http,$timeout,DB){
 				{name: 'title', 		type: 'varchar'},
 				{name: 'image',	 		type: 'varchar'},
 				{name: 'description', 	type: 'varchar'},
-				{name: 'likes', 			type: 'varchar'},
-				{name: 'shares', 			type: 'varchar'},
+				{name: 'likes', 		type: 'varchar'},
+				{name: 'shares', 		type: 'varchar'},
 				{name: 'company_id', 	type: 'varchar'},
 			],
 	};
@@ -77,18 +77,59 @@ IndexApp.controller('IndexCtrl',function($scope,$http,$timeout,DB){
 		company_id: 1,
 	};
 	// DB.insert('jobs',newJob);
-	DB.getWhere('jobs','_id = "_id"');
+	// DB.getWhere('jobs','_id = "_id"');
 	// DB.drop();
-
-	console.log(user);
-
-	// var user = {
-	// 	_id: '54cab86f186e392a14386427',
-	// 	token: '$2a$08$aO2Ta1uxP30Xir7JluahQeeZAlR9TYJE4Vr55Umo1L6YCUPyBngOm',
-	// }
-	var user = {
-		_id: '54c9fb946dddb1361ef8d7fe',
-		token: '$2a$08$l8Lk13ePNGBazTBpuhcoF.SkcEl9wc6tZKBBvoWL6/lOSumwgjaC6',
-	}
 	$scope.user = user;
+	$scope.logedin = logedin;
+	$scope.ViewJob = function(job){
+		$scope.CurrentJob = job;
+		var data = {
+		    user_id: $scope.user._id,
+		    token: $scope.user.token,
+		    job_id: job._id,
+		}
+		$http.post(STR_API_JOB_DETAIL,data).success(function(response){
+			console.log(response);
+			if(response.error_code == 0){
+				$scope.CurrentJob.Applications = response.app;
+			}
+			
+		})
+		$('#JobModal').modal('show');
+	}
+	/*
+	* apply 
+	*/
+	$scope.Apply = function(Job, ApplyTitle, ApplyDesc){
+		var TitleHashTags = ApplyTitle.match(/#\S+/g);
+		var DescHashTags  = ApplyDesc.match(/#\S+/g);
+		var HashTags = new Array();
+		if(TitleHashTags != null && DescHashTags != null){
+			HashTags = TitleHashTags.concat(DescHashTags);
+		}else{
+			if(TitleHashTags == null){
+				HashTags = DescHashTags;
+			}
+			if(DescHashTags == null){
+				HashTags = TitleHashTags;
+			}
+		}
+		if(HashTags == null) HashTags = [];
+		var data = {
+			user_id: $scope.user._id,
+			token: $scope.user.token,
+			job_id: Job._id,
+			title: ApplyTitle,
+			description: ApplyDesc,
+			hash_tag: HashTags,
+		};
+		$http.post(STR_API_APPLY,data).success(function(response){
+			console.log(response);
+			if(response.error_code == 0){
+				$scope.CurrentJob.Applications.push(response.application);
+				$('#ApplyTitle').val('');
+				$('#ApplyDesc').val('');
+			}
+		})
+	}
 })

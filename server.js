@@ -30,6 +30,41 @@ app.get('/login_fb', function(req, res){
 	res.render('login_fb.html');
 })
 
+/*
+* index
+*/
+app.get('/',function(req,res){
+	res.render('index.ejs',{user: req.user});
+})
+app.get('/login',function(req,res){
+	res.render('login.ejs');
+})
+app.get('/signup',function(req,res){
+	res.render('signup.ejs');
+})
+/********************************************************************************/
+									/*DIRECTIVE*/
+/********************************************************************************/
+app.get('/directive/home/header',function(req,res){
+	res.render('directive/home/header.ejs');
+})
+app.get('/directive/home/create-job',function(req,res){
+	res.render('directive/home/create-job.ejs');
+})
+app.get('/directive/home/footer',function(req,res){
+	res.render('directive/home/footer.ejs');
+})
+app.get('/directive/home/jobs',function(req,res){
+	res.render('directive/home/jobs.ejs');
+})
+app.get('/directive/home/profile',function(req,res){
+	res.render('directive/home/profile.ejs');
+})
+app.get('/directive/home/tag-list',function(req,res){
+	res.render('directive/home/tag-list.ejs');
+})
+
+
 	/*
 	* index
 	*/
