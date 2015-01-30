@@ -81,4 +81,8 @@ IndexApp.controller('IndexCtrl',function($scope,$http,$timeout,DB){
 	// DB.drop();
 	$scope.user = user;
 	$scope.logedin = logedin;
+	$scope.ViewJob = function(job){
+		$scope.CurrentJob = job;
+		$('#JobModal').modal('show');
+	}
 })

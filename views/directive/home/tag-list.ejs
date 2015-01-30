@@ -1,16 +1,46 @@
 <link rel="stylesheet" type="text/css" href="../css/home/tag-list.css">
 
-<div id="tag-list">
+<div id="tag-list" ng-controller="TagListCtrl">
 	<div class="container">
 		<div class="tags">
 			<ul>
-				<li><a href="">NodeJS</a></li>
-				<li><a href="">PHP</a></li>
-				<li><a href="">Marketing</a></li>
-				<li><a href="">CEO</a></li>
-				<li><a href="">PG</a></li>
-				<li><a href="">Laravel</a></li>
+				<li ng-click="ShowTagModal(tag)" ng-repeat="tag in tags"><a href="" ng-bind="tag.name"></a></li>
 			</ul>
+		</div>
+		<div id="TagsListModal">
+			<div class="modal fade" id="TagModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			  <div class="modal-dialog">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			        <h4 class="modal-title" id="myModalLabel cp-title" ng-click="ViewCompanyProfile($event,1)" ><span>Results for <span ng-bind="CurrentTag.name" class="tag-color"></span></h4>
+			      </div>
+			      <div class="modal-body">
+
+			      	<% for(i=0;i < 4;i++){ %>
+			       	<div id="tag-result-list" ng-if="TagResult.show == true">
+				       	<div class="job-tag-result" ng-repeat="JobTag in TagResult.data">
+					       	<div class="tag-image">
+								<img src="http://www.fbcoverlover.com/covers/know-your-limitations-and-defy-them.jpg?i" alt="">
+					       	</div>
+							<div class="tag-result-body">
+								<p ng-bind="JobTag.title" class="semibold"></p>
+								<p ng-bind="JobTag.description"></p>
+							</div>
+							<div class="tag-like-share">
+								<ul>
+									<li><span ng-bind="JobTag.likes.number"></span> <span>like</span><span ng-if="obTag.likes.number > 1">s</span></li>
+									<li><span ng-bind="JobTag.shares.number"></span> <span>share</span><span ng-if="obTag.likes.number > 1">s</span></li>
+								</ul>
+							</div>
+				       	</div>
+			       	</div>
+
+			       	<% } %>
+			      </div>
+			    </div>
+			  </div>
+			</div> <!-- modal -->
 		</div>
 	</div>
 </div>

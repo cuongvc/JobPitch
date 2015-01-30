@@ -24,6 +24,7 @@ Jobs.controller('JobCtrl',function($scope,$http){
 		}
 		if(jobs != undefined){
 			jobs.forEach(function(v,k){
+				if(!(v.link_direct.match(/^http/))) jobs[k].link_direct = 'http://' + v.link_direct;
 				if(v.description.length > 144){
 					jobs[k].description = jobs[k].description.substring(0,144) + '...';
 				}
@@ -33,10 +34,7 @@ Jobs.controller('JobCtrl',function($scope,$http){
 	})
 	return;
 	$scope.jobs = jobs;
-	$scope.ViewJob = function(){
-		console.log('ViewJob');
-		$('#JobModal').modal('show');
-	}
+
 	$scope.ViewCompanyProfile = function(evt,id){
 		evt.stopPropagation();
 		console.log('a');

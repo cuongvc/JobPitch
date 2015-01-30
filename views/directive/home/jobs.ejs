@@ -3,7 +3,7 @@
 	<div class="container">
 		<div class="col-md-36 col-sm-36 col-xs-36" id="jobs">
 			<div class="col-md-9 col-sm-12 col-xs-36"ng-repeat="job in jobs">
-				<div class="job" ng-click="ViewJob()">
+				<div class="job" ng-click="ViewJob(job)">
 					<div class="image">
 						<img ng-src="{{ job.image_small }}" alt="">
 					</div>
@@ -11,8 +11,8 @@
 					<p class="job-sort-desc" ng-bind="job.description"></p>
 					<div class="like-share">
 						<ul>
-							<li><span ng-bind="job.likes.number"></span> <span>likes</span></li>
-							<li><span ng-bind="job.shares.number"></span> <span>shares</span></li>
+							<li><span ng-bind="job.likes.number"></span> <span>like<span ng-if="job.likes.number > 1">s</span></span></li>
+							<li><span ng-bind="job.shares.number"></span> <span>share<span ng-if="job.shares.number > 1">s</span></span></li>
 						</ul>
 					</div>
 				</div><!-- job -->
@@ -26,21 +26,21 @@
 		    <div class="modal-content">
 		      <div class="modal-header">
 		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-		        <h4 class="modal-title" id="myModalLabel cp-title" ng-click="ViewCompanyProfile($event,1)">Campcoders</h4>
+		        <h4 class="modal-title" id="myModalLabel cp-title" ng-click="ViewCompanyProfile($event,1)" ng-bind="CurrentJob.title"></h4>
 		      </div>
 		      <div class="modal-body">
 		        <div class="modal-image">
-					<img src="http://www.fbcoverlover.com/covers/know-your-limitations-and-defy-them.jpg?i" alt="">
+					<a ng-href="{{ CurrentJob.link_direct }}" target="_blank"><img src="http://www.fbcoverlover.com/covers/know-your-limitations-and-defy-them.jpg?i" alt=""></a>
 		        </div>
 		        <div class="modal-job-body">
 					<div class="job-info">
-						<p class="bold">Senior Project Manager</p>
-						<p class="model-job-desc">Kinh nghiệm java ít nhất 5 năm, muốn chứng tỏ năng lực bản thân, không ngại khó khăn</p>
+						<p class="bold" ng-bind="CurrentJob.title"></p>
+						<p class="model-job-desc" ng-bind="CurrentJob.description"></p>
 					</div>
 					<div class="job-social">
 						<ul>
-							<li><span>422</span> <span>likes</li>
-							<li><span>42</span> <span>Shares</li>
+							<li><span ng-bind="CurrentJob.likes.number"></span> <span>like<span ng-if="CurrentJob.likes.number > 1">s</span></li>
+							<li><span ng-bind="CurrentJob.shares.number"></span> <span>Share<span ng-if="CurrentJob.shares.number > 1">s</span></li>
 						</ul>
 					</div>
 					<div class="job-comment">
