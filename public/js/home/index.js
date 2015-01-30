@@ -81,9 +81,13 @@ IndexApp.controller('IndexCtrl',function($scope,$http,$timeout,DB){
 	// DB.drop();
 
 
+	// var user = {
+	// 	_id: '54cab86f186e392a14386427',
+	// 	token: '$2a$08$aO2Ta1uxP30Xir7JluahQeeZAlR9TYJE4Vr55Umo1L6YCUPyBngOm',
+	// }
 	var user = {
-		_id: '54cab86f186e392a14386427',
-		token: '$2a$08$aO2Ta1uxP30Xir7JluahQeeZAlR9TYJE4Vr55Umo1L6YCUPyBngOm',
+		_id: '54c9f5e762d8d52915ffafa0',
+		token: '$2a$08$CtW7KSBlbqlBSETGk.DBJ.PMHEVYrcKUAcqj5oTHYpYa6xjkP5zYW',
 	}
 	$scope.user = user;
 })
