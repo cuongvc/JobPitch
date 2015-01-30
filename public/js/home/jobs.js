@@ -9,11 +9,7 @@ Jobs.directive('jobs',function(){
 	}
 })
 Jobs.controller('JobCtrl',function($scope,$http){
-	var jobs = new Array();
-	for(i=0; i < 50; i++){
-		var job = new Object();
-		jobs.push(job);
-	}
+	var jobs;
 	var data = {
 			user_id: $scope.user._id,
 			token: $scope.user.token,
@@ -24,8 +20,14 @@ Jobs.controller('JobCtrl',function($scope,$http){
 	$http.post(STR_API_RECENT,data).success(function(response){
 		console.log(response);
 		if(response.error_code == 0){
-			$scope.jobs = response.jobs;
+			jobs = response.jobs;
 		}
+		jobs.forEach(function(v,k){
+			if(v.description.length > 144){
+				jobs[k].description = jobs[k].description.substring(0,144) + '...';
+			}
+		})
+		$scope.jobs = jobs;
 	})
 	return;
 	$scope.jobs = jobs;
