@@ -83,6 +83,51 @@ IndexApp.controller('IndexCtrl',function($scope,$http,$timeout,DB){
 	$scope.logedin = logedin;
 	$scope.ViewJob = function(job){
 		$scope.CurrentJob = job;
+		var data = {
+		    user_id: $scope.user._id,
+		    token: $scope.user.token,
+		    job_id: job._id,
+		}
+		$http.post(STR_API_JOB_DETAIL,data).success(function(response){
+			console.log(response);
+			if(response.error_code == 0){
+				$scope.CurrentJob.Applications = response.app;
+			}
+			
+		})
 		$('#JobModal').modal('show');
+	}
+	/*
+	* apply 
+	*/
+	$scope.Apply = function(Job, ApplyTitle, ApplyDesc){
+		var TitleHashTags = ApplyTitle.match(/#\S+/g);
+		var DescHashTags  = ApplyDesc.match(/#\S+/g);
+		var HashTags = new Array();
+		if(TitleHashTags != null && DescHashTags != null){
+			HashTags = TitleHashTags.concat(DescHashTags);
+		}else{
+			if(TitleHashTags == null){
+				HashTags = DescHashTags;
+			}
+			if(DescHashTags == null){
+				HashTags = TitleHashTags;
+			}
+		}
+		if(HashTags == null) HashTags = [];
+		var data = {
+			user_id: $scope.user._id,
+			token: $scope.user.token,
+			job_id: Job._id,
+			title: ApplyTitle,
+			description: ApplyDesc,
+			hash_tag: HashTags,
+		};
+		$http.post(STR_API_APPLY,data).success(function(response){
+			console.log(response);
+			if(response.error_code == 0){
+				$scope.CurrentJob.Applications.push(response.application);
+			}
+		})
 	}
 })

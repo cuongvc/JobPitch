@@ -41,4 +41,5 @@ Jobs.controller('JobCtrl',function($scope,$http){
 		evt.stopPropagation();
 		console.log('a');
 	}
+	
 })

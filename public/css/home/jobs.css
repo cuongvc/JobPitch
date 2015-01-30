@@ -68,3 +68,44 @@
 	cursor: pointer;
 	color: blue;
 }
+.apply-box .job-comment-body input, .apply-box .job-comment-body textarea{
+	width: 100%;
+	border-bottom: none;
+	border: 1px solid #ddd;
+}
+.apply-box .job-comment-body input{
+	border-bottom: none;
+	height: 25px;
+	font-family: 'Proxima Nova Semi Bold'
+}
+.apply-box .job-comment-body input:focus, .apply-box .job-comment-body textarea:focus{
+	outline: none;
+}
+.apply-box .job-comment-body textarea{
+	height: 45px;
+	resize: none;
+}
+
+
+.apply-button-group{
+	margin-top: 10px;
+}
+.apply-button-group > div, .apply-button-group > select{
+	float: right;
+	height: 25px;
+	font-size: 14px;
+	padding-left:10px;
+	padding-right:10px;
+	background-color: #4e69a2;
+	border-color: #435a8b #3c5488 #334c83;
+	color: #fff;
+	cursor: pointer;
+}
+.apply-button-group > div{
+	line-height: 25px;
+}
+.apply-button-group > select{
+	margin-right: 10px;
+	background: #aba;
+	color: #000;
+}

@@ -43,14 +43,32 @@
 							<li><span ng-bind="CurrentJob.shares.number"></span> <span>Share<span ng-if="CurrentJob.shares.number > 1">s</span></li>
 						</ul>
 					</div>
-					<div class="job-comment">
+					<div class="job-comment row" ng-repeat="Application in CurrentJob.Applications">
 						<div class="job-comment-avatar pull-left">
-							<img src="http://img1.wikia.nocookie.net/__cb20100502232308/adventuretimewithfinnandjake/images/e/e4/At_100x100_iconjake.jpg" alt="">
+							<img ng-src="{{ user.avatar.normal }}" alt="">
 							<p class="job-comment-user semibold text-center">Cuong Vu</p>
 						</div>
 						<div class="job-comment-body">
-							<p class="job-comment-title semibold">I can do it</p>
-							<p class="job-comment-desc">Kinh nhiều năm, đã là hệ thống lớn 100k user,muốn chứng tỏ bản thân</p>
+							<p class="job-comment-title semibold" ng-bind="Application.title"></p>
+							<p class="job-comment-desc" ng-bind="Application.description"></p>
+						</div>
+					</div>
+					<div class="job-comment apply-box row">
+						<div class="job-comment-avatar pull-left">
+							<img ng-src="{{ user.avatar.normal }}" alt="">
+							<p class="job-comment-user semibold text-center">Cuong Vu</p>
+						</div>
+						<div class="job-comment-body">
+							<input type="text" maxlength="100" ng-model="ApplyTitle">
+							<textarea maxlength="144" ng-model="ApplyDesc"></textarea>
+							<div class="apply-button-group">
+								<div class="btn-apply" ng-click="Apply(CurrentJob,ApplyTitle,ApplyDesc)">Apply</div>
+								<select class="who-can-see-this" title="Who can see this?">
+									<option selected="true" value="1">All</option>
+									<option value="1">Your friend</option>
+									<option value="1">Recruiters</option>
+								</select>
+							</div>
 						</div>
 					</div>
 		        </div>
