@@ -42,6 +42,7 @@ app.get('/login',function(req,res){
 app.get('/signup',function(req,res){
 	res.render('signup.ejs');
 })
+
 /********************************************************************************/
 									/*DIRECTIVE*/
 /********************************************************************************/
@@ -99,7 +100,10 @@ app.get('/directive/home/tag-list',function(req,res){
 // ============================ API ============================================
 
 //  ----- LOGIN --------------------------
-	require('./routes/login')(app, passport);
+	require('./routes/login').social(app, passport);
+
+	Router_body.post('/signup_email', 				 routes.signup);
+	Router_body.post('/login_email', 				   routes.login.email);
 
 //  ----- UPLOAD PHOTO -------------------
 	Router_formdata.post('/upload_photo', 	   routes.upload_photo);

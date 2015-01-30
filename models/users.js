@@ -25,6 +25,11 @@ var userSchema = mongoose.Schema({
         default      : ''
     },
 
+    isUser           : {
+        type         : Number,
+        default      : 1
+    },
+
     location         : {
         lat          : {
             type         : Number,
@@ -334,12 +339,31 @@ var userSchema = mongoose.Schema({
     year_of_birth    : {
         type         : Number,
         default      : null
+    },
+
+    email            : {
+        type         : String,
+        default      : ''
     }
 
 });
 
 
 // ======================== LOCAL INFOR =======================================
+
+userSchema.methods.newInforLc   = function(name, email, password, isUser, callback){
+    this.email                = email,
+    this.local_infor.email    = email;
+    this.local_infor.password = this.generateHash(password);
+    this.isUser   = isUser;
+    if (isUser){
+        this.userName = name;
+    } else{
+        this.companyName = name;
+    };
+    callback(this);
+}
+
 // generating a hash
 userSchema.methods.generateHash = function(password) {
     var password_ = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null); 
@@ -435,8 +459,6 @@ userSchema.methods.getAvatarFb   = function(access_token, callback){
 }
 
 // ======================== EDIT PROFILE ====================================
-
-
 userSchema.methods.editProfile   = function(address, contact, website, avatar, avatar_small, avatar_normal, 
                                             logo, logo_small, logo_normal, companyName, website, 
                                             userFullname, industry, education, year_of_birth, callback){
@@ -479,7 +501,7 @@ userSchema.methods.newInforFb    = function(access_token, profile, callback){
         user.type_account            = 2;
         user.userName                = profile.displayName;
         user.gender                  = profile.gender;
-        console.log('THIS : ', user);
+        user.email                   = profile.emails[0].value;
         user.fb_infor.avatar         = avatar_normal;
         user.fb_infor.id             = profile.id;
         user.fb_infor.gender         = profile.gender;
@@ -530,6 +552,7 @@ userSchema.methods.newInforGg    = function(access_token, profile, callback){
     this.avatar_normal              = profile._json.picture;
     this.gender                     = profile._json.gender;
     this.type_account               = 4;
+    this.email                      = profile.emails[0].value;
 
     this.google_infor.id           = profile.id;
     this.google_infor.access_token = access_token;
@@ -556,9 +579,11 @@ userSchema.methods.newInforLk    = function(access_token, profile, callback){
     // this.avatar_normal              = profile._json.publicProfileUrl;
     // this.linkedin_infor.avatar       = profile._json.publicProfileUrl;
 
-    this.userName                   = profile.displayName;
-    this.gender                     = profile._json.gender;
-    this.type_account               = 5;
+    this.userName                    = profile.displayName;
+    this.gender                      = profile._json.gender;
+    this.type_account                = 5;
+    this.email                       = profile.emails[0].value;
+
 
     this.linkedin_infor.id           = profile.id;
     this.linkedin_infor.access_token = access_token;
@@ -574,6 +599,9 @@ userSchema.methods.newInforLk    = function(access_token, profile, callback){
         callback(this);
     });
 }
+
+
+// ======================== EDIT INFOR ====================================
 
 // edit Infor
 // { Avatar, Avatar_small, Avatar_normal, Fullname, YearOfBirth
@@ -612,6 +640,7 @@ userSchema.methods.makeToken     = function(){
     return 1;
 }
 
+// ======================== ADD JOB, APPLICATION ====================================
 
 userSchema.methods.addJob        = function(job_id){
     this.myJobs.push(job_id);
@@ -619,7 +648,6 @@ userSchema.methods.addJob        = function(job_id){
         return 0;
     });
 }
-
 
 userSchema.methods.addApply      = function(app_id){
     this.myApplications.push(app_id);

@@ -601,10 +601,10 @@ Content-Type: application/json
 Cache-Control: no-cache
 
 {
-    "token"             : "$2a$08$MsIS...xaiYNfi",
-    "user_id"           : "54c9ee7a202b449e430cc43b"
+    "token"         : "$2a$08$OsMl...Z18lwH5rFMrcGLIwwxLPgupq.",
+    "user_id"       : "54cba60d3bbfb7d437d6c512"
 }
-    
+
 ```
 ##### Regex
 ```
@@ -613,6 +613,356 @@ Cache-Control: no-cache
 ```
 ##### Return
 ```
+{
+    "error_code": 0,
+    "jobs": [
+        {
+            "__v": 14,
+            "_id": "54cbac4e28837ea23ba88d22",
+            "time": "2015-01-30T16:07:40.000Z",
+            "user_id": "54cba60d3bbfb7d437d6c512",
+            "hires": 0,
+            "interviews": 0,
+            "applications": {
+                "list": [
+                    "54cbada928837ea23ba88d25",
+                    "54cbadb528837ea23ba88d26",
+                    "54cbadb728837ea23ba88d27",
+                    "54cbadb728837ea23ba88d28",
+                    "54cbadb828837ea23ba88d29",
+                    "54cbadb828837ea23ba88d2a",
+                    "54cbadb928837ea23ba88d2b",
+                    "54cbadb928837ea23ba88d2c",
+                    "54cbadb928837ea23ba88d2d",
+                    "54cbadb928837ea23ba88d2e",
+                    "54cbadb928837ea23ba88d2f",
+                    "54cbadb928837ea23ba88d30"
+                ],
+                "number": 12
+            },
+            "shares": {
+                "list": [],
+                "number": 0
+            },
+            "likes": {
+                "list": [],
+                "number": 0
+            },
+            "status": 1,
+            "link_direct": "http://campcoders.com",
+            "location": {
+                "address": "Ngõ 34 - Nguyên Hồng, Láng Hạ, Đống Đa, Hà Nội, Việt Nam",
+                "lng": 105.810339,
+                "lat": 21.016481
+            },
+            "description": "Quản lý toàn bộ công tác tuyển dụng nhân sự - Hỗ trợ thực hiện các hoạt động đào tạo và tái đào tạo- Quản lý giám sát hoạt động nhân sự trong Khách Sạn- Xây dựng, quản lý, tổ chức và thực hiện các chính sách nhân sự cho nhân viên theo quy định của Khách Sạn",
+            "hash_tag": [
+                "HR",
+                "Campcoders.com"
+            ],
+            "title": "nhân sự",
+            "userName": "Cường Vũ",
+            "image_normal": "http://job.dev/images/normal_size/JobImages/1422634751069.jpeg",
+            "image_small": "http://job.dev/images/small_size/JobImages/1422634751069.jpeg",
+            "image": "http://job.dev/images/full_size/JobImages/1422634751069.jpeg"
+        }
+    ]
+}
 
+```
+
+### 9. View my applications
+
+```
+POST http://jobpitch.campcoders.com/api/my_applications
+Content-Type: application/json
+Cache-Control: no-cache
+
+{
+    "token"         : "$2a$08$OsMl...Z18lwH5rFMrcGLIwwxLPgupq.",
+    "user_id"       : "54cba60d3bbfb7d437d6c512"
+}
+
+```
+##### Regex
+```
+    
+
+```
+##### Return
+```
+{
+    "error_code": 0,
+    "applications": [
+        {
+            "time": "2015-01-30T16:13:43.000Z",
+            "job_id": "54cbac4e28837ea23ba88d22",
+            "user_avatar": "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xpa1/t31.0-1/c718.0.960.960/p960x960/10557488_606609982789433_860901210522561437_o.jpg",
+            "user_name": "Cường Vũ",
+            "user_id": "54cba60d3bbfb7d437d6c512",
+            "_id": "54cbadb728837ea23ba88d27",
+            "__v": 0,
+            "hires": 0,
+            "interviews": 0,
+            "shares": {
+                "list": [],
+                "number": 0
+            },
+            "likes": {
+                "list": [],
+                "number": 0
+            },
+            "description": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+            "hash_tag": [
+                "HR",
+                "Campcoders",
+                "FPT"
+            ],
+            "title": "I can do it"
+        },
+        {
+            "time": "2015-01-30T16:13:43.000Z",
+            "job_id": "54cbac4e28837ea23ba88d22",
+            "user_avatar": "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xpa1/t31.0-1/c718.0.960.960/p960x960/10557488_606609982789433_860901210522561437_o.jpg",
+            "user_name": "Cường Vũ",
+            "user_id": "54cba60d3bbfb7d437d6c512",
+            "_id": "54cbadb728837ea23ba88d28",
+            "__v": 0,
+            "hires": 0,
+            "interviews": 0,
+            "shares": {
+                "list": [],
+                "number": 0
+            },
+            "likes": {
+                "list": [],
+                "number": 0
+            },
+            "description": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+            "hash_tag": [
+                "HR",
+                "Campcoders",
+                "FPT"
+            ],
+            "title": "I can do it"
+        }
+    ]
+}
+
+```
+
+
+### 10. Sign-up by email
+
+```
+POST http://jobpitch.campcoders.com/api/signup
+Content-Type: application/json
+Cache-Control: no-cache
+
+{
+    "user_name"    : "CuongVu",
+    "isUser"       : 1,
+    "email"        : "cuongvc93@gmail.com",
+    "password"     : "coc@123456"
+}
+
+
+```
+##### Regex
+```
+    
+
+```
+##### Return
+```
+{
+    "error_code": 0,
+    "user": {
+        "__v": 0,
+        "userName": "CuongVu",
+        "_id": "54cbba53bece0ae24a0007ea",
+        "email": "cuongvc93@gmail.com",
+        "year_of_birth": null,
+        "education": "",
+        "industry": "",
+        "userFullname": "",
+        "avatar_normal": "http://job.dev/images/full_size/TalentImages/default-avatar.png",
+        "avatar_small": "http://job.dev/images/full_size/TalentImages/default-avatar.png",
+        "avatar": "http://job.dev/images/full_size/TalentImages/default-avatar.png",
+        "friends": [],
+        "myFollows": [],
+        "myApplications": [],
+        "myJobs": [],
+        "followMes": [],
+        "website": "",
+        "companyFullname": "",
+        "logo_normal": "http://job.dev/images/full_size/CompanyLogos/default-logo.png",
+        "logo_small": "http://job.dev/images/full_size/CompanyLogos/default-logo.png",
+        "logo": "http://job.dev/images/full_size/CompanyLogos/default-logo.png",
+        "active": 1,
+        "permission": 0,
+        "token": "$2a$08$EWt5Eb1c.FUZVTWKB64kGuIIj0Do8bZkWFny46giRvnMOseomhRFO",
+        "messages": [],
+        "notifications": [],
+        "contact": "",
+        "google_infor": {
+            "access_token": "",
+            "email": "",
+            "profileUrl": "",
+            "gender": "",
+            "username": "",
+            "avatar": "",
+            "id": ""
+        },
+        "linkedin_infor": {
+            "access_token": "",
+            "email": "",
+            "profileUrl": "",
+            "gender": "",
+            "username": "",
+            "avatar": "",
+            "id": ""
+        },
+        "twitter_infor": {
+            "token_secret": "",
+            "access_token": "",
+            "email": "",
+            "profileUrl": "",
+            "gender": "",
+            "username": "",
+            "avatar": "",
+            "id": ""
+        },
+        "fb_infor": {
+            "access_token": "",
+            "email": "",
+            "profileUrl": "",
+            "gender": "",
+            "username": "",
+            "avatar": "",
+            "id": ""
+        },
+        "local_infor": {
+            "email": "cuongvc93@gmail.com",
+            "password": "$2a$08$n0XMyuW51JQGANY5OdBQjefyFIckQNv2KC6t0IGh/.mnaZQIuC9Je"
+        },
+        "type_account": 1,
+        "location": {
+            "address": "417 Clinton St Brooklyn, NY 11231, Hoa Kỳ",
+            "lng": -73.99822,
+            "lat": 40.681966
+        },
+        "isUser": 1,
+        "address": ""
+    }
+}
+
+```
+
+
+
+### 11. Login with email
+
+```
+POST http://jobpitch.campcoders.com/api/signup
+Content-Type: application/json
+Cache-Control: no-cache
+
+{
+    "email"        : "cuongvc93@gmail.com",
+    "password"     : "coc@123456"
+}
+
+
+
+```
+##### Regex
+```
+    
+
+```
+##### Return
+```
+{
+    "error_code": 0,
+    "user": {
+        "__v": 0,
+        "userName": "CuongVu",
+        "_id": "54cbba53bece0ae24a0007ea",
+        "email": "cuongvc93@gmail.com",
+        "year_of_birth": null,
+        "education": "",
+        "industry": "",
+        "userFullname": "",
+        "avatar_normal": "http://job.dev/images/full_size/TalentImages/default-avatar.png",
+        "avatar_small": "http://job.dev/images/full_size/TalentImages/default-avatar.png",
+        "avatar": "http://job.dev/images/full_size/TalentImages/default-avatar.png",
+        "friends": [],
+        "myFollows": [],
+        "myApplications": [],
+        "myJobs": [],
+        "followMes": [],
+        "website": "",
+        "companyFullname": "",
+        "logo_normal": "http://job.dev/images/full_size/CompanyLogos/default-logo.png",
+        "logo_small": "http://job.dev/images/full_size/CompanyLogos/default-logo.png",
+        "logo": "http://job.dev/images/full_size/CompanyLogos/default-logo.png",
+        "active": 1,
+        "permission": 0,
+        "token": "$2a$08$EWt5Eb1c.FUZVTWKB64kGuIIj0Do8bZkWFny46giRvnMOseomhRFO",
+        "messages": [],
+        "notifications": [],
+        "contact": "",
+        "google_infor": {
+            "access_token": "",
+            "email": "",
+            "profileUrl": "",
+            "gender": "",
+            "username": "",
+            "avatar": "",
+            "id": ""
+        },
+        "linkedin_infor": {
+            "access_token": "",
+            "email": "",
+            "profileUrl": "",
+            "gender": "",
+            "username": "",
+            "avatar": "",
+            "id": ""
+        },
+        "twitter_infor": {
+            "token_secret": "",
+            "access_token": "",
+            "email": "",
+            "profileUrl": "",
+            "gender": "",
+            "username": "",
+            "avatar": "",
+            "id": ""
+        },
+        "fb_infor": {
+            "access_token": "",
+            "email": "",
+            "profileUrl": "",
+            "gender": "",
+            "username": "",
+            "avatar": "",
+            "id": ""
+        },
+        "local_infor": {
+            "email": "cuongvc93@gmail.com",
+            "password": "$2a$08$n0XMyuW51JQGANY5OdBQjefyFIckQNv2KC6t0IGh/.mnaZQIuC9Je"
+        },
+        "type_account": 1,
+        "location": {
+            "address": "417 Clinton St Brooklyn, NY 11231, Hoa Kỳ",
+            "lng": -73.99822,
+            "lat": 40.681966
+        },
+        "isUser": 1,
+        "address": ""
+    }
+}
 
 ```
