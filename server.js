@@ -33,10 +33,13 @@ app.get('/login_fb', function(req, res){
 * index
 */
 app.get('/',function(req,res){
-	res.render('index.ejs');
+	res.render('index.ejs',{user: req.user});
 })
 app.get('/login',function(req,res){
 	res.render('login.ejs');
+})
+app.get('/signup',function(req,res){
+	res.render('signup.ejs');
 })
 /********************************************************************************/
 									/*DIRECTIVE*/

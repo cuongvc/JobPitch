@@ -14,10 +14,6 @@ Login.controller('LoginCtrl',function($scope,$http){
 			email: email,
 			password: password,
 		}
-		console.log(JSON.stringify(data));
-		$http.post(STR_API_SIGN_UP,data).success(function(response){
-			console.log(response);
-			
-		})
+		$('#loginForm').submit();
 	}
 })

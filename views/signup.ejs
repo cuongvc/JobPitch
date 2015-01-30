@@ -1,44 +1,68 @@
-<!doctype html>
 <html>
 <head>
-	<title>Node Authentication</title>
-	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
-	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
-	<style>
-		body 		{ padding-top:80px; }
-	</style>
+	<title>Job Pitch</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+	<script type="text/javascript" src="bower_components/angular/angular.min.js"></script>		
+	<script type="text/javascript" src="bower_components/nightfury_bootstrap_36grid/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/js/global.js"></script>
+	<script type="text/javascript" src="js/home/signup.js"></script>
+	<link rel="stylesheet" type="text/css" href="bower_components/nightfury_bootstrap_36grid/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="bower_components/nightfury_bootstrap_36grid/css/bootstrap-theme.min.css">
+	<link rel="stylesheet" type="text/css" href="/bower_components/fontawesome/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="css/home/template.css">
+	<link rel="stylesheet" type="text/css" href="css/home/login.css">
+	<link rel="stylesheet" type="text/css" href="css/home/signup.css">
 </head>
-<body>
-<div class="container">
-<div class="col-sm-6 col-sm-offset-3">
-
-	<h1><span class="fa fa-sign-in"></span> Signup</h1>
-
-	<% if (message.length > 0) { %>
-		<div class="alert alert-danger"><%= message %></div>
-	<% } %>
-
-	<!-- LOGIN FORM -->
-	<form action="/signup_email" method="post">
-		<div class="form-group">
-			<label>Email</label>
-			<input type="text" class="form-control" name="email">
+<body ng-app="SignupApp" ng-controller="SignupCtrl">
+	<div id="login" ng-style="{{ LoginStyle }}">
+		<div id="opacity" class="container-fluid">
+			<div class="col-md-10 col-md-offset-13 col-sm-18 col-sm-offset-9 col-xs-36">
+				<div id="login-form" class="col-md-36 col-sm-36 col-xs-36">
+					<!-- <p>Sign in using</p> -->
+					<ul class="social">
+						<li>
+							<a href="/auth/facebook">
+								<i class="fa fa-facebook"></i>
+							</a>
+						</li>
+						<li>
+							<a href="/auth/google">
+								<i class="fa fa-google-plus"></i>
+							</a>
+						</li>
+						<li>
+							<a href="/auth/twitter">
+								<i class="fa fa-twitter"></i>
+							</a>
+						</li>
+						<li>
+							<a href="/auth/linkedin">
+								<i class="fa fa-linkedin"></i>
+							</a>
+						</li>
+					</ul>
+					<div class="normal-login">
+						<form ng-submit="Signup(email,password)" id="signupForm" action="/signup_email" method="post">
+							<div class="form-group">
+								<input type="email" id="email" ng-model="email" name="email" placeholder="Email">
+							</div>
+							<div class="form-group">
+								<input type="password" id="password" ng-model="password" name="password" placeholder="Password">
+							</div>
+							<div class="form-group">
+								<input type="submit" value="Sign Up">
+							</div>
+						</form>
+					</div>
+				</div> <!-- login-form -->
+				<div id="signup-forgot" class="col-md-36 col-sm-36 col-xs-36">
+					<ul>
+						<li>Have an account? <a href="/login">Login</a></li>
+					</ul>
+				</div> <!-- signup-forgot -->
+			</div>
 		</div>
-		<div class="form-group">
-			<label>Password</label>
-			<input type="password" class="form-control" name="password">
-		</div>
-
-		<button type="submit" class="btn btn-warning btn-lg">Signup</button>
-	</form>
-
-	<hr>
-
-	<p>Already have an account? <a href="/login_email">Login</a></p>
-	<p>Or go <a href="/">home</a>.</p>
-
-
-</div>
-</div>
+	</div>
 </body>
 </html>

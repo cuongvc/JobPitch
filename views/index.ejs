@@ -8,6 +8,8 @@
 	<script type="text/javascript" src="/js/global.js"></script>
 	<script type="text/javascript">
 		var STR_API_RECENT = BASE_URL + '/api/recent';
+		console.log(user);
+
 	</script>
 
 	<script type="text/javascript" src="/bower_components/nightfury/src/database.js"></script>
@@ -35,6 +37,7 @@
 	<header></header>
 	<profile ng-if="PAGE == page.setting" page="{{ page.setting }}"></profile>
 	<tag-list ng-if="PAGE == page.index" page="{{ page.index }}"></tag-list>
+	<%= JSON.stringify(user) %>
 	<jobs ng-if="PAGE == page.index" page="{{ page.index }}"></jobs>
 	<create-job ng-if="PAGE == page.index" page="{{ page.index }}"></create-job>
 	<footer></footer>
