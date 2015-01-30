@@ -5,7 +5,7 @@ module.exports = {
     'facebookAuth' : {
         'clientID'              : '1591004764464608', // your App ID
         'clientSecret'          : '075794c218de978d70a7450477af2025', // your App Secret
-        'callbackURL'           : 'http://jobpitch.campcoders.com:6969/auth/facebook/callback'
+        'callbackURL'           : 'http://jobpitch.campcoders.com/auth/facebook/callback'
     },
 
     'twitterAuth' : {
