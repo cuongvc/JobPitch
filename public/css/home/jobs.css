@@ -9,9 +9,6 @@
 	padding: 5px;
 	margin-bottom: 20px;
 	height: 220px;
-	position: absolute;
-	bottom: 20px;
-	right: 21px;
 }
 .job .image{
 	float: left;
@@ -31,6 +28,11 @@
 	display: inline-block;
 	padding: 0px;
 	width: 100%;
+}
+.like-share ul{
+	position: absolute;
+	bottom: 20px;
+	right: 21px;
 }
 .like-share ul li , .job-social ul li{
 	display: inline-block;
