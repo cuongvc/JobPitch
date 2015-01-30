@@ -19,7 +19,6 @@ Jobs.controller('JobCtrl',function($scope,$http){
 			token: $scope.user.token,
 			lat: 21.018549,
 			lng: 105.812198,
-			tag: "HR",
 			address: "9 Nguyên Hong, Thành Công, Ba Đình, Hà Nội, Việt Nam"
 		}
 	$http.post(STR_API_RECENT,data).success(function(response){
