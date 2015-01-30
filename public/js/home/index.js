@@ -127,6 +127,8 @@ IndexApp.controller('IndexCtrl',function($scope,$http,$timeout,DB){
 			console.log(response);
 			if(response.error_code == 0){
 				$scope.CurrentJob.Applications.push(response.application);
+				$scope.ApplyTitle = '';
+				$scope.ApplyDesc = '';
 			}
 		})
 	}
