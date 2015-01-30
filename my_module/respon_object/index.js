@@ -1,6 +1,4 @@
-exports.talent			=	require('./talent');
-
-exports.company			=	require('./company');
+exports.user			=	require('./user');
 
 exports.job					=	require('./job');
 

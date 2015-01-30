@@ -229,7 +229,7 @@ var userSchema = mongoose.Schema({
         default      : 0
     },
 
-    active                   : {
+    active           : {
         type           : Number,
         default        : 1
     },
@@ -433,6 +433,40 @@ userSchema.methods.getAvatarFb   = function(access_token, callback){
         });
     });
 }
+
+// ======================== EDIT PROFILE ====================================
+
+
+userSchema.methods.editProfile   = function(address, contact, website, avatar, avatar_small, avatar_normal, 
+                                            logo, logo_small, logo_normal, companyName, website, 
+                                            userFullname, industry, education, year_of_birth, callback){
+    console.log('EDIT PROFILE');
+    this.address = address;
+    this.contact = contact;
+    this.website = website;
+    this.companyName = companyName;
+    this.userFullname = userFullname;
+    this.industry  = industry;
+    this.education = education;
+    this.year_of_birth = year_of_birth;
+
+    if (avatar != ''){
+        this.avatar = avatar;
+        this.avatar_normal = avatar_normal;
+        this.avatar_small = avatar_small;
+    };
+
+    if (logo != ''){
+        this.logo = logo;
+        this.logo_small = logo_small;
+        this.logo_normal = logo_normal;
+    };
+    console.log('callback this');
+    callback(this);
+}
+
+// ======================== FACEBOOK INFOR ====================================
+
 
 // make new Infor
 userSchema.methods.newInforFb    = function(access_token, profile, callback){

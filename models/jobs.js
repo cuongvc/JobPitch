@@ -186,6 +186,7 @@ jobSchema.methods.editInfor     = function(job){
 
 jobSchema.methods.addApply      = function(application){
     this.applications.list.push(application);
+    this.applications.number ++;
     this.save(function(err){
         return 1;
     })
