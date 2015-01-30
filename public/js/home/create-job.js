@@ -78,6 +78,9 @@ CreateJob.controller('CreateJobCtrl',function($scope,$http){
 			newJob.address = Address;
 		$http.post(STR_API_CREATE_JOB,newJob).success(function(response){
 			console.log(response);
+			if(response.error_code == 0){
+				document.location.href = BASE_URL;
+			}
 		})
 		console.log(newJob); 
 	}
