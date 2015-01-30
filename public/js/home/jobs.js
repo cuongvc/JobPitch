@@ -22,11 +22,13 @@ Jobs.controller('JobCtrl',function($scope,$http){
 		if(response.error_code == 0){
 			jobs = response.jobs;
 		}
-		jobs.forEach(function(v,k){
-			if(v.description.length > 144){
-				jobs[k].description = jobs[k].description.substring(0,144) + '...';
-			}
-		})
+		if(jobs != undefined){
+			jobs.forEach(function(v,k){
+				if(v.description.length > 144){
+					jobs[k].description = jobs[k].description.substring(0,144) + '...';
+				}
+			})
+		}
 		$scope.jobs = jobs;
 	})
 	return;

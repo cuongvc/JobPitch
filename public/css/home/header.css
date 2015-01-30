@@ -13,6 +13,6 @@
 .navbar-nav > li > img{
 	max-width: 35px;
 	max-height: 35px;
-	border: 1px solid #fff;
+	border-radius: 100%;
 	margin-top: 7px;
 }

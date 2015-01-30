@@ -8,8 +8,23 @@
 	<script type="text/javascript" src="/js/global.js"></script>
 	<script type="text/javascript">
 		var STR_API_RECENT = BASE_URL + '/api/recent';
-		console.log(user);
-
+		<% if(user != undefined){ %>
+			var logedin = true;
+			var user = {
+					_id: "<%= user._id %>",
+					token: "<%= user.token %>",
+					account_type: "<%= user.type_account %>",
+					avatar: {
+						normal: "<%= user.avatar_normal %>",
+						small: "<%= user.avatar_small %>",
+						origin: "<%= user.avatar %>",
+					},
+					username: "<%= user.userName %>",
+				}
+			console.log(user);
+		<% }else{ %>
+			document.location.href = "/login";
+		<% } %>
 	</script>
 
 	<script type="text/javascript" src="/bower_components/nightfury/src/database.js"></script>
@@ -37,9 +52,9 @@
 	<header></header>
 	<profile ng-if="PAGE == page.setting" page="{{ page.setting }}"></profile>
 	<tag-list ng-if="PAGE == page.index" page="{{ page.index }}"></tag-list>
-	<%= JSON.stringify(user) %>
 	<jobs ng-if="PAGE == page.index" page="{{ page.index }}"></jobs>
 	<create-job ng-if="PAGE == page.index" page="{{ page.index }}"></create-job>
+	<%= JSON.stringify(user) %>
 	<footer></footer>
 </body>
 </html>

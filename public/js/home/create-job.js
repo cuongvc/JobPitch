@@ -43,11 +43,6 @@ CreateJob.controller('CreateJobCtrl',function($scope,$http){
 			show: false,
 		},
 	}
-	$scope.$watch(function(){
-		return $scope.CreateJobImage.path;
-	},function(){
-		console.log($scope.user);
-	})
 	$scope.CreateJob = function(JobTitle,JobDesc,ImageLink,Address){
 		console.log(JobTitle,JobDesc,ImageLink,Address);
 		var TitleHashTags = JobTitle.match(/#\S+/g);
@@ -82,6 +77,6 @@ CreateJob.controller('CreateJobCtrl',function($scope,$http){
 				document.location.href = BASE_URL;
 			}
 		})
-		console.log(newJob); 
+		console.log(JSON.stringify(newJob)); 
 	}
 })
