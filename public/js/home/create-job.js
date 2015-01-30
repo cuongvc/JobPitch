@@ -63,6 +63,7 @@ CreateJob.controller('CreateJobCtrl',function($scope,$http){
 				HashTags = TitleHashTags;
 			}
 		}
+		if(HashTags == null) HashTags = [];
 		var newJob = new Object();
 			newJob.user_id = $scope.user._id;
 			newJob.token = $scope.user.token;
