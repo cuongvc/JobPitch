@@ -612,5 +612,21 @@ userSchema.methods.makeToken     = function(){
     return 1;
 }
 
+
+userSchema.methods.addJob        = function(job_id){
+    this.myJobs.push(job_id);
+    this.save(function(err){
+        return 0;
+    });
+}
+
+
+userSchema.methods.addApply      = function(app_id){
+    this.myApplications.push(app_id);
+    this.save(function(err){
+        return 0;
+    });
+}
+
 // create the model for users and expose it to our app
 module.exports = mongoose.model('users', userSchema);

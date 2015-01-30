@@ -11,3 +11,5 @@ exports.recent        =   require('./recent');
 exports.apply         =   require('./apply');
 
 exports.edit_profile  =   require('./edit_profile');
+
+exports.my_wall       =   require('./my_wall');

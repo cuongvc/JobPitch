@@ -592,3 +592,27 @@ Cache-Control: no-cache
     }
 }
 ```
+
+### 8. View my jobs
+
+```
+POST http://jobpitch.campcoders.com:6969/api/my_jogs
+Content-Type: application/json
+Cache-Control: no-cache
+
+{
+    "token"             : "$2a$08$MsIS...xaiYNfi",
+    "user_id"           : "54c9ee7a202b449e430cc43b"
+}
+    
+```
+##### Regex
+```
+    
+
+```
+##### Return
+```
+
+
+```

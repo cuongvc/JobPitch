@@ -85,6 +85,7 @@ module.exports				=	function(req, res){
                         title, hash_tag, desc, lat, lng, address, link_direct, time,
                         function(object){
                           console.log(object);
+                          user_exist.addJob(object._id);
                           respon_object(res, object);
                         }
         ) 

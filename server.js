@@ -83,6 +83,11 @@ app.get('/login_fb', function(req, res){
 //  ------EDIT PROFILE --------------------------
 	Router_body.post('/edit_profile',          routes.edit_profile);
 
+//  ------MY JOBS --------------------------
+	Router_body.post('/my_jobs',          		 routes.my_wall.my_jobs);
+	Router_body.post('/my_applications',   		 routes.my_wall.my_applications);
+
+
 
 // =================================== LISTEN BY IP AND PORT ========================
 

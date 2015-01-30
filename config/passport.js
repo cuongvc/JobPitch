@@ -121,6 +121,7 @@ module.exports = function(User_env, passport) {
                     // create the user
                     var newUser            = new User();
 
+                    newUser.userName             = email;
                     newUser.local_infor.email    = email;
                     newUser.local_infor.password = newUser.generateHash(password);
                     newUser.makeToken();

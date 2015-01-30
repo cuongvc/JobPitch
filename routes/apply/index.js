@@ -41,9 +41,11 @@ module.exports				=	function(req, res){
 				application.newInfor(user_id, user_exist.userName, user_exist.avatar, job_id, title, hash_tag, 
 					                   description, time, function(application){
 
-					respon_object(res, application);
-					job_exist.addApply(application);
+					job_exist.addApply(application._id);
+					user_exist.addApply(application._id);
 
+					respon_object(res, application);
+					
 				});
 			})
 
