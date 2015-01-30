@@ -26,7 +26,9 @@ Jobs.controller('JobCtrl',function($scope,$http){
 			jobs.forEach(function(v,k){
 				if(!(v.link_direct.match(/^http/))) jobs[k].link_direct = 'http://' + v.link_direct;
 				if(v.description.length > 144){
-					jobs[k].description = jobs[k].description.substring(0,144) + '...';
+					jobs[k].shortDesc = v.description.substring(0,144) + '...';
+				}else{
+					jobs[k].shortDesc = v.description;
 				}
 			})
 		}

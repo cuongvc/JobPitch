@@ -8,7 +8,7 @@
 						<img ng-src="{{ job.image_small }}" alt="">
 					</div>
 					<p class="company-title cp-title" ng-click="ViewCompanyProfile($event,1)" ng-bind="job.title"></p>
-					<p class="job-sort-desc" ng-bind="job.description"></p>
+					<p class="job-sort-desc" ng-bind="job.shortDesc"></p>
 					<div class="like-share">
 						<ul>
 							<li><span ng-bind="job.likes.number"></span> <span>like<span ng-if="job.likes.number > 1">s</span></span></li>
