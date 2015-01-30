@@ -15,16 +15,18 @@ Jobs.controller('JobCtrl',function($scope,$http){
 		jobs.push(job);
 	}
 	var data = {
-		    token         : "$2a$08$X0jvCjP377cp5eqPAwVvr.uZqLN/AssoagMvMBs0YG576LUMZFDSa",
-		    user_id       : "54c8580e86d5ce565ceb3168",
-		    lat           : 21.018549,
-		    lng           : 105.812198,
-		    tag           : "HR",
-		    address       : "9 Nguyên Hồng, Thành Công, Ba Đình, Hà Nội, Việt Nam"
-		};
+			user_id: $scope.user._id,
+			token: $scope.user.token,
+			lat: 21.018549,
+			lng: 105.812198,
+			tag: "HR",
+			address: "9 Nguyên Hong, Thành Công, Ba Đình, Hà Nội, Việt Nam"
+		}
 	$http.post(STR_API_RECENT,data).success(function(response){
 		console.log(response);
-		
+		if(response.error_code == 0){
+			$scope.jobs = response.jobs;
+		}
 	})
 	return;
 	$scope.jobs = jobs;
@@ -35,19 +37,4 @@ Jobs.controller('JobCtrl',function($scope,$http){
 		evt.stopPropagation();
 		console.log('a');
 	}
-	/*
-	* get job
-	*/
-	var data = {
-		user_id: $scope.user._id,
-		token: $scope.user.token,
-		lat: 21.018549,
-		lng: 105.812198,
-		tag: "HR",
-		address: "9 Nguyên Hong, Thành Công, Ba Đình, Hà Nội, Việt Nam"
-	}
-	console.log(data);
-	$http.post(STR_API_GETP_RECENT,data).success(function(response){
-		console.log(response);
-	})
 })
