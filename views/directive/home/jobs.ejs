@@ -56,7 +56,7 @@
 					<div class="job-comment apply-box row">
 						<div class="job-comment-avatar pull-left">
 							<img ng-src="{{ user.avatar.normal }}" alt="">
-							<p class="job-comment-user semibold text-center">Cuong Vu</p>
+							<p class="job-comment-user semibold text-center" ng-bind="user.username"></p>
 						</div>
 						<div class="job-comment-body">
 							<input type="text" maxlength="100" ng-model="ApplyTitle" id="ApplyTitle">
