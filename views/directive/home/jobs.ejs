@@ -45,8 +45,8 @@
 					</div>
 					<div class="job-comment row" ng-repeat="Application in CurrentJob.Applications">
 						<div class="job-comment-avatar pull-left">
-							<img ng-src="{{ user.avatar.normal }}" alt="">
-							<p class="job-comment-user semibold text-center" ng-bind="user.username"></p>
+							<img ng-src="{{ Application.user_avatar }}" alt="">
+							<p class="job-comment-user semibold text-center" ng-bind="Application.user_name"></p>
 						</div>
 						<div class="job-comment-body">
 							<p class="job-comment-title semibold" ng-bind="Application.title"></p>
