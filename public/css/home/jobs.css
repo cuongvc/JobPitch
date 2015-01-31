@@ -109,3 +109,7 @@
 	background: #aba;
 	color: #000;
 }
+.apply-social-button ul{
+	text-align: right;
+	padding: 0px;
+}
