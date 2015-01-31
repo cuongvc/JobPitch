@@ -38,12 +38,14 @@ module.exports				=	function(req, res){
 				};
 
 				var application = new Application();
-				application.newInfor(user_id, user_exist.userName, user_exist.avatar, job_id, title, hash_tag, 
+				application.newInfor(user_id, user_exist.userName, user_exist.avatar_small, job_id, title, hash_tag, 
 					                   description, time, function(application){
 
-					respon_object(res, application);
-					job_exist.addApply(application);
+					job_exist.addApply(application._id);
+					user_exist.addApply(application._id);
 
+					respon_object(res, application);
+					
 				});
 			})
 
