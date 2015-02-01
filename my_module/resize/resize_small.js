@@ -11,6 +11,11 @@ var path   = require('path');
 
 module.exports 					=	function(path_url, url_full_size, type,  callback){
 
+	console.log(process.argv[3]);
+	if (process.argv[3] == 'cuong'){
+		console.log('Dev with Cuong');
+		var gm = require('gm');	    // gm with server
+	} else
 	if (process.argv[2] == 'dev'){
 			var gm = require('gm').subClass({ imageMagick: true });	    // gm with server
 	} else{

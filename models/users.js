@@ -574,16 +574,15 @@ userSchema.methods.newInforGg    = function(access_token, profile, callback){
 // ======================== LINKEDIN INFOR ====================================
 userSchema.methods.newInforLk    = function(access_token, profile, callback){
 
-    // this.avatar                     = profile._json.publicProfileUrl;
-    // this.avatar_small               = profile._json.publicProfileUrl;
-    // this.avatar_normal              = profile._json.publicProfileUrl;
-    // this.linkedin_infor.avatar       = profile._json.publicProfileUrl;
+    this.avatar                      = profile.photos[0];
+    this.avatar_small                = profile.photos[0];
+    this.avatar_normal               = profile.photos[0];
+    this.linkedin_infor.avatar       = profile.photos[0];
 
     this.userName                    = profile.displayName;
     this.gender                      = profile._json.gender;
     this.type_account                = 5;
     this.email                       = profile.emails[0].value;
-
 
     this.linkedin_infor.id           = profile.id;
     this.linkedin_infor.access_token = access_token;

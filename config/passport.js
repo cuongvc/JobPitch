@@ -152,7 +152,7 @@ module.exports = function(User_env, passport) {
         // asynchronous
         console.log('PROFILE FACEBOOK : ', profile);
         process.nextTick(function() {
-            if (!req.user){
+            // if (!req.user){
                 User.findOne({ 'fb_infor.id' : profile.id }, function(err, user) {
                     if (err)
                         return done(err);
@@ -170,14 +170,14 @@ module.exports = function(User_env, passport) {
                         })
                     }
                 });
-            } else{
-                var user            = req.user; // pull the user out of the session
-                user.fb_infor.access_token = token;
-                user.makeToken();
-                user.save(function(err){
-                    return done(null, user);    
-                })
-            }
+            // } else{
+                // var user            = req.user; // pull the user out of the session
+            //     user.fb_infor.access_token = token;
+            //     user.makeToken();
+            //     user.save(function(err){
+            //         return done(null, user);    
+            //     })
+            // }
         });
     }));
 
