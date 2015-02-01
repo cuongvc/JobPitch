@@ -17,4 +17,3 @@ exports.distanceLimit    	= 100;
 exports.domain_default   	= 'http://' + dev_domain;
 exports.database         	= 'mongodb://' + dev_domain + '/jobpitch';
 
-

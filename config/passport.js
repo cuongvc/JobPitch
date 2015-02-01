@@ -194,7 +194,7 @@ module.exports = function(User_env, passport) {
         console.log('PROFILE TWITTER : ', profile);
         // asynchronous
         process.nextTick(function() {
-            if (!req.user){
+            // if (!req.user){
             // check if the user is already logged in
                 User.findOne({ 'twitter_infor.id' : profile.id }, function(err, user) {
                     if (err)
@@ -217,15 +217,17 @@ module.exports = function(User_env, passport) {
                         })
                     }
                 });
-            } else{
-                var user = req.user;
-                user.twitter_infor.access_token = token;
-                user.twitter_infor.token_secret = tokenSecret;
-                user.makeToken();
-                user.save(function(err){
-                    return done(null, user);
-                })
-            }
+
+            // } else{
+            //     var user = req.user;
+            //     user.twitter_infor.access_token = token;
+            //     user.twitter_infor.token_secret = tokenSecret;
+            //     user.makeToken();
+            //     user.save(function(err){
+            //         return done(null, user);
+            //     })
+            // }
+            
         });
 
     }));
@@ -249,7 +251,6 @@ module.exports = function(User_env, passport) {
         process.nextTick(function() {
 
             // check if the user is already logged in
-            if (!req.user) {
 
                 User.findOne({ 'google_infor.id' : profile.id }, function(err, user) {
                     if (err)
@@ -275,19 +276,6 @@ module.exports = function(User_env, passport) {
                         })
                     }
                 });
-
-            } else {
-                // user already exists and is logged in, we have to link accounts
-                var user                = req.user; // pull the user out of the session
-                user.access_token = token;
-                user.makeToken();
-
-                user.save(function(err) {
-                    if (err)
-                        throw err;
-                    return done(null, user);
-                });
-            }
         });
     }));
 
