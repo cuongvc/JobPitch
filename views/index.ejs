@@ -11,11 +11,11 @@
 		<% if(user != undefined){ %>
 			var logedin = true;
 			var avatar_normal = "<%= user.avatar_normal %>"; 
-				avatar_normal = avatar_normal.replace(/&/g, "&amp;").replace(/>/g, "&gt;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
+				avatar_normal = avatar_normal.replace(/&amp;/g, "&").replace(/&gt;/g, ">").replace(/&lt;/g, "<").replace(/&quot;/g, '"');
 			var avatar_small = "<%= user.avatar_small %>"; 
-				avatar_small = avatar_small.replace(/&/g, "&amp;").replace(/>/g, "&gt;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
+				avatar_small = avatar_small.replace(/&amp;/g, "&").replace(/&gt;/g, ">").replace(/&lt;/g, "<").replace(/&quot;/g, '"');
 			var avatar_origin = "<%= user.avatar %>"; 
-				avatar_origin = avatar_origin.replace(/&/g, "&amp;").replace(/>/g, "&gt;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
+				avatar_origin = avatar_origin.replace(/&amp;/g, "&").replace(/&gt;/g, ">").replace(/&lt;/g, "<").replace(/&quot;/g, '"');
 			var user = {
 					_id: "<%= user._id %>",
 					token: "<%= user.token %>",
