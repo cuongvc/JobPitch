@@ -28,4 +28,6 @@
 	font-size: 18px;
 	color: #66757f;
 	margin-top: 0px;
+	display: inline;
+	white-space: nowrap;
 }
