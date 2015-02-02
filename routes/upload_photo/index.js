@@ -2,6 +2,7 @@ var   formidable    	  = require('formidable'),
       util          		= require('util'),
       fs            		= require('fs-extra'),
       async             = require('async'),
+      url               = require('url'),
       mime			    		= require('mime');
 
 module.exports				=	function(req, res){
@@ -10,6 +11,10 @@ module.exports				=	function(req, res){
     var form = new formidable.IncomingForm();
 
     form.parse(req, function(err, fields, files) { 
+      var x = fields['x'];
+      var y = fields['y'];
+      var width = fields['width'];
+      var height = fields['height'];
 
       if (err){
       	console.log('Error : ', err);
@@ -22,8 +27,28 @@ module.exports				=	function(req, res){
         else{
           var temp_path   =   files.image.path;
           var extension   =   mime.extension(files.image.type).toLowerCase();  
-          res.write(JSON.stringify({error_code : 0, path : temp_path, extension : extension}));
-          res.status(200).end();
+
+          var im     = require('imagemagick');
+          if (process.argv[3] == 'cuong'){
+            console.log('Dev with Cuong');
+            var gm = require('gm');
+          } else
+            var gm = require('gm').subClass({ imageMagick: true });     // gm with server
+
+          gm(temp_path)
+            .crop(width, height, x, y)
+            .autoOrient()
+            .write(temp_path, function (err) {
+              if (err) {
+                console.log('Error : ', err);
+              }
+              else{
+                console.log('CROP SUCCESS');
+                res.write(JSON.stringify({error_code : 0, path : temp_path, extension : extension}));
+                res.status(200).end();
+              }
+          })
+            
         }
       };
     });

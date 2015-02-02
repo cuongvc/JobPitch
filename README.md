@@ -1,5 +1,7 @@
 ## Link POST MAN
 ```
+    https://www.getpostman.com/collections/03a884410c77324c7ccf
+
 
 ```
 ## API
@@ -13,7 +15,11 @@ Content-Type: form-data
 Cache-Control: no-cache
 
 {
-    "image"         : FILE
+    "image"         : FILE,
+    "x"             : 0,
+    "y"             : 0,
+    "height"        : 500,
+    "width"         : 600
 }
 ```
 ##### Regex
