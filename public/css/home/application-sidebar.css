@@ -70,6 +70,8 @@
 }
 .application-sidebar-number-comment p{
 	padding: 5px;
+	color: #8899a6;
+	font-size: 12px;
 }
 .application-sidebar-number-comment p:hover{
 	text-decoration: underline;
