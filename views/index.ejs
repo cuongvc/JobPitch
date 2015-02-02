@@ -10,14 +10,20 @@
 		var STR_API_RECENT = BASE_URL + '/api/recent';
 		<% if(user != undefined){ %>
 			var logedin = true;
+			var avatar_normal = "<%= user.avatar_normal %>"; 
+				avatar_normal = avatar_normal.replace(/&#?[a-z0-9]+;/g,"");
+			var avatar_small = "<%= user.avatar_small %>"; 
+				avatar_small = avatar_small.replace(/&#?[a-z0-9]+;/g,"");
+			var avatar_origin = "<%= user.avatar %>"; 
+				avatar_origin = avatar_origin.replace(/&#?[a-z0-9]+;/g,"");
 			var user = {
 					_id: "<%= user._id %>",
 					token: "<%= user.token %>",
 					account_type: "<%= user.type_account %>",
 					avatar: {
-						normal: preg_replace("/&#?[a-z0-9]+;/i","","<%= user.avatar_normal %>"),
-						small: preg_replace("/&#?[a-z0-9]+;/i","","<%= user.avatar_small %>"),
-						origin: preg_replace("/&#?[a-z0-9]+;/i","","<%= user.avatar %>"),
+						normal: avatar_normal,
+						small: avatar_small,
+						origin: avatar_origin,
 					},
 					username: "<%= user.userName %>",
 				}
