@@ -15,3 +15,9 @@ exports.edit_profile  =   require('./edit_profile');
 exports.my_wall       =   require('./my_wall');
 
 exports.signup        =   require('./signup');
+
+exports.search        =   require('./search');
+
+exports.get        		=   require('./get');
+
+exports.upload_file   =   require('./upload_file');

@@ -131,6 +131,14 @@ app.get('/directive/home/left-sidebar',function(req,res){
 	Router_body.post('/my_jobs',          		 routes.my_wall.my_jobs);
 	Router_body.post('/my_applications',   		 routes.my_wall.my_applications);
 
+//  ------TAGS --------------------------------
+	Router_body.post('/search_tag',      		   routes.search.tag);
+
+	app.get('/api/tags',											 routes.get.tags);
+
+//  ------ FILE --------------------------------
+	Router_formdata.post('/upload_file', 	     routes.upload_file);
+
 
 
 // =================================== LISTEN BY IP AND PORT ========================

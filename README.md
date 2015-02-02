@@ -8,7 +8,7 @@
 ### 1. Upload photo
 
 ```
-POST http://jobpitch.campcoders.com:6969/api/upload_photo
+POST http://jobpitch.campcoders.com/api/upload_photo
 Content-Type: form-data
 Cache-Control: no-cache
 
@@ -34,7 +34,7 @@ Cache-Control: no-cache
 ### 2. Create Job
 
 ```
-POST http://jobpitch.campcoders.com:6969/api/create_job
+POST http://jobpitch.campcoders.com/api/create_job
 Content-Type: application/json
 Cache-Control: no-cache
 {
@@ -109,7 +109,7 @@ Cache-Control: no-cache
 ### 3. Edit Job
 
 ```
-POST http://jobpitch.campcoders.com:6969/api/edit_job
+POST http://jobpitch.campcoders.com/api/edit_job
 Content-Type: form-data
 Cache-Control: no-cache
 
@@ -187,7 +187,7 @@ create job
 ### 4. JobDetail
 
 ```
-POST http://jobpitch.campcoders.com:6969/api/job_detail
+POST http://jobpitch.campcoders.com/api/job_detail
 Content-Type: application/json
 Cache-Control: no-cache
 
@@ -247,9 +247,9 @@ co trong list interview duoc danh dau mau khac **
         ],
         "title": "nhân sự",
         "userName": "Coders Camp",
-        "image_normal": "http://job.dev:6969/images/normal_size/JobImages/1422555163758.jpeg",
-        "image_small": "http://job.dev:6969/images/small_size/JobImages/1422555163758.jpeg",
-        "image": "http://job.dev:6969/images/full_size/JobImages/1422555163758.jpeg"
+        "image_normal": "http://job.dev/images/normal_size/JobImages/1422555163758.jpeg",
+        "image_small": "http://job.dev/images/small_size/JobImages/1422555163758.jpeg",
+        "image": "http://job.dev/images/full_size/JobImages/1422555163758.jpeg"
     },
     "app": [
         {
@@ -311,7 +311,7 @@ co trong list interview duoc danh dau mau khac **
 ### 5. Recent
 
 ```
-POST http://jobpitch.campcoders.com:6969/api/recent
+POST http://jobpitch.campcoders.com/api/recent
 Content-Type: application/json
 Cache-Control: no-cache
 
@@ -375,9 +375,9 @@ Cache-Control: no-cache
                 "Campcoders.com"
             ],
             "title": "nhân sự",
-            "image_normal": "http://jobpitch.campcoders.com:6969/images/full_size/JobImages/default-image.png",
-            "image_small": "http://jobpitch.campcoders.com:6969/images/full_size/JobImages/default-image.png",
-            "image": "http://jobpitch.campcoders.com:6969/images/full_size/JobImages/default-image.png"
+            "image_normal": "http://jobpitch.campcoders.com/images/full_size/JobImages/default-image.png",
+            "image_small": "http://jobpitch.campcoders.com/images/full_size/JobImages/default-image.png",
+            "image": "http://jobpitch.campcoders.com/images/full_size/JobImages/default-image.png"
         },
         {
             "time": "Wed Jan 28 2015 13:59:06 GMT-0500 (EST)",
@@ -411,9 +411,9 @@ Cache-Control: no-cache
                 "Campcoders.com"
             ],
             "title": "nhân sự",
-            "image_normal": "http://jobpitch.campcoders.com:6969/images/normal_size/JobImages/1422471783441.jpeg",
-            "image_small": "http://jobpitch.campcoders.com:6969/images/small_size/JobImages/1422471783441.jpeg",
-            "image": "http://jobpitch.campcoders.com:6969/images/full_size/JobImages/1422471783441.jpeg"
+            "image_normal": "http://jobpitch.campcoders.com/images/normal_size/JobImages/1422471783441.jpeg",
+            "image_small": "http://jobpitch.campcoders.com/images/small_size/JobImages/1422471783441.jpeg",
+            "image": "http://jobpitch.campcoders.com/images/full_size/JobImages/1422471783441.jpeg"
         }
     ]
 }
@@ -423,22 +423,25 @@ Cache-Control: no-cache
 ### 6. Apply
 
 ```
-POST http://jobpitch.campcoders.com:6969/api/apply
+POST http://jobpitch.campcoders.com/api/apply
 Content-Type: application/json
 Cache-Control: no-cache
 
 {
-    "token"          : "$2a$08$X0......6LUMZFDSa",
-    "user_id"        : "54c8580e86d5ce565ceb3168",
-    "job_id"         : "54c8580e86d5ce565ceb3168",
+    "token"         : "$2a$08$YR8X4MB32LnXHJrYdZ32EekzXWwD6PvPLupOvDXtHSl50ThbO1mya",
+    "user_id"       : "54cef3ee162f8f5428d2323b",
+    "job_id"         : "54cf85e0d6f0cebb214ed28d",
     "title"          : "I can do it",
-    "description"    : "xxxyyyzzz",
-    "hash_tag"       : ["php", "nodejs", "android"]
+    "description"    : "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+    "hash_tag"       : ["Php", "Nodejs", "Android", "Campcoders.com"],
+    "file"           :    "http://job.dev/files/1422888466125.pdf"
 }
+
 ```
 ##### Regex
 ```
     job_id           : id of Job
+    file             : link lay tu api 14 : upload file
 
 ```
 ##### Return
@@ -447,12 +450,12 @@ Cache-Control: no-cache
     "error_code": 0,
     "application": {
         "__v": 0,
-        "time": "2015-01-30T00:29:59.000Z",
-        "job_id": "54ca75ac393d050028ce49d9",
-        "user_avatar": "https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg",
-        "user_name": "eMenu Admin",
-        "user_id": "54c9ee8b202b449e430cc43c",
-        "_id": "54cad087f2d8867711ded655",
+        "time": "2015-02-02T14:39:21.000Z",
+        "job_id": "54cf85e0d6f0cebb214ed28d",
+        "user_avatar": "http://job.dev/images/full_size/TalentImages/default-avatar.png",
+        "user_name": "CuongVC93",
+        "user_id": "54cef3ee162f8f5428d2323b",
+        "_id": "54cf8c197fc2296d294781a9",
         "hires": 0,
         "interviews": 0,
         "shares": {
@@ -463,11 +466,13 @@ Cache-Control: no-cache
             "list": [],
             "number": 0
         },
+        "file": "http://job.dev/files/1422888466125.pdf",
         "description": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
         "hash_tag": [
-            "php",
-            "nodejs",
-            "android"
+            "Php",
+            "Nodejs",
+            "Android",
+            "Campcoders.com"
         ],
         "title": "I can do it"
     }
@@ -477,7 +482,7 @@ Cache-Control: no-cache
 ### 7. Edit profile
 
 ```
-POST http://jobpitch.campcoders.com:6969/api/edit_profile
+POST http://jobpitch.campcoders.com/api/edit_profile
 Content-Type: application/json
 Cache-Control: no-cache
 
@@ -596,7 +601,7 @@ Cache-Control: no-cache
 ### 8. View my jobs
 
 ```
-POST http://jobpitch.campcoders.com:6969/api/my_jogs
+POST http://jobpitch.campcoders.com/api/my_jogs
 Content-Type: application/json
 Cache-Control: no-cache
 
@@ -963,6 +968,140 @@ Cache-Control: no-cache
         "isUser": 1,
         "address": ""
     }
+}
+
+```
+
+
+### 12. Get tags
+
+```
+GET http://jobpitch.campcoders.com/api/tags
+Content-Type: application/json
+Cache-Control: no-cache
+
+```
+##### Regex
+```
+    
+
+```
+##### Return
+```
+{
+    "error_code": 0,
+    "tags": [
+        {
+            "_id": "54cf85ded6f0cebb214ed28b",
+            "__v": 0,
+            "app_id": [],
+            "job_id": [
+                "54cf85ded6f0cebb214ed28a"
+            ],
+            "name": "Android"
+        },
+        {
+            "_id": "54cf85ded6f0cebb214ed28c",
+            "__v": 0,
+            "app_id": [],
+            "job_id": [
+                "54cf85ded6f0cebb214ed28a"
+            ],
+            "name": "HTML"
+        },
+        {
+            "_id": "54cf85e4d6f0cebb214ed28f",
+            "__v": 0,
+            "app_id": [],
+            "job_id": [
+                "54cf85e4d6f0cebb214ed28e"
+            ],
+            "name": "Nodejs"
+        }
+    ]
+}
+
+```
+
+
+### 13. Search tag
+
+```
+POST http://jobpitch.campcoders.com/api/search_tag
+Content-Type: application/json
+Cache-Control: no-cache
+
+{
+  "tag" : "Nodejs",
+  "position" : 2
+}
+
+position = 1: search tag in jobs
+position = 2: search tag in applications
+
+```
+##### Regex
+```
+    
+
+```
+##### Return
+```
+{
+    "error_code": 0,
+    "applications": [
+        {
+            "time": "2015-02-02T14:21:13.000Z",
+            "job_id": "54cf85e0d6f0cebb214ed28d",
+            "user_avatar": "http://job.dev/images/full_size/TalentImages/default-avatar.png",
+            "user_name": "CuongVC93",
+            "user_id": "54cef3ee162f8f5428d2323b",
+            "_id": "54cf87d918bcddcc237a82a6",
+            "__v": 0,
+            "hires": 0,
+            "interviews": 0,
+            "shares": {
+                "list": [],
+                "number": 0
+            },
+            "likes": {
+                "list": [],
+                "number": 0
+            },
+            "description": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+            "hash_tag": [
+                "Php",
+                "Nodejs",
+                "Android",
+                "Campcoders.com"
+            ],
+            "title": "I can do it"
+        }
+    ]
+}
+
+```
+
+### 14. Upload file
+
+```
+POST http://jobpitch.campcoders.com/api/upload_file
+Content-Type: form-data
+Cache-Control: no-cache
+
+{
+    "file"         : FILE
+}
+```
+##### Regex
+```
+    file        : File
+
+```
+##### Return
+```
+{
+    "error_code":0,"file":"http://job.dev/files/1422888086875.pdf"
 }
 
 ```

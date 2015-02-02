@@ -5,7 +5,8 @@ var bcrypt                  = require('bcrypt-nodejs');
 var domain                  = require('./../config/default').domain_default;
 var distanceLimit           = require('./../config/default').distanceLimit;
 var image_default           = require('./../config/default').jobImage_default;
-var distance                 = require('./../my_module/map/distance');
+var distance                = require('./../my_module/map/distance');
+var add_hashTag_job         = require('./../my_module/add_hashTag').job;
 
 // define the schema for our job model
 var jobSchema = mongoose.Schema({
@@ -133,8 +134,6 @@ jobSchema.methods.isOwn         = function(user_id){
 }
 
 jobSchema.methods.containTag    = function(tag){
-    console.log(this.hash_tag);
-    console.log(tag);
     if (typeof(tag) == 'undefined')
         return 1;
     for (var i = 0 ; i < this.hash_tag.length ; i ++){
@@ -162,10 +161,11 @@ jobSchema.methods.newInfor    = function(image, image_small, image_normal, user_
     this.description            = description;
     this.link_direct            = link_direct;
     this.time                   = time;
-
     this.location.lat           = lat;
     this.location.lng           = lng;
     this.location.address       = address;
+
+    add_hashTag_job(hash_tag, this._id);
 
     callback(this);       
 }   

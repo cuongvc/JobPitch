@@ -1,8 +1,10 @@
 // load the things we need
-var mongoose     = require('mongoose');
-var ObjectId     = mongoose.Schema.Types.ObjectId;
-var bcrypt       = require('bcrypt-nodejs');
-var domain       = require('./../config/default').domain_default;
+var mongoose        = require('mongoose');
+var ObjectId        = mongoose.Schema.Types.ObjectId;
+var bcrypt          = require('bcrypt-nodejs');
+var domain          = require('./../config/default').domain_default;
+var add_hashTag_app = require('./../my_module/add_hashTag').app;
+
 
 // define the schema for our application model
 var applicationSchema = mongoose.Schema({
@@ -41,6 +43,11 @@ var applicationSchema = mongoose.Schema({
 
     time             : {
         type         : String
+    },
+
+    file             : {
+        type         : String,
+        default      : ''
     },
 
     likes            : {
@@ -84,7 +91,7 @@ applicationSchema.methods.isOwn         = function(companyId){
 }
 
 applicationSchema.methods.newInfor    = function(user_id, user_name, user_avatar, 
-                                        job_id, title, hash_tag, description, time,  callback){
+                                        job_id, title, hash_tag, description, time, file, callback){
 
     this.user_id        = user_id;
     this.user_name      = user_name;
@@ -95,6 +102,10 @@ applicationSchema.methods.newInfor    = function(user_id, user_name, user_avatar
     this.hash_tag       = hash_tag;
     this.description    = description;
     this.time           = time;
+    this.file           = file;
+    
+    add_hashTag_app(hash_tag, this._id);
+
     callback(this);       
 }   
 

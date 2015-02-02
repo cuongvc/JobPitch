@@ -15,6 +15,7 @@ module.exports				=	function(req, res){
 		var description   = data.description;
 		var hash_tag      = data.hash_tag;
     var time          = new Date(new Date().toGMTString()).toJSON();
+    var file          = data.file;
 	}
 
 	catch(err){
@@ -39,7 +40,7 @@ module.exports				=	function(req, res){
 
 				var application = new Application();
 				application.newInfor(user_id, user_exist.userName, user_exist.avatar_small, job_id, title, hash_tag, 
-					                   description, time, function(application){
+					                   description, time, file, function(application){
 
 					job_exist.addApply(application._id);
 					user_exist.addApply(application._id);

@@ -344,6 +344,21 @@ var userSchema = mongoose.Schema({
     email            : {
         type         : String,
         default      : ''
+    },
+
+    skype            : {
+        type         : String,
+        default      : ''
+    },
+
+    phone            : {
+        type         : String,
+        default      : ''
+    },
+
+    companyEmail     : {
+        type         : String,
+        default      : ''
     }
 
 });
@@ -460,7 +475,7 @@ userSchema.methods.getAvatarFb   = function(access_token, callback){
 
 // ======================== EDIT PROFILE ====================================
 userSchema.methods.editProfile   = function(address, contact, website, avatar, avatar_small, avatar_normal, 
-                                            logo, logo_small, logo_normal, companyName, website, 
+                                            logo, logo_small, logo_normal, companyName, skype, phone, companyEmail, 
                                             userFullname, industry, education, year_of_birth, callback){
     console.log('EDIT PROFILE');
     this.address = address;
@@ -471,6 +486,9 @@ userSchema.methods.editProfile   = function(address, contact, website, avatar, a
     this.industry  = industry;
     this.education = education;
     this.year_of_birth = year_of_birth;
+    this.skype = skype;
+    this.phone = phone;
+    this.companyEmail = companyEmail;
 
     if (avatar != ''){
         this.avatar = avatar;
@@ -537,6 +555,7 @@ userSchema.methods.newInforTw    = function(access_token, token_secret, profile,
     this.twitter_infor.username     = profile.displayName;
 
     this.makeToken();
+    console.log('make token xong');
     this.save(function(err) {
         if (err)
             throw err;

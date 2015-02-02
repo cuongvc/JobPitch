@@ -19,6 +19,9 @@ module.exports 								=	function(req, res){
 		var website               = data.website;
 		var logo                  = data.logo;
 		var companyName						= data.companyName;
+		var skype                 = data.skype;
+		var phone                 = data.phone;
+		var companyEmail          = data.companyEmail;
 
 		var extension             = data.extension;
 
@@ -36,12 +39,17 @@ module.exports 								=	function(req, res){
 
 	finally{
 		check_token(user_id, token, function(exist, user_exist){
+			if (!exist){
+				res.write(JSON.stringify({error_code : 1, msg : 'Authenticate is not success'}));
+				res.status(200).end();
+				return 1;
+			};
 
 			if (avatar != ''){
 				move_file(avatar, extension, 'TalentImages', function(err_exist, error, avatar, avatar_small, avatar_normal){
 					if (!err_exist){
 						user_exist.editProfile(address, contact, website, avatar, avatar_small, avatar_normal, '', '', '',
-							                     companyName, website, userFullname, industry, education, 
+							                     companyName, skype, phone, companyEmail, userFullname, industry, education, 
 							                     year_of_birth, function(user){
 							respon_object(0, res, user);
 							return 1;
@@ -55,7 +63,7 @@ module.exports 								=	function(req, res){
 				move_file(logo, extension, 'CompanyLogos', function(err_exist, error, logo, logo_small, logo_normal){
 					if (!err_exist){
 						user_exist.editProfile(address, contact, website, '', '', '', logo, logo_small, logo_normal,
-							                     companyName, website, userFullname, industry, education, 
+							                     companyName, skype, phone, companyEmail, userFullname, industry, education, 
 							                     year_of_birth, function(user){
 							respon_object(0, res, user);
 							return 1;
@@ -68,7 +76,7 @@ module.exports 								=	function(req, res){
 			} else
 
 			user_exist.editProfile(address, contact, website, '', '', '', '', '', '',
-							               companyName, website, userFullname, industry, education, 
+							               companyName, skype, phone, companyEmail, userFullname, industry, education, 
 							               year_of_birth, function(user){
 					respon_object(0, res, user);
 					return 1;
