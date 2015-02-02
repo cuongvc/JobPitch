@@ -136,8 +136,29 @@ tags-input .tags{
 	z-index: 12;
 }
 #create-job-crop-image > div{
-	max-width: 500px;
+	display: table;
+	height: 100%;
 }
-#create-job-crop-image > div > img{
+#create-job-crop-image > div > div{
+	max-width: 500px;
+	max-height: 500px;
+	display: table-cell;
+	vertical-align: middle;
+}
+#create-job-crop-image > div > div > img{
 	width: 100%;
+	max-width: 100%;
+	max-height: 100%;
+}
+#create-job-crop-image > div > div > button{
+	border: none;
+	box-shadow: none;
+	border-radius: 0px;
+	padding: 10px 15px;
+}
+#create-job-crop-image > div > div > .fa-crop{
+	background: #2980b9;
+}
+#create-job-crop-image > div > div > .fa-file{
+	background: #ddd;
 }

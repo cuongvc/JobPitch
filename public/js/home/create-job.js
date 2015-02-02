@@ -41,6 +41,18 @@ CreateJob.controller('CreateJobCtrl',function($scope,$http){
 		$scope.showCrop = showCrop;
 		console.log(CropCoords);
 	}
+	$scope.ReSelectFile = function(){
+		$scope.hiddenCrop();
+		var imgInput = $('#job-form input[type="file"]');
+		console.log(imgInput);
+		imgInput.value = null;
+		imgInput.click();
+	}
+	$scope.$watch(function(){
+		return $scope.Image;
+	},function(){
+		console.log($scope.Image);
+	})
 	/**********************************************************************************/
 									/*CREATE JOB*/
 	/**********************************************************************************/

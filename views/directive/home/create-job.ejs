@@ -9,8 +9,11 @@
 	<div id="create-job-form" ng-if="ShowCreateJobForm == true">
 		<div id="create-job-crop-image" ng-if="showCrop == true">
 			<div class="center-block">
-				<img ng-src="{{ CreateJobImage.preview }}" data-on-change="CreateJobCropChange" angular-crop="CreateJobCropCoverOpts">
-				<button class="btn btn-info" ng-click="hiddenCrop()">Ok</button>
+				<div>
+					<img ng-src="{{ CreateJobImage.preview }}" data-on-change="CreateJobCropChange" angular-crop="CreateJobCropCoverOpts">
+					<button class="fa fa-crop pull-left" ng-click="hiddenCrop()"> Crop</button>
+					<button class="fa fa-file pull-left" ng-click="ReSelectFile()"> Select file</button>
+				</div>
 			</div>
 		</div>
 		<div id="job-form">
@@ -26,7 +29,7 @@
 			    	<textarea placeholder="Job description" ng-model="JobDesc" maxlength="255"></textarea>
 			    </div>		    	
 				<div class="form-group">
-			    	<input type="file" nightfury-onchange-upload="CreateJobImage">
+			    	<input type="file" ng-model="Image" nightfury-onchange-upload="CreateJobImage">
 			    </div>		    	
 				<div class="form-group">
 			    	<input type="text" value="" ng-model="ImageLink" placeholder="Link direct from image">
