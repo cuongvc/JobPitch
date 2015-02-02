@@ -1,4 +1,4 @@
-var CreateJob = angular.module('create-job',[]);
+var CreateJob = angular.module('create-job',['angular-crop']);
 CreateJob.directive('createJob',function(){
 	return {
 		restrict: 'E',
