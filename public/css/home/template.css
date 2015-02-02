@@ -15,6 +15,11 @@ body{
 	font-family: arial!important;
 	background: #EEEEEE;
 }
+@media(min-width:1200px){
+	.container{
+		width: 1400px;
+	}
+}
 .fa{
 	cursor: pointer;
 }
