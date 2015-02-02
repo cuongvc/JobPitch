@@ -70,6 +70,12 @@
 .job-comment-avatar img{
 	width: 60px;
 }
+.job-comment-desc span strong{
+	color: #3b5998;
+}
+.job-comment-desc span strong:hover{
+	text-decoration: underline;
+}
 .cp-title:hover{
 	cursor: pointer;
 	color: blue;
@@ -136,7 +142,6 @@
 }
 .tickerLikeShare ul li{
 	font-size: 11px;
-	text-shadow: 0 0 1px #eee;
 	color: #3b5998;
 }
 .tickerStoryBlock{

@@ -75,8 +75,7 @@
 							<img ng-src="{{ Application.user_avatar }}" alt="">
 						</div>
 						<div class="job-comment-body">
-							<p class="job-comment-title semibold" ng-bind="Application.title"></p>
-							<p class="job-comment-desc" ng-bind="Application.description"></p>
+							<p class="job-comment-desc"><span><strong ng-bind="Application.user_name"></strong></span> <span ng-bind="Application.description"></span></p>
 						</div>
 						<div class="col-md-36 col-sm-36 col-xs-36 apply-social-button">
 							<ul>
