@@ -9,11 +9,13 @@ Login.controller('LoginCtrl',function($scope,$http){
 	/*
 	* sign in
 	*/
-	$scope.SignIn = function(email,password){
-		var data = {
-			email: email,
-			password: password,
-		}
-		$('#loginForm').submit();
+	$scope.SignIn = function(user){
+		console.log(user);
+		$http.post(STR_URL,user).success(function(response){
+			console.log(response);
+			if(response.error_code == 0){
+				document.location.href = BASE_URL;
+			}
+		})
 	}
 })
