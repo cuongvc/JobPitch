@@ -11,7 +11,7 @@ Login.controller('LoginCtrl',function($scope,$http){
 	*/
 	$scope.SignIn = function(user){
 		console.log(user);
-		$http.post(STR_URL,user).success(function(response){
+		$http.post(STR_API_LOGIN,user).success(function(response){
 			console.log(response);
 			if(response.error_code == 0){
 				document.location.href = BASE_URL;
