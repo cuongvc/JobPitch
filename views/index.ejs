@@ -15,9 +15,9 @@
 					token: "<%= user.token %>",
 					account_type: "<%= user.type_account %>",
 					avatar: {
-						normal: "<%= user.avatar_normal %>",
-						small: "<%= user.avatar_small %>",
-						origin: "<%= user.avatar %>",
+						normal: preg_replace("/&#?[a-z0-9]+;/i","","<%= user.avatar_normal %>"),
+						small: preg_replace("/&#?[a-z0-9]+;/i","","<%= user.avatar_small %>"),
+						origin: preg_replace("/&#?[a-z0-9]+;/i","","<%= user.avatar %>"),
 					},
 					username: "<%= user.userName %>",
 				}

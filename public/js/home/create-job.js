@@ -44,8 +44,11 @@ CreateJob.controller('CreateJobCtrl',function($scope,$http){
 	$scope.ReSelectFile = function(){
 		$scope.hiddenCrop();
 		var imgInput = $('#job-form input[type="file"]');
-		console.log(imgInput);
-		imgInput.value = null;
+		angular.forEach(
+		    angular.element("input[type='file']"),
+		    function(inputElem) {
+		      angular.element(inputElem).val(null);
+		    });
 		imgInput.click();
 	}
 	$scope.$watch(function(){
