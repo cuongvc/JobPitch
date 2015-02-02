@@ -65,7 +65,7 @@
 	overflow: hidden;
 }
 .job-comment-avatar{
-	margin-right: 20px;
+	margin-right: 5px;
 }
 .job-comment-avatar img{
 	width: 60px;
@@ -78,9 +78,10 @@
 	width: 100%;
 	border-bottom: none;
 	border: 1px solid #ddd;
-	height: 60px;
+	height: 58px;
 	resize: none;
 	margin-bottom: 5px;
+	padding: 5px;
 }
 .apply-box .job-comment-body textarea::scrollbar{
 	display: none;
