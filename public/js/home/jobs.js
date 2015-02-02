@@ -4,7 +4,7 @@ Jobs.directive('jobs',function(){
 		restrict: 'E',
 		templateUrl: '/directive/home/jobs',
 		link: function(scope,element,attrs){
-
+			// $('#ApplyDesc').elastic();
 		},
 	}
 })
@@ -41,5 +41,6 @@ Jobs.controller('JobCtrl',function($scope,$http){
 		evt.stopPropagation();
 		console.log('a');
 	}
+	
 	
 })

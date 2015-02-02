@@ -53,7 +53,7 @@
 		    <div class="modal-content">
 		      <div class="modal-header">
 		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-		        <h4 class="modal-title" id="myModalLabel cp-title" ng-click="ViewCompanyProfile($event,1)" ng-bind="CurrentJob.title"></h4>
+		        <h4 class="modal-title" id="myModalLabel cp-title" ng-click="ViewCompanyProfile($event,1)" ng-bind="CurrentJob.userName"></h4>
 		      </div>
 		      <div class="modal-body">
 		        <div class="modal-image">
@@ -73,7 +73,6 @@
 					<div class="job-comment row" ng-repeat="Application in CurrentJob.Applications">
 						<div class="job-comment-avatar pull-left">
 							<img ng-src="{{ Application.user_avatar }}" alt="">
-							<p class="job-comment-user semibold text-center" ng-bind="Application.user_name"></p>
 						</div>
 						<div class="job-comment-body">
 							<p class="job-comment-title semibold" ng-bind="Application.title"></p>
@@ -90,18 +89,19 @@
 					<div class="job-comment apply-box row">
 						<div class="job-comment-avatar pull-left">
 							<img ng-src="{{ user.avatar.normal }}" alt="">
-							<p class="job-comment-user semibold text-center" ng-bind="user.username"></p>
 						</div>
 						<div class="job-comment-body">
-							<input type="text" maxlength="100" ng-model="ApplyTitle" id="ApplyTitle">
-							<textarea maxlength="144" ng-model="ApplyDesc" id="ApplyDesc"></textarea>
+							<div class="job-comment-body-textarea-group">
+								<textarea maxlength="144" ng-model="ApplyDesc" id="ApplyDesc" ng-change="ApplyTextAreaChange(ApplyDesc)"></textarea>
+								<span class="pull-right attack-file"  onclick="document.getElementById('attack-input').click();return;">
+									<i class="pull-right fa fa-paperclip"></i>
+									<span class="pull-right">attack file</span>
+								</span>
+								<span class="pull-left">Characters: {{ ApplyDescWordCount }}/144</span>
+							</div>
+							<input id="attack-input" type="file" class="hidden">
 							<div class="apply-button-group">
 								<div class="btn-apply" ng-click="Apply(CurrentJob,ApplyTitle,ApplyDesc)">Apply</div>
-								<select class="who-can-see-this" title="Who can see this?">
-									<option selected="true" value="1">All</option>
-									<option value="1">Your friend</option>
-									<option value="1">Recruiters</option>
-								</select>
 							</div>
 						</div>
 					</div>

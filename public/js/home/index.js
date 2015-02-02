@@ -100,6 +100,16 @@ IndexApp.controller('IndexCtrl',function($scope,$http,$timeout,DB){
 	/*
 	* apply 
 	*/
+	$scope.ApplyDescWordCount = 0;
+	$scope.ApplyTextAreaChange = function(content){
+		console.log(content);
+		$scope.ApplyDescWordCount = content.length;
+		var t = $("#ApplyDesc")[0];
+	    var lineNumber = t.value.substr(0, t.selectionStart).split("\n").length;
+	    var height = lineNumber*20;
+	    if(height < 60) height = 60;
+	    $("#ApplyDesc").css({height: height})
+	}
 	$scope.Apply = function(Job, ApplyTitle, ApplyDesc){
 		var TitleHashTags = ApplyTitle.match(/#\S+/g);
 		var DescHashTags  = ApplyDesc.match(/#\S+/g);
