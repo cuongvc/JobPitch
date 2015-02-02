@@ -107,7 +107,7 @@ IndexApp.controller('IndexCtrl',function($scope,$http,$timeout,DB){
 		var t = $("#ApplyDesc")[0];
 	    var lineNumber = t.value.substr(0, t.selectionStart).split("\n").length;
 	    var height = lineNumber*20;
-	    if(height < 60) height = 60;
+	    if(height < 40) height = 40;
 	    $("#ApplyDesc").css({height: height})
 	}
 	$scope.Apply = function(Job, ApplyTitle, ApplyDesc){

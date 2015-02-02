@@ -68,7 +68,7 @@
 	margin-right: 5px;
 }
 .job-comment-avatar img{
-	width: 60px;
+	width: 40px;
 }
 .job-comment-desc span strong{
 	color: #3b5998;
@@ -84,7 +84,7 @@
 	width: 100%;
 	border-bottom: none;
 	border: 1px solid #ddd;
-	height: 58px;
+	height: 38px;
 	resize: none;
 	margin-bottom: 5px;
 	padding: 5px;
