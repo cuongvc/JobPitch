@@ -16,6 +16,10 @@
 	font-size: 14px;
 	height: 30px;
 }
+.left-sidebar-tags ul li span{
+	display: inline;
+	white-space: nowrap;
+}
 .left-sidebar-tags ul li:hover{
 	text-decoration: underline;
 	cursor: pointer;
