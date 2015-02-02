@@ -6,4 +6,4 @@
 	var STR_API_APPLY       = BASE_URL + '/api/apply';
 	var STR_API_JOB_DETAIL  = BASE_URL + '/api/job_detail';
 	
-	var STR_API_SIGN_UP = BASE_URL + '/api/signup';
+	var STR_API_SIGN_UP = BASE_URL + '/api/signup_email';

@@ -1,4 +1,4 @@
-var NightFuryUpload = angular.module('nightfury-upload',[]);
+var NightFuryUpload = angular.module('nightfury-upload',['angular-crop']);
 NightFuryUpload.directive('nightfuryOnchangeUpload',function(){
    return {
         scope: {
@@ -7,7 +7,21 @@ NightFuryUpload.directive('nightfuryOnchangeUpload',function(){
         restrict: 'A',
         link: function(scope, element, attrs) {
           var opts = scope.nightfuryOnchangeUpload;
-            $(element).change(function(){
+            if(opts.clearOnclick){
+              $(element).click(function(){
+                // $(this).replaceWith(t = $(this).clone(true));
+              })
+            }
+            if(opts.crop){
+              scope.startNightFuryUpload = function(){
+                UploadFile();
+              }
+            }else{
+              $(element).change(function(){
+                UploadFile();
+              });
+            }
+            function UploadFile(){
               var file = element[0].files[0];
 
               var reader = new FileReader();
@@ -36,7 +50,7 @@ NightFuryUpload.directive('nightfuryOnchangeUpload',function(){
                   scope.$apply();       
                 }
               };
-            });
+            }
             function NightfuryOnchangeUploadProgress(evt){
               if(evt.lengthComputable){
                 scope.nightfuryOnchangeUpload.progress.show = true;

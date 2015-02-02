@@ -1,4 +1,4 @@
-var CreateJob = angular.module('create-job',[]);
+var CreateJob = angular.module('create-job',['angular-crop']);
 CreateJob.directive('createJob',function(){
 	return {
 		restrict: 'E',
@@ -26,7 +26,16 @@ CreateJob.controller('CreateJobCtrl',function($scope,$http){
 		ShowCreateJobForm = stt;
 		$scope.ShowCreateJobForm = ShowCreateJobForm;
 	}
-
+	/**********************************************************************************/
+									/*CROP*/
+	/**********************************************************************************/
+	var showCrop = false;
+	var CropCoords;
+	$scope.showCrop = showCrop;
+	$scope.myScopeOnChangeMethod = function(c){
+		console.log(c);
+		CropCoords = c;
+	}
 	/**********************************************************************************/
 									/*CREATE JOB*/
 	/**********************************************************************************/
@@ -42,7 +51,13 @@ CreateJob.controller('CreateJobCtrl',function($scope,$http){
 		progress : {
 			show: false,
 		},
+		clearOnclick: true,
+		crop: true,
 	}
+	$scope.$watch(function(){return $scope.CreateJobImage.preview;},function(){
+		showCrop = true;
+		$scope.showCrop = showCrop;
+	})
 	$scope.CreateJob = function(JobTitle,JobDesc,ImageLink,Address){
 		console.log(JobTitle,JobDesc,ImageLink,Address);
 		var TitleHashTags = JobTitle.match(/#\S+/g);

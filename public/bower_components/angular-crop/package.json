@@ -1,0 +1,29 @@
+{
+  "name": "angular-crop",
+  "version": "1.0.4",
+  "description": "Angular directive that brings jCrop functionallity into Angular",
+  "main": "src/angular-crop.js",
+  "dependencies": {},
+  "devDependencies": {
+    "gulp": "^3.8.8",
+    "gulp-jscs": "^1.1.2",
+    "gulp-jshint": "^1.8.5",
+    "gulp-linker": "^0.1.7",
+    "gulp-notify": "^2.0.0",
+    "jshint-stylish": "^1.0.0",
+    "npm": "^1.4.27"
+  },
+  "scripts": {
+    "test": "gulp test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/grabbou/angular-crop.git"
+  },
+  "author": "Mike Grabowski <@grabbou>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/grabbou/angular-crop/issues"
+  },
+  "homepage": "https://github.com/grabbou/angular-crop"
+}
