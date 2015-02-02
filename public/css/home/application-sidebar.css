@@ -60,6 +60,10 @@
 	margin-left: 10px;
 	color: #8899a6;
 }
+.borderBottom{
+	border-bottom: 1px solid #ddd;
+	margin-bottom: 15px;
+}
 .application-sidebar-like-share ul li:hover{
 	text-decoration: underline;
 }
