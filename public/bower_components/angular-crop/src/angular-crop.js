@@ -12,7 +12,7 @@
         function($scope, $element) {
 
             var _instance;
-
+            var opts = $scope.angularCrop;
             // initialises jCrop instance
             function init() {
                 $element.Jcrop({
@@ -20,11 +20,11 @@
                     onChange: $scope.onChange(),
                     onRelease: $scope.onRelease(),
                     bgColor: $scope.bgColor,
-                    bgOpacity: $scope.bgOpacity,
-                    setSelect: $scope.setSelect,
-                    aspectRatio: $scope.aspectRatio,
-                    boxWidth: $scope.boxWidth,
-                    boxHeight: $scope.boxHeight,
+                    bgOpacity: opts.bgOpacity,
+                    setSelect: opts.setSelect,
+                    aspectRatio: opts.aspectRatio,
+                    boxWidth: opts.boxWidth,
+                    boxHeight: opts.boxHeight,
                     trueSize: [$element[0].naturalWidth, $element[0].naturalHeight],
                     trackDocument: true
                 }, function() {

@@ -1,4 +1,4 @@
-var NightFuryUpload = angular.module('nightfury-upload',['angular-crop']);
+var NightFuryUpload = angular.module('nightfury-upload',[]);
 NightFuryUpload.directive('nightfuryOnchangeUpload',function(){
    return {
         scope: {
@@ -7,21 +7,7 @@ NightFuryUpload.directive('nightfuryOnchangeUpload',function(){
         restrict: 'A',
         link: function(scope, element, attrs) {
           var opts = scope.nightfuryOnchangeUpload;
-            if(opts.clearOnclick){
-              $(element).click(function(){
-                // $(this).replaceWith(t = $(this).clone(true));
-              })
-            }
-            if(opts.crop){
-              scope.startNightFuryUpload = function(){
-                UploadFile();
-              }
-            }else{
-              $(element).change(function(){
-                UploadFile();
-              });
-            }
-            function UploadFile(){
+            $(element).change(function(){
               var file = element[0].files[0];
 
               var reader = new FileReader();
@@ -30,12 +16,19 @@ NightFuryUpload.directive('nightfuryOnchangeUpload',function(){
                     scope.nightfuryOnchangeUpload.preview = e.target.result;
                     scope.$apply();
                   };
-
-
-
+              if(opts.crop == false){
+                UploadFile(file,null);
+              }
+            });
+            scope.startNightFuryUpload = function(Coords){
+              console.log(Coords);
+            }
+            function UploadFile(file,Coords){
               var fd = new FormData();
               fd.append(opts.upload.postData,file);
               fd.append(opts.upload.dir.name,opts.upload.dir.dir);
+              if(Coords != null) fd.append('coords',Coords);
+              console.log(fd);
               var xhr = new XMLHttpRequest();
               xhr.upload.addEventListener('progress',NightfuryOnchangeUploadProgress,false);
               xhr.open('POST',opts.upload.url);

@@ -32,9 +32,14 @@ CreateJob.controller('CreateJobCtrl',function($scope,$http){
 	var showCrop = false;
 	var CropCoords;
 	$scope.showCrop = showCrop;
-	$scope.myScopeOnChangeMethod = function(c){
-		console.log(c);
+	$scope.CreateJobCropChange = function(c){
 		CropCoords = c;
+		$scope.CropCoords = CropCoords;
+	}
+	$scope.hiddenCrop = function(){
+		showCrop = false;
+		$scope.showCrop = showCrop;
+		console.log(CropCoords);
 	}
 	/**********************************************************************************/
 									/*CREATE JOB*/
@@ -54,9 +59,15 @@ CreateJob.controller('CreateJobCtrl',function($scope,$http){
 		clearOnclick: true,
 		crop: true,
 	}
+	$scope.CreateJobCropCoverOpts = {
+		aspectRatio: 2.7,
+	};
 	$scope.$watch(function(){return $scope.CreateJobImage.preview;},function(){
-		showCrop = true;
-		$scope.showCrop = showCrop;
+		if($scope.CreateJobImage.preview != undefined && $scope.CreateJobImage.preview != ''){
+			showCrop = true;
+			$scope.showCrop = showCrop;
+			console.log($scope.CreateJobImage.preview);
+		}
 	})
 	$scope.CreateJob = function(JobTitle,JobDesc,ImageLink,Address){
 		console.log(JobTitle,JobDesc,ImageLink,Address);
@@ -86,6 +97,7 @@ CreateJob.controller('CreateJobCtrl',function($scope,$http){
 			newJob.lat = 21.016481;
 			newJob.lng = 105.810339;
 			newJob.address = Address;
+			newJob.coords = CropCoords,
 		$http.post(STR_API_CREATE_JOB,newJob).success(function(response){
 			console.log(response);
 			if(response.error_code == 0){
