@@ -47,12 +47,12 @@
 						</li>
 					</ul>
 					<div class="normal-login">
-						<form ng-submit="SignIn(email,password)" method="post" id="loginForm" action="/login_email">
+						<form ng-submit="SignIn(user)" id="loginForm">
 							<div class="form-group">
-								<input type="email" id="email" name="email" ng-model="email" placeholder="Email">
+								<input type="email" id="email" name="email" ng-model="user.email" placeholder="Email">
 							</div>
 							<div class="form-group">
-								<input type="password" id="password" name="password" ng-model="password" placeholder="Password">
+								<input type="password" id="password" name="password" ng-model="user.password" placeholder="Password">
 							</div>
 							<div class="form-group">
 								<input type="submit" value="Sign In">

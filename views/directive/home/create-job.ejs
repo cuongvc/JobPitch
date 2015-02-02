@@ -7,6 +7,12 @@
 		</button>
 	</div>
 	<div id="create-job-form" ng-if="ShowCreateJobForm == true">
+		<div id="create-job-crop-image" ng-if="showCrop == true">
+			<div class="center-block">
+				<img ng-src="{{ CreateJobImage.preview }}" data-on-change="CreateJobCropChange" angular-crop="CreateJobCropCoverOpts">
+				<button class="btn btn-info" ng-click="hiddenCrop()">Ok</button>
+			</div>
+		</div>
 		<div id="job-form">
 			<div class="job-form-nav">
 				<ul>
