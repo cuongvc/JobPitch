@@ -19,43 +19,51 @@
 		<div id="opacity" class="container-fluid">
 			<div class="col-md-10 col-md-offset-13 col-sm-18 col-sm-offset-9 col-xs-36">
 				<div id="login-form" class="col-md-36 col-sm-36 col-xs-36">
-					<!-- <p>Sign in using</p> -->
-					<ul class="social">
-						<li>
-							<a href="/auth/facebook">
-								<i class="fa fa-facebook"></i>
-							</a>
-						</li>
-						<li>
-							<a href="/auth/google">
-								<i class="fa fa-google-plus"></i>
-							</a>
-						</li>
-						<li>
-							<a href="/auth/twitter">
-								<i class="fa fa-twitter"></i>
-							</a>
-						</li>
-						<li>
-							<a href="/auth/linkedin">
-								<i class="fa fa-linkedin"></i>
-							</a>
-						</li>
-					</ul>
-					<div class="normal-login">
-						<form ng-submit="Signup(email,password)" id="signupForm" action="/signup_email" method="post">
-							<div class="form-group">
-								<input type="email" id="email" ng-model="email" name="email" placeholder="Email">
-							</div>
-							<div class="form-group">
-								<input type="password" id="password" ng-model="password" name="password" placeholder="Password">
-							</div>
-							<div class="form-group">
-								<input type="submit" value="Sign Up">
-							</div>
-						</form>
-					</div>
-				</div> <!-- login-form -->
+					<div id="forUser">
+						<h3 class="text-center" ng-click="ShowHiddenForm($event)">For User</h3>
+						<ul class="social form-transition scrollbar_none transition_500ms">
+							<li>
+								<a href="/auth/facebook">
+									<i class="fa fa-facebook"></i>
+								</a>
+							</li>
+							<li>
+								<a href="/auth/google">
+									<i class="fa fa-google-plus"></i>
+								</a>
+							</li>
+							<li>
+								<a href="/auth/twitter">
+									<i class="fa fa-twitter"></i>
+								</a>
+							</li>
+							<li>
+								<a href="/auth/linkedin">
+									<i class="fa fa-linkedin"></i>
+								</a>
+							</li>
+						</ul>
+					</div> <!-- forUser -->
+					<div id="forRecruiter">
+						<h3 class="text-center" ng-click="ShowHiddenForm($event)">For Recruiter</h3>
+						<div class="normal-login form-transition scrollbar_none transition_500ms">
+							<form ng-submit="Signup(email,password)" id="signupForm">
+								<div class="form-group">
+									<input type="text" id="username" ng-model="user.user_name" name="username" required placeholder="Username" maxlength="40">
+								</div>
+								<div class="form-group">
+									<input type="email" id="email" ng-model="user.email" name="email" required placeholder="Email" maxlength="40">
+								</div>
+								<div class="form-group">
+									<input type="password" id="password" ng-model="user.password" name="password" required placeholder="Password" maxlength="40">
+								</div>
+								<div class="form-group">
+									<input type="submit" value="Sign Up">
+								</div>
+							</form>
+						</div>
+					</div> <!-- forRecruiter -->
+				</div> 
 				<div id="signup-forgot" class="col-md-36 col-sm-36 col-xs-36">
 					<ul>
 						<li>Have an account? <a href="/login">Login</a></li>

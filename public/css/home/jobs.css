@@ -6,19 +6,23 @@
 	background: #fff;
 	border-radius: 4px;
 	box-shadow: 0 0 3px #333;
-	padding: 5px;
 	margin-bottom: 20px;
-	height: 220px;
+	height: 300px;
+}
+#jobs {
+	padding: 0px;
+}
+.job .job-content{
+	padding: 10px 15px 10px 15px;
+	overflow: auto;
 }
 .job .image{
-	float: left;
+	width: 100%;
 	overflow: auto;
-	margin-right: 10px;
-	margin-bottom: 10px;
 }
 .job .image img{
-	width: 100px;
-	height: 100px;
+	width: 100%;
+	height: auto;
 }
 .company-title{
 	font-family: 'Proxima Nova Bold';
@@ -112,4 +116,44 @@
 .apply-social-button ul{
 	text-align: right;
 	padding: 0px;
+}
+
+
+#ticker{
+	margin-top: 20px;
+	background: #fff;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	box-shadow: 0 0 3px #eee;
+}
+.tickerLikeShare ul{
+	padding: 0px;
+	margin: 0px;
+}
+.tickerLikeShare ul li{
+	font-size: 11px;
+	text-shadow: 0 0 1px #eee;
+	color: #3b5998;
+}
+.tickerStoryBlock{
+	background: #fff;
+	padding: 5px 10px 10px 5px;
+	border-bottom: 1px solid #ddd;
+}
+
+.clearfix{
+	zoom: 1;
+}
+.clearfix:after {
+	clear: both;
+	content: ".";
+	display: block;
+	font-size: 0;
+	height: 0;
+	line-height: 0;
+	visibility: hidden;
+}
+.tickerStoryContent{
+	overflow: hidden;
+	padding: 0px 5px;
 }

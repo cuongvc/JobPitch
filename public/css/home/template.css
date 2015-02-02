@@ -49,3 +49,27 @@ ul li{
 .navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:hover, .navbar-default .navbar-nav>.open>a:focus {
 	background: none;
 }
+
+/**************************************************************************************/
+.scrollbar_none::scrollbar{
+	display: none;
+}
+.scrollbar_none::-webkit-scrollbar{
+	display: none;
+}
+.height_0{
+	max-height: 0px;
+	overflow: hidden;
+}
+
+.height_auto{
+	overflow: auto;
+	max-height: 10000px;
+}
+.transition_500ms{
+	transition: all 0.5s;
+	-webkit-transition: all 0.5s;
+	-ms-transition: all 0.5s;
+	-o-transition: all 0.5s;
+	-moz-transition: all 0.5s;
+}
