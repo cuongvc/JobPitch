@@ -16,17 +16,13 @@
 				<div class="application-sidebar-apply-content">
 					<p class="pull-left"><strong>Tôi có thể làm đc nhiều hơn như thế (@.@)</strong></p>
 				</div>
+				<div class="application-sidebar-like-share">
+					<ul class="pull-right">
+						<li><span>100</span> <span>shares</span></li>
+						<li><span>200</span> <span>likes</span></li>
+					</ul>
+				</div>
 			</div>
-		</div>
-
-		<div class="application-sidebar-like-share">
-			<ul class="pull-right">
-				<li><span>100</span> <span>shares</span></li>
-				<li><span>200</span> <span>likes</span></li>
-			</ul>
-		</div>
-		<div class="application-sidebar-number-comment">
-			<p ng-click="ApplicationSidebarViewMoreComment(5)">View 5 more comments</p>
 		</div>
 		<div class="application-sidebar-comment col-md-36 col-sm-36">
 			<div class="sidebar-cmt" ng-repeat="ApplicationSidebarComment in ApplicationSideBarComments">
@@ -36,6 +32,9 @@
 				<div class="sidebar-comment-body">
 					<p><strong ng-bind="ApplicationSidebarComment.username"></strong> <span ng-bind="ApplicationSidebarComment.comment"></span></p>
 				</div>
+			</div>
+			<div class="application-sidebar-number-comment">
+				<p class="text-right" ng-click="ApplicationSidebarViewMoreComment(5)">more</p>
 			</div>
 		</div>
 	</div>
