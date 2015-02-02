@@ -14,7 +14,7 @@
 					<p class=" pull-left"><span class="application-sidebar-company-name">@Google</span></p>
 				</div>
 				<div class="application-sidebar-apply-content">
-					<p class="pull-left">Tôi có thể làm đc nhiều hơn như thế (@.@)</p>
+					<p class="pull-left"><strong>Tôi có thể làm đc nhiều hơn như thế (@.@)</strong></p>
 				</div>
 			</div>
 		</div>
@@ -29,8 +29,13 @@
 			<p ng-click="ApplicationSidebarViewMoreComment(5)">View 5 more comments</p>
 		</div>
 		<div class="application-sidebar-comment col-md-36 col-sm-36">
-			<div class="sidebar-cmt">
-				<p ng-repeat="ApplicationSidebarComment in ApplicationSideBarComments"><strong ng-bind="ApplicationSidebarComment.username"></strong> <span ng-bind="ApplicationSidebarComment.comment"></span></p>
+			<div class="sidebar-cmt" ng-repeat="ApplicationSidebarComment in ApplicationSideBarComments">
+				<div class="sidebar-comment-image pull-left">
+					<img src="{{ ApplicationSidebarComment.avatar }}">
+				</div>
+				<div class="sidebar-comment-body">
+					<p><strong ng-bind="ApplicationSidebarComment.username"></strong> <span ng-bind="ApplicationSidebarComment.comment"></span></p>
+				</div>
 			</div>
 		</div>
 	</div>
