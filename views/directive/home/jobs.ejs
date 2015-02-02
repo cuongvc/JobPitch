@@ -91,7 +91,7 @@
 						</div>
 						<div class="job-comment-body">
 							<div class="job-comment-body-textarea-group">
-								<textarea maxlength="144" ng-model="ApplyDesc" id="ApplyDesc" ng-change="ApplyTextAreaChange(ApplyDesc)"></textarea>
+								<textarea maxlength="144" ng-model="ApplyDesc" id="ApplyDesc" ng-keyup="ChangeApplyTextAreaHeight($event)" ng-change="ApplyTextAreaChange(ApplyDesc)"></textarea>
 								<span class="pull-right attack-file"  onclick="document.getElementById('attack-input').click();return;">
 									<i class="pull-right fa fa-paperclip"></i>
 									<span class="pull-right">attack file</span>

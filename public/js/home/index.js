@@ -102,13 +102,20 @@ IndexApp.controller('IndexCtrl',function($scope,$http,$timeout,DB){
 	*/
 	$scope.ApplyDescWordCount = 0;
 	$scope.ApplyTextAreaChange = function(content){
-		console.log(content);
 		$scope.ApplyDescWordCount = content.length;
+		changeHeight();
+	}
+	$scope.ChangeApplyTextAreaHeight = function(evt){
+		if(evt.keyCode == 13){
+			changeHeight();
+		}
+	}
+	function changeHeight(){
 		var t = $("#ApplyDesc")[0];
 	    var lineNumber = t.value.substr(0, t.selectionStart).split("\n").length;
-	    var height = lineNumber*20;
+	    var height = lineNumber*20 + 10;
 	    if(height < 40) height = 40;
-	    $("#ApplyDesc").css({height: height})
+	    $("#ApplyDesc").css({height: height});
 	}
 	$scope.Apply = function(Job, ApplyTitle, ApplyDesc){
 		var DescHashTags  = ApplyDesc.match(/#\S+/g);

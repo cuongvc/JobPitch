@@ -51,11 +51,6 @@ CreateJob.controller('CreateJobCtrl',function($scope,$http){
 		    });
 		imgInput.click();
 	}
-	$scope.$watch(function(){
-		return $scope.Image;
-	},function(){
-		console.log($scope.Image);
-	})
 	/**********************************************************************************/
 									/*CREATE JOB*/
 	/**********************************************************************************/
