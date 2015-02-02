@@ -1,8 +1,7 @@
 <link rel="stylesheet" type="text/css" href="../css/home/jobs.css">
 <div id="jobs" ng-controller="JobCtrl">
 	<div class="container">
-		<left-sidebar></left-sidebar>
-		<div class="col-md-18 col-sm-18 col-xs-36" id="jobs">
+		<div class="col-md-16 col-sm-16 col-xs-36" id="jobs">
 			<div class="col-md-36 col-sm-36 col-xs-18"ng-repeat="job in jobs">
 				<div class="job" ng-click="ViewJob(job)">
 					<div class="image">
@@ -22,6 +21,7 @@
 			</div> <!-- col-28 -->
 		</div>
 		<application-sidebar></application-sidebar>
+		<left-sidebar></left-sidebar>
 		<!-- modal -->
 
 

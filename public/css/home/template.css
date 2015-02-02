@@ -33,6 +33,7 @@ body{
 .bold{
 	/*font-family: 'Proxima Nova Bold';*/
 	font-family: arial;
+	font-weight: bold;
 }
 .semibold{
 	/*font-family: 'Proxima Nova Semi Bold';*/

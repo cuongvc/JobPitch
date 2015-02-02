@@ -1,7 +1,7 @@
 #sidebar{
 	margin-top: 20px;
 	color: #292f33;
-	font-size: 14px;
+	font-size: 13px;
 	line-height: 18px;
 	border-radius: 4px;
 	overflow: auto;
@@ -14,7 +14,7 @@
 }
 .sidebar-element{
 	overflow: auto;
-	margin-bottom: 10px;
+	margin-bottom: 15px;
 	background: #fff;
 	padding: 5px 10px;
 	border-radius: 4px;
@@ -29,7 +29,7 @@
 	width: auto;
 }
 .application-sidebar-name{
-	font-size: 16px;
+	font-size: 13px;
 	text-shadow: none;
 	cursor: pointer;
 }
@@ -77,6 +77,7 @@
 }
 .sidebar-cmt{
 	overflow: auto;
+	margin-bottom: 5px;
 	transition: all 0.5s;
 	-webkit-transition: all 0.5s;
 }
@@ -88,4 +89,7 @@
 .sidebar-comment-body{
 	overflow: auto;
 	color: #333;
+}
+.sidebar-comment-body p strong{
+	color: #3b5998
 }
