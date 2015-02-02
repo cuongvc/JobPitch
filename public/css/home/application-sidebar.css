@@ -47,7 +47,7 @@
 	margin-right: 20px; 
 }
 .application-sidebar-apply-content > p:first-child{
-	color: #8899a6;
+	color: #333;
 }
 .application-sidebar-like-share ul{
 	padding: 0px;
@@ -79,4 +79,13 @@
 	overflow: auto;
 	transition: all 0.5s;
 	-webkit-transition: all 0.5s;
+}
+.sidebar-comment-image img{
+	width: 40px;
+	height: 40px;
+	margin-right: 5px;
+}
+.sidebar-comment-body{
+	overflow: auto;
+	color: #333;
 }

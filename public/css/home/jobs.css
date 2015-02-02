@@ -28,7 +28,9 @@
 	border-top-right-radius: 4px;
 }
 .company-title{
-	font-family: 'Proxima Nova Bold';
+	/*font-family: 'Proxima Nova Bold';*/
+	font-family: arial;
+	font-weight: bold;
 }
 .like-share ul, .job-social ul{
 	list-style: none;

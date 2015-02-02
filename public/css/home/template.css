@@ -11,7 +11,8 @@
 	src: url('../../fonts/Mark Simonson - Proxima Nova Bold.otf');
 }
 body{
-	font-family: 'Proxima Nova';
+	/*font-family: 'Proxima Nova';*/
+	font-family: arial!important;
 	background: #EEEEEE;
 }
 .fa{
@@ -30,10 +31,12 @@ body{
 	color: #2C8CC0;
 }
 .bold{
-	font-family: 'Proxima Nova Bold';
+	/*font-family: 'Proxima Nova Bold';*/
+	font-family: arial;
 }
 .semibold{
-	font-family: 'Proxima Nova Semi Bold';
+	/*font-family: 'Proxima Nova Semi Bold';*/
+	font-family: arial;
 }
 ul{
 	list-style: none;
