@@ -84,3 +84,17 @@ body,#login{
 #signup-forgot ul li:hover{
 	color: #1aaf5d;
 }
+#forRecruiter{
+	margin-top: 10px;
+	padding-top: 20px;
+	border-top: 1px dashed #2dbea1;
+}
+#login-form > div h3{
+	cursor: pointer;
+	color: #333;
+	font-size: 20px;
+	margin: 0px;
+	margin-bottom: 20px;
+	color: #8899a6;
+}
+
