@@ -36,6 +36,8 @@ Jobs.controller('JobCtrl',function($scope,$http){
 	})
 	$scope.ViewApplicant = function(job){
 		var index = jobs.indexOf(job);
+		jobs[index].showApplyBox = true;
+		$scope.jobs = jobs;
 		var data = {
 		    user_id: $scope.user._id,
 		    token: $scope.user.token,

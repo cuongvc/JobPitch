@@ -67,6 +67,9 @@
 .job-comment-avatar img{
 	width: 40px;
 }
+.job-comment-desc{
+	color: #333;
+}
 .job-comment-desc span strong{
 	color: #3b5998;
 	cursor: pointer;
