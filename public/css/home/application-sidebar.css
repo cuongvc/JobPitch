@@ -1,0 +1,82 @@
+#sidebar{
+	background: #fff;
+	margin-top: 20px;
+	color: #292f33;
+	font-size: 14px;
+	line-height: 18px;
+	padding: 10px 5px;
+	border-radius: 4px;
+	box-shadow: 0 0 1px #ddd;
+	height: 70%;
+	overflow: scroll;
+}
+#sidebar::scrollbar{
+	width: 2px;
+}
+#sidebar::-webkit-scrollbar{
+	width: 2px;
+}
+.application-sidebar-avatar img{
+	width: 48px;
+	height: 48px;
+	margin-right: 5px;
+}
+.application-sidebar-body{
+	overflow: hidden;
+	width: auto;
+}
+.application-sidebar-name{
+	font-size: 16px;
+	text-shadow: none;
+	cursor: pointer;
+}
+.application-sidebar-name:hover{
+	text-decoration: underline;
+}
+.application-sidebar-company-name{
+	color: #8899a6;
+	cursor: pointer;
+}
+.application-sidebar-company-name:hover{
+	text-decoration: underline;
+}
+.application-sidebar-header > p:first-child{
+	margin-right: 20px; 
+}
+.application-sidebar-apply-content > p:first-child{
+	color: #8899a6;
+}
+.application-sidebar-like-share ul{
+	padding: 0px;
+	text-align: right;
+}
+.application-sidebar-like-share ul li{
+	font-size: 12px;
+	cursor: pointer;
+}
+.application-sidebar-like-share ul li:hover{
+	text-decoration: underline;
+}
+.application-sidebar-comment{
+	width: 100%;
+}
+.application-sidebar-number-comment{
+	border-top: 1px solid #ddd;
+	color: #3b5998;
+}
+.application-sidebar-number-comment p{
+	padding: 5px;
+}
+.application-sidebar-number-comment p:hover{
+	text-decoration: underline;
+	cursor: pointer;
+}
+.sidebar-cmt{
+	overflow: auto;
+	transition: all 0.5s;
+	-webkit-transition: all 0.5s;
+}
+.sidebar-element{
+	overflow: auto;
+	margin-bottom: 20px;
+}

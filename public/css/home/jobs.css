@@ -72,6 +72,7 @@
 }
 .job-comment-desc span strong{
 	color: #3b5998;
+	cursor: pointer;
 }
 .job-comment-desc span strong:hover{
 	text-decoration: underline;
@@ -121,33 +122,6 @@
 	padding: 0px;
 }
 
-
-#ticker{
-	margin-top: 20px;
-	border: 1px solid #ddd;
-	border-radius: 4px;
-	box-shadow: 0 0 3px #000;
-	height: 600px;
-	overflow: scroll;
-}
-#ticker::scrollbar{
-	width: 2px;
-}
-#ticker::-webkit-scrollbar{
-	width: 2px;
-}
-.tickerLikeShare ul{
-	padding: 0px;
-	margin: 0px;
-}
-.tickerLikeShare ul li{
-	font-size: 11px;
-	color: #3b5998;
-}
-.tickerStoryBlock{
-	padding: 5px 10px 10px 5px;
-	border-bottom: 1px solid #ddd;
-}
 
 .clearfix{
 	zoom: 1;

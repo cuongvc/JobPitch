@@ -64,6 +64,9 @@ app.get('/directive/home/profile',function(req,res){
 app.get('/directive/home/tag-list',function(req,res){
 	res.render('directive/home/tag-list.ejs');
 })
+app.get('/directive/home/application-sidebar',function(req,res){
+	res.render('directive/home/application-sidebar.ejs');
+})
 
 
 	/*
