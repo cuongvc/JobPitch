@@ -4,7 +4,6 @@
 	font-size: 14px;
 	line-height: 18px;
 	border-radius: 4px;
-	box-shadow: 0 0 1px #ddd;
 	overflow: auto;
 }
 #sidebar::scrollbar{
@@ -19,7 +18,6 @@
 	background: #fff;
 	padding: 5px 10px;
 	border-radius: 4px;
-	margin-top: 10px;
 }
 .application-sidebar-avatar img{
 	width: 48px;
