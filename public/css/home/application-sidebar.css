@@ -100,3 +100,18 @@
 .sidebar-comment-body p strong{
 	color: #3b5998
 }
+.application-sidebar-company-logo{
+	margin-bottom: 10px;
+	padding: 0px 10px;
+}
+.application-sidebar-company-logo li img{
+	width: 30px;
+	height: 30px;
+	margin-right: 5px;
+	cursor: pointer;
+}
+.application-sidebar-company-logo p{
+	color: #8899a6;
+	margin-top: 15px;
+	cursor: pointer;
+}
