@@ -1113,3 +1113,150 @@ Cache-Control: no-cache
 }
 
 ```
+
+
+### 15. Comment
+
+```
+POST http://jobpitch.campcoders.com/api/comment
+Content-Type: application/json
+Cache-Control: no-cache
+
+{
+    "token"                 : "$2a$08$lhiCBo8YnwspPqpUrBi6hOPQT2fn8uY8cmTz4MkCAz4ncTXeqB2hq",
+    "user_id"               : "54cf8e29a2d2bf0f2c849c35",
+    "content"               : "Ban tung lam voi chuc vu gi?",
+    "hash_tag"              : ["Php", "Nodejs", "Android", "Campcoders.com"],
+    "application_parent"    : "",
+    "comment_parent"        : "54d104892b6d292c1e71cb96"
+}
+
+application_parent va comment_parent o day la application/comment ma user 
+comment vao. Chi 1 trong 2 co gia tri, cai con lai bang ""
+
+```
+##### Regex
+```
+
+
+```
+##### Return
+```
+{
+    "error_code": 0,
+    "comment": {
+        "__v": 0,
+        "time": "Wed Feb 04 2015 00:38:29 GMT+0700 (ICT)",
+        "comment_parent": "54d104892b6d292c1e71cb96",
+        "user_avatar": "Cường Vũ",
+        "user_name": "https://lh5.googleusercontent.com/-IlI6TyJIlrs/AAAAAAAAAAI/AAAAAAAAAC8/AsmFVAZBIkw/photo.jpg",
+        "user_id": "54cf8e29a2d2bf0f2c849c35",
+        "_id": "54d1079512a9894b25904c66",
+        "comments": [],
+        "shares": {
+            "list": [],
+            "number": 0
+        },
+        "likes": {
+            "list": [],
+            "number": 0
+        },
+        "content": "Ban tung lam voi chuc vu gi?",
+        "hash_tag": [
+            "Php",
+            "Nodejs",
+            "Android",
+            "Campcoders.com"
+        ]
+    }
+}
+
+
+```
+
+
+### 16. Get Comment
+
+```
+POST http://jobpitch.campcoders.com/api/get_comments
+Content-Type: application/json
+Cache-Control: no-cache
+
+{
+    "token"        : "$2a$08$lhiCBo8YnwspPqpUrBi6hOPQT2fn8uY8cmTz4MkCAz4ncTXeqB2hq",
+    "user_id"      : "54cf8e29a2d2bf0f2c849c35",
+    "comments"     :  [
+                        "54d105f112a9894b25904c5e",
+                        "54d105f112a9894b25904c5f"
+                      ]
+
+}
+
+Mang cac commentId o day duoc lay trong object cua Application hoac cua 1 Comment. Do la cac comment cua Application/Comment do.
+
+```
+##### Regex
+```
+
+
+```
+##### Return
+```
+{
+    "error_code": 0,
+    "comment": [
+        {
+            "time": "Wed Feb 04 2015 00:31:29 GMT+0700 (ICT)",
+            "comment_parent": "54d104892b6d292c1e71cb96",
+            "user_avatar": "Cường Vũ",
+            "user_name": "https://lh5.googleusercontent.com/-IlI6TyJIlrs/AAAAAAAAAAI/AAAAAAAAAC8/AsmFVAZBIkw/photo.jpg",
+            "user_id": "54cf8e29a2d2bf0f2c849c35",
+            "_id": "54d105f112a9894b25904c5e",
+            "__v": 0,
+            "comments": [],
+            "shares": {
+                "list": [],
+                "number": 0
+            },
+            "likes": {
+                "list": [],
+                "number": 0
+            },
+            "content": "Ban tung lam voi chuc vu gi?",
+            "hash_tag": [
+                "Php",
+                "Nodejs",
+                "Android",
+                "Campcoders.com"
+            ]
+        },
+        {
+            "time": "Wed Feb 04 2015 00:31:29 GMT+0700 (ICT)",
+            "comment_parent": "54d104892b6d292c1e71cb96",
+            "user_avatar": "Cường Vũ",
+            "user_name": "https://lh5.googleusercontent.com/-IlI6TyJIlrs/AAAAAAAAAAI/AAAAAAAAAC8/AsmFVAZBIkw/photo.jpg",
+            "user_id": "54cf8e29a2d2bf0f2c849c35",
+            "_id": "54d105f112a9894b25904c5f",
+            "__v": 0,
+            "comments": [],
+            "shares": {
+                "list": [],
+                "number": 0
+            },
+            "likes": {
+                "list": [],
+                "number": 0
+            },
+            "content": "Ban tung lam voi chuc vu gi?",
+            "hash_tag": [
+                "Php",
+                "Nodejs",
+                "Android",
+                "Campcoders.com"
+            ]
+        }
+    ]
+}
+
+
+```

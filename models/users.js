@@ -667,10 +667,10 @@ userSchema.methods.addJob        = function(job_id){
     });
 }
 
-userSchema.methods.addApply      = function(app_id){
+userSchema.methods.addApply      = function(app_id, callback){
     this.myApplications.push(app_id);
     this.save(function(err){
-        return 0;
+        callback();
     });
 }
 

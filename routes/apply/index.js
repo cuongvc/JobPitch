@@ -36,17 +36,18 @@ module.exports				=	function(req, res){
 				if (!exist2){
 					res.write(JSON.stringify({error_code : 1, msg : 'Job is not exist'}));
 					res.status(200).end();
-				};
+					return 0;
+				}
 
 				var application = new Application();
 				application.newInfor(user_id, user_exist.userName, user_exist.avatar_small, job_id, title, hash_tag, 
 					                   description, time, file, function(application){
 
-					job_exist.addApply(application._id);
-					user_exist.addApply(application._id);
-
-					respon_object(res, application);
-					
+					job_exist.addApply(application._id, function(){
+						user_exist.addApply(application._id, function(){
+							respon_object(res, application);		
+						});	
+					});			
 				});
 			})
 

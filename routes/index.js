@@ -21,3 +21,5 @@ exports.search        =   require('./search');
 exports.get        		=   require('./get');
 
 exports.upload_file   =   require('./upload_file');
+
+exports.comment   		=   require('./comment');

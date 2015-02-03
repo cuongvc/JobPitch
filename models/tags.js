@@ -18,6 +18,11 @@ var tagSchema = mongoose.Schema({
     app_id        : [{
         type         : ObjectId,
         ref          : 'applications'
+    }],
+
+    comment_id    : [{
+        type         : ObjectId,
+        ref          : 'comments'
     }]
 
 });
@@ -32,6 +37,11 @@ tagSchema.methods.addJob    = function(job_id){
 
 tagSchema.methods.addApp    = function(app_id){
     this.app_id.push(app_id);
+    return 0;
+}
+
+tagSchema.methods.addComment= function(comment_id){
+    this.comment_id.push(comment_id);
     return 0;
 }
 

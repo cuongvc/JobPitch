@@ -81,7 +81,12 @@ var applicationSchema = mongoose.Schema({
         type          : Number,
         default     : 0
 
-    }
+    },
+
+    comment       : [{
+    	type           : ObjectId,
+    	ref            : 'comments'
+    }]
 
 });
 
@@ -93,21 +98,30 @@ applicationSchema.methods.isOwn         = function(companyId){
 applicationSchema.methods.newInfor    = function(user_id, user_name, user_avatar, 
                                         job_id, title, hash_tag, description, time, file, callback){
 
-    this.user_id        = user_id;
-    this.user_name      = user_name;
-    this.user_avatar    = user_avatar;
+    var app = this;
+    app.user_id        = user_id;
+    app.user_name      = user_name;
+    app.user_avatar    = user_avatar;
 
-    this.job_id         = job_id;
-    this.title          = title;
-    this.hash_tag       = hash_tag;
-    this.description    = description;
-    this.time           = time;
-    this.file           = file;
+    app.job_id         = job_id;
+    app.title          = title;
+    app.hash_tag       = hash_tag;
+    app.description    = description;
+    app.time           = time;
+    app.file           = file;
     
-    add_hashTag_app(hash_tag, this._id);
+    add_hashTag_app(hash_tag, this._id, function(){
+        callback(app);    
+    });
 
-    callback(this);       
 }   
+
+applicationSchema.methods.add_comment = function(comment_id, callback){
+	this.comment.push(comment_id);
+	this.save(function(err){
+		callback();
+	})
+}
 
 applicationSchema.methods.editInfor     = function(application){
        return this;

@@ -148,26 +148,30 @@ jobSchema.methods.containTag    = function(tag){
 jobSchema.methods.newInfor    = function(image, image_small, image_normal, user_id, userName
                                         ,title, hash_tag, description, lat, lng, address
                                         ,link_direct, time , callback){
+
+    var job = this;
     if (image != '')
-        this.image              = image;
+        job.image              = image;
     if (image_small != '')
-        this.image_small        = image_small;
+        job.image_small        = image_small;
     if (image_normal != '')
-        this.image_normal       = image_normal;
-    this.userName               = userName;
-    this.user_id                = user_id;
-    this.title                  = title;
-    this.hash_tag               = hash_tag;
-    this.description            = description;
-    this.link_direct            = link_direct;
-    this.time                   = time;
-    this.location.lat           = lat;
-    this.location.lng           = lng;
-    this.location.address       = address;
+        job.image_normal       = image_normal;
+    job.userName               = userName;
+    job.user_id                = user_id;
+    job.title                  = title;
+    job.hash_tag               = hash_tag;
+    job.description            = description;
+    job.link_direct            = link_direct;
+    job.time                   = time;
+    job.location.lat           = lat;
+    job.location.lng           = lng;
+    job.location.address       = address;
 
-    add_hashTag_job(hash_tag, this._id);
+    add_hashTag_job(hash_tag, job._id, function(){
+        callback(job);           
+    });
 
-    callback(this);       
+    
 }   
 
 jobSchema.methods.distance      = function(lat, lng){
@@ -184,11 +188,11 @@ jobSchema.methods.editInfor     = function(job){
 }
 
 
-jobSchema.methods.addApply      = function(application){
+jobSchema.methods.addApply      = function(application, callback){
     this.applications.list.push(application);
     this.applications.number ++;
     this.save(function(err){
-        return 1;
+        callback();
     })
 }
 

@@ -139,6 +139,10 @@ app.get('/directive/home/left-sidebar',function(req,res){
 //  ------ FILE --------------------------------
 	Router_formdata.post('/upload_file', 	     routes.upload_file);
 
+//  ------ COMMENT ------------------------------
+	Router_body.post('/comment',							 routes.comment.create);
+	Router_body.post('/get_comments',          routes.comment.get_comments);
+
 
 
 // =================================== LISTEN BY IP AND PORT ========================

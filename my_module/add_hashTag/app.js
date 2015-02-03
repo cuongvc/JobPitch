@@ -1,15 +1,13 @@
 var HashTag             = require('./../../models/tags');
+var async               = require('async');
 
-module.exports					=	function(hash_tag, app_id){
+module.exports					=	function(hash_tag, app_id, callback){
 
 	add_tag                 = function(hash_tag, i, app_id){
-		console.log(' i  : ', i, 'hash_tag : ', hash_tag);
 		if (i == hash_tag.length)
 			return 0;
-		console.log(hash_tag[i]);
 		HashTag.findOne({name : hash_tag[i]}, function(err, hash_tag_exist){
 
-			console.log(hash_tag_exist);
 			if (err){
 				console.log(err);
 				return 1;
@@ -35,7 +33,12 @@ module.exports					=	function(hash_tag, app_id){
 	}
 
 	if (hash_tag.length > 0){
-		console.log('add tag');
-		add_tag(hash_tag, 0, app_id);
+		async.waterfall([
+			function(next){
+				add_tag(hash_tag, 0, app_id);		
+				next(null);
+			}], function(err){
+				callback();
+		});
 	}
 }
