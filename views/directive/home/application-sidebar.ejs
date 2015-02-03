@@ -1,8 +1,8 @@
 
-<link rel="stylesheet" type="text/css" href="/css/home/application-sidebar.css">
-<div id="sidebar" class="col-md-9 col-sm-9 hidden-xs pull-right transition_500ms" ng-controller="ApplicationSideBarCtrl">
+
+<div id="sidebar" class="col-md-12 col-sm-12 hidden-xs transition_500ms" ng-controller="ApplicationSideBarCtrl">
 	<div ng-repeat="applicationSidebar in ApplicationsSidebar" class="sidebar-element transition_500ms">
-		<div>
+		<div class="borderBottom">
 			<div class="application pull-left">
 				<div class="application-sidebar-avatar">
 					<img src="https://pbs.twimg.com/profile_images/522418773723074561/AyreX9yf_normal.jpeg">
@@ -14,19 +14,15 @@
 					<p class=" pull-left"><span class="application-sidebar-company-name">@Google</span></p>
 				</div>
 				<div class="application-sidebar-apply-content">
-					<p class="pull-left"><strong>Tôi có thể làm đc nhiều hơn như thế (@.@)</strong></p>
+					<p class="pull-left"><strong>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</strong></p>
+				</div>
+				<div class="application-sidebar-like-share">
+					<ul class="pull-right">
+						<li><span>100</span> <span>shares</span></li>
+						<li><span>200</span> <span>likes</span></li>
+					</ul>
 				</div>
 			</div>
-		</div>
-
-		<div class="application-sidebar-like-share">
-			<ul class="pull-right">
-				<li><span>100</span> <span>shares</span></li>
-				<li><span>200</span> <span>likes</span></li>
-			</ul>
-		</div>
-		<div class="application-sidebar-number-comment">
-			<p ng-click="ApplicationSidebarViewMoreComment(5)">View 5 more comments</p>
 		</div>
 		<div class="application-sidebar-comment col-md-36 col-sm-36">
 			<div class="sidebar-cmt" ng-repeat="ApplicationSidebarComment in ApplicationSideBarComments">
@@ -36,6 +32,9 @@
 				<div class="sidebar-comment-body">
 					<p><strong ng-bind="ApplicationSidebarComment.username"></strong> <span ng-bind="ApplicationSidebarComment.comment"></span></p>
 				</div>
+			</div>
+			<div class="application-sidebar-number-comment">
+				<p class="text-right" ng-click="ApplicationSidebarViewMoreComment(5)">more</p>
 			</div>
 		</div>
 	</div>

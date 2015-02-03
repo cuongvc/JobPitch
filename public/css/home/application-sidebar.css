@@ -1,7 +1,7 @@
 #sidebar{
 	margin-top: 20px;
 	color: #292f33;
-	font-size: 14px;
+	font-size: 13px;
 	line-height: 18px;
 	border-radius: 4px;
 	overflow: auto;
@@ -14,7 +14,7 @@
 }
 .sidebar-element{
 	overflow: auto;
-	margin-bottom: 10px;
+	margin-bottom: 15px;
 	background: #fff;
 	padding: 5px 10px;
 	border-radius: 4px;
@@ -29,7 +29,7 @@
 	width: auto;
 }
 .application-sidebar-name{
-	font-size: 16px;
+	font-size: 13px;
 	text-shadow: none;
 	cursor: pointer;
 }
@@ -57,6 +57,12 @@
 .application-sidebar-like-share ul li{
 	font-size: 12px;
 	cursor: pointer;
+	margin-left: 10px;
+	color: #8899a6;
+}
+.borderBottom{
+	border-bottom: 1px solid #ddd;
+	margin-bottom: 15px;
 }
 .application-sidebar-like-share ul li:hover{
 	text-decoration: underline;
@@ -65,11 +71,12 @@
 	width: 100%;
 }
 .application-sidebar-number-comment{
-	border-top: 1px solid #ddd;
 	color: #3b5998;
 }
 .application-sidebar-number-comment p{
-	padding: 5px;
+	margin-top: 5px;
+	color: #8899a6;
+	font-size: 12px;
 }
 .application-sidebar-number-comment p:hover{
 	text-decoration: underline;
@@ -77,6 +84,7 @@
 }
 .sidebar-cmt{
 	overflow: auto;
+	margin-bottom: 5px;
 	transition: all 0.5s;
 	-webkit-transition: all 0.5s;
 }
@@ -88,4 +96,7 @@
 .sidebar-comment-body{
 	overflow: auto;
 	color: #333;
+}
+.sidebar-comment-body p strong{
+	color: #3b5998
 }
