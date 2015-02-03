@@ -5,9 +5,10 @@
 .job{
 	background: #fff;
 	border-radius: 4px;
-	box-shadow: 0 0 3px #333;
+	box-shadow: 0 0 1px #ddd;
 	margin-bottom: 20px;
 	height: 360px;
+	border-radius: 4px;
 }
 #jobs {
 	padding: 0px;
@@ -23,6 +24,8 @@
 .job .image img{
 	width: 100%;
 	height: auto;
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
 }
 .company-title{
 	font-family: 'Proxima Nova Bold';

@@ -1,4 +1,4 @@
-var Jobs = angular.module('jobs',['nightfury-upload','application-sidebar']);
+var Jobs = angular.module('jobs',['nightfury-upload','application-sidebar','left-sidebar']);
 Jobs.directive('jobs',function(){
 	return {
 		restrict: 'E',

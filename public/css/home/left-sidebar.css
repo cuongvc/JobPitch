@@ -1,0 +1,29 @@
+#left-sidebar{
+	margin-top: 20px;
+}
+#left-sidebar > div{
+	margin-bottom: 20px;
+	background: #fff;
+	padding: 10px 15px;
+	border-radius: 4px;
+	box-shadow: 0 0 1px #ddd;
+}
+.left-sidebar-tags ul{
+	padding: 0px;
+	width: 100%;
+}
+.left-sidebar-tags ul li{
+	width: 100%;
+	color: #0084B4;
+	font-size: 16px;
+	height: 30px;
+}
+.left-sidebar-tags ul li:hover{
+	text-decoration: underline;
+	cursor: pointer;
+}
+.left-sidebar-tags h3{
+	font-size: 18px;
+	color: #66757f;
+	margin-top: 0px;
+}

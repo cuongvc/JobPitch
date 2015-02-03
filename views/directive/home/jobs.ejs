@@ -1,7 +1,8 @@
 <link rel="stylesheet" type="text/css" href="../css/home/jobs.css">
 <div id="jobs" ng-controller="JobCtrl">
 	<div class="container">
-		<div class="col-md-20 col-md-offset-6 col-sm-20 col-sm-offset-6 col-xs-36" id="jobs">
+		<left-sidebar></left-sidebar>
+		<div class="col-md-20 col-sm-20 col-xs-36" id="jobs">
 			<div class="col-md-36 col-sm-36 col-xs-18"ng-repeat="job in jobs">
 				<div class="job" ng-click="ViewJob(job)">
 					<div class="image">

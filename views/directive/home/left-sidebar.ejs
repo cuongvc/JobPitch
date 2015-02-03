@@ -1,0 +1,26 @@
+<link rel="stylesheet" type="text/css" href="/css/home/left-sidebar.css">
+
+<div id="left-sidebar" class="col-md-7 col-sm-7 hidden-xs" ng-controller="LeftSidebarCtrl">
+	<div class="left-sidebar-tags">
+		<h3 class="semibold">Tags</h3>
+		<ul>
+			<li ng-repeat="tag in LeftSidebarTags" ng-bind="tag.name"></li>
+		</ul>
+	</div>
+
+
+	<div class="left-sidebar-tags">
+		<h3 class="semibold">Companies</h3>
+		<ul>
+			<li ng-repeat="company in LeftSidebarCompanies" ng-bind="company.name"></li>
+		</ul>
+	</div>
+
+
+	<div class="left-sidebar-tags">
+		<h3 class="semibold">Trends</h3>
+		<ul>
+			<li ng-repeat="trend in LeftSidebarTrends" ng-bind="trend.name"></li>
+		</ul>
+	</div>
+</div>

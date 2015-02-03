@@ -67,7 +67,9 @@ app.get('/directive/home/tag-list',function(req,res){
 app.get('/directive/home/application-sidebar',function(req,res){
 	res.render('directive/home/application-sidebar.ejs');
 })
-
+app.get('/directive/home/left-sidebar',function(req,res){
+	res.render('directive/home/left-sidebar.ejs');
+})
 
 	/*
 	* index
