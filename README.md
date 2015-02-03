@@ -1,6 +1,6 @@
 ## Link POST MAN
 ```
-    https://www.getpostman.com/collections/03a884410c77324c7ccf
+    https://www.getpostman.com/collections/5e4a4bd783c5b95ee492
 
 
 ```
@@ -21,6 +21,8 @@ Cache-Control: no-cache
     "height"        : 500,
     "width"         : 600
 }
+
+x, y,height, width la optional
 ```
 ##### Regex
 ```
