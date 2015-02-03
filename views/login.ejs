@@ -23,30 +23,33 @@
 		<div id="opacity" class="container-fluid">
 			<div class="col-md-10 col-md-offset-13 col-sm-18 col-sm-offset-9 col-xs-36">
 				<div id="login-form" class="col-md-36 col-sm-36 col-xs-36">
-					<!-- <p>Sign in using</p> -->
-					<ul class="social">
-						<li>
-							<a href="/auth/facebook">
-								<i class="fa fa-facebook"></i>
-							</a>
-						</li>
-						<li>
-							<a href="/auth/google">
-								<i class="fa fa-google-plus"></i>
-							</a>
-						</li>
-						<li>
-							<a href="/auth/twitter">
-								<i class="fa fa-twitter"></i>
-							</a>
-						</li>
-						<li>
-							<a href="/auth/linkedin">
-								<i class="fa fa-linkedin"></i>
-							</a>
-						</li>
-					</ul>
-					<div class="normal-login">
+					<div>
+						<h3 class="text-center">For User</h3>
+						<ul class="social">
+							<li>
+								<a href="/auth/facebook">
+									<i class="fa fa-facebook"></i>
+								</a>
+							</li>
+							<li>
+								<a href="/auth/google">
+									<i class="fa fa-google-plus"></i>
+								</a>
+							</li>
+							<li>
+								<a href="/auth/twitter">
+									<i class="fa fa-twitter"></i>
+								</a>
+							</li>
+							<li>
+								<a href="/auth/linkedin">
+									<i class="fa fa-linkedin"></i>
+								</a>
+							</li>
+						</ul>
+					</div>
+					<div class="normal-login" id="forRecruiter">
+						<h3 class="text-center">For Recruiter</h3>
 						<form ng-submit="SignIn(user)" id="loginForm">
 							<div class="form-group">
 								<input type="email" id="email" name="email" ng-model="user.email" placeholder="Email">

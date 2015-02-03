@@ -22,7 +22,12 @@ ApplicationSideBar.controller('ApplicationSideBarCtrl',function($scope){
 	}
 	var ApplicationsSidebar = [];
 	for(i = 0; i < 5; i++){
-		ApplicationsSidebar.push({user: "Thanchet"});
+		ApplicationsSidebar.push({user: "Thanchet",showSideBarComment : false});
 	}
 	$scope.ApplicationsSidebar = ApplicationsSidebar;
+	$scope.ShowApplicationSidebarComment = function(applicationSidebar){
+		var index = ApplicationsSidebar.indexOf(applicationSidebar);
+		ApplicationsSidebar[index].showSideBarComment = true;
+		$scope.ApplicationsSidebar = ApplicationsSidebar;
+	}
 })

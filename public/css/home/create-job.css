@@ -162,3 +162,14 @@ tags-input .tags{
 #create-job-crop-image > div > div > .fa-file{
 	background: #ddd;
 }
+.job-comment-body .attack-file{
+	color: #333;
+	display: block;
+	background: url('../../images/gmail_icon_2.png') 0 -238px;
+	width: 24px;
+	height: 24px;
+}
+.job-comment-body{
+	color: #8899a6;
+	font-size: 13px;
+}

@@ -17,7 +17,7 @@ body,#login{
 }
 #login #opacity #login-form{
 	background: #F4F4F4;
-	margin-top: 30%;
+	margin-top: 25%;
 	border-radius: 4px;
 	overflow: auto;
 	box-shadow: 0 0 5px #000;
@@ -83,4 +83,20 @@ body,#login{
 }
 #signup-forgot ul li:hover{
 	color: #1aaf5d;
+}
+#forRecruiter{
+	margin-top: 30px;
+	padding-top: 40px;
+}
+#login-form > div h3{
+	cursor: pointer;
+	color: #333;
+	font-size: 20px;
+	margin: 0px;
+	margin-bottom: 20px;
+	color: #8899a6;
+}
+
+.normal-login::before{
+	
 }

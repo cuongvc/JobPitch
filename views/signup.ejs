@@ -20,8 +20,8 @@
 			<div class="col-md-10 col-md-offset-13 col-sm-18 col-sm-offset-9 col-xs-36">
 				<div id="login-form" class="col-md-36 col-sm-36 col-xs-36">
 					<div id="forUser">
-						<h3 class="text-center" ng-click="ShowHiddenForm($event)">For User</h3>
-						<ul class="social form-transition scrollbar_none transition_500ms">
+						<h3 class="text-center">For User</h3>
+						<ul class="social">
 							<li>
 								<a href="/auth/facebook">
 									<i class="fa fa-facebook"></i>
@@ -45,8 +45,8 @@
 						</ul>
 					</div> <!-- forUser -->
 					<div id="forRecruiter">
-						<h3 class="text-center" ng-click="ShowHiddenForm($event)">For Recruiter</h3>
-						<div class="normal-login form-transition scrollbar_none transition_500ms">
+						<h3 class="text-center">For Recruiter</h3>
+						<div class="normal-login">
 							<form ng-submit="Signup(email,password)" id="signupForm">
 								<div class="form-group">
 									<input type="text" id="username" ng-model="user.user_name" name="username" required placeholder="Username" maxlength="40">

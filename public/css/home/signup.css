@@ -11,11 +11,4 @@
 	overflow: hidden;
 	max-height: 0px; 
 }
-#login-form > div h3{
-	cursor: pointer;
-	color: #333;
-	font-size: 20px;
-	margin: 0px;
-	margin-bottom: 20px;
-}
 

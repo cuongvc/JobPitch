@@ -1,21 +1,12 @@
 var SignupApp = angular.module('SignupApp',[]);
 SignupApp.controller('SignupCtrl',function($scope,$http){
-	$scope.ShowHiddenForm = function(evt){
-		var target = $(evt.target);
-		if(target.next().hasClass('form-transition')){
-			target.next().css({
-				maxHeight: '1000px',
-				overflow: 'auto',
-			});
-			target.next().removeClass('form-transition');
-		}else{
-			target.next().css({
-				maxHeight: '0px',
-				overflow: 'hidden',
-			});
-			target.next().addClass('form-transition');
-		}
-	}
+	/*
+	* Random background
+	*/
+	var randomBG = Math.floor(Math.random()*14) + 1;
+	LoginStyle = {background: 'url(\'../images/'+randomBG+'.jpg\')'};
+	$scope.LoginStyle = LoginStyle;
+	
 	$scope.Signup = function(email,password){
 		var user = $scope.user;
 		user.isUser = 1;

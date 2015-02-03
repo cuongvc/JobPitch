@@ -3,20 +3,68 @@
 	<div class="container">
 		<div class="col-md-18 col-sm-18 col-xs-36" id="jobs">
 			<div class="col-md-36 col-sm-36 col-xs-18"ng-repeat="job in jobs">
-				<div class="job" ng-click="ViewJob(job)">
+				<div class="job">
 					<div class="image">
 						<img src="http://www.fbcoverlover.com/covers/know-your-limitations-and-defy-them.jpg?i" alt="">
 					</div>
 					<div class="job-content">
 						<p class="company-title cp-title" ng-click="ViewCompanyProfile($event,1)" ng-bind="job.title"></p>
 						<p class="job-sort-desc" ng-bind="job.shortDesc"></p>
-						<div class="like-share">
+					</div>
+					<div class="like-share">
+						<ul>
+							<li class="pull-left" ng-click="ViewApplicant(job)"><span ng-bind="job.applications.number"></span> <span>applicant<span ng-if="job.applications.number > 1">s</span></span></li>
+							
+							<li class="pull-right"><span ng-bind="job.likes.number"></span> <span>like<span ng-if="job.likes.number > 1">s</span></span></li>
+							<li class="pull-right"><span ng-bind="job.shares.number"></span> <span>share<span ng-if="job.shares.number > 1">s</span></span></li>
+							<li class="pull-right"><span ng-bind="job.likes.number"></span> <span>interest<span ng-if="job.likes.number > 1"></span></span></li>
+							<li class="pull-right" ng-click="ShareJobOnFacebook(job)"><i class="fa fa-facebook"></i></li>
+							<li class="pull-right"><i class="fa fa-google-plus"></i></li>
+							<li class="pull-right"><i class="fa fa-twitter"></i></li>
+							<li class="pull-right"><i class="fa fa-linkedin"></i></li>
+						</ul>
+					</div>
+					<!-- APPLY BOX -->
+					<div class="job-comment apply-box row" ng-if="job.showApplyBox == true">
+						<div class="job-comment-avatar apply-box-avatar pull-left">
+							<img ng-src="{{ user.avatar.normal }}" alt="">
+						</div>
+						<div class="job-comment-body">
+							<div class="job-comment-body-textarea-group">
+								<textarea maxlength="144" ng-model="ApplyDesc" id="ApplyDesc" ng-keyup="ChangeApplyTextAreaHeight($event)" ng-change="ApplyTextAreaChange(ApplyDesc)"></textarea>
+							</div>
+							<ul class="apply-box-info pull-left">
+								<li>
+									<span class="pull-right attack-file"  onclick="document.getElementById('attack-input').click();return;"></span>
+								</li>
+								<li>
+									<span class="pull-left"><i class="fa fa-file-text-o"></i> {{ ApplyDescWordCount }}/144</span>
+								</li>
+							</ul>
+							<input id="attack-input" type="file" class="hidden">
+							<div class="apply-button-group">
+								<div class="btn-apply" ng-click="Apply(job,ApplyTitle,ApplyDesc)">Apply</div>
+							</div>
+						</div>
+					</div>
+					<!-- APPLY BOX -->
+					<!-- APPLICANT -->
+					<div class="job-comment row animated fadeIn" ng-repeat="Application in job.applications.loadFromSever">
+						<div class="job-comment-avatar pull-left">
+							<img ng-src="{{ Application.user_avatar }}" alt="">
+						</div>
+						<div class="job-comment-body">
+							<p class="job-comment-desc"><span><strong ng-bind="Application.user_name"></strong></span> <span ng-bind="Application.description"></span></p>
+						</div>
+						<div class="col-md-36 col-sm-36 col-xs-36 apply-social-button">
 							<ul>
-								<li><span ng-bind="job.likes.number"></span> <span>like<span ng-if="job.likes.number > 1">s</span></span></li>
-								<li><span ng-bind="job.shares.number"></span> <span>share<span ng-if="job.shares.number > 1">s</span></span></li>
+								<li>
+									<div class="fb-share-button" data-href="htpp://jobpitch.campcoders.com/apply/{{ Application._id }}" data-layout="button_count"></div>
+								</li>
 							</ul>
 						</div>
 					</div>
+					<!-- APPLICANT -->
 				</div><!-- job -->
 			</div> <!-- col-28 -->
 		</div>
@@ -47,40 +95,8 @@
 							<li><span ng-bind="CurrentJob.shares.number"></span> <span>Share<span ng-if="CurrentJob.shares.number > 1">s</span></li>
 						</ul>
 					</div>
-					<div class="job-comment row" ng-repeat="Application in CurrentJob.Applications">
-						<div class="job-comment-avatar pull-left">
-							<img ng-src="{{ Application.user_avatar }}" alt="">
-						</div>
-						<div class="job-comment-body">
-							<p class="job-comment-desc"><span><strong ng-bind="Application.user_name"></strong></span> <span ng-bind="Application.description"></span></p>
-						</div>
-						<div class="col-md-36 col-sm-36 col-xs-36 apply-social-button">
-							<ul>
-								<li>
-									<div class="fb-share-button" data-href="htpp://jobpitch.campcoders.com/apply/{{ Application._id }}" data-layout="button_count"></div>
-								</li>
-							</ul>
-						</div>
-					</div>
-					<div class="job-comment apply-box row">
-						<div class="job-comment-avatar pull-left">
-							<img ng-src="{{ user.avatar.normal }}" alt="">
-						</div>
-						<div class="job-comment-body">
-							<div class="job-comment-body-textarea-group">
-								<textarea maxlength="144" ng-model="ApplyDesc" id="ApplyDesc" ng-keyup="ChangeApplyTextAreaHeight($event)" ng-change="ApplyTextAreaChange(ApplyDesc)"></textarea>
-								<span class="pull-right attack-file"  onclick="document.getElementById('attack-input').click();return;">
-									<i class="pull-right fa fa-paperclip"></i>
-									<span class="pull-right">attack file</span>
-								</span>
-								<span class="pull-left">Characters: {{ ApplyDescWordCount }}/144</span>
-							</div>
-							<input id="attack-input" type="file" class="hidden">
-							<div class="apply-button-group">
-								<div class="btn-apply" ng-click="Apply(CurrentJob,ApplyTitle,ApplyDesc)">Apply</div>
-							</div>
-						</div>
-					</div>
+					
+					
 		        </div>
 		      </div>
 		    </div>
