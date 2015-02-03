@@ -19,6 +19,30 @@
 							<li class="pull-right"><span ng-bind="job.likes.number"></span> <span>interest<span ng-if="job.likes.number > 1"></span></span></li>
 						</ul>
 					</div>
+					<!-- APPLY BOX -->
+					<div class="job-comment apply-box row">
+						<div class="job-comment-avatar apply-box-avatar pull-left">
+							<img ng-src="{{ user.avatar.normal }}" alt="">
+						</div>
+						<div class="job-comment-body">
+							<div class="job-comment-body-textarea-group">
+								<textarea maxlength="144" ng-model="ApplyDesc" id="ApplyDesc" ng-keyup="ChangeApplyTextAreaHeight($event)" ng-change="ApplyTextAreaChange(ApplyDesc)"></textarea>
+							</div>
+							<ul class="apply-box-info pull-left">
+								<li>
+									<span class="pull-right attack-file"  onclick="document.getElementById('attack-input').click();return;"></span>
+								</li>
+								<li>
+									<span class="pull-left"><i class="fa fa-file-text-o"></i> {{ ApplyDescWordCount }}/144</span>
+								</li>
+							</ul>
+							<input id="attack-input" type="file" class="hidden">
+							<div class="apply-button-group">
+								<div class="btn-apply" ng-click="Apply(CurrentJob,ApplyTitle,ApplyDesc)">Apply</div>
+							</div>
+						</div>
+					</div>
+					<!-- APPLY BOX -->
 					<!-- APPLICANT -->
 					<div class="job-comment row" ng-repeat="Application in job.applications.loadFromSever">
 						<div class="job-comment-avatar pull-left">
@@ -67,25 +91,7 @@
 						</ul>
 					</div>
 					
-					<div class="job-comment apply-box row">
-						<div class="job-comment-avatar pull-left">
-							<img ng-src="{{ user.avatar.normal }}" alt="">
-						</div>
-						<div class="job-comment-body">
-							<div class="job-comment-body-textarea-group">
-								<textarea maxlength="144" ng-model="ApplyDesc" id="ApplyDesc" ng-keyup="ChangeApplyTextAreaHeight($event)" ng-change="ApplyTextAreaChange(ApplyDesc)"></textarea>
-								<span class="pull-right attack-file"  onclick="document.getElementById('attack-input').click();return;">
-									<i class="pull-right fa fa-paperclip"></i>
-									<span class="pull-right">attack file</span>
-								</span>
-								<span class="pull-left">Characters: {{ ApplyDescWordCount }}/144</span>
-							</div>
-							<input id="attack-input" type="file" class="hidden">
-							<div class="apply-button-group">
-								<div class="btn-apply" ng-click="Apply(CurrentJob,ApplyTitle,ApplyDesc)">Apply</div>
-							</div>
-						</div>
-					</div>
+					
 		        </div>
 		      </div>
 		    </div>

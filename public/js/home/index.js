@@ -82,49 +82,5 @@ IndexApp.controller('IndexCtrl',function($scope,$http,$timeout,DB){
 	$scope.user = user;
 	$scope.logedin = logedin;
 	
-	/*
-	* apply 
-	*/
-	$scope.ApplyDescWordCount = 0;
-	$scope.ApplyTextAreaChange = function(content){
-		$scope.ApplyDescWordCount = content.length;
-		changeHeight();
-	}
-	$scope.ChangeApplyTextAreaHeight = function(evt){
-		if(evt.keyCode == 13){
-			changeHeight();
-		}
-	}
-	function changeHeight(){
-		var t = $("#ApplyDesc")[0];
-	    var lineNumber = t.value.substr(0, t.selectionStart).split("\n").length;
-	    var height = lineNumber*20 + 10;
-	    if(height < 40) height = 40;
-	    $("#ApplyDesc").css({height: height});
-	}
-	$scope.Apply = function(Job, ApplyTitle, ApplyDesc){
-		var DescHashTags  = ApplyDesc.match(/#\S+/g);
-		var HashTags = new Array();
-		if(DescHashTags == null){
-			HashTags = [];
-		}else{
-			HashTags = DescHashTags;
-		}
-		var data = {
-			user_id: $scope.user._id,
-			token: $scope.user.token,
-			job_id: Job._id,
-			title: "ApplyTitle",
-			description: ApplyDesc,
-			hash_tag: HashTags,
-		};
-		$http.post(STR_API_APPLY,data).success(function(response){
-			console.log(response);
-			if(response.error_code == 0){
-				$scope.CurrentJob.Applications.push(response.application);
-				$('#ApplyTitle').val('');
-				$('#ApplyDesc').val('');
-			}
-		})
-	}
+	
 })
