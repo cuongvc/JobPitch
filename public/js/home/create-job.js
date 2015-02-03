@@ -104,7 +104,6 @@ CreateJob.controller('CreateJobCtrl',function($scope,$http){
 			newJob.lat = 21.016481;
 			newJob.lng = 105.810339;
 			newJob.address = Address;
-			newJob.coords = CropCoords,
 		$http.post(STR_API_CREATE_JOB,newJob).success(function(response){
 			console.log(response);
 			if(response.error_code == 0){
