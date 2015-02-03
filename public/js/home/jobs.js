@@ -77,7 +77,7 @@ Jobs.controller('JobCtrl',function($scope,$http){
 	    if(height < 60) height = 60;
 	    $("#ApplyDesc").css({height: height});
 	}
-	$scope.Apply = function(Job, ApplyTitle, ApplyDesc){
+	$scope.Apply = function(job, ApplyTitle, ApplyDesc){
 		var DescHashTags  = ApplyDesc.match(/#\S+/g);
 		var HashTags = new Array();
 		if(DescHashTags == null){
@@ -85,10 +85,11 @@ Jobs.controller('JobCtrl',function($scope,$http){
 		}else{
 			HashTags = DescHashTags;
 		}
+		var index = jobs.indexOf(job);
 		var data = {
 			user_id: $scope.user._id,
 			token: $scope.user.token,
-			job_id: Job._id,
+			job_id: job._id,
 			title: "ApplyTitle",
 			description: ApplyDesc,
 			hash_tag: HashTags,
@@ -96,9 +97,9 @@ Jobs.controller('JobCtrl',function($scope,$http){
 		$http.post(STR_API_APPLY,data).success(function(response){
 			console.log(response);
 			if(response.error_code == 0){
-				$scope.CurrentJob.Applications.push(response.application);
-				$('#ApplyTitle').val('');
+				jobs[index].applications.loadFromSever.push(response.application);
 				$('#ApplyDesc').val('');
+				$scope.jobs = jobs;
 			}
 		})
 	}
