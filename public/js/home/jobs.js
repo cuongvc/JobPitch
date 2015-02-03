@@ -44,7 +44,7 @@ Jobs.controller('JobCtrl',function($scope,$http){
 		$http.post(STR_API_JOB_DETAIL,data).success(function(response){
 			console.log(response);
 			if(response.error_code == 0){
-				jobs[index].applications.list = response.app;
+				jobs[index].applications.loadFromSever = response.app;
 				$scope.jobs = jobs;
 			}
 			
