@@ -81,22 +81,7 @@ IndexApp.controller('IndexCtrl',function($scope,$http,$timeout,DB){
 	// DB.drop();
 	$scope.user = user;
 	$scope.logedin = logedin;
-	$scope.ViewJob = function(job){
-		$scope.CurrentJob = job;
-		var data = {
-		    user_id: $scope.user._id,
-		    token: $scope.user.token,
-		    job_id: job._id,
-		}
-		$http.post(STR_API_JOB_DETAIL,data).success(function(response){
-			console.log(response);
-			if(response.error_code == 0){
-				$scope.CurrentJob.Applications = response.app;
-			}
-			
-		})
-		$('#JobModal').modal('show');
-	}
+	
 	/*
 	* apply 
 	*/

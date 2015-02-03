@@ -34,13 +34,26 @@ Jobs.controller('JobCtrl',function($scope,$http){
 		}
 		$scope.jobs = jobs;
 	})
-	return;
-	$scope.jobs = jobs;
+	$scope.ViewApplicant = function(job){
+		var index = jobs.indexOf(job);
+		var data = {
+		    user_id: $scope.user._id,
+		    token: $scope.user.token,
+		    job_id: job._id,
+		}
+		$http.post(STR_API_JOB_DETAIL,data).success(function(response){
+			console.log(response);
+			if(response.error_code == 0){
+				jobs[index].applications.list = response.app;
+				$scope.jobs = jobs;
+			}
+			
+		})
+	}
 
 	$scope.ViewCompanyProfile = function(evt,id){
 		evt.stopPropagation();
 		console.log('a');
 	}
-	
-	
+
 })
