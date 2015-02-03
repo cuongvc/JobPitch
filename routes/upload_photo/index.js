@@ -29,26 +29,29 @@ module.exports				=	function(req, res){
           var extension   =   mime.extension(files.image.type).toLowerCase();  
 
           var im     = require('imagemagick');
+
           if (process.argv[3] == 'cuong'){
-            console.log('Dev with Cuong');
             var gm = require('gm');
           } else
             var gm = require('gm').subClass({ imageMagick: true });     // gm with server
 
-          gm(temp_path)
-            .crop(width, height, x, y)
-            .autoOrient()
-            .write(temp_path, function (err) {
-              if (err) {
-                console.log('Error : ', err);
-              }
-              else{
-                console.log('CROP SUCCESS');
-                res.write(JSON.stringify({error_code : 0, path : temp_path, extension : extension}));
-                res.status(200).end();
-              }
-          })
-            
+          if (typeof(x) == 'undefined'){
+            res.write(JSON.stringify({error_code : 0, path : temp_path, extension : extension}));
+            res.status(200).end();
+          } else
+            gm(temp_path)
+              .crop(width, height, x, y)
+              .autoOrient()
+              .write(temp_path, function (err) {
+                if (err) {
+                  console.log('Error : ', err);
+                }
+                else{
+                  console.log('CROP SUCCESS');
+                  res.write(JSON.stringify({error_code : 0, path : temp_path, extension : extension}));
+                  res.status(200).end();
+                }
+            })  
         }
       };
     });
