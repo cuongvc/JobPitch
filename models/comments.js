@@ -104,7 +104,7 @@ commentSchema.methods.newInfor    = function(user_id, user_name, user_avatar,
     
 }   
 
-commentSchema.methods.add_comment = function(comment_id, callback){
+commentSchema.methods.addComment = function(comment_id, callback){
     this.comments.push(comment_id);
     this.save(function(err){
         callback();

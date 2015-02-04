@@ -125,6 +125,17 @@ var jobSchema = mongoose.Schema({
     hires            : {
         type        : Number,
         default     : 0
+    },
+
+    contracts        : {
+        number       : {
+            type        : Number,
+            default     : 0
+        },        
+        list         : [{
+            type        : ObjectId,
+            ref         : 'contract'
+        }]
     }
 
 });
@@ -213,6 +224,17 @@ jobSchema.methods.addLike       = function(user_id, callback){
     }
 }
 
+jobSchema.methods.addContract       = function(contract, callback){
+    if (this.contracts.list.indexOf(contract._id) == -1){
+        this.contracts.list.push(contract._id);
+        this.contracts.number ++;
+        this.save(function(err){
+            callback();
+        })
+    } else{
+        callback();
+    }
+}
 
 
 // create the model for jobs and expose it to our app

@@ -1,5 +1,7 @@
-exports.token      = require('./token');
+exports.token       = require('./token');
 
-exports.job        = require('./job');
+exports.job         = require('./job');
 
-exports.user       = require('./user');
+exports.user        = require('./user');
+
+exports.application = require('./application');

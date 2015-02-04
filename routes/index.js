@@ -25,3 +25,7 @@ exports.upload_file  =   require('./upload_file');
 exports.comment      =   require('./comment');
 
 exports.like         =   require('./like');
+
+exports.interest     =   require('./interest');
+
+exports.hire         =   require('./hire');

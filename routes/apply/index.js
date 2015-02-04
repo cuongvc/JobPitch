@@ -34,6 +34,12 @@ module.exports				=	function(req, res){
 				res.status(200).end();
 				return 0;
 			} else
+
+			if (user_exist.isUser == 2){
+				res.write(JSON.stringify({error_code : 1, msg : 'Company account cannot apply'}));
+				res.status(200).end();
+			} else
+
 				check_job(job_id, function(exist2, job_exist){
 
 					if (!exist2){
@@ -41,6 +47,7 @@ module.exports				=	function(req, res){
 						res.status(200).end();
 						return 0;
 					} else{
+
 						var application = new Application();
 						application.newInfor(user_id, user_exist.userName, user_exist.avatar_small, job_id, title, hash_tag, 
 							                   description, time, file, function(application){
