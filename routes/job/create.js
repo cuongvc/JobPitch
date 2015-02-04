@@ -45,7 +45,7 @@ module.exports				=	function(req, res){
         return 0;
       } else
 
-      if (user_exist.type_account != 1){
+      if (user_exist.isUser == 1){
         console.log('Talent cannot create job');
         res.write(JSON.stringify({error_code : 1, msg : 'Talent cannot create job'}));
         res.status(200).end();
