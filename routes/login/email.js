@@ -26,6 +26,9 @@ module.exports							=	function(req, res){
 			}
 			
 			if ( user_exist.validPassword(password) ){
+
+				req._passport.session.user = user_exist._id;
+
 				respon_object(1, res, user_exist);
 			} else{
 				res.write(JSON.stringify({error_code : 1, msg : 'Password is incorrect'}));

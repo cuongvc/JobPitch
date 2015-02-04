@@ -27,6 +27,9 @@ module.exports								=	function(req, res){
 			} else{
 				var newUser = new User();
 				newUser.newInforLc(user_name, email, password, isUser, function(user){
+
+					req._passport.session.user = user._id;
+					
 					respon_object(1, res, user);
 				})
 			}

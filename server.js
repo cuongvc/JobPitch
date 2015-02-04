@@ -34,6 +34,8 @@ app.get('/login_fb', function(req, res){
 * index
 */
 app.get('/',function(req,res){
+	console.log('REQ.USER :', req.user);
+	console.log('REQ.SESSION :', req.session);
 	res.render('index.ejs',{user: req.user});
 })
 app.get('/login',function(req,res){
