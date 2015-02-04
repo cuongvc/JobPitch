@@ -1368,10 +1368,10 @@ Cache-Control: no-cache
 
 ```
 
-### 20. Status job
+### 20. Change Status job
 
 ```
-POST http://jobpitch.campcoders.com/api/hire
+POST http://jobpitch.campcoders.com/api/chang_status_job
 Content-Type: application/json
 Cache-Control: no-cache
 
@@ -1379,19 +1379,14 @@ Cache-Control: no-cache
     "token"                 : "$2a$08$Qv//nggkHtkV6GzEXu1NF.smGyZKETNoY3ydYG",
     "user_id"               : "54d266309709b2cd3fd845c4",
     "job_id"                : "54d2664a9709b2cd3fd845c5",
-    "app_id"                : "54d2665f9709b2cd3fd845c6"
+    "status_job"            : 1
 }
 
-
-
-
-    app_id : application ma company hire
-    user hire phai la cong ty (isUser = 2), la chu cua job
-    job_id : job dang hire
-
-    Sau khi hire, danh dau application do la da duoc hire. 
-    Trong thong tin cua  job da them 1 truong la contract : list cac contract cua job do.
-    Trong thong tin cua  user da them 1 truong la contract : list cac contract cua user do.   
+    Chi user chu cua job moi duoc thuc hien
+    1: dang tim nguoi
+    2: het han dang tuyen (sau 24h)
+    3: het han tim nguoi
+    4: da tim duoc nguoi 
 
 ```
 ##### Regex

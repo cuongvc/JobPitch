@@ -169,7 +169,7 @@ applicationSchema.methods.addLike       = function(user_id, callback){
     }
 }
 
-applicationSchema.methods.addInterest       = function(callback){
+applicationSchema.methods.addInterest       = function(user_id, callback){
     var app = this;
     if (app.interests.list.indexOf(user_id) != -1){
         app.interests.list.splice(app.interests.list.indexOf(user_id), 1);
