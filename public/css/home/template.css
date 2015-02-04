@@ -63,7 +63,9 @@ ul li{
 .navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:hover, .navbar-default .navbar-nav>.open>a:focus {
 	background: none;
 }
-
+.cursor{
+	cursor: pointer;
+}
 /**************************************************************************************/
 .scrollbar_none::scrollbar{
 	display: none;

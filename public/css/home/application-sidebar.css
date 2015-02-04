@@ -117,11 +117,13 @@
 	margin-top: 10px;
 }
 .application-sidebar-company-logo li img{
-	width: 30px;
-	height: 30px;
+	width: 35px;
+	height: 35px;
 	margin-right: 5px;
 	cursor: pointer;
+	border-radius: 100%;
 }
+
 .three-dot{
 	cursor: pointer;
 }

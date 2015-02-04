@@ -8,6 +8,7 @@
 	box-shadow: 0 0 1px #ddd;
 	margin-bottom: 20px;
 	border-radius: 4px;
+	padding-bottom: 10px;
 }
 #jobs {
 	padding: 0px;
@@ -61,6 +62,9 @@
 }
 .job-comment-body{
 	overflow: hidden;
+}
+.job-comment-body ul li{
+	margin-right: 5px;
 }
 .apply-box-avatar{
 	margin-top: 2px;
@@ -127,7 +131,26 @@
 	padding: 0px;
 }
 
-
+.job-reply-pitch-textarea{
+	overflow: hidden;
+}
+.job-reply-pitch-textarea textarea{
+	width: 100%;
+	height: auto;
+	resize: none;
+	padding: 3px;
+	border-radius: 4px;
+	border: 1px solid #ddd;
+	color: #333;
+}
+.job-reply-pitch-textarea textarea:focus{
+	outline: none;
+}
+.job-reply-pitch-image img{
+	width: 26px;
+	height: 26px;
+	margin-right: 5px;
+}
 .clearfix{
 	zoom: 1;
 }

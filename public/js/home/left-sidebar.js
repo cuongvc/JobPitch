@@ -9,14 +9,10 @@ LeftSidebar.directive('leftSidebar',function(){
 	}
 })
 LeftSidebar.controller('LeftSidebarCtrl',function($scope,$http){
-	$scope.LeftSidebarTags = [
-		{id:'_id',name:'#Coder'},
-		{id:'_id',name:'#Designer'},
-		{id:'_id',name:'#PHP'},
-		{id:'_id',name:'#MINE'},
-		{id:'_id',name:'#Google'},
-		{id:'_id',name:'#Facebook'},
-	];
+	$http.get(STR_API_TAGS).success(function(response){
+		console.log('tags: ',response);
+		$scope.LeftSidebarTags = response.tags;
+	})
 	$scope.LeftSidebarCompanies = [
 		{name: '@Google'},
 		{name: '@Facebook'},
@@ -25,13 +21,5 @@ LeftSidebar.controller('LeftSidebarCtrl',function($scope,$http){
 		{name: '@FPT'},
 		{name: '@Viettel'},
 		{name: '@Smart OSC'},
-	];
-	$scope.LeftSidebarTrends = [
-		{name: 'Việc nhẹ lương cao'},
-		{name: 'Leader PHP'},
-		{name: 'Senior iOS & Andoid'},
-		{name: 'MINE'},
-		{name: 'AI'},
-		{name: 'Streaming'},
 	];
 })

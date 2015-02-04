@@ -123,5 +123,26 @@ Jobs.controller('JobCtrl',function($scope,$http){
 		}
 		);
 	}
+	/*
+	* post pitch reply
+	*/
+	$scope.PostPitchReply = function(PitchReply,Application,evt){
+		if(evt.keyCode == 13){
+			var HashTags = PitchReply.match(/#\S+/g);
+			if(HashTags == null) HashTags = [];
+			var data = {
+				user_id : $scope.user._id,
+				token : $scope.user.token,
+				content : PitchReply,
+				hash_tag : HashTags,
+				application_parent : Application._id,
+				comment_parent : "",
+			}
+			console.log(data);
+			$http.post(STR_API_COMMENT,data).success(function(response){
+				console.log(response);
+			})
+		}
+	}
 
 })
