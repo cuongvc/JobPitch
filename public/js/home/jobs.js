@@ -93,6 +93,7 @@ Jobs.controller('JobCtrl',function($scope,$http){
 			title: "ApplyTitle",
 			description: ApplyDesc,
 			hash_tag: HashTags,
+			file: '',
 		};
 		console.log(data);
 		$http.post(STR_API_APPLY,data).success(function(response){
