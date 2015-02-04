@@ -22,16 +22,6 @@ Jobs.controller('JobCtrl',function($scope,$http){
 		if(response.error_code == 0){
 			jobs = response.jobs;
 		}
-		if(jobs != undefined){
-			jobs.forEach(function(v,k){
-				if(!(v.link_direct.match(/^http/))) jobs[k].link_direct = 'http://' + v.link_direct;
-				if(v.description.length > 144){
-					jobs[k].shortDesc = v.description.substring(0,144) + '...';
-				}else{
-					jobs[k].shortDesc = v.description;
-				}
-			})
-		}
 		$scope.jobs = jobs;
 	})
 	$scope.ViewApplicant = function(job){
@@ -122,6 +112,27 @@ Jobs.controller('JobCtrl',function($scope,$http){
 			}
 		}
 		);
+	}
+	/*
+	* post pitch reply
+	*/
+	$scope.PostPitchReply = function(PitchReply,Application,evt){
+		if(evt.keyCode == 13){
+			var HashTags = PitchReply.match(/#\S+/g);
+			if(HashTags == null) HashTags = [];
+			var data = {
+				user_id : $scope.user._id,
+				token : $scope.user.token,
+				content : PitchReply,
+				hash_tag : HashTags,
+				application_parent : Application._id,
+				comment_parent : "",
+			}
+			console.log(data);
+			$http.post(STR_API_COMMENT,data).success(function(response){
+				console.log(response);
+			})
+		}
 	}
 
 })

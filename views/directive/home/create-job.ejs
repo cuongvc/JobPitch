@@ -1,5 +1,5 @@
 
-<div id="create-job" ng-controller="CreateJobCtrl">
+<div id="create-job" ng-controller="CreateJobCtrl" ng-if="user.account_type == 1">
 	<div id="create-job-btn">
 		<button ng-click="ShowForm(true)" ng-if="ShowCreateJobForm == false">	
 			<img class="center-block" id="create-job-plus" src="../images/plus.png" alt="">
