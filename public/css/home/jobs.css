@@ -179,6 +179,9 @@
 	padding:1px;
 	overflow: auto;
 }
+.apply-box-info{
+	width: auto!important;
+}
 .apply-box-info li{
 	cursor: pointer;
 }
