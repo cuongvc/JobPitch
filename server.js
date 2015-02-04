@@ -154,6 +154,8 @@ app.get('/directive/home/left-sidebar',function(req,res){
 //  ------ HIRE     --- ------------------------------
 	Router_body.post('/hire',							 		 routes.hire);
 
+//  ------ STATUS JOB     --- ------------------------------
+	Router_body.post('/job_status',						 routes.job.status);
 
 // =================================== LISTEN BY IP AND PORT ========================
 

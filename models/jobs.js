@@ -81,7 +81,11 @@ var jobSchema = mongoose.Schema({
 
     status           : {
         type         : Number,
-        default      : 1        // 1 : hiring, 2: hired
+        default      : 1
+            // 1: dang tim nguoi
+            // 2: het han dang tuyen (sau 24h)
+            // 3: het han tim nguoi
+            // 4: da tim duoc nguoi 
     },
 
     likes            : {
@@ -236,6 +240,12 @@ jobSchema.methods.addContract       = function(contract, callback){
     }
 }
 
+jobSchema.methods.changeStatus       = function(status, callback){
+   this.status = status;
+   this.save(function(err){
+        callback();
+   })
+}
 
 // create the model for jobs and expose it to our app
 module.exports = mongoose.model('jobs', jobSchema);

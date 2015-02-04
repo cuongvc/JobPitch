@@ -1371,7 +1371,7 @@ Cache-Control: no-cache
 ### 20. Change Status job
 
 ```
-POST http://jobpitch.campcoders.com/api/chang_status_job
+POST http://jobpitch.campcoders.com/api/job_status
 Content-Type: application/json
 Cache-Control: no-cache
 
