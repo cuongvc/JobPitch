@@ -52,6 +52,13 @@ module.exports				=	function(req, res){
         return 0;
       } else
           
+      if (!user_exist.verify && (skype == '' || phone == '' || companyEmail == '' ||
+          typeof(skype) == 'undefined' || typeof(phone) == 'undefined' || typeof(companyEmail) == 'undefined')){
+        console.log('Account need verify');
+        res.write(JSON.stringify({error_code : 1, msg : 'Account need verify'}));
+        res.status(200).end();
+      } else
+
       async.waterfall([
                 
         function(next){

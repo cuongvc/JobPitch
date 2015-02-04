@@ -55,10 +55,15 @@ Cache-Control: no-cache
     "lng"           : 100,
     "address"       : "Ha Noi, Viet Nam",
     "temp_path"     : "/tmp/upload_fcfb4234b9a58ed1052b53a8e30dca92",
-    "extension"     : "jpeg" 
+    "extension"     : "jpeg",
+
+    "phone"         : "01674251748",
+    "skype"         : "cuongvc93",
+    "companyEmail"  : "campcoders@campcoders.com"
 }
 
     temp_path va extension la tu api upload_photo
+    phone, skype, companyEmail la optional
 
 ```
 ##### Regex
