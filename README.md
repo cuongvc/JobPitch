@@ -448,7 +448,7 @@ Cache-Control: no-cache
 ##### Regex
 ```
     job_id           : id of Job
-    file             : link lay tu api 14 : upload file
+    file             : link lay tu api 14 : upload file. Neu khong co file thi de bang "".
 
 ```
 ##### Return

@@ -40,5 +40,7 @@ module.exports					=	function(hash_tag, app_id, callback){
 			}], function(err){
 				callback();
 		});
+	} else{
+		callback();
 	}
 }

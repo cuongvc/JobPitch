@@ -108,10 +108,15 @@ applicationSchema.methods.newInfor    = function(user_id, user_name, user_avatar
     app.hash_tag       = hash_tag;
     app.description    = description;
     app.time           = time;
-    app.file           = file;
-    
-    add_hashTag_app(hash_tag, this._id, function(){
-        callback(app);    
+    if (file != ''){
+        app.file           = file;
+    }
+    console.log('add hastag');
+    add_hashTag_app(hash_tag, app._id, function(){
+        console.log('callback');
+        app.save(function(err){
+            callback(app);    
+        });
     });
 
 }   
