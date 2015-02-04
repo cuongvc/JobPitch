@@ -63,8 +63,14 @@
 .job-comment-body{
 	overflow: hidden;
 }
+.job-comment-body ul{
+	width: 100%;
+}
 .job-comment-body ul li{
-	margin-right: 5px;
+	margin-left: 5px;
+}
+.job-comment-body ul li:first-child{
+	margin-left: 0px;
 }
 .apply-box-avatar{
 	margin-top: 2px;
