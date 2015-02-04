@@ -55,7 +55,12 @@ NightFuryUpload.directive('nightfuryOnchangeUpload',function(){
                 fd.append(opts.upload.postData,file);
                 fd.append(opts.upload.dir.name,opts.upload.dir.dir);
 
-                if(Coords != null) fd.append('coords',Coords);
+                if(Coords != null) {
+                  fd.append('x',Coords.x);
+                  fd.append('y',Coords.y);
+                  fd.append('width',Coords.width);
+                  fd.append('height',Coords.height);
+                }
                 var xhr = new XMLHttpRequest();
                 xhr.upload.addEventListener('progress',NightfuryOnchangeUploadProgress,false);
                 xhr.open('POST',opts.upload.url);
