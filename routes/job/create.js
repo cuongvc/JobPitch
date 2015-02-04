@@ -30,6 +30,10 @@ module.exports				=	function(req, res){
     var temp_path     = data['temp_path'];
     var extension     = data['extension'];
 
+    var skype         = data.skype;
+    var phone         = data.phone;
+    var companyEmail  = data.companyEmail;
+
 
     var image, image_small, image_normal;
 
@@ -39,14 +43,14 @@ module.exports				=	function(req, res){
   	    res.write(JSON.stringify({error_code : 1, msg : 'Authenticate is incorrect'}));
   	    res.status(200).end();
         return 0;
-      }
+      } else
 
-      if (user_exist.type_account != 1){
+      if (user_exist.isUser == 1){
         console.log('Talent cannot create job');
         res.write(JSON.stringify({error_code : 1, msg : 'Talent cannot create job'}));
         res.status(200).end();
         return 0;
-      }
+      } else
           
       async.waterfall([
                 
@@ -78,7 +82,17 @@ module.exports				=	function(req, res){
               }
             )  
           }
+        },
+
+        function(next){
+          if (skype != '' && phone != '' && companyEmail != ''){
+            user_exist.Verify(skype, phone, companyEmail, function(){
+              next(null);
+            })
+          } else
+              next(null);
         }
+
       ], function(err){
         var newJob = new Job();
         newJob.newInfor(image, image_small, image_normal, user_exist.id, user_exist.userName,

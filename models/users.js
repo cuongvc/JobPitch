@@ -346,6 +346,12 @@ var userSchema = mongoose.Schema({
         default      : ''
     },
 
+    // verify = 0 : not verify
+    verify           : {
+        type         : Number,
+        default      : 0
+    },
+
     skype            : {
         type         : String,
         default      : ''
@@ -363,6 +369,17 @@ var userSchema = mongoose.Schema({
 
 });
 
+// ======================== VERIFY =======================================
+
+userSchema.methods.Verify       = function(skype, phone, companyEmail, callback){
+    var user = this;
+    user.skype                = skype,
+    user.phone                = phone;
+    user.companyEmail         = companyEmail;
+    user.save(function(err){
+        callback(user);    
+    });
+}
 
 // ======================== LOCAL INFOR =======================================
 
