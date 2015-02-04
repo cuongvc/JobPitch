@@ -29,27 +29,30 @@ module.exports				=	function(req, res){
 			if (!exist){
 				res.write(JSON.stringify({error_code : 1, msg : 'Authenticate is not exist'}));
 				res.status(200).end();
-			};
+				return 0;
+			} else
 
-			check_job(job_id, function(exist2, job_exist){
+				check_job(job_id, function(exist2, job_exist){
 
-				if (!exist2){
-					res.write(JSON.stringify({error_code : 1, msg : 'Job is not exist'}));
-					res.status(200).end();
-					return 0;
-				}
+					if (!exist2){
+						res.write(JSON.stringify({error_code : 1, msg : 'Job is not exist'}));
+						res.status(200).end();
+						return 0;
+					} else{
 
-				var application = new Application();
-				application.newInfor(user_id, user_exist.userName, user_exist.avatar_small, job_id, title, hash_tag, 
-					                   description, time, file, function(application){
+						var application = new Application();
+						application.newInfor(user_id, user_exist.userName, user_exist.avatar_small, job_id, title, hash_tag, 
+							                   description, time, file, function(application){
 
-					job_exist.addApply(application._id, function(){
-						user_exist.addApply(application._id, function(){
-							respon_object(res, application);		
-						});	
-					});			
-				});
-			})
+							job_exist.addApply(application._id, function(){
+								user_exist.addApply(application._id, function(){
+									respon_object(res, application);		
+								});	
+							});			
+						});
+					}
+					
+				})
 
 		})
 	}
