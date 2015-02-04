@@ -94,6 +94,7 @@ Jobs.controller('JobCtrl',function($scope,$http){
 			description: ApplyDesc,
 			hash_tag: HashTags,
 		};
+		console.log(data);
 		$http.post(STR_API_APPLY,data).success(function(response){
 			console.log(response);
 			if(response.error_code == 0){
