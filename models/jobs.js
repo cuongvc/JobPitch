@@ -88,9 +88,10 @@ var jobSchema = mongoose.Schema({
         number       : {
             type        : Number,
             default     : 0
-        },        list         : [{
+        },        
+        list         : [{
             type        : ObjectId,
-            ref         : 'talents'
+            ref         : 'users'
         }]
     },
 
@@ -195,6 +196,24 @@ jobSchema.methods.addApply      = function(application, callback){
         callback();
     })
 }
+
+jobSchema.methods.addLike       = function(user_id, callback){
+    if (this.likes.list.indexOf(user_id) != -1){
+        this.likes.list.splice(this.likes.list.indexOf(user_id), 1);
+        this.likes.number --;
+        this.save(function(err){
+            callback();
+        })
+    } else{
+        this.likes.list.push(user_id);
+        this.likes.number ++;
+        this.save(function(err){
+            callback();
+        })
+    }
+}
+
+
 
 // create the model for jobs and expose it to our app
 module.exports = mongoose.model('jobs', jobSchema);

@@ -39,7 +39,8 @@ var commentSchema = mongoose.Schema({
         number       : {
             type        : Number,
             default     : 0
-        },        list         : [{
+        },        
+        list         : [{
             type        : ObjectId,
             ref         : 'users'
         }]
@@ -108,6 +109,23 @@ commentSchema.methods.add_comment = function(comment_id, callback){
     this.save(function(err){
         callback();
     })
+}
+
+
+commentSchema.methods.addLike       = function(user_id, callback){
+    if (this.likes.list.indexOf(user_id) != -1){
+        this.likes.list.splice(this.likes.list.indexOf(user_id), 1);
+        this.likes.number --;
+        this.save(function(err){
+            callback();
+        })
+    } else{
+        this.likes.list.push(user_id);
+        this.likes.number ++;
+        this.save(function(err){
+            callback();
+        })
+    }
 }
 
 commentSchema.methods.editInfor     = function(comment){

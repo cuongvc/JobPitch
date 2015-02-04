@@ -145,6 +145,9 @@ app.get('/directive/home/left-sidebar',function(req,res){
 	Router_body.post('/comment',							 routes.comment.create);
 	Router_body.post('/get_comments',          routes.comment.get_comments);
 
+//  ------ LIKE--- ------------------------------
+	Router_body.post('/like',							 		 routes.like);
+
 
 
 // =================================== LISTEN BY IP AND PORT ========================

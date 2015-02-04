@@ -1264,3 +1264,38 @@ Mang cac commentId o day duoc lay trong object cua Application hoac cua 1 Commen
 
 
 ```
+
+
+### 17. Like
+
+```
+POST http://jobpitch.campcoders.com/api/like
+Content-Type: application/json
+Cache-Control: no-cache
+
+{
+    "token"                 : "$2a$08$zW6mO2jG5yGk2KzcJoiawueVBbTyEH1Xi3jG4y7FoZ8SL2DKyjQwG",
+    "user_id"               : "54d18f02c0f4602d7d22055f",
+    "type_like"             : 3,
+    "job_id"                : "54d18f56c0f4602d7d220560",
+    "application_id"        : "54d0fe3b2b6d292c1e71cb93",
+    "comment_id"            : "54d1048a2b6d292c1e71cb97"
+}
+
+
+type_like = 1: like job, truong job_id co gia tri
+type_like = 2: like application, truong application_id co gia tri
+type_like = 3: like comment, truong comment_id co gia tri
+
+```
+##### Regex
+```
+
+
+```
+##### Return
+```
+{"error_code":0}
+
+
+```
