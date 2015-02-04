@@ -60,6 +60,9 @@
 	margin-left: 10px;
 	color: #8899a6;
 }
+.application-sidebar-like-share ul li:first-child{
+	margin-left: 0px;
+}
 .borderBottom{
 	border-bottom: 1px solid #ddd;
 	margin-bottom: 15px;
