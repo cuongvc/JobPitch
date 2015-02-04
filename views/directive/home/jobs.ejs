@@ -18,7 +18,7 @@
 							<li class="pull-right"><span ng-bind="job.likes.number"></span> <span>like<span ng-if="job.likes.number > 1">s</span></span></li>
 							<li class="pull-right"><span ng-bind="job.shares.number"></span> <span>share<span ng-if="job.shares.number > 1">s</span></span></li>
 							<li class="pull-right"><span ng-bind="job.likes.number"></span> <span>interest<span ng-if="job.likes.number > 1"></span></span></li>
-							<li class="pull-right"><i class="fa fa-facebook"></i></li>
+							<li class="pull-right" ng-click="ShareJobOnFacebook(job)"><i class="fa fa-facebook"></i></li>
 							<li class="pull-right"><i class="fa fa-google-plus"></i></li>
 							<li class="pull-right"><i class="fa fa-twitter"></i></li>
 							<li class="pull-right"><i class="fa fa-linkedin"></i></li>

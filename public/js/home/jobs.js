@@ -103,5 +103,21 @@ Jobs.controller('JobCtrl',function($scope,$http){
 			}
 		})
 	}
+	/*
+	* share
+	*/
+	$scope.ShareJobOnFacebook = function(job){
+		FB.ui({
+			method: 'share',
+			href: BASE_URL + '/view/'+job._id,
+		},function(response) {
+			if (response && !response.error_code) {
+			   alert('Posting completed.');
+			} else {
+			   alert('Error while posting.');
+			}
+		}
+		);
+	}
 
 })

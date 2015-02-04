@@ -25,6 +25,7 @@
 			</div>
 		</div>
 		<div class="application-sidebar-company-logo">
+			<p class="small-text">Interested company:</p>
 			<ul>
 				<li><img src="https://pbs.twimg.com/profile_images/498927400378318848/3hkPsMFk_normal.jpeg" alt=""></li>
 				<li><img src="https://pbs.twimg.com/profile_images/188302352/nasalogo_twitter_bigger.jpg" alt=""></li>
@@ -32,10 +33,21 @@
 				<li><img src="https://pbs.twimg.com/profile_images/3513354941/24aaffa670e634a7da9a087bfa83abe6_bigger.png" alt=""></li>
 				<li><img src="https://pbs.twimg.com/profile_images/529308402661339136/Yb0c2yz8_normal.png" alt=""></li>
 				<li><img src="https://pbs.twimg.com/profile_images/531806988846370816/GEPB7aLh_normal.png" alt=""></li>
+				<li><img src="https://pbs.twimg.com/profile_images/498927400378318848/3hkPsMFk_normal.jpeg" alt=""></li>
+				<li><img src="https://pbs.twimg.com/profile_images/188302352/nasalogo_twitter_bigger.jpg" alt=""></li>
+				<li><img src="https://pbs.twimg.com/profile_images/2675282220/2fddf0955beb9b9d8f2d57eb988f4b2e_normal.jpeg" alt=""></li>
+				<li><img src="https://pbs.twimg.com/profile_images/3513354941/24aaffa670e634a7da9a087bfa83abe6_bigger.png" alt=""></li>
+				<li><img src="https://pbs.twimg.com/profile_images/529308402661339136/Yb0c2yz8_normal.png" alt=""></li>
+				<li><img src="https://pbs.twimg.com/profile_images/531806988846370816/GEPB7aLh_normal.png" alt=""></li>
 			</ul>
-			<p class="pull-right" ng-click="ApplicationSidebarViewAllCompany()">more</p>
+			<p class="pull-left application-sidebar-company-view-more" ng-click="ApplicationSidebarViewAllCompany()" title="View All">
+				<span></span>
+				<span></span>
+				<span></span>
+			</p>
 		</div>
 		<div class="application-sidebar-comment col-md-36 col-sm-36">
+			<p class="small-text">Comment:</p>
 			<div class="sidebar-cmt" ng-repeat="ApplicationSidebarComment in ApplicationSideBarComments">
 				<div class="sidebar-comment-image pull-left">
 					<img src="{{ ApplicationSidebarComment.avatar }}">

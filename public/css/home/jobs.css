@@ -38,7 +38,7 @@
 }
 .like-share ul{
 	width: 100%;
-	padding: 0px 12px;
+	padding: 0px 15px;
 	margin-top: 15px;
 }
 .like-share ul li , .job-social ul li{
@@ -148,4 +148,7 @@
 }
 .apply-box-info li{
 	cursor: pointer;
+}
+.application-sidebar-company-view-more{
+	display: inline-block;
 }
