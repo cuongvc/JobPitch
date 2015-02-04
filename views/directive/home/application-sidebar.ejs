@@ -3,16 +3,18 @@
 <div id="sidebar" class="col-md-12 col-sm-12 hidden-xs transition_500ms" ng-controller="ApplicationSideBarCtrl">
 	<div ng-repeat="applicationSidebar in ApplicationsSidebar" class="sidebar-element transition_500ms">
 		<div class="borderBottom">
-			<div class="application pull-left">
-				<div class="application-sidebar-avatar">
-					<img src="https://pbs.twimg.com/profile_images/522418773723074561/AyreX9yf_normal.jpeg">
-				</div>	
-			</div>
-			<div class="application-sidebar-body">
+			<div class="application-sidebar-applicant">
+				<div class="application pull-left">
+					<div class="application-sidebar-avatar">
+						<img src="https://pbs.twimg.com/profile_images/522418773723074561/AyreX9yf_normal.jpeg">
+					</div>	
+				</div>
 				<div class="application-sidebar-header">
-					<p class="application-sidebar-name pull-left"><strong>Android</strong></p>
+					<p class="application-sidebar-name"><strong>Android</strong></p>
 					<p class=" pull-left"><span class="application-sidebar-company-name">@Google</span></p>
 				</div>
+			</div>
+			<div class="application-sidebar-body">
 				<div class="application-sidebar-apply-content">
 					<p class="pull-left"><strong>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</strong></p>
 				</div>
@@ -21,13 +23,13 @@
 						<li class="pull-left"><span>5</span> <span>interest</span></li>
 						<li class="pull-right"><span>100</span> <span>share</span></li>
 						<li class="pull-right"><span>200</span> <span>like</span></li>
-						<li class="pull-right"><span>48 <span>comment</span></span></li>
+						<li class="pull-right" ng-click="ShowApplicationSidebarComment(applicationSidebar)"><span>48 <span>comment</span></span></li>
 					</ul>
 				</div>
 			</div>
 		</div>
 		<div class="application-sidebar-company-logo">
-			<p class="small-text">Interested company:</p>
+			<p class="small-text">Interested company</p>
 			<ul>
 				<li><img src="https://pbs.twimg.com/profile_images/498927400378318848/3hkPsMFk_normal.jpeg" alt=""></li>
 				<li><img src="https://pbs.twimg.com/profile_images/188302352/nasalogo_twitter_bigger.jpg" alt=""></li>
@@ -48,8 +50,7 @@
 				<span></span>
 			</p>
 		</div>
-		<div class="application-sidebar-comment col-md-36 col-sm-36">
-			<p class="small-text">Comment:</p>
+		<div class="application-sidebar-comment animated fadeIn col-md-36 col-sm-36" ng-if="applicationSidebar.showSideBarComment == true">
 			<div class="sidebar-cmt" ng-repeat="ApplicationSidebarComment in ApplicationSideBarComments">
 				<div class="sidebar-comment-image pull-left">
 					<img src="{{ ApplicationSidebarComment.avatar }}">

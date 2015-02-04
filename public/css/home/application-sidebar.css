@@ -24,9 +24,13 @@
 	height: 48px;
 	margin-right: 5px;
 }
+.application-sidebar-applicant{
+	overflow: auto;
+}
 .application-sidebar-body{
 	overflow: hidden;
-	width: auto;
+	width: 100%;
+	padding: 5px;
 }
 .application-sidebar-name{
 	font-size: 13px;
@@ -44,7 +48,8 @@
 	text-decoration: underline;
 }
 .application-sidebar-header > p:first-child{
-	margin-right: 20px; 
+	margin-top: 5px; 
+	margin-bottom: 0px;
 }
 .application-sidebar-apply-content > p:first-child{
 	color: #333;
