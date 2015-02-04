@@ -1,6 +1,6 @@
 ## Link POST MAN
 ```
-    https://www.getpostman.com/collections/931e14a9144a995a2f7d
+    https://www.getpostman.com/collections/c7e1d9834d33745fdec3
 
 ```
 ## API
