@@ -32,7 +32,13 @@ CreateJob.controller('CreateJobCtrl',function($scope,$http){
 	var showCrop = false;
 	$scope.showCrop = showCrop;
 	$scope.CreateJobCropChange = function(c){
-		$scope.CreateJobImage.coords = c;
+		console.log(c);
+		$scope.CreateJobImage.coords = {
+			x: c.x,
+			y: c.y,
+			width: c.w,
+			height: c.y2 - c.y,
+		};
 	}
 	$scope.Crop = function(){
 		showCrop = false;
