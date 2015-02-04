@@ -82,7 +82,7 @@
 	color: blue;
 }
 .apply-box .job-comment-body textarea{
-	border-color: rgba(0,132,180,0.25);
+	border-color: #ddd;
 	width: 100%;
 	height: 60px;
 	resize: none;
@@ -145,4 +145,7 @@
 .job-comment-body-textarea-group{
 	padding:1px;
 	overflow: auto;
+}
+.apply-box-info li{
+	cursor: pointer;
 }
