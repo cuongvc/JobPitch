@@ -48,6 +48,10 @@
 	cursor: pointer;
 	color: #8899a6;
 }
+.like-share ul li .fa{
+	color: #8899a6!important;
+	margin-top: 1px;
+}
 .like-share ul li:first-child{
 	margin-left: 0px;
 }
