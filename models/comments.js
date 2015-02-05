@@ -80,7 +80,8 @@ commentSchema.methods.isOwn         = function(companyId){
 }
 
 commentSchema.methods.newInfor    = function(user_id, user_name, user_avatar, 
-                                        application_parent, comment_parent, content, hash_tag, callback){
+                                        application_parent, comment_parent, content, 
+                                        hash_tag, callback){
     var comment = this;
     comment.user_id            = user_id;
     comment.user_name          = user_name;
@@ -99,9 +100,6 @@ commentSchema.methods.newInfor    = function(user_id, user_name, user_avatar,
             callback(comment);           
         })
     });
-
-    
-    
 }   
 
 commentSchema.methods.addComment = function(comment_id, callback){

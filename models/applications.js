@@ -145,7 +145,7 @@ applicationSchema.methods.newInfor    = function(user_id, user_name, user_avatar
 
 // ================ ADD COMMENT, LIKE, INREST, HIRE ================
 
-applicationSchema.methods.add_comment = function(comment_id, callback){
+applicationSchema.methods.addComment = function(comment_id, callback){
 	this.comment.push(comment_id);
 	this.save(function(err){
 		callback();

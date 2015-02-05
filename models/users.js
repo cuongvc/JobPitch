@@ -286,7 +286,7 @@ var userSchema = mongoose.Schema({
 
     myFollows          : [{
         type         : ObjectId,
-        ref          : 'companys'
+        ref          : 'users'
     }],
 
     friends          : [{   
@@ -690,6 +690,9 @@ userSchema.methods.editInfor_company     = function(company){
     return this;
 }
 
+// ================= MAKE TOKEN ===========================================
+
+
 // make new token when login/sign-up
 userSchema.methods.makeToken     = function(){
     var token = bcrypt.hashSync((new Date).toString(), bcrypt.genSaltSync(8), null)
@@ -697,7 +700,7 @@ userSchema.methods.makeToken     = function(){
     return 1;
 }
 
-// ======================== ADD JOB, APPLICATION, INTEREST ====================================
+// ================= ADD JOB, APPLICATION, INTEREST, CONTRACT ===============
 
 userSchema.methods.addJob        = function(job_id){
     this.myJobs.push(job_id);
@@ -736,6 +739,38 @@ userSchema.methods.addContract       = function(contract, callback){
         callback();
     }
 }
+
+userSchema.methods.addMyFollow       = function(user_id, callback){
+    if (this.myFollows.indexOf(user_id) == -1){
+        this.myFollows.push(user_id);
+        this.save(function(err){
+            callback();
+        })
+    } else{
+        this.myFollows.splice(this.myFollows.indexOf(user_id), 1);
+        this.save(function(err){
+            callback();
+        })
+
+    }
+}
+
+
+userSchema.methods.addFollowMe       = function(user_id, callback){
+    if (this.followMes.indexOf(user_id) == -1){
+        this.followMes.push(user_id);
+        this.save(function(err){
+            callback();
+        })
+    } else{
+        this.followMes.splice(this.followMes.indexOf(user_id), 1);
+        this.save(function(err){
+            callback();
+        })
+
+    }
+}
+
 
 // create the model for users and expose it to our app
 module.exports = mongoose.model('users', userSchema);

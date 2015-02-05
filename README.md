@@ -1399,3 +1399,37 @@ Cache-Control: no-cache
 {"error_code":0}
 
 ```
+
+
+
+### 21. Follow
+
+```
+POST http://jobpitch.campcoders.com/api/follow
+Content-Type: application/json
+Cache-Control: no-cache
+
+{
+    "token"                 : "$2a$08$Qv//nggkHtkV6GzEXu1NF.smGyZKETNoY3ydYG",
+    "user_id"               : "54d266309709b2cd3fd845c4",
+    "job_id"                : "54d2664a9709b2cd3fd845c5",
+    "status_job"            : 1
+}
+
+    Chi user chu cua job moi duoc thuc hien
+    1: dang tim nguoi
+    2: het han dang tuyen (sau 24h)
+    3: het han tim nguoi
+    4: da tim duoc nguoi 
+
+```
+##### Regex
+```
+
+
+```
+##### Return
+```
+{"error_code":0}
+
+```

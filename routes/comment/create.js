@@ -75,10 +75,12 @@ module.exports										=	function(req, res){
 								res.status(200).end();
 								return 1;
 							} else{
-								cmt_exist.addComment(comment._id, function(){
-									res.write(JSON.stringify({error_code : 0, comment : comment }));
-									res.status(200).end();
-								});
+
+							cmt_exist.addComment(comment._id, function(){
+								res.write(JSON.stringify({error_code : 0, comment : comment }));
+								res.status(200).end();
+							});
+
 							}
 						});
 					};

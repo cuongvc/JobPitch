@@ -157,6 +157,13 @@ app.get('/directive/home/left-sidebar',function(req,res){
 //  ------ STATUS JOB     --- ------------------------------
 	Router_body.post('/job_status',						 routes.job.status);
 
+//  ------ FOLLOW     --- ------------------------------
+	Router_body.post('/follow',						 		 routes.follow);
+
+//  ------ GET_USERS     --- ------------------------------
+	Router_body.post('/users',						 		 routes.get.users);
+
+
 // =================================== LISTEN BY IP AND PORT ========================
 
 app.set('port', process.env.PORT || port);

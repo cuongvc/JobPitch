@@ -29,3 +29,5 @@ exports.like         =   require('./like');
 exports.interest     =   require('./interest');
 
 exports.hire         =   require('./hire');
+
+exports.follow       =   require('./follow');
