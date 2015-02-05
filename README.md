@@ -1,6 +1,14 @@
+## API hoan thanh:
+    
+```
+    Comment, like, interest, hire, change status job, follow, get users ( 
+        get users la api de hien thi nhung nguoi like, interest, follow)
+
+```
+
 ## Link POST MAN
 ```
-    https://www.getpostman.com/collections/086929e2bc7c10de98df
+    https://www.getpostman.com/collections/a45c5431e086afb6762d
 
 ```
 ## API
@@ -1410,17 +1418,13 @@ Content-Type: application/json
 Cache-Control: no-cache
 
 {
-    "token"                 : "$2a$08$Qv//nggkHtkV6GzEXu1NF.smGyZKETNoY3ydYG",
-    "user_id"               : "54d266309709b2cd3fd845c4",
-    "job_id"                : "54d2664a9709b2cd3fd845c5",
-    "status_job"            : 1
+    "token"                     :  "$2a$08$O5/3iHOg4U2PeGcvbwYB0O93247GhpvW",
+    "user_id"                   :  "54d185c336691a8b0f1169cd",
+    "user_follow_id"            :  "54d265b91f81837248f1be3d"
 }
 
-    Chi user chu cua job moi duoc thuc hien
-    1: dang tim nguoi
-    2: het han dang tuyen (sau 24h)
-    3: het han tim nguoi
-    4: da tim duoc nguoi 
+
+    User_id follow user_follow_id
 
 ```
 ##### Regex
@@ -1431,5 +1435,64 @@ Cache-Control: no-cache
 ##### Return
 ```
 {"error_code":0}
+
+```
+
+
+### 22. Get users
+
+```
+POST http://jobpitch.campcoders.com/api/users
+Content-Type: application/json
+Cache-Control: no-cache
+
+{
+    "token"                     :  "$2a$08$tVRMd5RvQ2YDIVQpjTNz7O5/3iHOg4U2PeGcvbwYB0O93247GhpvW",
+    "user_id"                   :  "54d185c336691a8b0f1169cd",
+    "users"                     : ["54d185c336691a8b0f1169cd", 
+                                   "54d1874836691a8b0f1169d5", 
+                                   "54d19220761af20924788e36", 
+                                   "54d265b91f81837248f1be3d", 
+                                   "54d1860236691a8b0f1169ce", 
+                                   "54d193c88cf8889a2e08ce37"]
+}
+
+    Dung de get thong tin 1 list user, dung khi: xem cac user follow, like, 
+    interest
+
+```
+##### Regex
+```
+
+
+```
+##### Return
+```
+{
+    "error_code": 0,
+    "users": [
+        {
+            "_id": "54d185c336691a8b0f1169cd",
+            "userName": "Pale Color",
+            "avatar_normal": "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash2/t31.0-1/c0.0.960.960/p960x960/965368_576403985759899_2014020168_o.jpg",
+            "avatar_small": "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xfp1/v/t1.0-1/c0.0.200.200/p200x200/1394789_576403985759899_2014020168_n.jpg?oh=e6090c6aec80967e2831d30a9369dfcc&oe=5568B42F&__gda__=1431918605_9078d35c239f4c1a374c0d1ddc36f866",
+            "avatar": "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash2/t31.0-1/c0.0.960.960/p960x960/965368_576403985759899_2014020168_o.jpg"
+        },
+        {
+            "_id": "54d1860236691a8b0f1169ce",
+            "userName": "Thanchet",
+            "avatar_normal": "http://jobpitch.campcoders.com/images/full_size/TalentImages/default-avatar.png",
+            "avatar_small": "http://jobpitch.campcoders.com/images/full_size/TalentImages/default-avatar.png",
+            "avatar": "http://jobpitch.campcoders.com/images/full_size/TalentImages/default-avatar.png"
+        },
+        {
+            "_id": "54d1874836691a8b0f1169d5",
+            "userName": "Cường Vũ",
+            "avatar_normal": "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xpa1/t31.0-1/c718.0.960.960/p960x960/10557488_606609982789433_860901210522561437_o.jpg",
+            "avatar_small": "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xpa1/v/t1.0-1/c150.0.200.200/p200x200/10455046_606609982789433_860901210522561437_n.jpg?oh=faa9495086ca2ff0eac31beccc473dcb&oe=5550116D&__gda__=1432909098_79c67ae7c6d1b8e06cbd34697a3b46b9",
+            "avatar": "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xpa1/t31.0-1/c718.0.960.960/p960x960/10557488_606609982789433_860901210522561437_o.jpg"
+        }
+    ]
+}
 
 ```
