@@ -365,6 +365,28 @@ var userSchema = mongoose.Schema({
     companyEmail     : {
         type         : String,
         default      : ''
+    },
+
+    interests        : {
+        number       : {
+            type        : Number,
+            default     : 0
+        },        
+        list         : [{
+            type        : ObjectId,
+            ref         : 'users'
+        }]
+    },
+
+    contracts        : {
+        number       : {
+            type        : Number,
+            default     : 0
+        },        
+        list         : [{
+            type        : ObjectId,
+            ref         : 'contract'
+        }]
     }
 
 });
@@ -675,7 +697,7 @@ userSchema.methods.makeToken     = function(){
     return 1;
 }
 
-// ======================== ADD JOB, APPLICATION ====================================
+// ======================== ADD JOB, APPLICATION, INTEREST ====================================
 
 userSchema.methods.addJob        = function(job_id){
     this.myJobs.push(job_id);
@@ -689,6 +711,30 @@ userSchema.methods.addApply      = function(app_id, callback){
     this.save(function(err){
         callback();
     });
+}
+
+userSchema.methods.addInterest       = function(user_id, callback){
+    if (this.interests.list.indexOf(user_id) == -1){
+        this.interests.list.push(user_id);
+        this.interests.number ++;
+        this.save(function(err){
+            callback();
+        })
+    } else{
+        callback();
+    }
+}
+
+userSchema.methods.addContract       = function(contract, callback){
+    if (this.contracts.list.indexOf(contract._id) == -1){
+        this.contracts.list.push(contract._id);
+        this.contracts.number ++;
+        this.save(function(err){
+            callback();
+        })
+    } else{
+        callback();
+    }
 }
 
 // create the model for users and expose it to our app

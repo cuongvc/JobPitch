@@ -1,6 +1,6 @@
 ## Link POST MAN
 ```
-    https://www.getpostman.com/collections/c7e1d9834d33745fdec3
+    https://www.getpostman.com/collections/086929e2bc7c10de98df
 
 ```
 ## API
@@ -1297,5 +1297,105 @@ type_like = 3: like comment, truong comment_id co gia tri
 ```
 {"error_code":0}
 
+
+```
+
+### 18. Interest
+
+```
+POST http://jobpitch.campcoders.com/api/interest
+Content-Type: application/json
+Cache-Control: no-cache
+
+{
+    "token"                 : "$2a$08$zW6mO2jG5yGk2KzcJoiawuey7FoZ8SL2DKyjQwG",
+    "user_id"               : "54d18f02c0f4602d7d22055f",
+    "app_id"                : "54d0fe3b2b6d292c1e71cb93"
+}
+
+
+
+    app_id : application ma user interest
+    user phai la cong ty (isUser = 2), da verify moi co quyen interest. API 
+    nay dung luon cho truong hop bo interest.
+
+```
+##### Regex
+```
+
+
+```
+##### Return
+```
+{"error_code":0}
+
+```
+
+### 19. Hire
+
+```
+POST http://jobpitch.campcoders.com/api/hire
+Content-Type: application/json
+Cache-Control: no-cache
+
+{
+    "token"                 : "$2a$08$Qv//nggkHtkV6GzEXu1NF.smGyZKETNoY3ydYG",
+    "user_id"               : "54d266309709b2cd3fd845c4",
+    "job_id"                : "54d2664a9709b2cd3fd845c5",
+    "app_id"                : "54d2665f9709b2cd3fd845c6"
+}
+
+
+
+
+    app_id : application ma company hire
+    user hire phai la cong ty (isUser = 2), la chu cua job
+    job_id : job dang hire
+
+    Sau khi hire, danh dau application do la da duoc hire. 
+    Trong thong tin cua  job da them 1 truong la contract : list cac contract cua job do.
+    Trong thong tin cua  user da them 1 truong la contract : list cac contract cua user do.   
+
+```
+##### Regex
+```
+
+
+```
+##### Return
+```
+{"error_code":0}
+
+```
+
+### 20. Change Status job
+
+```
+POST http://jobpitch.campcoders.com/api/job_status
+Content-Type: application/json
+Cache-Control: no-cache
+
+{
+    "token"                 : "$2a$08$Qv//nggkHtkV6GzEXu1NF.smGyZKETNoY3ydYG",
+    "user_id"               : "54d266309709b2cd3fd845c4",
+    "job_id"                : "54d2664a9709b2cd3fd845c5",
+    "status_job"            : 1
+}
+
+    Chi user chu cua job moi duoc thuc hien
+    1: dang tim nguoi
+    2: het han dang tuyen (sau 24h)
+    3: het han tim nguoi
+    4: da tim duoc nguoi 
+
+```
+##### Regex
+```
+
+
+```
+##### Return
+```
+{"error_code":0}
 
 ```

@@ -4,6 +4,8 @@ var ObjectId        = mongoose.Schema.Types.ObjectId;
 var bcrypt          = require('bcrypt-nodejs');
 var domain          = require('./../config/default').domain_default;
 var add_hashTag_app = require('./../my_module/add_hashTag').app;
+var check_user            = require('./../my_module/check_exist').user;  
+var User            = require('./users');
 
 
 // define the schema for our application model
@@ -78,9 +80,26 @@ var applicationSchema = mongoose.Schema({
 
     },
 
+    interests            : {
+        number       : {
+            type        : Number,
+            default     : 0
+        },        
+        list         : [{
+            type        : ObjectId,
+            ref         : 'users'
+        }]
+    },   
+
     hires            : {
-        type          : Number,
-        default     : 0
+        status       : {
+            type     : Number,
+            default  : 0
+        },
+
+        time         : {
+            type     : String
+        }
 
     },
 
@@ -97,7 +116,8 @@ applicationSchema.methods.isOwn         = function(companyId){
 }
 
 applicationSchema.methods.newInfor    = function(user_id, user_name, user_avatar, 
-                                        job_id, title, hash_tag, description, time, file, callback){
+                                        job_id, title, hash_tag, description, time, 
+                                        file, callback){
 
     var app = this;
     app.user_id        = user_id;
@@ -121,6 +141,9 @@ applicationSchema.methods.newInfor    = function(user_id, user_name, user_avatar
     });
 
 }   
+
+
+// ================ ADD COMMENT, LIKE, INREST, HIRE ================
 
 applicationSchema.methods.add_comment = function(comment_id, callback){
 	this.comment.push(comment_id);
@@ -146,9 +169,46 @@ applicationSchema.methods.addLike       = function(user_id, callback){
     }
 }
 
-applicationSchema.methods.editInfor     = function(application){
-       return this;
+applicationSchema.methods.addInterest       = function(user_id, callback){
+    var app = this;
+    if (app.interests.list.indexOf(user_id) != -1){
+        app.interests.list.splice(app.interests.list.indexOf(user_id), 1);
+        app.interests.number --;
+
+        app.save(function(err){
+            callback();
+        })
+
+    } else{
+        app.interests.list.push(user_id);
+        app.interests.number ++;
+
+        User.findOne({_id : app.user_id}, function(err, user_exist){
+            if (!err && user_exist){
+                user_exist.addInterest(user_id, function(){
+                    app.save(function(err){
+                        console.log('App save');
+                        callback();
+                    })            
+                })
+            } else{
+                callback();
+            }
+        })
+    }
 }
+
+applicationSchema.methods.addHire       = function(){
+    this.hires.status = 1;
+    this.hires.time         = new Date(new Date().toGMTString()).toJSON();
+
+    this.save(function(err){
+    });
+}
+
+
+// =========================================================================
+
 
 // create the model for applications and expose it to our app
 module.exports = mongoose.model('applications', applicationSchema);

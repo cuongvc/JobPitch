@@ -51,7 +51,7 @@ module.exports										=	function(req, res){
 								res.status(200).end();
 								return 1;
 							} else{
-								app_exist.add_comment(comment._id, function(){
+								app_exist.addComment(comment._id, function(){
 									res.write(JSON.stringify({error_code : 0, comment : comment }));
 									res.status(200).end();
 								});
@@ -75,7 +75,7 @@ module.exports										=	function(req, res){
 								res.status(200).end();
 								return 1;
 							} else{
-								cmt_exist.add_comment(comment._id, function(){
+								cmt_exist.addComment(comment._id, function(){
 									res.write(JSON.stringify({error_code : 0, comment : comment }));
 									res.status(200).end();
 								});

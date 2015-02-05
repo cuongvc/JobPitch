@@ -81,7 +81,11 @@ var jobSchema = mongoose.Schema({
 
     status           : {
         type         : Number,
-        default      : 1        // 1 : hiring, 2: hired
+        default      : 1
+            // 1: dang tim nguoi
+            // 2: het han dang tuyen (sau 24h)
+            // 3: het han tim nguoi
+            // 4: da tim duoc nguoi 
     },
 
     likes            : {
@@ -125,6 +129,17 @@ var jobSchema = mongoose.Schema({
     hires            : {
         type        : Number,
         default     : 0
+    },
+
+    contracts        : {
+        number       : {
+            type        : Number,
+            default     : 0
+        },        
+        list         : [{
+            type        : ObjectId,
+            ref         : 'contract'
+        }]
     }
 
 });
@@ -213,7 +228,24 @@ jobSchema.methods.addLike       = function(user_id, callback){
     }
 }
 
+jobSchema.methods.addContract       = function(contract, callback){
+    if (this.contracts.list.indexOf(contract._id) == -1){
+        this.contracts.list.push(contract._id);
+        this.contracts.number ++;
+        this.save(function(err){
+            callback();
+        })
+    } else{
+        callback();
+    }
+}
 
+jobSchema.methods.changeStatus       = function(status, callback){
+   this.status = status;
+   this.save(function(err){
+        callback();
+   })
+}
 
 // create the model for jobs and expose it to our app
 module.exports = mongoose.model('jobs', jobSchema);

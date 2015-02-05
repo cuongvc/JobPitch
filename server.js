@@ -148,7 +148,14 @@ app.get('/directive/home/left-sidebar',function(req,res){
 //  ------ LIKE--- ------------------------------
 	Router_body.post('/like',							 		 routes.like);
 
+//  ------ INTEREST --- ------------------------------
+	Router_body.post('/interest',							 routes.interest);
 
+//  ------ HIRE     --- ------------------------------
+	Router_body.post('/hire',							 		 routes.hire);
+
+//  ------ STATUS JOB     --- ------------------------------
+	Router_body.post('/job_status',						 routes.job.status);
 
 // =================================== LISTEN BY IP AND PORT ========================
 
