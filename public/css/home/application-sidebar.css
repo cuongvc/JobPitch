@@ -123,19 +123,3 @@
 	cursor: pointer;
 	/*border-radius: 100%;*/
 }
-
-.three-dot{
-	cursor: pointer;
-}
-.three-dot:hover span{
-	color: #333;
-}
-.three-dot span{
-	display: inline-block;
-	width: 3px;
-	height: 3px;
-	border-radius: 100%;
-	background: #8899a6;
-	box-shadow:  0 0 1px #ddd;
-	
-}

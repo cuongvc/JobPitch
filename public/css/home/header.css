@@ -2,10 +2,10 @@
 	background: #2dbea1;
 	border: none;
 	border-radius: 0px;
-	font-family: 'Proxima Nova'!important;
+	font-size: 13px;
 }
 .navbar-default .navbar-brand{
-	color: #fff!important;
+	color: #fafafa!important;
 }
 .navbar-nav > li  > a{
 	color: #fff!important;
@@ -15,4 +15,62 @@
 	max-height: 35px;
 	border-radius: 100%;
 	margin-top: 7px;
+}
+#navbar-left ul li{
+	font-size: 16px;
+	position: relative;
+}
+#navbar-left ul li > .notification-icon{
+	position: absolute;
+	background: red;
+	border-radius: 3px;
+	box-shadow: 0 0 5px #333;
+	padding: 2px 5px;
+	font-size: 11px;
+	color: #fafafa;
+	top: 2px;
+	right: 0px;
+}
+.notification-box{
+	position: absolute;
+	z-index: 15;
+}
+.notification-box ul{
+	background: #fff;
+	border-radius: 4px;
+	box-shadow: 0 0 5px #333;
+}
+.notification-box ul li{
+	width: 300px;
+	font-size: 13px!important;
+	margin-top: 5px;
+	padding: 3px 5px;
+}
+.notification-box ul::before{
+	display: block;
+	content: '';
+	border: 10px solid transparent;
+	border-bottom: 10px solid #fff;
+	width: 0px;
+	height: 0px;
+	margin-top: -20px;
+	margin-left: 12px;
+}
+.notification-box ul li:hover{
+	background: #eee;
+}
+.notification-box ul li span strong{
+	color: #3b5998;
+}
+.notification-box ul li .notification-box-image img{
+	width: 40px;
+	height: 40px;
+	margin-right: 5px;
+}
+.chat-notification p{
+	margin: 0px;
+}
+.chat-sort-text{
+	font-size: 11px;
+	color: #8899a6;
 }
