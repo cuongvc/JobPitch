@@ -22,7 +22,7 @@
 }
 #navbar-left ul li > .notification-icon{
 	position: absolute;
-	background: red;
+	background: #e74c3c;
 	border-radius: 3px;
 	box-shadow: 0 0 5px #333;
 	padding: 2px 5px;
