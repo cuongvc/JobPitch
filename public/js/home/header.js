@@ -4,14 +4,30 @@ Header.directive('header',function(){
 		restrict: 'E',
 		templateUrl: '/directive/home/header',
 		link: function(scope,element,attrs){
-			$('#navbar-left .fa').click(function(){
+			$('#navbar-left .fa').click(function(e){
+				e.stopPropagation();
 				$('.notification-box').addClass('hidden');
 				$(this).parent().parent().find('.notification-box').toggleClass('hidden');
+				$('body').click(function(){
+					$('.notification-box').addClass('hidden');
+				})
+				$('.notification-box').click(function(e){
+					e.stopPropagation();
+				})
 			})
 		},
 	}
 })
 Header.controller('HeaderCtrl',function($scope,$http){
+	$scope.ChangeHeaderSearchValue = function(value,evt){
+		console.log(evt);
+	}
+	$scope.btnSearch_click  = function(value){
+		HeaderSearch(value);
+	}
+	function HeaderSearch(value){
+		console.log(value);
+	}
 	$scope.Notifications = [
 		{
 			image: "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xfp1/v/t1.0-1/c0.0.160.160/p160x160/1394789_576403985759899_2014020168_n.jpg?oh=e009eea131bd6cd4929f118f78efe467&oe=556D0D5B&__gda__=1432873081_fe5509aa71fdd77113731b3b8b9972d9",

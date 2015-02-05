@@ -56,11 +56,12 @@
 	<script type="text/javascript" src="/js/home/application-sidebar.js"></script>
 	<script type="text/javascript" src="/js/home/footer.js"></script>
 	<script type="text/javascript" src="/js/home/index.js"></script>
+	
+	<link rel="stylesheet" type="text/css" href="/css/home/template.css">
 	<link rel="stylesheet" type="text/css" href="/bower_components/animate.css/animate.min.css">
 	<link rel="stylesheet" type="text/css" href="/bower_components/nightfury_bootstrap_36grid/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="/bower_components/nightfury_bootstrap_36grid/css/bootstrap-theme.min.css">
 	<link rel="stylesheet" type="text/css" href="/bower_components/fontawesome/css/font-awesome.min.css">
-	<link rel="stylesheet" type="text/css" href="/css/home/template.css">
 	<link rel="stylesheet" type="text/css" href="/css/home/index.css">
 	<link rel="stylesheet" type="text/css" href="/css/home/application-sidebar.css">
 
@@ -77,6 +78,11 @@
 		}(document, 'script', 'facebook-jssdk'));
 	</script>
 	<!-- fb SDK -->
+	<!-- TWITTER SDK -->
+	<script>
+	window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return;js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);t._e=[];t.ready=function(f){t._e.push(f);};return t;}(document,"script","twitter-wjs"));
+	</script>
+	<!-- TWITTER SDK -->
 	<header></header>
 	<profile ng-if="PAGE == page.setting" page="{{ page.setting }}"></profile>
 	<jobs ng-if="PAGE == page.index" page="{{ page.index }}"></jobs>

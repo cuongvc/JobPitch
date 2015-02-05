@@ -17,7 +17,7 @@
       <div id="navbar-left">
         <ul class="nav navbar-nav navbar-left">
           <li>
-            <a href=""><i class="fa fa-bell-o"></i></a>
+            <a><i class="fa fa-bell-o"></i></a>
             <span class="notification-icon">69</span>
             <div class="notification-box hidden">
               <ul>
@@ -38,7 +38,7 @@
             </div> <!-- notification-box -->
           </li>
           <li>
-            <a href=""><i class="fa fa-comment-o"></i></a>
+            <a><i class="fa fa-comment-o"></i></a>
             <span class="notification-icon">69</span>
              <div class="notification-box hidden">
               <ul>
@@ -59,6 +59,16 @@
               </ul>
             </div> <!-- notification-box -->
           </li>
+          <!-- search form -->
+          <form class="navbar-form navbar-left" role="search">
+            <div class="form-group">
+              <div class="inner-addon right-addon">
+                  <i class="glyphicon glyphicon-search" ng-click="btnSearch_click(HeaderSeachValue)"></i>
+                  <input type="text" class="form-control" ng-model="HeaderSeachValue" ng-change="ChangeHeaderSearchValue(HeaderSearchValue,$event)">
+              </div>
+            </div>
+          </form>
+          <!-- search form -->
         </ul>
       </div> <!-- navbar-left -->
       <!-- Collect the nav links, forms, and other content for toggling -->

@@ -134,5 +134,27 @@ Jobs.controller('JobCtrl',function($scope,$http){
 			})
 		}
 	}
+	/*
+	* like
+	*/
+	$scope.LikeJob = function(job){
+		var data = {
+			user_id        : $scope.user._id,
+			token          : $scope.user.token,
+			type_like      : 1,
+			job_id         : job._id,
+			application_id :  '',
+			comment_id     :  '',
+		};
+		console.log(data);
+		$http.post(STR_API_LIKE,data).success(function(response){
+			console.log(response);
+			if(response.error_code == 0){
+				var index = jobs.indexOf(job);
+				jobs[index].likes.number += 1;
+				$scope.jobs = jobs;
+			}
+		})
+	}
 
 })
