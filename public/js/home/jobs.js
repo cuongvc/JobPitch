@@ -156,5 +156,24 @@ Jobs.controller('JobCtrl',function($scope,$http){
 			}
 		})
 	}
+	$scope.LikePitch = function(pitch,job){
+		var data = {
+			user_id        : $scope.user._id,
+			token          : $scope.user.token,
+			type_like      : 2,
+			job_id         : '',
+			application_id :  pitch._id,
+			comment_id     :  '',
+		};
+		$http.post(STR_API_LIKE,data).success(function(response){
+			console.log(response);
+			if(response.error_code == 0){
+				var index_job = jobs.indexOf(job);
+				var index_pitch = jobs[index_job].applications.loadFromSever.indexOf(pitch);
+				jobs[index_job].applications.loadFromSever[index_pitch].likes.number += 1;
+				$scope.jobs = jobs;
+			}
+		})
+	}
 
 })
