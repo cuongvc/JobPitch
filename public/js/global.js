@@ -13,3 +13,4 @@
 	var STR_API_LOGIN       = BASE_URL + '/api/login_email';
 	var STR_API_TAGS        = BASE_URL + '/api/tags';
 	var STR_API_LIKE        = BASE_URL + '/api/like';
+	var STR_API_GET_USER    = BASE_URL + '/api/users';
