@@ -199,8 +199,8 @@ Jobs.controller('JobCtrl',function($scope,$http,USER){
 				if(response.error_code == 0){
 					jobs[index].likes.users = response.users;
 					jobs[index].likes.loaded = true;
-					height = -(jobs[index].likes.users.length * 17 + 46);
-					popover.css({marginTop: height,marginLeft:-20});
+					height = -(jobs[index].likes.users.length * 17 + 28);
+					popover.css({marginTop: height,marginLeft:-10});
 					console.log(height);
 					popover.removeClass('hidden');
 				}
@@ -208,8 +208,8 @@ Jobs.controller('JobCtrl',function($scope,$http,USER){
 				console.log($scope.jobs);
 			})
 		}else{
-			height = -(jobs[index].likes.users.length * 17 + 46);
-			popover.css({marginTop: height,marginLeft:-20});
+			height = -(jobs[index].likes.users.length * 17 + 28);
+			popover.css({marginTop: height,marginLeft:-10});
 			console.log(height);
 			popover.removeClass('hidden');
 		}
