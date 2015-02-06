@@ -16,7 +16,7 @@
 							<li class="pull-left" ng-click="ViewApplicant(job)"><span ng-bind="job.applications.number"></span> <span>pitch<span ng-if="job.applications.number > 1">s</span></span></li>
 							
 							<li class="pull-right"><span ng-bind="job.shares.number"></span> <span>share</span></li>
-							<li class="pull-right"><span ng-bind="job.likes.number"></span> <span ng-click="LikeJob(job)">like</span></li>
+							<li class="pull-right liked-{{ job.likes.liked }}"><span ng-bind="job.likes.number"></span> <span ng-click="LikeJob(job)">like</span></li>
 							<li class="pull-right" ng-click="ShareJobOnFacebook(job)"><i class="fa fa-facebook"></i></li>
 							<li class="pull-right"><a target="_blank" href="https://plus.google.com/share?url=campcoders.com"><i class="fa fa-google-plus"></i></a></li>
 							<li class="pull-right"><a target="_blank" class="twitter-share-button" href="https://twitter.com/share"><i class="fa fa-twitter"></i></a></li>

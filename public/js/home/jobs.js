@@ -21,6 +21,13 @@ Jobs.controller('JobCtrl',function($scope,$http){
 		console.log(response);
 		if(response.error_code == 0){
 			jobs = response.jobs;
+			jobs.forEach(function(v,k){
+				if(v.likes.list.indexOf($scope.user._id) > -1){
+					jobs[k].likes.liked = true;
+				}else{
+					jobs[k].likes.liked = false;
+				}
+			})
 		}
 		$scope.jobs = jobs;
 	})
@@ -148,10 +155,15 @@ Jobs.controller('JobCtrl',function($scope,$http){
 		};
 		console.log(data);
 		$http.post(STR_API_LIKE,data).success(function(response){
-			console.log(response);
 			if(response.error_code == 0){
 				var index = jobs.indexOf(job);
-				jobs[index].likes.number += 1;
+				if(job.likes.liked){
+					jobs[index].likes.liked = false;
+					jobs[index].likes.number--;
+				}else{
+					jobs[index].likes.liked = true;
+					jobs[index].likes.number++;
+				}
 				$scope.jobs = jobs;
 			}
 		})

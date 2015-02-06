@@ -188,3 +188,9 @@
 .application-sidebar-company-view-more{
 	display: inline-block;
 }
+/*
+* liked
+*/
+.liked-true{
+	color: blue!important;
+}
