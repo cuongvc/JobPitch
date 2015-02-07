@@ -9,68 +9,69 @@ var add_hashTag_comment = require('./../my_module/add_hashTag').comment;
 // define the schema for our comment model
 var commentSchema = mongoose.Schema({
 
-    user_id          : {
-        type         : ObjectId,
-        ref          : 'users' 
+    user_id: {
+        type: ObjectId,
+        ref: 'users'
     },
 
-    user_name        : {
-        type         : String
+    user_name: {
+        type: String
     },
 
-    user_avatar      : {
-        type         : String
+    user_avatar: {
+        type: String
     },
 
-    hash_tag         : [{
-        type         : String
+    hash_tag: [{
+        type: String
     }],
 
-    content          : {
-        type         : String,
-        default      : ''
+    content: {
+        type: String,
+        default: ''
     },
 
-    time             : {
-        type         : String
+    time: {
+        type: String
     },
 
-    likes            : {
-        number       : {
-            type        : Number,
-            default     : 0
-        },        
-        list         : [{
-            type        : ObjectId,
-            ref         : 'users'
-        }]
-    },
-
-    shares           : {
-        number       : {
-            type        : Number,
-            default     : 0
+    likes: {
+        number: {
+            type: Number,
+            default: 0
         },
-        list         : [{
-            type        : ObjectId,
-            ref         : 'users'
+        list: [{
+            type: ObjectId,
+            ref: 'users'
         }]
     },
 
-    comments           : [{
-    	type           : ObjectId,
-    	ref            : 'comments'
-    }],
-
-    comment_parent     : {
-        type           : ObjectId,
-        ref            : 'comments'
+    shares: {
+        number: {
+            type: Number,
+            default: 0
+        },
+        list: [{
+            type: ObjectId,
+            ref: 'users'
+        }]
     },
 
-    application_parent : {
-        type           : ObjectId,
-        ref            : 'applications'
+    comments: [{
+        type: ObjectId,
+        ref: 'comments'
+    }],
+
+    comment_parent: {
+        type: ObjectId,
+        ref: 'comments'
+    },
+
+    application_parent: {
+        type: ObjectId,
+        ref: 'applications'
     }
+
 
 });
 
