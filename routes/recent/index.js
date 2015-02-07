@@ -40,7 +40,6 @@ module.exports					=	function(req, res){
 
 				async.waterfall([
 					function(next){
-						console.log('FIND RESULT : ', jobs)
 
 						for (var i = 0 ; i < jobs.length; i ++){
 							if (jobs[i].containTag(tag) && jobs[i].distance(lat, lng) ){
@@ -51,7 +50,6 @@ module.exports					=	function(req, res){
 					},
 
 					function(next){
-						console.log('PASS TAG AND DISTANCE : ', result)
 						result.sort(function(x, y){
 							return x.time < y.time;
 						});
@@ -59,7 +57,6 @@ module.exports					=	function(req, res){
 					}
 
 				], function(err){
-					console.log('RESULT : ', result);
 					res.write(JSON.stringify({ error_code : 0, jobs : result}));
 					res.status(200).end();
 				});

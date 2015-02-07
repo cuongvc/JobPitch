@@ -196,7 +196,7 @@ var userSchema = mongoose.Schema({
         default      : ''
     },
 
-    notifications    : [{
+    notifications    : {
 
         unread       : {
             type        : Number,
@@ -205,10 +205,11 @@ var userSchema = mongoose.Schema({
 
         list         : [{
             type         : ObjectId,
-            ref          : 'notifications'
-        }]
+            ref          : 'notifications',
+            default  : []
+        }],
 
-    }],
+    },
 
     messages         : [{
 

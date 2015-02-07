@@ -202,8 +202,8 @@ jobSchema.methods.newInfor    = function(image, image_small, image_normal, user_
     job.location.lng           = lng;
     job.location.address       = address;
     job.receive_notify         = receive_notify;
-    job.permalink              = domain + "/" + this._id + "/" + title.replace(' ', '-');
-
+    console.log('JOB : ', job);
+    job.permalink              = title.replace(' ', '-');
 
     add_hashTag_job(hash_tag, job._id, function(){
         callback(job);           

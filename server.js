@@ -62,9 +62,9 @@ app.get('/user/:user_id',function(req,res){
 	
 })
 
-app.get('/job/:job_id/:permalink',function(req,res){
+app.get('/job/:permalink',function(req,res){
 
-	Job.findOne({_id : req.params.job_id}, function(err, job){
+	Job.findOne({permalink : req.params.permalink}, function(err, job){
 		if (err){
 			res.write(JSON.stringify({error_code : 1, msg : err.toString()}));
 			res.status(200).end();

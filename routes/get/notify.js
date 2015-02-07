@@ -24,13 +24,20 @@ module.exports								=	function(req, res){
 				res.status(200).end();
 			} else
 
-			User.find({_id : {$in : users}}, 'userName avatar avatar_small avatar_normal', function(err, users){
+			Notify.find({_id : {$in : user_exist.notifications.list}, status : 0}, function(err, notifys){
 
 				if (err){
+					console.log(err);
 					res.write(JSON.stringify({ error_code : 1, msg : err.toString() }));
 					res.status(200).end();
 				} else {
-					res.write(JSON.stringify({ error_code : 0, users : users }));
+
+					for (var i = 0 ; i < notifys.length ; i ++){
+						notifys[i].status = 1;
+						notifys.save(function(err){});
+					}
+
+					res.write(JSON.stringify({ error_code : 0, notifys : notifys }));
 					res.status(200).end();
 				}
 
