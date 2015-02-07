@@ -160,9 +160,22 @@ Jobs.controller('JobCtrl',function($scope,$http,USER){
 				if(job.likes.liked){
 					jobs[index].likes.liked = false;
 					jobs[index].likes.number--;
+					jobs[index].likes.users.forEach(function(v,k){
+						if(v._id == $scope.user._id){
+							jobs[index].likes.users.splice(k);
+						}
+					})
 				}else{
 					jobs[index].likes.liked = true;
 					jobs[index].likes.number++;
+					var me = {
+								_id: $scope.user._id,
+								avatar: $scope.user.avatar.origin,
+								avatar_small: $scope.user.avatar.small,
+								avatar_normal: $scope.user.avatar.normal,
+								userName: $scope.user.username,
+							};
+					jobs[index].likes.users.push(me);
 				}
 				$scope.jobs = jobs;
 			}

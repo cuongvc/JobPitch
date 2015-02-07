@@ -20,7 +20,7 @@
 								ng-mouseover="ViewListLikeJob(job)"
 								ng-mouseout="HiddenListLike(job)">
 								<span ng-bind="job.likes.number"></span> <span ng-click="LikeJob(job)">like</span>
-								<div class="pvh-popover list-like-job pvh-popover-top hidden">
+								<div class="pvh-popover list-like-job pvh-popover-top hidden" ng-if="job.likes.number > 0">
 									<ul>
 										<li ng-repeat="user in job.likes.users" ng-bind="user.userName"></li>
 									</ul>
