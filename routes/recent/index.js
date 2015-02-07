@@ -19,6 +19,7 @@ module.exports					=	function(req, res){
 	catch(err){
 		res.write(JSON.stringify({ error_code : 1, msg : err.toString() }));
 		res.status(200).end();
+		return 0;
 	}
 
 	finally{
