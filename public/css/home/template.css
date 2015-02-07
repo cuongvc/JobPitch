@@ -13,7 +13,7 @@
 body{
 	/*font-family: 'Proxima Nova';*/
 	font-family: arial!important;
-	background: #EEEEEE;
+	background: #EEEEEE!important;
 }
 @media(min-width:1500px){
 	.container{
