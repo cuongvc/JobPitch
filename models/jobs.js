@@ -8,8 +8,11 @@ var image_default           = require('./../config/default').jobImage_default;
 var distance                = require('./../my_module/map/distance');
 var add_hashTag_job         = require('./../my_module/add_hashTag').job;
 var Jobs                    = require('./jobs');
-var autoIncrement           = require('mongoose-auto-increment');
-autoIncrement.initialize(mongoose);
+// var autoIncrement           = require('mongoose-auto-increment');
+// autoIncrement.initialize(mongoose);
+
+var make_permalink          = require('./../my_module/make_permalink');
+var Permalink               = require('./permalinks');
 
 
 // define the schema for our job model
@@ -52,7 +55,6 @@ var jobSchema = mongoose.Schema({
         index: true
     },
 
-    
 
     hash_tag         : {
         type         : [{
@@ -202,21 +204,17 @@ jobSchema.methods.newInfor    = function(image, image_small, image_normal, user_
     job.location.lng           = lng;
     job.location.address       = address;
     job.receive_notify         = receive_notify;
-    console.log('JOB : ', job);
-
-    add_hashTag_job(hash_tag, job._id, function(){
-        callback(job);           
-    });
-
     
+    job.permalink =  make_permalink(title);
+    add_hashTag_job(hash_tag, job._id, function(){
+        callback(job);
+    })
+
 }   
 
 jobSchema.methods.distance      = function(lat, lng){
     var location1 = {lat : lat, lng : lng};
     var location2 = {lat : this.location.lat, lng : this.location.lng};
-    console.log(location2);
-    console.log(location1);
-    console.log('Distance : ', distance(location1, location2));
     return distance(location1, location2) < distanceLimit;
 }
 
@@ -272,7 +270,7 @@ jobSchema.methods.changeStatus       = function(status, callback){
    })
 }
 
-jobSchema.plugin(autoIncrement.plugin, {model : 'Job', fields : 'jobId'});
+// jobSchema.plugin(autoIncrement.plugin, {model : 'Job', fields : 'jobId'});
 
 // create the model for jobs and expose it to our app
 module.exports = mongoose.model('jobs', jobSchema);

@@ -2,6 +2,8 @@ var User											=	require('./../../models/users');
 var check_user                = require('./../../my_module/check_exist').user;
 var respon_object             = require('./../../my_module/respon_object').user;
 
+var Permalink                 = require('./../../models/permalinks');
+
 module.exports								=	function(req, res){
 
 	try{
@@ -29,8 +31,13 @@ module.exports								=	function(req, res){
 				newUser.newInforLc(user_name, email, password, isUser, function(user){
 
 					req._passport.session.user = user._id;
-					
-					respon_object(1, res, user);
+
+	        var newPermalink = new Permalink();
+
+	        newPermalink.newInfor(user._id, '', 1, user.userName, function(){
+	            console.log();
+	        });					
+        	respon_object(1, res, user);
 				})
 			}
 		})

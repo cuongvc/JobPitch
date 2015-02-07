@@ -14,6 +14,7 @@ var Job                 = require('./../../models/jobs');
 var io_notify           = require('./../../my_module/socket');
 
 var Notification        = require('./../../models/notifications');
+var Permalink           = require('./../../models/permalinks');
 
 module.exports				=	function(req, res){
 
@@ -110,20 +111,29 @@ module.exports				=	function(req, res){
         newJob.newInfor(image, image_small, image_normal, user_exist.id, user_exist.userName, title, 
                         hash_tag, desc, lat, lng, address, link_direct, time, user_exist.followMes,
                         function(object){
-                          user_exist.addJob(object._id);
-                          respon_object(res, object);
 
-                          for (var i = 0 ; i < object.receive_notify.length ; i ++){
-                            var notification = new Notification();
-                            notification.newInfor(object.receive_notify[i], user_exist.userName, 
-                                                  ' create new Job', object.permalink, 
-                                                  user_exist.avatar_small, 11);
-                          }
+                          object.save(function(err){
+                            user_exist.addJob(object._id);
+                            respon_object(res, object);
+
+                            var newPermalink = new Permalink();
+
+                            newPermalink.newInfor('', object._id, 2, title, function(){
+                              console.log();
+                            });
+
+                            for (var i = 0 ; i < object.receive_notify.length ; i ++){
+                              var notification = new Notification();
+                              notification.newInfor(object.receive_notify[i], user_exist.userName, 
+                                                    ' create new Job', object.permalink, 
+                                                    user_exist.avatar_small, 11);
+                            }
 
 
-                          io_notify.emit('create_job', {user_receive_notify : object.receive_notify,
-                                                        job                 : object});
+                            io_notify.emit('create_job', {user_receive_notify : object.receive_notify,
+                                                          job                 : object});
 
+                            })
                         }
         ) 
       })

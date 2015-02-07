@@ -1,392 +1,393 @@
 // load the things we need
-var mongoose        = require('mongoose');
-var graph           =   require('fbgraph');
-var async           = require('async');
-var ObjectId        = mongoose.Schema.Types.ObjectId;
-var bcrypt          = require('bcrypt-nodejs');
-var domain          = require('./../config/default').domain_default;
-var avatar_default  = require('./../config/default').avatar_default;
-var logo_default    = require('./../config/default').logo_default;
+var mongoose = require('mongoose');
+var graph = require('fbgraph');
+var async = require('async');
+var ObjectId = mongoose.Schema.Types.ObjectId;
+var bcrypt = require('bcrypt-nodejs');
+var domain = require('./../config/default').domain_default;
+var avatar_default = require('./../config/default').avatar_default;
+var logo_default = require('./../config/default').logo_default;
 
 if (process.env.USER == 'root')
     var Oauth = require('./../config/Oauth');
 else
     var Oauth = require('./../config/Oauth_development');
 
-var client_id_fb     = Oauth.facebookAuth.clientID;
+var client_id_fb = Oauth.facebookAuth.clientID;
 var client_secret_fb = Oauth.facebookAuth.clientSecret;
+var Permalink       = require('./permalinks');
 
 
 // define the schema for our user model
 var userSchema = mongoose.Schema({
 
-    address          : {
-        type         : String,
-        default      : ''
+    address: {
+        type: String,
+        default: ''
     },
 
-    isUser           : {
-        type         : Number,
-        default      : 1
+    isUser: {
+        type: Number,
+        default: 1
     },
 
-    location         : {
-        lat          : {
-            type         : Number,
-            default      : 40.681966
+    location: {
+        lat: {
+            type: Number,
+            default: 40.681966
         },
 
-        lng          : {
-            type         : Number,
-            default      : -73.998220
+        lng: {
+            type: Number,
+            default: -73.998220
         },
 
-        address      : {
-            type         : String,
-            default      : "417 Clinton St Brooklyn, NY 11231, Hoa Kỳ"
+        address: {
+            type: String,
+            default: "417 Clinton St Brooklyn, NY 11231, Hoa Kỳ"
         }
     },
 
-    type_account     : {
-        type         : Number,
-        default      : 1
+    type_account: {
+        type: Number,
+        default: 1
     },
 
-    local_infor      : {
-        password     : {
-            type     : String,
-            default  : ''
+    local_infor: {
+        password: {
+            type: String,
+            default: ''
         },
-        email        : {
-            type     : String,
-            default  : ''
-        }
-    },
-    
-    fb_infor         : {
-        id           : {
-            type     : String,
-            default  : ''
-        },
-        avatar       : {
-            type     : String,
-            default  : ''
-        },
-        username     : {
-            type     : String,
-            default  : ''
-        },
-        gender        : {
-            type     : String,
-            default  : ''
-        },
-        profileUrl        : {
-            type     : String,
-            default  : ''
-        },
-        email        : {
-            type     : String,
-            default  : ''
-        },
-        access_token :{
-            type     : String,
-            default  : ''
+        email: {
+            type: String,
+            default: ''
         }
     },
 
-    twitter_infor         : {
-        id           : {
-            type     : String,
-            default  : ''
+    fb_infor: {
+        id: {
+            type: String,
+            default: ''
         },
-        avatar       : {
-            type     : String,
-            default  : ''
+        avatar: {
+            type: String,
+            default: ''
         },
-        username     : {
-            type     : String,
-            default  : ''
+        username: {
+            type: String,
+            default: ''
         },
-        gender        : {
-            type     : String,
-            default  : ''
+        gender: {
+            type: String,
+            default: ''
         },
-        profileUrl        : {
-            type     : String,
-            default  : ''
+        profileUrl: {
+            type: String,
+            default: ''
         },
-        email        : {
-            type     : String,
-            default  : ''
+        email: {
+            type: String,
+            default: ''
         },
-        access_token : {
-            type     : String,
-            default  : ''
-        },
-        token_secret : {
-            type     : String,
-            default  : ''
+        access_token: {
+            type: String,
+            default: ''
         }
     },
 
-    linkedin_infor         : {
-        id           : {
-            type     : String,
-            default  : ''
+    twitter_infor: {
+        id: {
+            type: String,
+            default: ''
         },
-        avatar       : {
-            type     : String,
-            default  : ''
+        avatar: {
+            type: String,
+            default: ''
         },
-        username     : {
-            type     : String,
-            default  : ''
+        username: {
+            type: String,
+            default: ''
         },
-        gender        : {
-            type     : String,
-            default  : ''
+        gender: {
+            type: String,
+            default: ''
         },
-        profileUrl        : {
-            type     : String,
-            default  : ''
+        profileUrl: {
+            type: String,
+            default: ''
         },
-        email        : {
-            type     : String,
-            default  : ''
+        email: {
+            type: String,
+            default: ''
         },
-        access_token :{
-            type     : String,
-            default  : ''
+        access_token: {
+            type: String,
+            default: ''
+        },
+        token_secret: {
+            type: String,
+            default: ''
         }
     },
 
-    google_infor         : {
-        id           : {
-            type     : String,
-            default  : ''
+    linkedin_infor: {
+        id: {
+            type: String,
+            default: ''
         },
-        avatar       : {
-            type     : String,
-            default  : ''
+        avatar: {
+            type: String,
+            default: ''
         },
-        username     : {
-            type     : String,
-            default  : ''
+        username: {
+            type: String,
+            default: ''
         },
-        gender        : {
-            type     : String,
-            default  : ''
+        gender: {
+            type: String,
+            default: ''
         },
-        profileUrl        : {
-            type     : String,
-            default  : ''
+        profileUrl: {
+            type: String,
+            default: ''
         },
-        email        : {
-            type     : String,
-            default  : ''
+        email: {
+            type: String,
+            default: ''
         },
-        access_token :{
-            type     : String,
-            default  : ''
+        access_token: {
+            type: String,
+            default: ''
         }
     },
 
-    contact          : {
-        type         : String,
-        default      : ''
+    google_infor: {
+        id: {
+            type: String,
+            default: ''
+        },
+        avatar: {
+            type: String,
+            default: ''
+        },
+        username: {
+            type: String,
+            default: ''
+        },
+        gender: {
+            type: String,
+            default: ''
+        },
+        profileUrl: {
+            type: String,
+            default: ''
+        },
+        email: {
+            type: String,
+            default: ''
+        },
+        access_token: {
+            type: String,
+            default: ''
+        }
     },
 
-    notifications    : {
+    contact: {
+        type: String,
+        default: ''
+    },
 
-        unread       : {
-            type        : Number,
-            default     : 0
+    notifications: {
+
+        unread: {
+            type: Number,
+            default: 0
         },
 
-        list         : [{
-            type         : ObjectId,
-            ref          : 'notifications',
-            default  : []
+        list: [{
+            type: ObjectId,
+            ref: 'notifications',
+            default: []
         }],
 
     },
 
-    messages         : [{
+    messages: [{
 
-        unread       : {
-            type        : Number,
-            default     : 0
+        unread: {
+            type: Number,
+            default: 0
         },
 
-        list         : [{
-            type         : ObjectId,
-            ref          : 'messages'
+        list: [{
+            type: ObjectId,
+            ref: 'messages'
         }]
 
     }],
 
-    token     : {
-        type         : String,
-        default      : ''
+    token: {
+        type: String,
+        default: ''
     },
 
-    permission       : {
-        type         : Number,
-        default      : 0
+    permission: {
+        type: Number,
+        default: 0
     },
 
-    active           : {
-        type           : Number,
-        default        : 1
+    active: {
+        type: Number,
+        default: 1
     },
 
-    logo             : {
-        type         : String,
-        default      : logo_default
+    logo: {
+        type: String,
+        default: logo_default
     },
 
-    logo_small       : {
-        type         : String,
-        default      : logo_default
-    },    
-
-    logo_normal      : {
-        type         : String,
-        default      : logo_default
-    },  
-
-    companyName      : {
-        type         : String
+    logo_small: {
+        type: String,
+        default: logo_default
     },
 
-    companyFullname  : {
-        type         : String,
-        default      : ''
+    logo_normal: {
+        type: String,
+        default: logo_default
     },
 
-    website          : {
-        type         : String,
-        default      : ''
+    companyName: {
+        type: String
     },
 
-    followMes        : [{
-        type         : ObjectId,
-        ref          : 'users'
+    companyFullname: {
+        type: String,
+        default: ''
+    },
+
+    website: {
+        type: String,
+        default: ''
+    },
+
+    followMes: [{
+        type: ObjectId,
+        ref: 'users'
     }],
 
 
-    myJobs           : [{
-        type         : ObjectId,
-        ref          : 'jobs'
+    myJobs: [{
+        type: ObjectId,
+        ref: 'jobs'
     }],
 
-    myApplications   : [{
-        type         : ObjectId,
-        ref          : 'applications'
+    myApplications: [{
+        type: ObjectId,
+        ref: 'applications'
     }],
 
-    myFollows          : [{
-        type         : ObjectId,
-        ref          : 'users'
+    myFollows: [{
+        type: ObjectId,
+        ref: 'users'
     }],
 
-    friends          : [{   
+    friends: [{
 
-        list         : {
-            type         : ObjectId,
-            ref          : 'users'
+        list: {
+            type: ObjectId,
+            ref: 'users'
         }
     }],
 
-    avatar           : {
-        type         : String,
-        default      : avatar_default
+    avatar: {
+        type: String,
+        default: avatar_default
     },
 
-    avatar_small     : {
-        type         : String,
-        default      : avatar_default
-    },    
-
-    avatar_normal     : {
-        type         : String,
-        default      : avatar_default
-    },  
-
-    userName       : {
-        type         : String
+    avatar_small: {
+        type: String,
+        default: avatar_default
     },
 
-    userFullname         : {
-        type         : String,
-        default      : ''
+    avatar_normal: {
+        type: String,
+        default: avatar_default
+    },
+
+    userName: {
+        type: String
+    },
+
+    userFullname: {
+        type: String,
+        default: ''
     },
 
 
-    industry         : {
-        type         : String,
-        default      : ''
+    industry: {
+        type: String,
+        default: ''
     },
 
-    education             : {
-        type         : String,
-        default      : ''
+    education: {
+        type: String,
+        default: ''
     },
 
-    gender           : {
-        type         : String
+    gender: {
+        type: String
     },
 
-    year_of_birth    : {
-        type         : Number,
-        default      : null
+    year_of_birth: {
+        type: Number,
+        default: null
     },
 
-    email            : {
-        type         : String,
-        default      : ''
+    email: {
+        type: String,
+        default: ''
     },
 
     // verify = 0 : not verify
-    verify           : {
-        type         : Number,
-        default      : 0
+    verify: {
+        type: Number,
+        default: 0
     },
 
-    skype            : {
-        type         : String,
-        default      : ''
+    skype: {
+        type: String,
+        default: ''
     },
 
-    phone            : {
-        type         : String,
-        default      : ''
+    phone: {
+        type: String,
+        default: ''
     },
 
-    companyEmail     : {
-        type         : String,
-        default      : ''
+    companyEmail: {
+        type: String,
+        default: ''
     },
 
-    interests        : {
-        number       : {
-            type        : Number,
-            default     : 0
-        },        
-        list         : [{
-            type        : ObjectId,
-            ref         : 'users'
+    interests: {
+        number: {
+            type: Number,
+            default: 0
+        },
+        list: [{
+            type: ObjectId,
+            ref: 'users'
         }]
     },
 
-    contracts        : {
-        number       : {
-            type        : Number,
-            default     : 0
-        },        
-        list         : [{
-            type        : ObjectId,
-            ref         : 'contract'
+    contracts: {
+        number: {
+            type: Number,
+            default: 0
+        },
+        list: [{
+            type: ObjectId,
+            ref: 'contract'
         }]
     }
 
@@ -394,26 +395,26 @@ var userSchema = mongoose.Schema({
 
 // ======================== VERIFY =======================================
 
-userSchema.methods.Verify       = function(skype, phone, companyEmail, callback){
+userSchema.methods.Verify = function(skype, phone, companyEmail, callback) {
     var user = this;
-    user.skype                = skype,
-    user.phone                = phone;
-    user.companyEmail         = companyEmail;
-    user.save(function(err){
-        callback(user);    
+    user.skype = skype,
+        user.phone = phone;
+    user.companyEmail = companyEmail;
+    user.save(function(err) {
+        callback(user);
     });
 }
 
 // ======================== LOCAL INFOR =======================================
 
-userSchema.methods.newInforLc   = function(name, email, password, isUser, callback){
-    this.email                = email,
-    this.local_infor.email    = email;
+userSchema.methods.newInforLc = function(name, email, password, isUser, callback) {
+    this.email = email,
+        this.local_infor.email = email;
     this.local_infor.password = this.generateHash(password);
-    this.isUser   = isUser;
-    if (isUser){
+    this.isUser = isUser;
+    if (isUser) {
         this.userName = name;
-    } else{
+    } else {
         this.companyName = name;
     };
     callback(this);
@@ -421,56 +422,64 @@ userSchema.methods.newInforLc   = function(name, email, password, isUser, callba
 
 // generating a hash
 userSchema.methods.generateHash = function(password) {
-    var password_ = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null); 
+    var password_ = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
     return password_;
 };
 
 // checking if password is valid
 userSchema.methods.validPassword = function(password) {
-    if (this.local_infor.password =='') return 0;         
+    if (this.local_infor.password == '') return 0;
     return bcrypt.compareSync(password, this.local_infor.password);
 };
 
 // check user is Own of account
-userSchema.methods.isOwn         = function(user_id){
+userSchema.methods.isOwn = function(user_id) {
     return (user_id == this.id);
 }
 
 // ======================== FACEBOOK INFOR ====================================
 
-function  API_FB(api, callback){
+function API_FB(api, callback) {
     var options = {
-        timeout:  6969
-        , pool:     { maxSockets:  Infinity }
-        , headers:  { connection:  "keep-alive" }
+        timeout: 6969,
+        pool: {
+            maxSockets: Infinity
+        },
+        headers: {
+            connection: "keep-alive"
+        }
     };
     graph
         .setOptions(options)
         .get(api, function(err, data) {
-          if (err) {
-            callback(err, null);
-          } else{
-              callback(null, data);
-          }    
+            if (err) {
+                callback(err, null);
+            } else {
+                callback(null, data);
+            }
         });
 }
 
-userSchema.methods.getAvatarFb   = function(access_token, callback){
+userSchema.methods.getAvatarFb = function(access_token, callback) {
 
     var profile;
     var avatar, avatar_small, avatar_normal;
     var options = {
-        timeout:  6969
-        , pool:     { maxSockets:  Infinity }
-        , headers:  { connection:  "keep-alive" }
+        timeout: 6969,
+        pool: {
+            maxSockets: Infinity
+        },
+        headers: {
+            connection: "keep-alive"
+        }
     };
 
     graph.setAccessToken(access_token);
     graph.extendAccessToken({
-        "access_token":      access_token
-        , "client_id":       client_id_fb
-        , "client_secret":   client_secret_fb
-    }, function (err, facebookRes) {
+        "access_token": access_token,
+        "client_id": client_id_fb,
+        "client_secret": client_secret_fb
+    }, function(err, facebookRes) {
         if (err) {
             console.log('Error : ', err);
             callback('', '', '');
@@ -478,33 +487,33 @@ userSchema.methods.getAvatarFb   = function(access_token, callback){
         }
 
         async.waterfall([
-            function(next){
-                API_FB("me?fields=picture.width(800).height(800)&redirect=false", function(err, data){
-                    if (err){
+            function(next) {
+                API_FB("me?fields=picture.width(800).height(800)&redirect=false", function(err, data) {
+                    if (err) {
                         console.log(err);
                         next(err);
-                    } else{
-                        avatar = data.picture.data.url;                                               // GET AVATAR
-                        avatar_normal= data.picture.data.url;
+                    } else {
+                        avatar = data.picture.data.url; // GET AVATAR
+                        avatar_normal = data.picture.data.url;
                         next(null);
                     }
                 });
             },
 
-            function(next){
-                API_FB("me?fields=picture.width(200).height(200)&redirect=false", function(err, data){
-                    if (err){
+            function(next) {
+                API_FB("me?fields=picture.width(200).height(200)&redirect=false", function(err, data) {
+                    if (err) {
                         console.log(err);
                         next(err);
-                    } else{
+                    } else {
                         avatar_small = data.picture.data.url;
-                        next(null); 
+                        next(null);
                     }
-                });               
+                });
             }
 
-        ], function(err){
-            if (err){
+        ], function(err) {
+            if (err) {
                 console.log(err);
                 return 0;
             };
@@ -514,29 +523,29 @@ userSchema.methods.getAvatarFb   = function(access_token, callback){
 }
 
 // ======================== EDIT PROFILE ====================================
-userSchema.methods.editProfile   = function(address, contact, website, avatar, avatar_small, avatar_normal, 
-                                            logo, logo_small, logo_normal, companyName, skype, phone, companyEmail, 
-                                            userFullname, industry, education, year_of_birth, callback){
+userSchema.methods.editProfile = function(address, contact, website, avatar, avatar_small, avatar_normal,
+    logo, logo_small, logo_normal, companyName, skype, phone, companyEmail,
+    userFullname, industry, education, year_of_birth, callback) {
     console.log('EDIT PROFILE');
     this.address = address;
     this.contact = contact;
     this.website = website;
     this.companyName = companyName;
     this.userFullname = userFullname;
-    this.industry  = industry;
+    this.industry = industry;
     this.education = education;
     this.year_of_birth = year_of_birth;
     this.skype = skype;
     this.phone = phone;
     this.companyEmail = companyEmail;
 
-    if (avatar != ''){
+    if (avatar != '') {
         this.avatar = avatar;
         this.avatar_normal = avatar_normal;
         this.avatar_small = avatar_small;
     };
 
-    if (logo != ''){
+    if (logo != '') {
         this.logo = logo;
         this.logo_small = logo_small;
         this.logo_normal = logo_normal;
@@ -549,50 +558,62 @@ userSchema.methods.editProfile   = function(address, contact, website, avatar, a
 
 
 // make new Infor
-userSchema.methods.newInforFb    = function(access_token, profile, callback){
+userSchema.methods.newInforFb = function(access_token, profile, callback) {
     user = this;
-    this.getAvatarFb(access_token, function(avatar, avatar_normal, avatar_small){
-        
-        user.avatar                  = avatar;
-        user.avatar_small            = avatar_small;
-        user.avatar_normal           = avatar_normal;
-        user.type_account            = 2;
-        user.userName                = profile.displayName;
-        user.gender                  = profile.gender;
-        user.email                   = profile.emails[0].value;
-        user.fb_infor.avatar         = avatar_normal;
-        user.fb_infor.id             = profile.id;
-        user.fb_infor.gender         = profile.gender;
-        user.fb_infor.profileUrl     = profile.profileUrl;  
-        user.fb_infor.access_token   = access_token;
-        user.fb_infor.username       = profile.displayName;
-        user.fb_infor.email          = profile.emails[0].value;
+    this.getAvatarFb(access_token, function(avatar, avatar_normal, avatar_small) {
+
+        user.avatar = avatar;
+        user.avatar_small = avatar_small;
+        user.avatar_normal = avatar_normal;
+        user.type_account = 2;
+        user.userName = profile.displayName;
+        user.gender = profile.gender;
+        user.email = profile.emails[0].value;
+        user.fb_infor.avatar = avatar_normal;
+        user.fb_infor.id = profile.id;
+        user.fb_infor.gender = profile.gender;
+        user.fb_infor.profileUrl = profile.profileUrl;
+        user.fb_infor.access_token = access_token;
+        user.fb_infor.username = profile.displayName;
+        user.fb_infor.email = profile.emails[0].value;
+        console.log("USER._ID : ", user._id)
+
+        var newPermalink = new Permalink();
+
+        newPermalink.newInfor(user._id, '', 1, user.userName, function(){
+            console.log();
+        });
 
         user.makeToken();
         user.save(function(err) {
             if (err)
-                 throw err;
+                throw err;
             callback(user);
-        });                            
+        });
     });
-}   
+}
 
 
 // ======================== TWITTER INFOR ====================================
 
-userSchema.methods.newInforTw    = function(access_token, token_secret, profile, callback){
+userSchema.methods.newInforTw = function(access_token, token_secret, profile, callback) {
     console.log('PROFILE :', profile, ' access_token : ', access_token, ' token_secret : ', token_secret);
 
-    this.userName                   = profile.displayName;
-    this.avatar                     = profile._json.profile_image_url;
-    this.avatar_small               = profile._json.profile_image_url;
-    this.avatar_normal              = profile._json.profile_image_url;
-    this.type_account               = 3;
+    this.userName = profile.displayName;
+    this.avatar = profile._json.profile_image_url;
+    this.avatar_small = profile._json.profile_image_url;
+    this.avatar_normal = profile._json.profile_image_url;
+    this.type_account = 3;
 
-    this.twitter_infor.id           = profile.id;
+    this.twitter_infor.id = profile.id;
     this.twitter_infor.access_token = access_token;
     this.twitter_infor.token_secret = token_secret;
-    this.twitter_infor.username     = profile.displayName;
+    this.twitter_infor.username = profile.displayName;
+    var newPermalink = new Permalink();
+
+    newPermalink.newInfor(this._id, '', 1, this.userName, function(){
+        console.log();
+    });
 
     this.makeToken();
     console.log('make token xong');
@@ -604,23 +625,27 @@ userSchema.methods.newInforTw    = function(access_token, token_secret, profile,
 }
 
 // ======================== GOOGLE INFOR ====================================
-userSchema.methods.newInforGg    = function(access_token, profile, callback){
-    this.userName                   = profile.displayName;
-    this.avatar                     = profile._json.picture;
-    this.avatar_small               = profile._json.picture;
-    this.avatar_normal              = profile._json.picture;
-    this.gender                     = profile._json.gender;
-    this.type_account               = 4;
-    this.email                      = profile.emails[0].value;
+userSchema.methods.newInforGg = function(access_token, profile, callback) {
+    this.userName = profile.displayName;
+    this.avatar = profile._json.picture;
+    this.avatar_small = profile._json.picture;
+    this.avatar_normal = profile._json.picture;
+    this.gender = profile._json.gender;
+    this.type_account = 4;
+    this.email = profile.emails[0].value;
 
-    this.google_infor.id           = profile.id;
+    this.google_infor.id = profile.id;
     this.google_infor.access_token = access_token;
-    this.google_infor.username     = profile.displayName;
-    this.google_infor.gender       = profile.gender;
-    this.google_infor.avatar       = profile._json.picture;
-    this.google_infor.email        = profile.emails[0].value;   
-    this.google_infor.profileUrl   = profile._json.link;  
+    this.google_infor.username = profile.displayName;
+    this.google_infor.gender = profile.gender;
+    this.google_infor.avatar = profile._json.picture;
+    this.google_infor.email = profile.emails[0].value;
+    this.google_infor.profileUrl = profile._json.link;
+    var newPermalink = new Permalink();
 
+    newPermalink.newInfor(this._id, '', 1, this.userName, function(){
+        console.log();
+    });
     this.makeToken();
     this.save(function(err) {
         if (err)
@@ -631,25 +656,29 @@ userSchema.methods.newInforGg    = function(access_token, profile, callback){
 
 
 // ======================== LINKEDIN INFOR ====================================
-userSchema.methods.newInforLk    = function(access_token, profile, callback){
+userSchema.methods.newInforLk = function(access_token, profile, callback) {
 
-    this.avatar                      = profile.photos[0];
-    this.avatar_small                = profile.photos[0];
-    this.avatar_normal               = profile.photos[0];
-    this.linkedin_infor.avatar       = profile.photos[0];
+    this.avatar = profile.photos[0];
+    this.avatar_small = profile.photos[0];
+    this.avatar_normal = profile.photos[0];
+    this.linkedin_infor.avatar = profile.photos[0];
 
-    this.userName                    = profile.displayName;
-    this.gender                      = profile._json.gender;
-    this.type_account                = 5;
-    this.email                       = profile.emails[0].value;
+    this.userName = profile.displayName;
+    this.gender = profile._json.gender;
+    this.type_account = 5;
+    this.email = profile.emails[0].value;
 
-    this.linkedin_infor.id           = profile.id;
+    this.linkedin_infor.id = profile.id;
     this.linkedin_infor.access_token = access_token;
-    this.linkedin_infor.username     = profile.displayName;
-    this.linkedin_infor.gender       = profile.gender;
-    this.linkedin_infor.email        = profile.emails[0].value;   
-    this.linkedin_infor.profileUrl   = profile._json.publicProfileUrl;  
+    this.linkedin_infor.username = profile.displayName;
+    this.linkedin_infor.gender = profile.gender;
+    this.linkedin_infor.email = profile.emails[0].value;
+    this.linkedin_infor.profileUrl = profile._json.publicProfileUrl;
+    var newPermalink = new Permalink();
 
+    newPermalink.newInfor(this._id, '', 1, this.userName, function(){
+        console.log();
+    });
     this.makeToken();
     this.save(function(err) {
         if (err)
@@ -664,29 +693,29 @@ userSchema.methods.newInforLk    = function(access_token, profile, callback){
 // edit Infor
 // { Avatar, Avatar_small, Avatar_normal, Fullname, YearOfBirth
 //   Address, Industry, Sex, Contact }
-userSchema.methods.editInfor_user     = function(user){
-    this.avatar         = user.avatar;
-    this.avatar_small   = user.avatar_small;
-    this.avatar_normal  = user.avatar_normal;    
+userSchema.methods.editInfor_user = function(user) {
+    this.avatar = user.avatar;
+    this.avatar_small = user.avatar_small;
+    this.avatar_normal = user.avatar_normal;
     this.userFullname = user.fullname;
-    this.year_of_birth  = user.year_of_birth;
-    this.address        = user.address;
-    this.industry       = user.industry;
-    this.sex            = user.sex;
-    this.contact        = user.contact;
+    this.year_of_birth = user.year_of_birth;
+    this.address = user.address;
+    this.industry = user.industry;
+    this.sex = user.sex;
+    this.contact = user.contact;
 
     return this;
 }
 
-userSchema.methods.editInfor_company     = function(company){
-    this.logo            = company.logo;
-    this.logo_small      = company.logo_small;
-    this.logo_normal     = company.logo_normal;    
+userSchema.methods.editInfor_company = function(company) {
+    this.logo = company.logo;
+    this.logo_small = company.logo_small;
+    this.logo_normal = company.logo_normal;
     this.companyFullname = company.companyFullname;
-    this.companyName     = company.companyName;
-    this.website         = company.website;
-    this.industry        = company.industry;
-    this.contact         = company.contact;
+    this.companyName = company.companyName;
+    this.website = company.website;
+    this.industry = company.industry;
+    this.contact = company.contact;
 
     return this;
 }
@@ -695,7 +724,7 @@ userSchema.methods.editInfor_company     = function(company){
 
 
 // make new token when login/sign-up
-userSchema.methods.makeToken     = function(){
+userSchema.methods.makeToken = function() {
     var token = bcrypt.hashSync((new Date).toString(), bcrypt.genSaltSync(8), null)
     this.token = token;
     return 1;
@@ -703,53 +732,53 @@ userSchema.methods.makeToken     = function(){
 
 // ================= ADD JOB, APPLICATION, INTEREST, CONTRACT ===============
 
-userSchema.methods.addJob        = function(job_id){
+userSchema.methods.addJob = function(job_id) {
     this.myJobs.push(job_id);
-    this.save(function(err){
+    this.save(function(err) {
         return 0;
     });
 }
 
-userSchema.methods.addApply      = function(app_id, callback){
+userSchema.methods.addApply = function(app_id, callback) {
     this.myApplications.push(app_id);
-    this.save(function(err){
+    this.save(function(err) {
         callback();
     });
 }
 
-userSchema.methods.addInterest       = function(user_id, callback){
-    if (this.interests.list.indexOf(user_id) == -1){
+userSchema.methods.addInterest = function(user_id, callback) {
+    if (this.interests.list.indexOf(user_id) == -1) {
         this.interests.list.push(user_id);
-        this.interests.number ++;
-        this.save(function(err){
+        this.interests.number++;
+        this.save(function(err) {
             callback();
         })
-    } else{
+    } else {
         callback();
     }
 }
 
-userSchema.methods.addContract       = function(contract, callback){
-    if (this.contracts.list.indexOf(contract._id) == -1){
+userSchema.methods.addContract = function(contract, callback) {
+    if (this.contracts.list.indexOf(contract._id) == -1) {
         this.contracts.list.push(contract._id);
-        this.contracts.number ++;
-        this.save(function(err){
+        this.contracts.number++;
+        this.save(function(err) {
             callback();
         })
-    } else{
+    } else {
         callback();
     }
 }
 
-userSchema.methods.addMyFollow       = function(user_id, callback){
-    if (this.myFollows.indexOf(user_id) == -1){
+userSchema.methods.addMyFollow = function(user_id, callback) {
+    if (this.myFollows.indexOf(user_id) == -1) {
         this.myFollows.push(user_id);
-        this.save(function(err){
+        this.save(function(err) {
             callback();
         })
-    } else{
+    } else {
         this.myFollows.splice(this.myFollows.indexOf(user_id), 1);
-        this.save(function(err){
+        this.save(function(err) {
             callback();
         })
 
@@ -757,15 +786,15 @@ userSchema.methods.addMyFollow       = function(user_id, callback){
 }
 
 
-userSchema.methods.addFollowMe       = function(user_id, callback){
-    if (this.followMes.indexOf(user_id) == -1){
+userSchema.methods.addFollowMe = function(user_id, callback) {
+    if (this.followMes.indexOf(user_id) == -1) {
         this.followMes.push(user_id);
-        this.save(function(err){
+        this.save(function(err) {
             callback();
         })
-    } else{
+    } else {
         this.followMes.splice(this.followMes.indexOf(user_id), 1);
-        this.save(function(err){
+        this.save(function(err) {
             callback();
         })
 
