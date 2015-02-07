@@ -21,6 +21,8 @@ var routes          								=   require('./routes/index');
 
 var User                            =   require('./models/users');
 var Job                             =   require('./models/jobs');
+var Permalink 						= require('./models/permalinks');
+
 
 
 // ============================CONFIGURATION===================================
@@ -218,4 +220,5 @@ var server = app.listen(app.get('port'), function() {
 
 // var io = require('socket.io').listen(server);
 // require('./my_module/chat/handler_socket')(io);
-
+app.get('/:permalink',		routes.get.permalink);
+})
