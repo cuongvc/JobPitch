@@ -13,6 +13,8 @@ io_notify.use(function(socket, next){
 	console.log('\n HAVE A REQUEST \n');
   user_id = socket.request._query.user_id;
   token   = socket.request._query.token;
+  console.log('\n HAVE A REQUEST \n');
+
   next();
   // check_token(user_id, token, function(exist, user_exist){
   //   if (exist){

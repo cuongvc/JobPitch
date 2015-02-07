@@ -19,6 +19,10 @@ var Router_body     								=   express.Router();
 var Router_formdata 								=   express.Router();
 var routes          								=   require('./routes/index');
 
+var User                            =   require('./models/users');
+var Job                             =   require('./models/jobs');
+
+
 // ============================CONFIGURATION===================================
 
 // connect to our database
@@ -44,11 +48,34 @@ app.get('/login',function(req,res){
 app.get('/signup',function(req,res){
 	res.render('signup.ejs');
 })
+
+/**************** API GET USER, JOB, APPLICATION NOT AUTHENTICATE ******************/
+
 app.get('/user/:user_id',function(req,res){
-	var user = new Object();
-	user._id = req.params.user_id;
-	res.render('user-profile.ejs', {user: user});
+	User.findOne({_id : req.params.user_id}, function(err, user){
+		if (err){
+			res.write(JSON.stringify({error_code : 1, msg : err.toString()}));
+			res.status(200).end();
+		}	 else
+			res.render('user-profile.ejs', {user: user});
+	})
+	
 })
+
+app.get('/job/:job_id/:permalink',function(req,res){
+
+	Job.findOne({_id : req.params.job_id}, function(err, job){
+		if (err){
+			res.write(JSON.stringify({error_code : 1, msg : err.toString()}));
+			res.status(200).end();
+		}	 else
+			res.write(JSON.stringify({error_code : 0, job : job}));
+			res.status(200).end();
+	})
+	
+})
+
+
 /********************************************************************************/
 									/*DIRECTIVE*/
 /********************************************************************************/
@@ -167,6 +194,9 @@ app.get('/directive/home/left-sidebar',function(req,res){
 
 //  ------ GET_USERS     --- ------------------------------
 	Router_body.post('/users',						 		 routes.get.users);
+
+// --------GET NOTIFICATION -------------------------------
+	Router_body.post('/get_notify',						 routes.get.notify);
 
 
 

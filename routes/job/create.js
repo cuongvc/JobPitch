@@ -121,7 +121,7 @@ module.exports				=	function(req, res){
                           }
 
 
-                          io_notify.emit('create job', {user_receive_notify : object.receive_notify,
+                          io_notify.emit('create_job', {user_receive_notify : object.receive_notify,
                                                         job                 : object});
 
                         }
