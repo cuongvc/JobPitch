@@ -13,7 +13,7 @@
 body{
 	/*font-family: 'Proxima Nova';*/
 	font-family: arial!important;
-	background: #EEEEEE;
+	background: #EEEEEE!important;
 }
 @media(min-width:1500px){
 	.container{
@@ -89,10 +89,7 @@ ul li{
 	-o-transition: all 0.5s;
 	-moz-transition: all 0.5s;
 }
-.small-text{
-	font-size: 12px;
-	color: #8899a6;
-}
+
 .overflowhidden{
 	overflow: hidden;
 }
@@ -133,4 +130,56 @@ ul li{
 .right-addon input { padding-right: 30px; }
 .glyphicon{
 	cursor: pointer;
+}
+/*******************************************************************************************/
+										/*POPOVER*/
+/*******************************************************************************************/
+.pvh-popover{
+	position: absolute;
+	background: #333;
+	border-radius: 6px;
+	box-shadow:  0 0 3px #000;
+	box-shadow: 0 0 3px #ddd;
+	padding: 3px 7px;
+}
+.pvh-popover ul{
+	width: auto!important;
+	margin: 0px!important;
+	padding: 0px!important;
+}
+.pvh-popover ul li{
+	color: #fff!important;
+	font-size: 12px!important;
+	margin: 0px!important;
+}
+.pvh-popover-top::after{
+	display: block;
+	content: '';
+	width:6px;
+	height: 6px;
+	border: 6px solid transparent;
+	border-top: 6px solid #333;
+	margin-bottom: -12px;
+	margin-left: 10px;
+
+}
+/****************************************************************************************/
+										/*TEXT*/
+/****************************************************************************************/
+.bold-text{
+	font-weight: bold;
+}
+.small-text,.small-text *{
+	font-size: 12px;
+	color: #8899a6;
+}
+.gray-color, .gray-color *{
+	color: #8899a6;
+}
+.normal-text, normal-text *{
+	font-size: 14px;
+	color: #333;
+}
+.blue-text, .blue-text *{
+	color: #3b5998
 }

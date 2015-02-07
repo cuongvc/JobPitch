@@ -1,4 +1,4 @@
-var Jobs = angular.module('jobs',['nightfury-upload','application-sidebar','left-sidebar']);
+var Jobs = angular.module('jobs',['nightfury-upload','application-sidebar','left-sidebar','user-service','ui.bootstrap.popover']);
 Jobs.directive('jobs',function(){
 	return {
 		restrict: 'E',
@@ -8,7 +8,7 @@ Jobs.directive('jobs',function(){
 		},
 	}
 })
-Jobs.controller('JobCtrl',function($scope,$http){
+Jobs.controller('JobCtrl',function($scope,$http,USER){
 	var jobs;
 	var data = {
 			user_id: $scope.user._id,
@@ -21,6 +21,13 @@ Jobs.controller('JobCtrl',function($scope,$http){
 		console.log(response);
 		if(response.error_code == 0){
 			jobs = response.jobs;
+			jobs.forEach(function(v,k){
+				if(v.likes.list.indexOf($scope.user._id) > -1){
+					jobs[k].likes.liked = true;
+				}else{
+					jobs[k].likes.liked = false;
+				}
+			})
 		}
 		$scope.jobs = jobs;
 	})
@@ -148,10 +155,29 @@ Jobs.controller('JobCtrl',function($scope,$http){
 		};
 		console.log(data);
 		$http.post(STR_API_LIKE,data).success(function(response){
-			console.log(response);
 			if(response.error_code == 0){
 				var index = jobs.indexOf(job);
-				jobs[index].likes.number += 1;
+				if(job.likes.liked){
+					jobs[index].likes.liked = false;
+					jobs[index].likes.number--;
+					jobs[index].likes.users.forEach(function(v,k){
+						if(v._id == $scope.user._id){
+							console.log('a');
+							jobs[index].likes.users.splice(k);
+						}
+					})
+				}else{
+					jobs[index].likes.liked = true;
+					jobs[index].likes.number++;
+					var me = {
+								_id: $scope.user._id,
+								avatar: $scope.user.avatar.origin,
+								avatar_small: $scope.user.avatar.small,
+								avatar_normal: $scope.user.avatar.normal,
+								userName: $scope.user.username,
+							};
+					jobs[index].likes.users.push(me);
+				}
 				$scope.jobs = jobs;
 			}
 		})
@@ -175,5 +201,33 @@ Jobs.controller('JobCtrl',function($scope,$http){
 			}
 		})
 	}
-
+	$scope.ViewListLikeJob = function(job){
+		var users = job.likes.list;
+		var height;
+		var popover = $('#'+ job._id +' .list-like-job');
+		var index = jobs.indexOf(job);
+		if(job.likes.loaded != true){
+			var users = USER.get(users,$scope.user._id,$scope.user.token);
+			users.then(function(response){
+				console.log(response);
+				if(response.error_code == 0){
+					jobs[index].likes.users = response.users;
+					jobs[index].likes.loaded = true;
+					height = -(jobs[index].likes.users.length * 17 + 28);
+					popover.css({marginTop: height,marginLeft:-10});
+					popover.removeClass('hidden');
+				}
+				$scope.jobs = jobs;
+				console.log($scope.jobs);
+			})
+		}else{
+			height = -(jobs[index].likes.users.length * 17 + 28);
+			popover.css({marginTop: height,marginLeft:-10});
+			popover.removeClass('hidden');
+		}
+		
+	}
+	$scope.HiddenListLike = function(job){
+		$('.list-like-job').addClass('hidden');
+	}
 })

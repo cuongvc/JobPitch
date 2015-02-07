@@ -1,7 +1,5 @@
 #sidebar{
 	margin-top: 20px;
-	color: #292f33;
-	font-size: 13px;
 	line-height: 18px;
 	border-radius: 4px;
 	overflow: auto;
@@ -33,7 +31,6 @@
 	padding: 5px;
 }
 .application-sidebar-name{
-	font-size: 13px;
 	text-shadow: none;
 	cursor: pointer;
 }
@@ -41,7 +38,6 @@
 	text-decoration: underline;
 }
 .application-sidebar-company-name{
-	color: #8899a6;
 	cursor: pointer;
 }
 .application-sidebar-company-name:hover{
@@ -52,7 +48,6 @@
 	margin-bottom: 0px;
 }
 .application-sidebar-apply-content > p:first-child{
-	color: #333;
 }
 .application-sidebar-like-share ul{
 	padding: 0px;
@@ -60,10 +55,8 @@
 	width: 100%;
 }
 .application-sidebar-like-share ul li{
-	font-size: 11px;
 	cursor: pointer;
 	margin-left: 10px;
-	color: #8899a6;
 }
 .application-sidebar-like-share ul li:first-child{
 	margin-left: 0px;
@@ -80,12 +73,9 @@
 	width: 100%;
 }
 .application-sidebar-number-comment{
-	color: #3b5998;
 }
 .application-sidebar-number-comment p{
 	margin-top: 5px;
-	color: #8899a6;
-	font-size: 12px;
 }
 .application-sidebar-number-comment p:hover{
 	text-decoration: underline;
@@ -104,10 +94,8 @@
 }
 .sidebar-comment-body{
 	overflow: auto;
-	color: #333;
 }
 .sidebar-comment-body p strong{
-	color: #3b5998
 }
 .application-sidebar-company-logo{
 	margin-bottom: 10px;
