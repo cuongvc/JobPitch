@@ -44,7 +44,11 @@ app.get('/login',function(req,res){
 app.get('/signup',function(req,res){
 	res.render('signup.ejs');
 })
-
+app.get('/user/:user_id',function(req,res){
+	var user = new Object();
+	user._id = req.params.user_id;
+	res.render('user-profile.ejs', {user: user});
+})
 /********************************************************************************/
 									/*DIRECTIVE*/
 /********************************************************************************/
