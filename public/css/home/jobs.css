@@ -173,6 +173,6 @@
 /*
 * liked
 */
-.liked-true{
+.liked-true, .liked-true > *{
 	color: blue!important;
 }
