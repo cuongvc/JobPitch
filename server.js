@@ -199,6 +199,9 @@ app.get('/directive/home/left-sidebar',function(req,res){
 	Router_body.post('/get_notify',						 routes.get.notify);
 
 
+// --------GET DATA FROM PERMALINK -------------------------------
+
+app.get('/:permalink',											 routes.get.permalink);
 
 // =================================== LISTEN BY IP AND PORT ========================
 
@@ -218,4 +221,3 @@ var server = app.listen(app.get('port'), function() {
 
 // var io = require('socket.io').listen(server);
 // require('./my_module/chat/handler_socket')(io);
-app.get('/:permalink',		routes.get.permalink);

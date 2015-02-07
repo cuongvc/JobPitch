@@ -1496,3 +1496,61 @@ Cache-Control: no-cache
 }
 
 ```
+
+### 23. Get Data from permalink
+
+```
+GET http://jobpitch.campcoders.com/api/:permalink
+Content-Type: application/json
+Cache-Control: no-cache
+
+
+```
+##### Regex
+```
+
+
+```
+##### Return
+```
+{"error_code":0,
+"user":
+    {"__v":0,
+    "_id":"54d64038de2e957640010185",
+    "userName":"cuongvu",
+    "contracts":{"list":[],"number":0},
+    "interests":{"list":[],"number":0},
+    "companyEmail":"","phone":"",
+    "skype":"","verify":0,
+    "email":"vcc.bka@gmail.com",
+    "year_of_birth":null,
+    "education":"",
+    "industry":"",
+    "userFullname":"",
+    "avatar_normal":"http://job.dev/images/full_size/TalentImages/default-avatar.png",
+    "avatar_small":"http://job.dev/images/full_size/TalentImages/default-avatar.png",
+    "avatar":"http://job.dev/images/full_size/TalentImages/default-avatar.png",
+    "friends":[],
+    "myFollows":[],
+    "myApplications":[],
+    "myJobs":[],
+    "followMes":[],
+    "website":"",
+    "companyFullname":"",
+    "logo_normal":"http://job.dev/images/full_size/CompanyLogos/default-logo.png",
+    "logo_small":"http://job.dev/images/full_size/CompanyLogos/default-logo.png",
+    "logo":"http://job.dev/images/full_size/CompanyLogos/default-logo.png",
+    "active":1,"permission":0,
+    "token":"$2a$08$vx.6I2r93Je3eTwGvOOWdOUFzcXSnt7XNQ5PE72GbI6SQbrTNgw/G",
+    "messages":[],
+    "notifications":{"list":[],"unread":0},
+    "contact":"",
+    "google_infor":{"access_token":"","email":"","profileUrl":"","gender":"","username":"","avatar":"","id":""},
+    "linkedin_infor":{"access_token":"","email":"","profileUrl":"","gender":"","username":"","avatar":"","id":""},
+    "twitter_infor":{"token_secret":"","access_token":"","email":"","profileUrl":"","gender":"","username":"","avatar":"","id":""},
+    "fb_infor":{"access_token":"","email":"","profileUrl":"","gender":"","username":"","avatar":"","id":""},
+    "local_infor":{"email":"vcc.bka@gmail.com","password":"$2a$08$k8X2pSPAOYwhF7jeaNfUUe2vFaErCYXxyHyDHS9QtbUnEjUP7ENNO"},
+    "type_account":1,
+    "location":{"address":"9 Nguyên Hong, Thành Công, Ba Đình, Hà Nội, Việt Nam","lng":105.812198,"lat":21.018549},"isUser":2,"address":""}}
+
+```

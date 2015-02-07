@@ -21,7 +21,7 @@ module.exports				=	function(req, res){
 		}
 
 		if (permalink_exist.type == 1){
-			User.findOne({_id : permalink_exist.user_id}, function(err, user_exist){
+			User.findOne({_id : permalink_exist.user_id}, '', function(err, user_exist){
 				if (err){
 					res.write(JSON.stringify({error_code : 1, msg : err.toString()}));
 					res.status(200).end();
