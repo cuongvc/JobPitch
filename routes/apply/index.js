@@ -52,7 +52,7 @@ module.exports				=	function(req, res){
 						application.newInfor(user_id, user_exist.userName, user_exist.avatar_small, job_id, title, hash_tag, 
 							                   description, time, file, function(application){
 
-							job_exist.addApply(application._id, function(){
+							job_exist.addApply(user_id, application._id, function(){
 								user_exist.addApply(application._id, function(){
 									respon_object(res, application);		
 								});	

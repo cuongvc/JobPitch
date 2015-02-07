@@ -11,6 +11,9 @@ var respon_object       = require('./../../my_module/respon_object').job;
 
 var Job                 = require('./../../models/jobs');
 
+var io_notify           = require('./../../my_module/socket');
+
+var Notification        = require('./../../models/notifications');
 
 module.exports				=	function(req, res){
 
@@ -104,11 +107,23 @@ module.exports				=	function(req, res){
 
       ], function(err){
         var newJob = new Job();
-        newJob.newInfor(image, image_small, image_normal, user_exist.id, user_exist.userName,
-                        title, hash_tag, desc, lat, lng, address, link_direct, time,
+        newJob.newInfor(image, image_small, image_normal, user_exist.id, user_exist.userName, title, 
+                        hash_tag, desc, lat, lng, address, link_direct, time, user_exist.followMes,
                         function(object){
                           user_exist.addJob(object._id);
                           respon_object(res, object);
+
+                          for (var i = 0 ; i < object.receive_notify.length ; i ++){
+                            var notification = new Notification();
+                            notification.newInfor(object.receive_notify[i], user_exist.userName, 
+                                                  ' create new Job', object.permalink, 
+                                                  user_exist.avatar_small, 11);
+                          }
+
+
+                          io_notify.emit('create job', {user_receive_notify : object.receive_notify,
+                                                        job                 : object});
+
                         }
         ) 
       })

@@ -2,6 +2,7 @@
 var Tag                         = require('./../../models/tags');
 var Job                         = require('./../../models/jobs');
 var Application                 = require('./../../models/applications');
+var a                           = require('./../../my_module/socket');
 
 
 module.exports									=	function(req, res){
@@ -11,7 +12,8 @@ module.exports									=	function(req, res){
 
 		var tag       		= data.tag;
 		var position			=	data.position;
-
+		console.log(a);
+		a ++;
 	}	
 
 	catch(err){

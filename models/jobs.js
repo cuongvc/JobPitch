@@ -7,6 +7,10 @@ var distanceLimit           = require('./../config/default').distanceLimit;
 var image_default           = require('./../config/default').jobImage_default;
 var distance                = require('./../my_module/map/distance');
 var add_hashTag_job         = require('./../my_module/add_hashTag').job;
+var Jobs                    = require('./jobs');
+var autoIncrement           = require('mongoose-auto-increment');
+autoIncrement.initialize(mongoose);
+
 
 // define the schema for our job model
 var jobSchema = mongoose.Schema({
@@ -33,13 +37,22 @@ var jobSchema = mongoose.Schema({
 
     userName         : {
         type         : String,
-        default      : ''
+        default      : '',
+        index: true
     },
 
-    title  : {
+    title            : {
         type         : String,
         default      : ''
     },
+
+    permalink        : {
+        type         : String,
+        default      : '',
+        index: true
+    },
+
+    
 
     hash_tag         : {
         type         : [{
@@ -140,7 +153,13 @@ var jobSchema = mongoose.Schema({
             type        : ObjectId,
             ref         : 'contract'
         }]
-    }
+    },
+
+    receive_notify   : [{
+        type        : ObjectId,
+        ref         : 'users'
+    }]
+    
 
 });
 
@@ -163,7 +182,7 @@ jobSchema.methods.containTag    = function(tag){
 
 jobSchema.methods.newInfor    = function(image, image_small, image_normal, user_id, userName
                                         ,title, hash_tag, description, lat, lng, address
-                                        ,link_direct, time , callback){
+                                        ,link_direct, time , receive_notify, callback){
 
     var job = this;
     if (image != '')
@@ -182,6 +201,9 @@ jobSchema.methods.newInfor    = function(image, image_small, image_normal, user_
     job.location.lat           = lat;
     job.location.lng           = lng;
     job.location.address       = address;
+    job.receive_notify         = receive_notify;
+    job.permalink              = domain + "/" + this._id + "/" + title.replace(' ', '-');
+
 
     add_hashTag_job(hash_tag, job._id, function(){
         callback(job);           
@@ -204,7 +226,11 @@ jobSchema.methods.editInfor     = function(job){
 }
 
 
-jobSchema.methods.addApply      = function(application, callback){
+jobSchema.methods.addApply      = function(user_id, application, callback){
+
+    if (this.receive_notify.indexOf(user_id) == -1)
+        this.receive_notify.push(user_id);
+
     this.applications.list.push(application);
     this.applications.number ++;
     this.save(function(err){
@@ -246,6 +272,8 @@ jobSchema.methods.changeStatus       = function(status, callback){
         callback();
    })
 }
+
+jobSchema.plugin(autoIncrement.plugin, {model : 'Job', fields : 'jobId'});
 
 // create the model for jobs and expose it to our app
 module.exports = mongoose.model('jobs', jobSchema);

@@ -106,6 +106,7 @@ app.get('/directive/home/left-sidebar',function(req,res){
 
 // ============================ API ============================================
 
+
 //  ----- LOGIN --------------------------
 	require('./routes/login').social(app, passport);
 
@@ -164,6 +165,7 @@ app.get('/directive/home/left-sidebar',function(req,res){
 	Router_body.post('/users',						 		 routes.get.users);
 
 
+
 // =================================== LISTEN BY IP AND PORT ========================
 
 app.set('port', process.env.PORT || port);
@@ -174,7 +176,12 @@ if (process.argv[2] === 'dev') {
 	  console.log('product');
 }
 
-
 var server = app.listen(app.get('port'), function() {
   debug('Express server listening on port ' + server.address().port);
 });
+
+
+
+// var io = require('socket.io').listen(server);
+// require('./my_module/chat/handler_socket')(io);
+
