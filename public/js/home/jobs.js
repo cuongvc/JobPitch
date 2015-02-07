@@ -188,6 +188,10 @@ Jobs.controller('JobCtrl',function($scope,$http,USER){
 		})
 	}
 	$scope.ViewListLikeJob = function(job){
+		var removeIndex = job.likes.list.indexOf($scope.user._id);
+		if(removeIndex > -1 && job.likes.list.length > 1){
+			job.likes.list.splice(removeIndex);
+		}
 		var users = job.likes.list;
 		var height;
 		var popover = $('#'+ job._id +' .list-like-job');
