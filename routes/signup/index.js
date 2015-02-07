@@ -32,11 +32,6 @@ module.exports								=	function(req, res){
 
 					req._passport.session.user = user._id;
 
-	        var newPermalink = new Permalink();
-
-	        newPermalink.newInfor(user._id, '', 1, user.userName, function(){
-	            console.log();
-	        });					
         	respon_object(1, res, user);
 				})
 			}

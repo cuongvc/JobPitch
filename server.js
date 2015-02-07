@@ -51,29 +51,29 @@ app.get('/signup',function(req,res){
 
 /**************** API GET USER, JOB, APPLICATION NOT AUTHENTICATE ******************/
 
-app.get('/user/:user_id',function(req,res){
-	User.findOne({_id : req.params.user_id}, function(err, user){
-		if (err){
-			res.write(JSON.stringify({error_code : 1, msg : err.toString()}));
-			res.status(200).end();
-		}	 else
-			res.render('user-profile.ejs', {user: user});
-	})
+// app.get('/user/:user_id',function(req,res){
+// 	User.findOne({_id : req.params.user_id}, function(err, user){
+// 		if (err){
+// 			res.write(JSON.stringify({error_code : 1, msg : err.toString()}));
+// 			res.status(200).end();
+// 		}	 else
+// 			res.render('user-profile.ejs', {user: user});
+// 	})
 	
-})
+// })
 
-app.get('/job/:permalink',function(req,res){
+// app.get('/job/:permalink',function(req,res){
 
-	Job.findOne({permalink : req.params.permalink}, function(err, job){
-		if (err){
-			res.write(JSON.stringify({error_code : 1, msg : err.toString()}));
-			res.status(200).end();
-		}	 else
-			res.write(JSON.stringify({error_code : 0, job : job}));
-			res.status(200).end();
-	})
+// 	Job.findOne({permalink : req.params.permalink}, function(err, job){
+// 		if (err){
+// 			res.write(JSON.stringify({error_code : 1, msg : err.toString()}));
+// 			res.status(200).end();
+// 		}	 else
+// 			res.write(JSON.stringify({error_code : 0, job : job}));
+// 			res.status(200).end();
+// 	})
 	
-})
+// })
 
 
 /********************************************************************************/

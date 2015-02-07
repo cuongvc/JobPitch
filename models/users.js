@@ -408,16 +408,28 @@ userSchema.methods.Verify = function(skype, phone, companyEmail, callback) {
 // ======================== LOCAL INFOR =======================================
 
 userSchema.methods.newInforLc = function(name, email, password, isUser, callback) {
-    this.email = email,
-        this.local_infor.email = email;
-    this.local_infor.password = this.generateHash(password);
-    this.isUser = isUser;
+              
+    var user = this;
+    user.email = email;
+    user.local_infor.email = email;
+    user.local_infor.password = user.generateHash(password);
+    user.isUser = isUser;
+    var newPermalink = new Permalink();
+
     if (isUser) {
-        this.userName = name;
+        user.userName = name;
+        newPermalink.newInfor(user._id, '', 1, user.userName, function(){ 
+            user.permalink = newPermalink.permalink;
+            callback(user);
+        });  
     } else {
-        this.companyName = name;
+        user.companyName = name;
+        newPermalink.newInfor(user._id, '', 1, user.companyName, function(){ 
+            user.permalink = newPermalink.permalink;
+            callback(user);
+        });  
+
     };
-    callback(this);
 }
 
 // generating a hash
@@ -579,17 +591,16 @@ userSchema.methods.newInforFb = function(access_token, profile, callback) {
         console.log("USER._ID : ", user._id)
 
         var newPermalink = new Permalink();
-
         newPermalink.newInfor(user._id, '', 1, user.userName, function(){
-            console.log();
+            user.permalink = newPermalink;
+            user.makeToken();
+            user.save(function(err) {
+                if (err)
+                    throw err;
+                callback(user);
+            });
         });
 
-        user.makeToken();
-        user.save(function(err) {
-            if (err)
-                throw err;
-            callback(user);
-        });
     });
 }
 
@@ -599,93 +610,91 @@ userSchema.methods.newInforFb = function(access_token, profile, callback) {
 userSchema.methods.newInforTw = function(access_token, token_secret, profile, callback) {
     console.log('PROFILE :', profile, ' access_token : ', access_token, ' token_secret : ', token_secret);
 
-    this.userName = profile.displayName;
-    this.avatar = profile._json.profile_image_url;
-    this.avatar_small = profile._json.profile_image_url;
-    this.avatar_normal = profile._json.profile_image_url;
-    this.type_account = 3;
+    var user = this;
+    user.userName = profile.displayName;
+    user.avatar = profile._json.profile_image_url;
+    user.avatar_small = profile._json.profile_image_url;
+    user.avatar_normal = profile._json.profile_image_url;
+    user.type_account = 3;
 
-    this.twitter_infor.id = profile.id;
-    this.twitter_infor.access_token = access_token;
-    this.twitter_infor.token_secret = token_secret;
-    this.twitter_infor.username = profile.displayName;
+    user.twitter_infor.id = profile.id;
+    user.twitter_infor.access_token = access_token;
+    user.twitter_infor.token_secret = token_secret;
+    user.twitter_infor.username = profile.displayName;
+
     var newPermalink = new Permalink();
-
-    newPermalink.newInfor(this._id, '', 1, this.userName, function(){
-        console.log();
-    });
-
-    this.makeToken();
-    console.log('make token xong');
-    this.save(function(err) {
-        if (err)
-            throw err;
-        callback(this);
+    newPermalink.newInfor(user._id, '', 1, user.userName, function(){
+        user.permalink = newPermalink;
+        user.makeToken();
+        user.save(function(err) {
+            if (err)
+                throw err;
+            callback(user);
+        });
     });
 }
 
 // ======================== GOOGLE INFOR ====================================
 userSchema.methods.newInforGg = function(access_token, profile, callback) {
-    this.userName = profile.displayName;
-    this.avatar = profile._json.picture;
-    this.avatar_small = profile._json.picture;
-    this.avatar_normal = profile._json.picture;
-    this.gender = profile._json.gender;
-    this.type_account = 4;
-    this.email = profile.emails[0].value;
+    var user = this;
+    user.userName = profile.displayName;
+    user.avatar = profile._json.picture;
+    user.avatar_small = profile._json.picture;
+    user.avatar_normal = profile._json.picture;
+    user.gender = profile._json.gender;
+    user.type_account = 4;
+    user.email = profile.emails[0].value;
 
-    this.google_infor.id = profile.id;
-    this.google_infor.access_token = access_token;
-    this.google_infor.username = profile.displayName;
-    this.google_infor.gender = profile.gender;
-    this.google_infor.avatar = profile._json.picture;
-    this.google_infor.email = profile.emails[0].value;
-    this.google_infor.profileUrl = profile._json.link;
+    user.google_infor.id = profile.id;
+    user.google_infor.access_token = access_token;
+    user.google_infor.username = profile.displayName;
+    user.google_infor.gender = profile.gender;
+    user.google_infor.avatar = profile._json.picture;
+    user.google_infor.email = profile.emails[0].value;
+    user.google_infor.profileUrl = profile._json.link;
+
     var newPermalink = new Permalink();
-
-    newPermalink.newInfor(this._id, '', 1, this.userName, function(){
-        console.log();
-    });
-    this.makeToken();
-    this.save(function(err) {
-        if (err)
-            throw err;
-        callback(this);
-    });
-}
+    newPermalink.newInfor(user._id, '', 1, user.userName, function(){
+        user.permalink = newPermalink;
+        user.makeToken();
+        user.save(function(err) {
+            if (err)
+                throw err;
+            callback(user);
+        });
+    });}
 
 
 // ======================== LINKEDIN INFOR ====================================
 userSchema.methods.newInforLk = function(access_token, profile, callback) {
+    var user = this;
+    user.avatar = profile.photos[0];
+    user.avatar_small = profile.photos[0];
+    user.avatar_normal = profile.photos[0];
+    user.linkedin_infor.avatar = profile.photos[0];
 
-    this.avatar = profile.photos[0];
-    this.avatar_small = profile.photos[0];
-    this.avatar_normal = profile.photos[0];
-    this.linkedin_infor.avatar = profile.photos[0];
+    user.userName = profile.displayName;
+    user.gender = profile._json.gender;
+    user.type_account = 5;
+    user.email = profile.emails[0].value;
 
-    this.userName = profile.displayName;
-    this.gender = profile._json.gender;
-    this.type_account = 5;
-    this.email = profile.emails[0].value;
+    user.linkedin_infor.id = profile.id;
+    user.linkedin_infor.access_token = access_token;
+    user.linkedin_infor.username = profile.displayName;
+    user.linkedin_infor.gender = profile.gender;
+    user.linkedin_infor.email = profile.emails[0].value;
+    user.linkedin_infor.profileUrl = profile._json.publicProfileUrl;
 
-    this.linkedin_infor.id = profile.id;
-    this.linkedin_infor.access_token = access_token;
-    this.linkedin_infor.username = profile.displayName;
-    this.linkedin_infor.gender = profile.gender;
-    this.linkedin_infor.email = profile.emails[0].value;
-    this.linkedin_infor.profileUrl = profile._json.publicProfileUrl;
     var newPermalink = new Permalink();
-
-    newPermalink.newInfor(this._id, '', 1, this.userName, function(){
-        console.log();
-    });
-    this.makeToken();
-    this.save(function(err) {
-        if (err)
-            throw err;
-        callback(this);
-    });
-}
+    newPermalink.newInfor(user._id, '', 1, user.userName, function(){
+        user.permalink = newPermalink;
+        user.makeToken();
+        user.save(function(err) {
+            if (err)
+                throw err;
+            callback(user);
+        });
+    });}
 
 
 // ======================== EDIT INFOR ====================================

@@ -116,12 +116,6 @@ module.exports				=	function(req, res){
                             user_exist.addJob(object._id);
                             respon_object(res, object);
 
-                            var newPermalink = new Permalink();
-
-                            newPermalink.newInfor('', object._id, 2, title, function(){
-                              console.log();
-                            });
-
                             for (var i = 0 ; i < object.receive_notify.length ; i ++){
                               var notification = new Notification();
                               notification.newInfor(object.receive_notify[i], user_exist.userName, 

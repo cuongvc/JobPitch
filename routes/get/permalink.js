@@ -14,14 +14,14 @@ module.exports				=	function(req, res){
 			return 0;
 		}
 
-		if (! permalink) {
+		if (! permalink_exist) {
 			res.write(JSON.stringify({error_code : 1, msg : 'Permalink is not exist'}));
 			res.status(200).end();
 			return 0;
 		}
 
-		if (permalink.type == 1){
-			User.findOne({_id : permalink.user_id}, function(err, user_exist){
+		if (permalink_exist.type == 1){
+			User.findOne({_id : permalink_exist.user_id}, function(err, user_exist){
 				if (err){
 					res.write(JSON.stringify({error_code : 1, msg : err.toString()}));
 					res.status(200).end();
@@ -35,7 +35,7 @@ module.exports				=	function(req, res){
 			})
 		} else
 
-			Job.findOne({_id : permalink.job_id}, function(err, job_exist){
+			Job.findOne({_id : permalink_exist.job_id}, function(err, job_exist){
 				if (err){
 					res.write(JSON.stringify({error_code : 1, msg : err.toString()}));
 					res.status(200).end();
