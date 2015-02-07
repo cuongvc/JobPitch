@@ -2,7 +2,7 @@
 <div id="jobs" ng-controller="JobCtrl">
 	<div class="container">
 		<div class="col-md-18 col-sm-18 col-xs-36" id="jobs">
-			<div class="col-md-36 col-sm-36 col-xs-18"ng-repeat="job in jobs">
+			<div class="col-md-36 col-sm-36 col-xs-18"ng-repeat="job in jobs" id="{{ job._id }}">
 				<div class="job">
 					<div class="image">
 						<img ng-src="{{ job.image }}">

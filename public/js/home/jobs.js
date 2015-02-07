@@ -190,7 +190,7 @@ Jobs.controller('JobCtrl',function($scope,$http,USER){
 	$scope.ViewListLikeJob = function(job){
 		var users = job.likes.list;
 		var height;
-		var popover = $('.list-like-job');
+		var popover = $('#'+ job._id +' .list-like-job');
 		var index = jobs.indexOf(job);
 		if(job.likes.loaded != true){
 			var users = USER.get(users,$scope.user._id,$scope.user.token);
@@ -201,7 +201,6 @@ Jobs.controller('JobCtrl',function($scope,$http,USER){
 					jobs[index].likes.loaded = true;
 					height = -(jobs[index].likes.users.length * 17 + 28);
 					popover.css({marginTop: height,marginLeft:-10});
-					console.log(height);
 					popover.removeClass('hidden');
 				}
 				$scope.jobs = jobs;
@@ -210,7 +209,6 @@ Jobs.controller('JobCtrl',function($scope,$http,USER){
 		}else{
 			height = -(jobs[index].likes.users.length * 17 + 28);
 			popover.css({marginTop: height,marginLeft:-10});
-			console.log(height);
 			popover.removeClass('hidden');
 		}
 		
