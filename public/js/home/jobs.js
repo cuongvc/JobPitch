@@ -162,6 +162,7 @@ Jobs.controller('JobCtrl',function($scope,$http,USER){
 					jobs[index].likes.number--;
 					jobs[index].likes.users.forEach(function(v,k){
 						if(v._id == $scope.user._id){
+							console.log('a');
 							jobs[index].likes.users.splice(k);
 						}
 					})
