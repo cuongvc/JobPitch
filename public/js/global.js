@@ -14,3 +14,4 @@
 	var STR_API_TAGS        = BASE_URL + '/api/tags';
 	var STR_API_LIKE        = BASE_URL + '/api/like';
 	var STR_API_GET_USER    = BASE_URL + '/api/users';
+	var STR_API_FOLLOW      = BASE_URL + '/api/follow';
