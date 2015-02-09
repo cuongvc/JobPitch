@@ -8,7 +8,7 @@
 						<img ng-src="{{ job.image }}">
 					</div>
 					<div class="job-content">
-						<p><span class="company-title bold-text normal-text cp-title" ng-click="ViewCompanyProfile($event,1)" ng-bind="job.title"></span> <span><a href="/user/{{ job.user_id }}"><span>@</span><span class="gray-color" ng-bind="job.userName"></span></a></span></p>
+						<p><span class="company-title bold-text normal-text cp-title" ng-click="ViewCompanyProfile($event,1)" ng-bind="job.title"></span> <span><a href="" ng-click="ViewUser(job.user_id)"><span>@</span><span class="gray-color" ng-bind="job.userName"></span></a></span></p>
 						<p class="job-sort-desc normal-text" ng-bind="job.description"></p>
 					</div>
 					<div class="like-share small-text">

@@ -12,12 +12,12 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#" ng-click="ShowPage(page.index)"><i class="fa fa-home"></i></a>
+        <a class="navbar-brand" ng-click="goHome()"><i class="fa fa-home"></i></a>
       </div>
       <div id="navbar-left">
         <ul class="nav navbar-nav navbar-left">
           <li>
-            <a ng-click="ClearUnread()"><i class="fa fa-bell-o"></i></a>
+            <a ng-click="LoadNotifications($event)"><i class="fa fa-bell-o"></i></a>
             <span class="notification-icon" ng-bind="notifications.unread" ng-if="notifications.unread > 0"></span>
             <div class="notification-box hidden">
               <ul>

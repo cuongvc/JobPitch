@@ -2,7 +2,8 @@
 <head>
 	<title>JobPitch</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-	<base href="http://job.dev">
+	<base href="http://jobpitch.campcoders.com">
+	<!-- <base href="http://job.dev"> -->
 	<script type="text/javascript" src="/bower_components/jquery/dist/jquery.min.js"></script>
 	<script type="text/javascript" src="/bower_components/angular/angular.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-route.min.js"></script>
@@ -30,6 +31,7 @@
 						origin: avatar_origin,
 					},
 					username: "<%= user.userName %>",
+					notifications: "<% JSON.stringify(user.notifications) %>",
 				}
 			console.log(user);
 		<% }else{ %>
@@ -67,6 +69,7 @@
 	<script type="text/javascript" src="/js/home/footer.js"></script>
 
 	<script type="text/javascript" src="/js/home/template.js"></script>
+	<script type="text/javascript" src="/js/home/index.js"></script>
 
 	<!-- css -->
 	<link rel="stylesheet" type="text/css" href="/bower_components/fontawesome/css/font-awesome.min.css">

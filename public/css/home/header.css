@@ -34,11 +34,14 @@
 .notification-box{
 	position: absolute;
 	z-index: 15;
+	max-height: 400px;
+	overflow-y: scroll;
 }
 .notification-box ul{
 	background: #fff;
 	border-radius: 4px;
 	box-shadow: 0 0 5px #333;
+	overflow: auto;
 }
 .notification-box ul li{
 	width: 300px;

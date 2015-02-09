@@ -18,10 +18,7 @@ TemplateApp.config(['$routeProvider', '$locationProvider', function($routeProvid
 		});
 
 }]);
-TemplateApp.controller('IndexCtrl',function($scope,$http){
-	$scope.user    = user;
-	$scope.logedin = logedin;
-})
+
 TemplateApp.controller('ProfileCtrl',function($scope,$http,$routeParams){
 	$scope.BASE_URL = BASE_URL;
 	$scope.user     = user;
