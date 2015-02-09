@@ -83,6 +83,8 @@ CreateJob.controller('CreateJobCtrl',function($scope,$http){
 		}
 	})
 	$scope.CreateJob = function(JobTitle,JobDesc,Address){
+		if($scope.CreateJobImage.path == undefined || $scope.CreateJobImage.path == '') alert('Please wait until upload complete');
+
 		console.log(JobTitle,JobDesc,Address);
 		var TitleHashTags = JobTitle.match(/#\S+/g);
 		var DescHashTags  = JobDesc.match(/#\S+/g);
@@ -113,7 +115,8 @@ CreateJob.controller('CreateJobCtrl',function($scope,$http){
 		$http.post(STR_API_CREATE_JOB,newJob).success(function(response){
 			console.log(response);
 			if(response.error_code == 0){
-				document.location.href = BASE_URL;
+				ShowCreateJobForm = false;
+				$scope.ShowCreateJobForm = ShowCreateJobForm;
 			}
 		})
 		console.log(JSON.stringify(newJob)); 
