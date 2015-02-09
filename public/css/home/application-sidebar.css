@@ -47,7 +47,8 @@
 	margin-top: 5px; 
 	margin-bottom: 0px;
 }
-.application-sidebar-apply-content > p:first-child{
+.application-sidebar-apply-content strong{
+	color: #0084B4;
 }
 .application-sidebar-like-share ul{
 	padding: 0px;
@@ -69,7 +70,8 @@
 	text-decoration: underline;
 }
 .application-sidebar-comment{
-	margin-top: 20px;
+	margin-top: 10px;
+	padding: 5px;
 	width: 100%;
 }
 .application-sidebar-number-comment{
@@ -95,8 +97,6 @@
 .sidebar-comment-body{
 	overflow: auto;
 }
-.sidebar-comment-body p strong{
-}
 .application-sidebar-company-logo{
 	margin-bottom: 10px;
 	padding: 0px 5px;
@@ -105,9 +105,17 @@
 	margin-top: 10px;
 }
 .application-sidebar-company-logo li img{
-	width: 25px;
-	height: 25px;
+	width: 100%;
 	margin-right: 5px;
 	cursor: pointer;
 	/*border-radius: 100%;*/
+}
+.pitch-sidebar-content{
+	margin-bottom: 10px;
+	padding: 5px 0px;
+}
+.sidebar-border{
+	border: 1px solid #ddd;
+	border-radius: 6px;
+	overflow: auto;
 }

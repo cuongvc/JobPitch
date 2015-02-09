@@ -35,7 +35,7 @@
 .like-share ul{
 	width: 100%;
 	padding: 0px 15px;
-	margin-top: 15px;
+	margin-top: 0px;
 }
 .like-share ul li , .job-social ul li{
 	display: inline-block;
@@ -60,9 +60,6 @@
 .job-comment-body ul li{
 	margin-left: 5px;
 }
-.job-comment-body ul li:first-child{
-	margin-left: 0px;
-}
 .apply-box-avatar{
 	margin-top: 2px;
 }
@@ -71,6 +68,9 @@
 }
 .job-comment-avatar img{
 	width: 40px;
+}
+.job-comment-desc{
+	margin-bottom: 5px;
 }
 .job-comment-desc span strong{
 	cursor: pointer;
