@@ -1,9 +1,11 @@
-exports.tags     					=	require('./tags');
+exports.tags 						= require('./tags');
 
-exports.companys 					=	require('./companys');
+exports.companys 				= require('./companys');
 
-exports.users    					=	require('./users');
+exports.users 					= require('./users');
 
-exports.notify   					= require('./notify');
+exports.notify 					= require('./notify');
 
-exports.permalink                   = require('./permalink');
+exports.permalink 			= require('./permalink');
+
+exports.applications    = require('./applications');

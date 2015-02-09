@@ -202,6 +202,10 @@ app.get('/directive/home/left-sidebar',function(req,res){
 // --------GET NOTIFICATION -------------------------------
 	Router_body.post('/get_notify',						 routes.get.notify);
 
+// --------GET APPLICATIONS -------------------------------
+	Router_body.post('/get_applications',			 routes.get.applications);
+
+
 
 // --------GET DATA FROM PERMALINK -------------------------------
 
