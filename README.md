@@ -1577,8 +1577,80 @@ Cache-Control: no-cache
 ```
 ##### Return
 ```
-{"error_code":0,
-"notifys": [....]
+{
+    "error_code": 0,
+    "notifys": [
+        {
+            "_id": "54d81985e7b6c9584c7f2445",
+            "time": "2015-02-09T02:20:53.000Z",
+            "userAvatar_make_notify": "https://media.licdn.com/mpr/mprx/0_k14DPHK2N-ddlTl0XtI-PwTfnrm4gTl0oB2tPwCKWzsdCLQxHzH3jI9YZYa6OQK15rV1y2r-Gmro",
+            "user_id_receive": "54d812ac7c4f668d24cc96c8",
+            "__v": 0,
+            "status": 1,
+            "type_notify": 12,
+            "content": {
+                "content": " apply job",
+                "userName_make_notify": "Campcoders Account"
+            },
+            "link": "Project-Field-Manager"
+        },
+        {
+            "_id": "54d818c5b7326bdf3b655ef2",
+            "time": "2015-02-09T02:17:41.000Z",
+            "userAvatar_make_notify": "http://jobpitch.campcoders.com/images/full_size/TalentImages/default-avatar.png",
+            "user_id_receive": "54d812ac7c4f668d24cc96c8",
+            "__v": 0,
+            "status": 1,
+            "type_notify": 11,
+            "content": {
+                "content": " create new Job",
+                "userName_make_notify": "cuongvu"
+            },
+            "link": "Project-Field-Manager"
+        },
+        {
+            "_id": "54d81846b7326bdf3b655eed",
+            "time": "2015-02-09T02:15:34.000Z",
+            "userAvatar_make_notify": "http://jobpitch.campcoders.com/images/full_size/TalentImages/default-avatar.png",
+            "user_id_receive": "54d812ac7c4f668d24cc96c8",
+            "__v": 0,
+            "status": 1,
+            "type_notify": 11,
+            "content": {
+                "content": " create new Job",
+                "userName_make_notify": "cuongvu"
+            },
+            "link": "05-Java-Developers-Attractive-Salary"
+        },
+        {
+            "_id": "54d81680b7326bdf3b655eea",
+            "time": "2015-02-09T02:08:00.000Z",
+            "userAvatar_make_notify": "http://jobpitch.campcoders.com/images/full_size/TalentImages/default-avatar.png",
+            "user_id_receive": "54d812ac7c4f668d24cc96c8",
+            "__v": 0,
+            "status": 1,
+            "type_notify": 11,
+            "content": {
+                "content": " create new Job",
+                "userName_make_notify": "cuongvu"
+            },
+            "link": "Nh-n-Vi-n-Kinh-Doanh-Thi-t-B-M-y-May-C-ng-Nghi-p"
+        },
+        {
+            "_id": "54d812ef7c4f668d24cc96cc",
+            "time": "2015-02-09T01:52:47.000Z",
+            "userAvatar_make_notify": "http://jobpitch.campcoders.com/images/full_size/TalentImages/default-avatar.png",
+            "user_id_receive": "54d812ac7c4f668d24cc96c8",
+            "__v": 0,
+            "status": 1,
+            "type_notify": 11,
+            "content": {
+                "content": " create new Job",
+                "userName_make_notify": "cuongvu"
+            },
+            "link": "Sales-English-Speaking-"
+        }
+    ]
 }
 
 ```

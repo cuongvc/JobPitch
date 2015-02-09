@@ -204,14 +204,14 @@ jobSchema.methods.newInfor    = function(image, image_small, image_normal, user_
     job.location.lng           = lng;
     job.location.address       = address;
     job.receive_notify         = receive_notify;
-
-    // var newPermalink = new Permalink();
-    // newPermalink.newInfor('', job._id, 2, title, function(){
-    //     job.permalink =  newPermalink.permalink;
-    //     add_hashTag_job(hash_tag, job._id, function(){
-    //         callback(job);
-    //     })    
-    // });    
+    
+    var newPermalink = new Permalink();
+    newPermalink.newInfor('', job._id, 2, title, function(){
+        job.permalink =  newPermalink.permalink;
+        add_hashTag_job(hash_tag, job._id, function(){
+            callback(job);
+        })    
+    });    
 
 
 }   

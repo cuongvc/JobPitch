@@ -107,12 +107,14 @@ module.exports				=	function(req, res){
         }
 
       ], function(err){
+        console.log('make new job');
         var newJob = new Job();
         newJob.newInfor(image, image_small, image_normal, user_exist.id, user_exist.userName, title, 
                         hash_tag, desc, lat, lng, address, link_direct, time, user_exist.followMes,
                         function(object){
 
                           object.save(function(err){
+                            console.log('save new job success', object);
                             user_exist.addJob(object._id);
                             respon_object(res, object);
 
