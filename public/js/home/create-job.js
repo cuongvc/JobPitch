@@ -83,7 +83,10 @@ CreateJob.controller('CreateJobCtrl',function($scope,$http){
 		}
 	})
 	$scope.CreateJob = function(JobTitle,JobDesc,Address){
-		if($scope.CreateJobImage.path == undefined || $scope.CreateJobImage.path == '') alert('Please wait until upload complete');
+		if($scope.CreateJobImage.path == undefined || $scope.CreateJobImage.path == '') {
+			alert('Please wait until upload complete');
+			return;
+		}
 
 		console.log(JobTitle,JobDesc,Address);
 		var TitleHashTags = JobTitle.match(/#\S+/g);
