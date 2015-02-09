@@ -1658,7 +1658,7 @@ Cache-Control: no-cache
 ### 24. Get applications
 
 ```
-GET http://jobpitch.campcoders.com/api/get_application
+GET http://jobpitch.campcoders.com/api/get_applications
 Content-Type: application/json
 Cache-Control: no-cache
 
