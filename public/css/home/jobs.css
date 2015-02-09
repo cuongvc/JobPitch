@@ -84,6 +84,9 @@
 	cursor: pointer;
 	color: blue;
 }
+textarea{
+	border: none!important;
+}
 .apply-box .job-comment-body textarea{
 	border-color: #eee;
 	width: 100%;
