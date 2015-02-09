@@ -54,14 +54,14 @@ module.exports				=	function(req, res){
 
 						var application = new Application();
 						application.newInfor(user_id, user_exist.userName, user_exist.avatar_small, job_id, title, hash_tag, 
-							                   description, time, file, job_exist.user_id, job_exist.userName, function(application){
+							                   description, time, file, job_exist.userName, job_exist.user_id,  function(application){
 
               for (var i = 0 ; i < job_exist.receive_notify.length ; i ++){
                 var notification = new Notification();
                 notification.newInfor(job_exist.receive_notify[i], user_exist.userName, 
                                       ' apply job', application.description, job_exist._id,
-                                      application._id, job_exist.userName, 
-                                      job_exist.user_id, job_exist.permalink, 
+                                      application._id, job_exist.user_id, 
+                                      job_exist.userName, job_exist.permalink, 
                   										user_exist.avatar_small, 12);
               }
 
