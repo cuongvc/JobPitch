@@ -17,16 +17,16 @@
       <div id="navbar-left">
         <ul class="nav navbar-nav navbar-left">
           <li>
-            <a><i class="fa fa-bell-o"></i></a>
-            <span class="notification-icon">69</span>
+            <a ng-click="ClearUnread()"><i class="fa fa-bell-o"></i></a>
+            <span class="notification-icon" ng-bind="notifications.unread" ng-if="notifications.unread > 0"></span>
             <div class="notification-box hidden">
               <ul>
-                <li ng-repeat="notification in Notifications" class="cursor">
+                <li ng-repeat="notification in notifications.list" class="cursor">
                   <div class="notification-box-image pull-left">
                     <img ng-src="{{ notification.image }}" alt="">
                   </div>
                   <div class="notification-box-body overflowhidden">
-                    <span><strong ng-bind="notification.user"></strong></span> <span ng-bind="notification.action"></span> <span ng-bind="notification.content"></span>
+                    <span><strong ng-bind="notification.user"></strong></span> <span><strong ng-bind="notification.action"></strong></span> <span ng-bind="notification.content"></span>
                   </div>
                 </li>
                 <li class="three-dot">
@@ -42,7 +42,7 @@
             <span class="notification-icon">69</span>
              <div class="notification-box hidden">
               <ul>
-                <li ng-repeat="notification in Notifications" class="cursor">
+                <li ng-repeat="notification in notifications.list" class="cursor">
                   <div class="notification-box-image pull-left">
                     <img ng-src="{{ notification.image }}" alt="">
                   </div>

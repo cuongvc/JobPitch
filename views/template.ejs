@@ -1,11 +1,15 @@
 <html>
 <head>
-	<title>Job Pitch</title>
+	<title>JobPitch</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<base href="http://jobpitch.campcoders.com">
 	<script type="text/javascript" src="/bower_components/jquery/dist/jquery.min.js"></script>
-	<script type="text/javascript" src="/bower_components/angular/angular.min.js"></script>		
+	<script type="text/javascript" src="/bower_components/angular/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-route.min.js"></script>
 	<script type="text/javascript" src="/bower_components/nightfury_bootstrap_36grid/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="/js/global.js"></script>
+	<link rel="stylesheet" type="text/css" href="/bower_components/nightfury_bootstrap_36grid/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/bower_components/nightfury_bootstrap_36grid/css/bootstrap-theme.min.css">
 	<script type="text/javascript">
 		var STR_API_RECENT = BASE_URL + '/api/recent';
 		<% if(user != undefined){ %>
@@ -31,14 +35,20 @@
 		<% }else{ %>
 			document.location.href = "/login";
 		<% } %>
-	</script>
 
+	</script>
+	<!-- SOCKET IO -->
+	<script type="text/javascript" src="http://jobpitch.campcoders.com:6970/socket.io/socket.io.js"></script>
+	<script type="text/javascript">
+		var IO = BASE_URL + ":6970/notify?user_id=" + user._id +'&token='+user.token;
+		IO = io.connect(IO);
+	</script>
+	<!-- SOCKET IO -->
 	<!-- Angular Crop -->
 	<script type="text/javascript" src="/bower_components/angular-crop/src/angular-crop.js"></script>
 	<script type="text/javascript" src="/bower_components/jcrop/js/jquery.Jcrop.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="/bower_components/jcrop/css/jquery.Jcrop.css">
 	<!-- Angular Crop -->
-
 	<!-- USER SERVICE -->
 	<script type="text/javascript" src="js/service/user.js"></script>
 	<!-- USER SERVICE -->
@@ -47,9 +57,6 @@
 	<!-- ANGULAR BOOTSTRAP -->
 	<script type="text/javascript" src="/bower_components/nightfury/src/database.js"></script>
 	<script type="text/javascript" src="/bower_components/nightfury/src/upload.js"></script>
-	<link rel="stylesheet" type="text/css" href="../css/home/header.css">
-	<link rel="stylesheet" type="text/css" href="../css/home/create-job.css">
-
 
 	<script type="text/javascript" src="/js/home/header.js"></script>
 	<script type="text/javascript" src="/js/home/setting.js"></script>
@@ -58,38 +65,21 @@
 	<script type="text/javascript" src="/js/home/left-sidebar.js"></script>
 	<script type="text/javascript" src="/js/home/application-sidebar.js"></script>
 	<script type="text/javascript" src="/js/home/footer.js"></script>
-	<script type="text/javascript" src="/js/home/index.js"></script>
-	
-	<link rel="stylesheet" type="text/css" href="/css/home/template.css">
-	<link rel="stylesheet" type="text/css" href="/bower_components/animate.css/animate.min.css">
-	<link rel="stylesheet" type="text/css" href="/bower_components/nightfury_bootstrap_36grid/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="/bower_components/nightfury_bootstrap_36grid/css/bootstrap-theme.min.css">
-	<link rel="stylesheet" type="text/css" href="/bower_components/fontawesome/css/font-awesome.min.css">
-	<link rel="stylesheet" type="text/css" href="/css/home/index.css">
-	<link rel="stylesheet" type="text/css" href="/css/home/application-sidebar.css">
 
+	<script type="text/javascript" src="/js/home/template.js"></script>
+
+	<!-- css -->
+	<link rel="stylesheet" type="text/css" href="/bower_components/fontawesome/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="/css/home/template.css">
+	<link rel="stylesheet" type="text/css" href="css/home/header.css">
+	<link rel="stylesheet" type="text/css" href="css/home/create-job.css">
+	<link rel="stylesheet" type="text/css" href="css/home/jobs.css">
+	<link rel="stylesheet" type="text/css" href="css/home/application-sidebar.css">
+	<link rel="stylesheet" type="text/css" href="css/home/left-sidebar.css">
+	<link rel="stylesheet" type="text/css" href="css/home/company-profile.css">
+	<!-- css -->
 </head>
-<body ng-app="IndexApp" ng-controller="IndexCtrl">
-	<!-- fb SDK -->
-	<div id="fb-root"></div>
-	<script>(function(d, s, id) {
-	var js, fjs = d.getElementsByTagName(s)[0];
-		if (d.getElementById(id)) return;
-			js = d.createElement(s); js.id = id;
-			js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=1539289369674374&version=v2.0";
-			fjs.parentNode.insertBefore(js, fjs);
-		}(document, 'script', 'facebook-jssdk'));
-	</script>
-	<!-- fb SDK -->
-	<!-- TWITTER SDK -->
-	<script>
-	window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return;js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);t._e=[];t.ready=function(f){t._e.push(f);};return t;}(document,"script","twitter-wjs"));
-	</script>
-	<!-- TWITTER SDK -->
-	<header></header>
-	<profile ng-if="PAGE == page.setting" page="{{ page.setting }}"></profile>
-	<jobs ng-if="PAGE == page.index" page="{{ page.index }}"></jobs>
-	<create-job ng-if="PAGE == page.index" page="{{ page.index }}"></create-job>
-	<footer></footer>
+<body ng-app="TemplateApp" ng-view>
+	
 </body>
 </html>

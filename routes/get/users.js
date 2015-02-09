@@ -25,7 +25,7 @@ module.exports								=	function(req, res){
 				res.status(200).end();
 			} else
 
-			User.find({_id : {$in : users}}, 'userName avatar avatar_small avatar_normal', function(err, users){
+			User.find({_id : {$in : users}}, 'userName avatar avatar_small avatar_normal followMes myJobs', function(err, users){
 
 				if (err){
 					res.write(JSON.stringify({ error_code : 1, msg : err.toString() }));

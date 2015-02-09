@@ -59,7 +59,7 @@
 .notification-box ul li:hover{
 	background: #eee;
 }
-.notification-box ul li span strong{
+.notification-box ul li span:first-child strong{
 	color: #3b5998;
 }
 .notification-box ul li .notification-box-image img{

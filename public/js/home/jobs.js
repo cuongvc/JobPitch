@@ -2,7 +2,7 @@ var Jobs = angular.module('jobs',['nightfury-upload','application-sidebar','left
 Jobs.directive('jobs',function(){
 	return {
 		restrict: 'E',
-		templateUrl: '/directive/home/jobs',
+		templateUrl: '/directives/home/jobs.html',
 		link: function(scope,element,attrs){
 			// $('#ApplyDesc').elastic();
 		},
@@ -30,6 +30,11 @@ Jobs.controller('JobCtrl',function($scope,$http,USER){
 			})
 		}
 		$scope.jobs = jobs;
+	})
+	IO.on(CREATE_JOB_SOCKET_EVENT,function(data){
+		jobs.unshift(data.jobs);
+		$scope.jobs = jobs;
+		$scope.$apply();
 	})
 	$scope.ViewApplicant = function(job){
 		var index = jobs.indexOf(job);
