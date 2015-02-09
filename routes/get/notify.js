@@ -35,6 +35,9 @@ module.exports								=	function(req, res){
 				} else {
 
 					notifys = notifys.slice(start, limit);
+					notifys.sort(function(x, y){
+						return x.time > y.time;
+					})
 
 					for (var i = 0 ; i < notifys.length ; i ++)
 						if (notifys[i].status == 0){
