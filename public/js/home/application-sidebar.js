@@ -16,6 +16,17 @@ ApplicationSideBar.controller('ApplicationSideBarCtrl',function($scope,$http){
 		{username: 'Đình Thuận', comment: '@Android hãy về đội của anh =))', avatar: "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xpf1/v/t1.0-1/c0.0.160.160/p160x160/1460236_622400927824334_887047684_n.jpg?oh=81f71efa7346e62a5944772a0a2b2d4c&oe=55522A78&__gda__=1431130368_eafae6507d275d5d53493f9b9e65397f"},
 	];
 	/******************************************************************************************/
+									/*SOCKET*/
+	/******************************************************************************************/
+	IO.on(APPLY_JOB_SOCKET_EVENT,function(response){
+		console.log(APPLY_JOB_SOCKET_EVENT,response);
+		
+		if(response.application.user_id == $scope.user._id) return;
+		pitchs.unshift(response.application);
+		$scope.pitchs = pitchs;
+		$scope.$apply();
+	})
+	/******************************************************************************************/
 									/*GET PITCH*/
 	/******************************************************************************************/
 	var data = {
@@ -35,6 +46,7 @@ ApplicationSideBar.controller('ApplicationSideBarCtrl',function($scope,$http){
 				}
 			})
 			$scope.pitchs = pitchs;
+			console.log(pitchs);
 		}
 	})
 	$scope.ApplicationSidebarViewMoreComment = function(numberCmt){

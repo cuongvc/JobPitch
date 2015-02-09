@@ -44,7 +44,7 @@ Header.controller('HeaderCtrl',function($scope,$http){
 	IO.on(APPLY_JOB_SOCKET_EVENT,function(response){
 		console.log(APPLY_JOB_SOCKET_EVENT,response);
 		
-		// if(response.application.user_id == $scope.user._id) return;
+		if(response.application.user_id == $scope.user._id) return;
 		var shortTitle = makeShortNotificationTitle(response.application.description);
 		var newNoti = {
 				user: response.application.user_name,
