@@ -8,6 +8,8 @@ module.exports								=	function(req, res){
 		
 		var user_id = data.user_id;
 		var token   = data.token;
+		var start   = data.start;
+		var limit   = data.limit;
 		
 	}
 
@@ -32,10 +34,13 @@ module.exports								=	function(req, res){
 					res.status(200).end();
 				} else {
 
-					for (var i = 0 ; i < notifys.length ; i ++){
-						notifys[i].status = 1;
-						notifys.save(function(err){});
-					}
+					notifys = notifys.slice(start, limit);
+
+					for (var i = 0 ; i < notifys.length ; i ++)
+						if (notifys[i].status == 0){
+								notifys[i].status = 1;
+								notifys.save(function(err){});
+							}
 
 					res.write(JSON.stringify({ error_code : 0, notifys : notifys }));
 					res.status(200).end();

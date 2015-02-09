@@ -1,7 +1,6 @@
 var User           = require('./../../models/users');
 
 module.exports				=	function(id, token, callback){
-	console.log('In check token, USER : ', User);
 	User.findOne({_id : id}, function(err, object_exist){
 
 		if (err){
