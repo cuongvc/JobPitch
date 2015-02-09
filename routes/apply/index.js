@@ -3,6 +3,10 @@ var check_token                    = require('./../../my_module/check_exist').to
 var Application                    = require('./../../models/applications');
 var respon_object                  = require('./../../my_module/respon_object').application;
 
+var io_notify           = require('./../../my_module/socket');
+var Notification        = require('./../../models/notifications');
+
+
 module.exports				=	function(req, res){
 
 	try{
@@ -51,6 +55,18 @@ module.exports				=	function(req, res){
 						var application = new Application();
 						application.newInfor(user_id, user_exist.userName, user_exist.avatar_small, job_id, title, hash_tag, 
 							                   description, time, file, function(application){
+
+              for (var i = 0 ; i < job_exist.receive_notify.length ; i ++){
+                var notification = new Notification();
+                notification.newInfor(job_exist.receive_notify[i], user_exist.userName, 
+                                      ' apply job', job_exist.permalink, 
+                  										user_exist.avatar_small, 12);
+              }
+
+
+             	io_notify.emit('apply_job', {user_receive_notify : job_exist.receive_notify,
+                                            job                 : job_exist,
+                                            application         : application});
 
 							job_exist.addApply(user_id, application._id, function(){
 								user_exist.addApply(application._id, function(){
