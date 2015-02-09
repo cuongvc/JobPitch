@@ -36,7 +36,15 @@ var notificationSchema = mongoose.Schema({
         },
         userAvatar_make_notify : {
             type         : String
-        }
+        },
+        userId_own_job       : {
+            type             : ObjectId,
+            ref              : 'users'
+        },
+
+        userName_own_job     : {
+            type             : String
+        },
     },
 
     type_notify      : {
@@ -51,13 +59,15 @@ var notificationSchema = mongoose.Schema({
     status           : {
         type         : Number,
         default      : 0
-    }
+    },
+
+
 
 });
 
 
 notificationSchema.methods.newInfor    = function(user_id_receive, userName_make_notify, content, 
-                                                short_content, job_id, app_id,
+                                                short_content, job_id, app_id, userId_own_job, userName_own_job,
                                                 link, userAvatar_make_notify, type_notify){
 
     var notify = this;
@@ -67,6 +77,9 @@ notificationSchema.methods.newInfor    = function(user_id_receive, userName_make
     notify.content.content = content;
     notify.content.short_content = short_content;
     notify.content.job_id = job_id;
+    notify.content.userId_own_job = userId_own_job;
+    notify.content.userName_make_notify = userName_make_notify;
+
     if (app_id != '')
         notify.content.app_id = app_id;
     notify.type_notify = type_notify;
