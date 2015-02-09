@@ -107,7 +107,7 @@
 }
 .application-sidebar-company-logo li img{
 	width: 100%;
-	margin-right: 5px;
+	border-radius: 100%;
 	cursor: pointer;
 	/*border-radius: 100%;*/
 }
