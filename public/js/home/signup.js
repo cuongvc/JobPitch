@@ -16,7 +16,7 @@ SignupApp.controller('SignupCtrl',function($scope,$http){
 			if(response.error_code == 0){
 				document.location.href = BASE_URL
 			}else{
-				alert(response.msg)
+				alert(response.msg);
 			}
 		})
 	}
