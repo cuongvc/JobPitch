@@ -31,6 +31,11 @@ Jobs.controller('JobCtrl',function($scope,$http,USER){
 		}
 		$scope.jobs = jobs;
 	})
+	IO.on(CREATE_JOB_SOCKET_EVENT,function(data){
+		jobs.unshift(data.jobs);
+		$scope.jobs = jobs;
+		$scope.$apply();
+	})
 	$scope.ViewApplicant = function(job){
 		var index = jobs.indexOf(job);
 		jobs[index].showApplyBox = true;
