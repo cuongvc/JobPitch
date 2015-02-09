@@ -111,6 +111,8 @@ Jobs.controller('JobCtrl',function($scope,$http,USER){
 				jobs[index].applications.loadFromSever.push(response.application);
 				$('#ApplyDesc').val('');
 				$scope.jobs = jobs;
+			}else{
+				alert(response.msg);
 			}
 		}).error(function(e){
 			console.log(e);
