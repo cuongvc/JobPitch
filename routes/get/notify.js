@@ -39,7 +39,7 @@ module.exports								=	function(req, res){
 					for (var i = 0 ; i < notifys.length ; i ++)
 						if (notifys[i].status == 0){
 								notifys[i].status = 1;
-								notifys.save(function(err){});
+								notifys[i].save(function(err){});
 							}
 
 					res.write(JSON.stringify({ error_code : 0, notifys : notifys }));
