@@ -25,6 +25,9 @@ Header.controller('HeaderCtrl',function($scope,$http){
 		unread: 0,
 	};
 	$scope.notifications = notifications;
+	/*************************************************************************************************************/
+											/*SOCKET*/
+	/*************************************************************************************************************/
 	IO.on(CREATE_JOB_SOCKET_EVENT,function(data){
 		console.log('create_job:',data);
 		notifications.unread++;
@@ -46,6 +49,20 @@ Header.controller('HeaderCtrl',function($scope,$http){
 		$scope.notifications = notifications;
 		$scope.$apply();
 	})
+	/*************************************************************************************************************/
+										/*GET NOTIFICATIONS*/
+	/*************************************************************************************************************/
+	var data = {
+		user_id: $scope.user._id,
+		token: $scope.user.token,
+	};
+	$http.post(STR_API_GET_NOTIFICATION,data).success(function(response){
+		console.log(response);
+	})
+
+
+
+
 	$scope.ClearUnread = function(){
 		notifications.unread = 0;
 		$scope.notifications = notifications;

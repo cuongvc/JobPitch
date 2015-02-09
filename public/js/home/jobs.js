@@ -31,11 +31,18 @@ Jobs.controller('JobCtrl',function($scope,$http,USER){
 		}
 		$scope.jobs = jobs;
 	})
+	/*************************************************************************************************************/
+											/*SOCKET*/
+	/*************************************************************************************************************/
 	IO.on(CREATE_JOB_SOCKET_EVENT,function(data){
-		jobs.unshift(data.jobs);
+		jobs.unshift(data.job);
 		$scope.jobs = jobs;
+		console.log(jobs);
 		$scope.$apply();
 	})
+	/*************************************************************************************************************/
+											/*View Pitch*/
+	/*************************************************************************************************************/
 	$scope.ViewApplicant = function(job){
 		var index = jobs.indexOf(job);
 		jobs[index].showApplyBox = true;
@@ -59,9 +66,9 @@ Jobs.controller('JobCtrl',function($scope,$http,USER){
 		evt.stopPropagation();
 		console.log('a');
 	}
-	/*
-	* apply 
-	*/
+	/*************************************************************************************************************/
+											/*PITCH*/
+	/*************************************************************************************************************/
 	$scope.ApplyDescWordCount = 0;
 	$scope.ApplyTextAreaChange = function(content){
 		$scope.ApplyDescWordCount = content.length;
@@ -109,9 +116,9 @@ Jobs.controller('JobCtrl',function($scope,$http,USER){
 			console.log(e);
 		})
 	}
-	/*
-	* share
-	*/
+	/*************************************************************************************************************/
+											/*SHARE*/
+	/*************************************************************************************************************/
 	$scope.ShareJobOnFacebook = function(job){
 		FB.ui({
 			method: 'share',
@@ -125,9 +132,9 @@ Jobs.controller('JobCtrl',function($scope,$http,USER){
 		}
 		);
 	}
-	/*
-	* post pitch reply
-	*/
+	/*************************************************************************************************************/
+											/*REAPLY PITCH*/
+	/*************************************************************************************************************/
 	$scope.PostPitchReply = function(PitchReply,Application,evt){
 		if(evt.keyCode == 13){
 			var HashTags = PitchReply.match(/#\S+/g);
@@ -146,9 +153,9 @@ Jobs.controller('JobCtrl',function($scope,$http,USER){
 			})
 		}
 	}
-	/*
-	* like
-	*/
+	/*************************************************************************************************************/
+											/*LIKE*/
+	/*************************************************************************************************************/
 	$scope.LikeJob = function(job){
 		var data = {
 			user_id        : $scope.user._id,

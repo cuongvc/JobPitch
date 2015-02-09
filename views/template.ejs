@@ -2,7 +2,7 @@
 <head>
 	<title>JobPitch</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-	<base href="http://jobpitch.campcoders.com">
+	<base href="http://job.dev">
 	<script type="text/javascript" src="/bower_components/jquery/dist/jquery.min.js"></script>
 	<script type="text/javascript" src="/bower_components/angular/angular.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-route.min.js"></script>
@@ -79,7 +79,7 @@
 	<link rel="stylesheet" type="text/css" href="css/home/company-profile.css">
 	<!-- css -->
 </head>
-<body ng-app="TemplateApp" ng-view>
+<body ng-class="{{ checkPassword }}" ng-app="TemplateApp" ng-view>
 	
 </body>
 </html>
