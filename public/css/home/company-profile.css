@@ -41,3 +41,6 @@
 .company-avatar img{
 	border: 3px solid #fff;
 }
+.followed-true{
+	color: #2dbea1;
+}

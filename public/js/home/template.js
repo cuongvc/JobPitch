@@ -23,8 +23,9 @@ TemplateApp.controller('IndexCtrl',function($scope,$http){
 	$scope.logedin = logedin;
 })
 TemplateApp.controller('ProfileCtrl',function($scope,$http,$routeParams){
-	$scope.user    = user;
-	$scope.logedin = logedin;
+	$scope.BASE_URL = BASE_URL;
+	$scope.user     = user;
+	$scope.logedin  = logedin;
 	var profile;
 	var data = {
 		user_id: $scope.user._id,
@@ -36,6 +37,13 @@ TemplateApp.controller('ProfileCtrl',function($scope,$http,$routeParams){
 		console.log(response);
 		if(response.error_code == 0){
 			profile = response.users[0];
+			if(profile.followMes.indexOf($scope.user._id) < 0){
+				profile.followed = false;
+			}else{
+				profile.followed = true;
+			}
+			profile.follow_number = profile.followMes.length;
+			profile.jobs_number = profile.myJobs.length;
 			$scope.profile = profile;
 		} 
 	})
@@ -48,7 +56,19 @@ TemplateApp.controller('ProfileCtrl',function($scope,$http,$routeParams){
 		console.log(data);
 		$http.post(STR_API_FOLLOW,data).success(function(response){
 			console.log(response);
-			alert('ok');
+			if(response.error_code == 0){
+				if(profile.followed == true){
+					profile.followed = false;
+					var index = profile.followMes.indexOf($scope.user._id);
+					profile.followMes.splice(index,1);
+					profile.follow_number--;
+				}else{
+					profile.followed = true;
+					profile.followMes.push($scope.user._id);
+					profile.follow_number++;
+				}
+				$scope.profile = profile;
+			}
 		})
 	}
 })

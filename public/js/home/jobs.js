@@ -2,7 +2,7 @@ var Jobs = angular.module('jobs',['nightfury-upload','application-sidebar','left
 Jobs.directive('jobs',function(){
 	return {
 		restrict: 'E',
-		templateUrl: '/directive/home/jobs',
+		templateUrl: '/directives/home/jobs.html',
 		link: function(scope,element,attrs){
 			// $('#ApplyDesc').elastic();
 		},

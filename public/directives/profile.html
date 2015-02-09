@@ -7,8 +7,8 @@
 				</div>
 				<div class="cover-menu">
 					<ul>
-						<li><a href="" class="semibold">Jobs<span>(14)</span></a></li>
-						<li ng-click="follow()"><a href="" class="semibold"><span><i class="fa fa-star"></i></span> Following<span>(400)</span></a></li>
+						<li><a href="" class="semibold">Jobs<span>({{ profile.jobs_number }})</span></a></li>
+						<li ng-click="follow()"><a href="" class="semibold"><span><i class="fa fa-star followed-{{ profile.followed }}"></i></span> Following<span>({{ profile.follow_number }})</span></a></li>
 						<li><a href="" class="semibold">About</a></li>
 						<li><a href="" class="semibold">Contact</a></li>
 					</ul>
