@@ -24,7 +24,7 @@ module.exports								=	function(req, res){
 				res.status(200).end();
 			} else
 
-			Notify.find({_id : {$in : user_exist.notifications.list}, status : 0}, function(err, notifys){
+			Notify.find({_id : {$in : user_exist.notifications.list}}, function(err, notifys){
 
 				if (err){
 					console.log(err);
