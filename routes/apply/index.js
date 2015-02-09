@@ -54,7 +54,7 @@ module.exports				=	function(req, res){
 
 						var application = new Application();
 						application.newInfor(user_id, user_exist.userName, user_exist.avatar_small, job_id, title, hash_tag, 
-							                   description, time, file, function(application){
+							                   description, time, file, job_exist.user_id, job_exist.userName, function(application){
 
               for (var i = 0 ; i < job_exist.receive_notify.length ; i ++){
                 var notification = new Notification();

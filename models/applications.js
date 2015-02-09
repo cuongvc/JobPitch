@@ -106,7 +106,16 @@ var applicationSchema = mongoose.Schema({
     comment       : [{
     	type           : ObjectId,
     	ref            : 'comments'
-    }]
+    }],
+
+    companyName   : {
+        type      : String
+    },
+
+    companyId     : {
+        type           : ObjectId,
+        ref            : 'users'
+    }
 
 });
 
@@ -117,7 +126,7 @@ applicationSchema.methods.isOwn         = function(companyId){
 
 applicationSchema.methods.newInfor    = function(user_id, user_name, user_avatar, 
                                         job_id, title, hash_tag, description, time, 
-                                        file, callback){
+                                        file, companyName, companyId, callback){
 
     var app = this;
     app.user_id        = user_id;
@@ -129,6 +138,10 @@ applicationSchema.methods.newInfor    = function(user_id, user_name, user_avatar
     app.hash_tag       = hash_tag;
     app.description    = description;
     app.time           = time;
+
+    app.companyId = companyId;
+    app.companyName = companyName;
+    
     if (file != ''){
         app.file           = file;
     }
