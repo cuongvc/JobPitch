@@ -7,9 +7,7 @@ Header.directive('header',function(){
 			$('body').click(function(){
 				$('.notification-box').addClass('hidden');
 			})
-			
 		},
-		controller: 'HeaderCtrl',
 	}
 })
 Header.controller('HeaderCtrl',function($scope,$http){

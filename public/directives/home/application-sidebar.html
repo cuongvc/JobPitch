@@ -2,7 +2,7 @@
 
 <div id="sidebar" class="col-md-12 col-sm-12 hidden-xs transition_500ms" ng-controller="ApplicationSideBarCtrl">
 	<div ng-repeat="pitch in pitchs" class="sidebar-element transition_500ms">
-		<div class="pitch-sidebar-content sidebar-border">
+		<div class="pitch-sidebar-content gray-border">
 			<div class="application-sidebar-applicant">
 				<div class="application pull-left">
 					<div class="application-sidebar-avatar">
@@ -28,7 +28,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="application-sidebar-company-logo sidebar-border">
+		<div class="application-sidebar-company-logo gray-border">
 			<ul class="col-md-36 col-sm-36 col-xs-36">
 				<li ng-repeat="interest in InterestList" class="col-md-12 col-sm-12 col-xs-12">
 					<img class="animated fadeIn center-block" ng-src="{{ interest.logo }}" alt="">
@@ -40,7 +40,7 @@
 				<span></span>
 			</p>
 		</div>
-		<div class="sidebar-border application-sidebar-comment animated fadeIn col-md-36 col-sm-36" ng-if="pitch.showComment == true">
+		<div class="gray-border application-sidebar-comment animated fadeIn col-md-36 col-sm-36" ng-if="pitch.showComment == true">
 			<div class="sidebar-cmt" ng-repeat="ApplicationSidebarComment in ApplicationSideBarComments">
 				<div class="sidebar-comment-image pull-left">
 					<img src="{{ ApplicationSidebarComment.avatar }}" alt="">

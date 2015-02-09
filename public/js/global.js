@@ -17,6 +17,7 @@
 	var STR_API_FOLLOW           = BASE_URL + '/api/follow';
 	var STR_API_GET_NOTIFICATION = BASE_URL + '/api/get_notify';
 	var STR_API_GET_PITCH        = BASE_URL + '/api/get_applications';
+	var STR_API_GET_COMMENTS     = BASE_URL + '/api/get_comments';
 	/*
 	* SOCKET EVENT
 	*/

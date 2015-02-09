@@ -29,8 +29,7 @@ module.exports										=	function(req, res){
 			} else{
 
 				var newComment   = new Comment();
-				newComment.newInfor(user_exist._id, user_exist.avatar_normal, 
-														user_exist.userName, application_parent, 
+				newComment.newInfor(user_exist._id, user_exist.userName, user_exist.avatar_normal, application_parent, 
 														comment_parent, content, hash_tag, 
 														function(comment){
 					comment.save(function(err){
