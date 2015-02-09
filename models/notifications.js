@@ -26,7 +26,16 @@ var notificationSchema = mongoose.Schema({
 
     content          : {
         userName_make_notify : String,
-        content              : String
+        content              : String,
+        short_content        : String,
+        job_id               : {
+            type             : ObjectId,
+            ref              : 'jobs'
+        },
+        app_id               : {
+            type             : ObjectId,
+            ref              : 'applications'
+        }
     },
 
     type_notify      : {
@@ -47,6 +56,7 @@ var notificationSchema = mongoose.Schema({
 
 
 notificationSchema.methods.newInfor    = function(user_id_receive, userName_make_notify, content, 
+                                                short_content, job_id, app_id,
                                                 link, userAvatar_make_notify, type_notify){
 
     var notify = this;
@@ -54,6 +64,10 @@ notificationSchema.methods.newInfor    = function(user_id_receive, userName_make
     notify.userAvatar_make_notify = userAvatar_make_notify;
     notify.content.userName_make_notify = userName_make_notify;
     notify.content.content = content;
+    notify.content.short_content = short_content;
+    notify.job_id = job_id;
+    if (app_id != '')
+        notify.app_id = app_id;
     notify.type_notify = type_notify;
     notify.time = new Date(new Date().toGMTString()).toJSON();
     notify.link = link;

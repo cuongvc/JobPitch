@@ -59,7 +59,8 @@ module.exports				=	function(req, res){
               for (var i = 0 ; i < job_exist.receive_notify.length ; i ++){
                 var notification = new Notification();
                 notification.newInfor(job_exist.receive_notify[i], user_exist.userName, 
-                                      ' apply job', job_exist.permalink, 
+                                      ' apply job', application.description, job_exist._id,
+                                      application._id, job_exist.permalink, 
                   										user_exist.avatar_small, 12);
               }
 

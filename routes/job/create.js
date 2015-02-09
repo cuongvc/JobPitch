@@ -121,7 +121,7 @@ module.exports				=	function(req, res){
                             for (var i = 0 ; i < object.receive_notify.length ; i ++){
                               var notification = new Notification();
                               notification.newInfor(object.receive_notify[i], user_exist.userName, 
-                                                    ' create new Job', object.permalink, 
+                                                    ' create new job', object.title, object.id, '', object.permalink, 
                                                     user_exist.avatar_small, 11);
                             }
 
