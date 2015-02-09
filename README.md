@@ -1554,3 +1554,29 @@ Cache-Control: no-cache
     "location":{"address":"9 Nguyên Hong, Thành Công, Ba Đình, Hà Nội, Việt Nam","lng":105.812198,"lat":21.018549},"isUser":2,"address":""}}
 
 ```
+
+### 24. Get notify
+
+```
+GET http://jobpitch.campcoders.com/api/get_notify
+Content-Type: application/json
+Cache-Control: no-cache
+
+{
+    "token"                     :  "$2a$08$tVRMd5Rv2PeGcvbwYB0O93247GhpvW",
+    "user_id"                   :  "54d185c336691a8b0f1169cd"
+}
+
+```
+##### Regex
+```
+
+
+```
+##### Return
+```
+{"error_code":0,
+"notifys": [....]
+}
+
+```

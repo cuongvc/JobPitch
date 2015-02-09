@@ -210,6 +210,11 @@ var userSchema = mongoose.Schema({
             default: []
         }],
 
+        default : {
+            unread : 0,
+            list : []
+        }
+
     },
 
     messages: [{
