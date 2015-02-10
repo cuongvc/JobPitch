@@ -27,7 +27,7 @@ module.exports				=	function(req, res){
 				res.write(JSON.stringify({error_code : 1, msg : 'Authenticate is not success'}));
 				res.status(200).end();
 			} else {
-
+				console.log(own_of_app_id);
 				if (own_of_app_id == '' || typeof(own_of_app_id) == 'undefined'){
 				  var q = Application.find({}).limit(limit + start).sort({'time' : -1});
 				}
