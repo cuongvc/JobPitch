@@ -18,6 +18,7 @@
 	var STR_API_GET_NOTIFICATION = BASE_URL + '/api/get_notify';
 	var STR_API_GET_PITCH        = BASE_URL + '/api/get_applications';
 	var STR_API_GET_COMMENTS     = BASE_URL + '/api/get_comments';
+	var STR_API_MY_JOBS          = BASE_URL + '/api/my_jobs';
 	/*
 	* SOCKET EVENT
 	*/
