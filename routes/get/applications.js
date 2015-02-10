@@ -29,7 +29,7 @@ module.exports				=	function(req, res){
 			} else {
 				console.log(typeof(own_of_app_id) == 'undefined');
 				if ( typeof(own_of_app_id) == 'undefined' || own_of_app_id == ''){
-				  var q = Application.find({}).limit(limit + start).sort({'time' : -1});
+				  var q = Application.find({}).skip(start).limit(limit).sort({'time' : -1});
 				}
 				else{
 					var q = Application.find({user_id : own_of_app_id}).skip(start).limit(limit).sort({'time' : -1});
