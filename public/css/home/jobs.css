@@ -12,9 +12,15 @@
 #jobs {
 	padding: 0px;
 }
+.job .job-content p:first-child{
+	margin-bottom: 0px!important;
+}
 .job .job-content{
 	padding: 10px 15px 10px 15px;
 	overflow: auto;
+}
+.job .job-content a{
+	text-decoration: none!important;
 }
 .job .image{
 	width: 100%;
@@ -79,6 +85,9 @@
 }
 .job-comment-desc span strong:hover{
 	text-decoration: underline;
+}
+.cp-title{
+	margin-bottom: 0px!important;
 }
 .cp-title:hover{
 	cursor: pointer;

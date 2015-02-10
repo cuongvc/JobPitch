@@ -52,6 +52,10 @@ app.get('/login',function(req,res){
 app.get('/signup',function(req,res){
 	res.render('signup.ejs');
 })
+app.get('/export-pdf/:pitch_id',function(req,res){
+	res.render('export-pdf.ejs');
+})
+
 
 /**************** API GET USER, JOB, APPLICATION NOT AUTHENTICATE ******************/
 

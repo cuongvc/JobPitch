@@ -2,7 +2,7 @@ var LeftSidebar = angular.module('left-sidebar',[]);
 LeftSidebar.directive('leftSidebar',function(){
 	return {
 		restrict: 'E',
-		templateUrl: '/directive/home/left-sidebar',
+		templateUrl: '/directives/home/left-sidebar.html',
 		link: function(scope,element,attrs){
 
 		},
