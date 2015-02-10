@@ -2,7 +2,7 @@ var CreateJob = angular.module('create-job',['angular-crop']);
 CreateJob.directive('createJob',function(){
 	return {
 		restrict: 'E',
-		templateUrl: '/directive/home/create-job',
+		templateUrl: '/directives/home/create-job.html',
 		link: function(scope,element,attrs){
 			var btnPlus = $('#create-job-plus');
 			var btnEdit = $('#create-job-edit');
@@ -82,8 +82,13 @@ CreateJob.controller('CreateJobCtrl',function($scope,$http){
 			$scope.showCrop = showCrop;
 		}
 	})
-	$scope.CreateJob = function(JobTitle,JobDesc,ImageLink,Address){
-		console.log(JobTitle,JobDesc,ImageLink,Address);
+	$scope.CreateJob = function(JobTitle,JobDesc,Address){
+		if($scope.CreateJobImage.path == undefined || $scope.CreateJobImage.path == '') {
+			alert('Please wait until upload complete');
+			return;
+		}
+
+		console.log(JobTitle,JobDesc,Address);
 		var TitleHashTags = JobTitle.match(/#\S+/g);
 		var DescHashTags  = JobDesc.match(/#\S+/g);
 		var HashTags = new Array();
@@ -105,7 +110,7 @@ CreateJob.controller('CreateJobCtrl',function($scope,$http){
 			newJob.desc = JobDesc;
 			newJob.hash_tag = HashTags;
 			newJob.temp_path = $scope.CreateJobImage.path;
-			newJob.link_direct = ImageLink;
+			newJob.link_direct = '';
 			newJob.extension = $scope.CreateJobImage.extension
 			newJob.lat = 21.016481;
 			newJob.lng = 105.810339;
@@ -113,7 +118,8 @@ CreateJob.controller('CreateJobCtrl',function($scope,$http){
 		$http.post(STR_API_CREATE_JOB,newJob).success(function(response){
 			console.log(response);
 			if(response.error_code == 0){
-				document.location.href = BASE_URL;
+				ShowCreateJobForm = false;
+				$scope.ShowCreateJobForm = ShowCreateJobForm;
 			}
 		})
 		console.log(JSON.stringify(newJob)); 

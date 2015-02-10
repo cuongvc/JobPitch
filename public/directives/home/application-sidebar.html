@@ -1,0 +1,61 @@
+
+
+<div id="sidebar" class="col-md-12 col-sm-12 hidden-xs transition_500ms" ng-controller="ApplicationSideBarCtrl">
+	<div ng-repeat="pitch in pitchs" class="sidebar-element transition_500ms">
+		<div class="pitch-sidebar-content gray-border">
+			<div class="application-sidebar-applicant">
+				<div class="application pull-left">
+					<div class="application-sidebar-avatar">
+						<img ng-src="{{ pitch.user_avatar }}">
+					</div>	
+				</div>
+				<div class="application-sidebar-header">
+					<p class="application-sidebar-name"><strong ng-bind="pitch.user_name"></strong></p>
+					<p class=" pull-left"><span class="application-sidebar-company-name gray-color" ng-click="ViewUser(pitch.companyId)">@<span ng-bind="pitch.companyName"></span></span></p>
+				</div>
+			</div>
+			<div class="application-sidebar-body">
+				<div class="application-sidebar-apply-content">
+					<p class="pull-left"><strong ng-bind="pitch.description"></strong></p>
+				</div>
+				<div class="application-sidebar-like-share small-text">
+					<ul>
+						<li class="pull-left"><span ng-bind="pitch.interests.number"></span><span> interest</span></li>
+						<li class="pull-right"><span ng-bind="pitch.shares.number"></span><span> share</span></li>
+						<li class="pull-right"><span ng-bind="pitch.likes.number"></span><span> like</span></li>
+						<li class="pull-right" ng-click="ShowApplicationSidebarComment(pitch)"><span>48 <span>comment</span></span></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="application-sidebar-company-logo gray-border">
+			<ul class="col-md-36 col-sm-36 col-xs-36">
+				<li ng-repeat="interest in InterestList" class="col-md-12 col-sm-12 col-xs-12">
+					<img class="animated fadeIn center-block" ng-src="{{ interest.logo }}" alt="">
+				</li>
+			</ul>
+			<p class="pull-right application-sidebar-company-view-more three-dot" ng-click="LoadMoreInterestLogo()" title="View All">
+				<span></span>
+				<span></span>
+				<span></span>
+			</p>
+		</div>
+		<div class="gray-border application-sidebar-comment animated fadeIn col-md-36 col-sm-36" ng-if="pitch.showComment == true">
+			<div class="sidebar-cmt" ng-repeat="ApplicationSidebarComment in ApplicationSideBarComments">
+				<div class="sidebar-comment-image pull-left">
+					<img src="{{ ApplicationSidebarComment.avatar }}" alt="">
+				</div>
+				<div class="sidebar-comment-body">
+					<p><strong class="blue-text" ng-bind="ApplicationSidebarComment.username"></strong> <span class="normal-text" ng-bind="ApplicationSidebarComment.comment"></span></p>
+				</div>
+			</div>
+			<div class="application-sidebar-number-comment">
+				<p class="text-right three-dot" ng-click="ApplicationSidebarViewMoreComment(5)">
+					<span></span>
+					<span></span>
+					<span></span>
+				</p>
+			</div>
+		</div>
+	</div>
+</div>

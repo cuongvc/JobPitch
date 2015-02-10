@@ -56,6 +56,9 @@ Jobs.controller('JobCtrl',function($scope,$http,USER){
 			console.log(response);
 			if(response.error_code == 0){
 				jobs[index].applications.loadFromSever = response.app;
+				jobs[index].applications.loadFromSever.forEach(function(v,k){
+					jobs[index].applications.loadFromSever[k].number = v.comment.length;
+				})
 				$scope.jobs = jobs;
 			}
 			
@@ -64,7 +67,30 @@ Jobs.controller('JobCtrl',function($scope,$http,USER){
 
 	$scope.ViewCompanyProfile = function(evt,id){
 		evt.stopPropagation();
-		console.log('a');
+	}
+	/*************************************************************************************************************/
+											/*PITCH COMMENT*/
+	/*************************************************************************************************************/
+	$scope.getPitchComment = function(job,pitch){
+		var index_job = jobs.indexOf(job);
+		var index_pitch = job.applications.loadFromSever.indexOf(pitch);
+		jobs[index_job].applications.loadFromSever[index_pitch].showReplyForm = true;
+		if(pitch.loaded == true) return;
+		var data = {
+			user_id: $scope.user._id,
+			token: $scope.user.token,
+			comments: pitch.comment,
+		}
+		$http.post(STR_API_GET_COMMENTS,data).success(function(response){
+			console.log('pitch comment:',response);
+			if(response.error_code == 0){
+				jobs[index_job].applications.loadFromSever[index_pitch].comments = response.comment;
+				jobs[index_job].applications.loadFromSever[index_pitch].loaded = true;
+				$scope.jobs = jobs;
+			}else{
+				alert(response.msg)
+			}
+		})
 	}
 	/*************************************************************************************************************/
 											/*PITCH*/
@@ -111,11 +137,14 @@ Jobs.controller('JobCtrl',function($scope,$http,USER){
 				jobs[index].applications.loadFromSever.push(response.application);
 				$('#ApplyDesc').val('');
 				$scope.jobs = jobs;
+			}else{
+				alert(response.msg);
 			}
 		}).error(function(e){
 			console.log(e);
 		})
 	}
+	
 	/*************************************************************************************************************/
 											/*SHARE*/
 	/*************************************************************************************************************/
@@ -135,7 +164,7 @@ Jobs.controller('JobCtrl',function($scope,$http,USER){
 	/*************************************************************************************************************/
 											/*REAPLY PITCH*/
 	/*************************************************************************************************************/
-	$scope.PostPitchReply = function(PitchReply,Application,evt){
+	$scope.PostPitchReply = function(PitchReply,job,pitch,evt){
 		if(evt.keyCode == 13){
 			var HashTags = PitchReply.match(/#\S+/g);
 			if(HashTags == null) HashTags = [];
@@ -144,12 +173,22 @@ Jobs.controller('JobCtrl',function($scope,$http,USER){
 				token : $scope.user.token,
 				content : PitchReply,
 				hash_tag : HashTags,
-				application_parent : Application._id,
+				application_parent : pitch._id,
 				comment_parent : "",
 			}
 			console.log(data);
 			$http.post(STR_API_COMMENT,data).success(function(response){
 				console.log(response);
+				if(response.error_code == 0){
+					$(evt.target).val('');
+					var index_job = jobs.indexOf(job);
+					var index_pitch = job.applications.loadFromSever.indexOf(pitch);
+					jobs[index_job].applications.loadFromSever[index_pitch].comments.push(response.comment);
+					jobs[index_job].applications.loadFromSever[index_pitch].number++;
+					$scope.jobs = jobs;
+				}else{
+					alert(response.msg);
+				}
 			})
 		}
 	}

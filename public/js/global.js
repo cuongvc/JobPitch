@@ -16,7 +16,10 @@
 	var STR_API_GET_USER         = BASE_URL + '/api/users';
 	var STR_API_FOLLOW           = BASE_URL + '/api/follow';
 	var STR_API_GET_NOTIFICATION = BASE_URL + '/api/get_notify';
+	var STR_API_GET_PITCH        = BASE_URL + '/api/get_applications';
+	var STR_API_GET_COMMENTS     = BASE_URL + '/api/get_comments';
 	/*
 	* SOCKET EVENT
 	*/
 	var CREATE_JOB_SOCKET_EVENT  = 'create_job';
+	var APPLY_JOB_SOCKET_EVENT   = 'apply_job';

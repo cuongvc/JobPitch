@@ -13,7 +13,11 @@ SignupApp.controller('SignupCtrl',function($scope,$http){
 		console.log(JSON.stringify(user));
 		$http.post(STR_API_SIGN_UP,user).success(function(response){
 			console.log(response);
-			if(response.error_code == 0) document.location.href = BASE_URL;
+			if(response.error_code == 0){
+				document.location.href = BASE_URL
+			}else{
+				alert(response.msg);
+			}
 		})
 	}
 })

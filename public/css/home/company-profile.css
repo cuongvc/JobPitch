@@ -1,3 +1,6 @@
+body{
+	padding-bottom: 600px;
+}
 #company-profile .cover-image{
 	overflow: auto;
 }

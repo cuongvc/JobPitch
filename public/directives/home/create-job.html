@@ -31,13 +31,10 @@
 				<div class="form-group">
 			    	<input type="file" ng-model="Image" nightfury-onchange-upload="CreateJobImage">
 			    </div>		    	
-				<div class="form-group">
-			    	<input type="text" value="" ng-model="ImageLink" placeholder="Link direct from image">
-			    </div>
 			    <div class="form-group">
 			    	<input type="text" value="" ng-model="Address" placeholder="Address for work">
 			    </div>
-			    <button class="btn btn-success" ng-click="CreateJob(JobTitle,JobDesc,ImageLink,Address)">CREATE</button>
+			    <button class="btn btn-success" ng-click="CreateJob(JobTitle,JobDesc,Address)">CREATE</button>
 		    </form>
 		</div>
 	</div>

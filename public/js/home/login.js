@@ -15,6 +15,8 @@ Login.controller('LoginCtrl',function($scope,$http){
 			console.log(response);
 			if(response.error_code == 0){
 				document.location.href = BASE_URL;
+			}else{
+				alert(response.msg);
 			}
 		})
 	}

@@ -1,0 +1,35 @@
+<html>
+<head>
+	<title>Export PDF</title>
+	<script type="text/javascript" src="../bower_components/jquery/dist/jquery.min.js"></script>
+	<script type="text/javascript" src="../bower_components/angular/angular.min.js"></script>
+	<script type="text/javascript" src="../bower_components/jspdf/dist/jspdf.min.js"></script>
+	<script type="text/javascript" src="../bower_components/nightfury_bootstrap_36grid/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="../bower_components/nightfury_bootstrap_36grid/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../bower_components/nightfury_bootstrap_36grid/css/bootstrap-theme.min.css">
+	<link rel="stylesheet" type="text/css" href="../css/home/template.css">
+	<script type="text/javascript">
+		var doc = new jsPDF();
+
+		// We'll make our own renderer to skip this editor
+		var specialElementHandlers = {
+			'#editor': function(element, renderer){
+				return true;
+			}
+		};
+
+		// All units are in the set measurement for the document
+		// This can be changed to "pt" (points), "mm" (Default), "cm", "in"
+		doc.fromHTML($('#pdf').get(0), 15, 15, {
+			'width': 170, 
+			'elementHandlers': specialElementHandlers
+		});
+		doc.save('pdf.pdf');
+	</script>
+</head>
+<body>
+	<div id="pdf">
+		<p>adfa sdfas dfsad fasf as</p>
+	</div>
+</body>
+</html>
