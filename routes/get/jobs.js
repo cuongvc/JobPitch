@@ -32,11 +32,11 @@ module.exports				=	function(req, res){
 				  var q = Job.find({}).limit(limit + start).sort({'time' : -1});
 				}
 				else{
-					var q = Job.find({user_id : own_of_job_id}).limit(limit + start).sort({'time' : -1});
+					var q = Job.find({user_id : own_of_job_id}).skip(start).limit(limit).sort({'time' : -1});
 				}
 
 				q.exec(function(err, jobs){
-					jobs = jobs.slice(start, limit + start);
+					// jobs = jobs.slice(start, limit + start);
 					res.write(JSON.stringify({error_code : 0, jobs : jobs}));
 					res.status(200).end();
 

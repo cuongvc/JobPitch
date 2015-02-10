@@ -32,11 +32,11 @@ module.exports				=	function(req, res){
 				  var q = Application.find({}).limit(limit + start).sort({'time' : -1});
 				}
 				else{
-					var q = Application.find({user_id : own_of_app_id}).limit(limit + start).sort({'time' : -1});
+					var q = Application.find({user_id : own_of_app_id}).skip(start).limit(limit).sort({'time' : -1});
 				}
 
 				q.exec(function(err, applications){
-					applications = applications.slice(start, limit + start);
+					// applications = applications.slice(start, limit + start);
 					res.write(JSON.stringify({error_code : 0, applications : applications}));
 					res.status(200).end();
 
