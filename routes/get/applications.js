@@ -26,7 +26,7 @@ module.exports				=	function(req, res){
 				res.status(200).end();
 			} else {
 
-				var q = Application.find({}).limit(20).sort({'time' : -1});
+				var q = Application.find({}).limit(limit).sort({'time' : -1});
 				q.exec(function(err, applications){
 					applications = applications.slice(start, limit);
 					res.write(JSON.stringify({error_code : 0, applications : applications}));
