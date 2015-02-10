@@ -1770,15 +1770,12 @@ Content-Type: application/json
 Cache-Control: no-cache
 
 {
-    "token"                 : "$2a$08$PAoqJ9SafffikdBp5Tow1HZMB75NcXnVh0zuYi",
-    "user_id"               : "54d82a8e85dde2572bb70d2c",
-    "own_of_app_id"         : "54d82a8e85dde2572bb70d2c",
+    "token"                 : "$2a$08$wp7a4PdgPyoisWcEcys4QuupoKRUIm5QerVprUG09QJJjka3RgM2m",
+    "user_id"               : "54d8238544aba1c5232c2ac1",
     "start"                 : 0,
-    "limit"                 : 5
+    "limit"                 : 3,
+    "own_of_job_id"         : "54d82403918494ac248e24c9"
 }
-
-    own_of_app_id la optional : = '' thi query tat ca application cua user top
-    neu own_of_app_id co gia tri thi la query tat ca applications cua 1 user
 
 
 ```
@@ -1791,24 +1788,27 @@ Cache-Control: no-cache
 ```
 {
     "error_code": 0,
-    "applications": [
+    "jobs": [
         {
-            "time": "2015-02-09T03:33:40.000Z",
-            "job_id": "54d8257e5214e7f826776043",
-            "user_avatar": "https://media.licdn.com/mpr/mprx/0_k14DPHK2N-ddlTl0XtI-PwTfnrm4gTl0oB2tPwCKWzsdCLQxHzH3jI9YZYa6OQK15rV1y2r-Gmro",
-            "user_name": "Campcoders Account",
-            "user_id": "54d82a8e85dde2572bb70d2c",
-            "_id": "54d82a9485dde2572bb70d2f",
-            "__v": 0,
-            "comment": [],
-            "hires": {
-                "status": 0
-            },
-            "interests": {
+            "__v": 1,
+            "_id": "54d8356acd70876a37545955",
+            "time": "2015-02-09T04:19:54.000Z",
+            "user_id": "54d82403918494ac248e24c9",
+            "receive_notify": [
+                "54d82a8e85dde2572bb70d2c"
+            ],
+            "contracts": {
                 "list": [],
                 "number": 0
             },
+            "hires": 0,
             "interviews": 0,
+            "applications": {
+                "list": [
+                    "54d83570cd70876a37545958"
+                ],
+                "number": 1
+            },
             "shares": {
                 "list": [],
                 "number": 0
@@ -1817,28 +1817,40 @@ Cache-Control: no-cache
                 "list": [],
                 "number": 0
             },
-            "file": "",
-            "description": "12312312321",
+            "status": 1,
+            "link_direct": "123",
+            "location": {
+                "address": "12312",
+                "lng": 105.810339,
+                "lat": 21.016481
+            },
+            "description": "123123",
             "hash_tag": [],
-            "title": "ApplyTitle"
+            "permalink": "123",
+            "title": "123",
+            "userName": "1111111",
+            "image_normal": "http://job.dev/images/normal_size/JobImages/1423455856950.jpeg",
+            "image_small": "http://job.dev/images/small_size/JobImages/1423455856950.jpeg",
+            "image": "http://job.dev/images/full_size/JobImages/1423455856950.jpeg"
         },
         {
-            "time": "2015-02-09T03:33:38.000Z",
-            "job_id": "54d8257e5214e7f826776043",
-            "user_avatar": "https://media.licdn.com/mpr/mprx/0_k14DPHK2N-ddlTl0XtI-PwTfnrm4gTl0oB2tPwCKWzsdCLQxHzH3jI9YZYa6OQK15rV1y2r-Gmro",
-            "user_name": "Campcoders Account",
-            "user_id": "54d82a8e85dde2572bb70d2c",
-            "_id": "54d82a9285dde2572bb70d2e",
+            "time": "2015-02-09T03:51:36.000Z",
+            "user_id": "54d82403918494ac248e24c9",
+            "_id": "54d82ec89c6695c730cf3de1",
             "__v": 0,
-            "comment": [],
-            "hires": {
-                "status": 0
-            },
-            "interests": {
+            "receive_notify": [
+                "54d82a8e85dde2572bb70d2c"
+            ],
+            "contracts": {
                 "list": [],
                 "number": 0
             },
+            "hires": 0,
             "interviews": 0,
+            "applications": {
+                "list": [],
+                "number": 0
+            },
             "shares": {
                 "list": [],
                 "number": 0
@@ -1847,10 +1859,63 @@ Cache-Control: no-cache
                 "list": [],
                 "number": 0
             },
-            "file": "",
-            "description": "12312312321",
+            "status": 1,
+            "link_direct": "111",
+            "location": {
+                "address": "1111",
+                "lng": 105.810339,
+                "lat": 21.016481
+            },
+            "description": "111",
             "hash_tag": [],
-            "title": "ApplyTitle"
+            "permalink": "111111111",
+            "title": "111111111",
+            "userName": "1111111",
+            "image_normal": "http://job.dev/images/normal_size/JobImages/1423454747952.jpeg",
+            "image_small": "http://job.dev/images/small_size/JobImages/1423454747952.jpeg",
+            "image": "http://job.dev/images/full_size/JobImages/1423454747952.jpeg"
+        },
+        {
+            "time": "2015-02-09T03:49:53.000Z",
+            "user_id": "54d82403918494ac248e24c9",
+            "_id": "54d82e62124034e22f186e38",
+            "__v": 0,
+            "receive_notify": [
+                "54d82a8e85dde2572bb70d2c"
+            ],
+            "contracts": {
+                "list": [],
+                "number": 0
+            },
+            "hires": 0,
+            "interviews": 0,
+            "applications": {
+                "list": [],
+                "number": 0
+            },
+            "shares": {
+                "list": [],
+                "number": 0
+            },
+            "likes": {
+                "list": [],
+                "number": 0
+            },
+            "status": 1,
+            "link_direct": "123123",
+            "location": {
+                "address": "123123123",
+                "lng": 105.810339,
+                "lat": 21.016481
+            },
+            "description": "3123123",
+            "hash_tag": [],
+            "permalink": "12312",
+            "title": "12312",
+            "userName": "1111111",
+            "image_normal": "http://job.dev/images/normal_size/JobImages/1423454163482.jpeg",
+            "image_small": "http://job.dev/images/small_size/JobImages/1423454163482.jpeg",
+            "image": "http://job.dev/images/full_size/JobImages/1423454163482.jpeg"
         }
     ]
 }
