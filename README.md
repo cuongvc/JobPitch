@@ -1677,9 +1677,108 @@ Cache-Control: no-cache
 {
     "token"                 : "$2a$08$PAoqJ9SafffikdBp5Tow1HZMB75NcXnVh0zuYi",
     "user_id"               : "54d82a8e85dde2572bb70d2c",
+    "own_of_app_id"         : "54d82a8e85dde2572bb70d2c",
     "start"                 : 0,
     "limit"                 : 5
 }
+
+    own_of_app_id la optional : = '' thi query tat ca application cua user top
+    neu own_of_app_id co gia tri thi la query tat ca applications cua 1 user
+
+
+```
+##### Regex
+```
+
+
+```
+##### Return
+```
+{
+    "error_code": 0,
+    "applications": [
+        {
+            "time": "2015-02-09T03:33:40.000Z",
+            "job_id": "54d8257e5214e7f826776043",
+            "user_avatar": "https://media.licdn.com/mpr/mprx/0_k14DPHK2N-ddlTl0XtI-PwTfnrm4gTl0oB2tPwCKWzsdCLQxHzH3jI9YZYa6OQK15rV1y2r-Gmro",
+            "user_name": "Campcoders Account",
+            "user_id": "54d82a8e85dde2572bb70d2c",
+            "_id": "54d82a9485dde2572bb70d2f",
+            "__v": 0,
+            "comment": [],
+            "hires": {
+                "status": 0
+            },
+            "interests": {
+                "list": [],
+                "number": 0
+            },
+            "interviews": 0,
+            "shares": {
+                "list": [],
+                "number": 0
+            },
+            "likes": {
+                "list": [],
+                "number": 0
+            },
+            "file": "",
+            "description": "12312312321",
+            "hash_tag": [],
+            "title": "ApplyTitle"
+        },
+        {
+            "time": "2015-02-09T03:33:38.000Z",
+            "job_id": "54d8257e5214e7f826776043",
+            "user_avatar": "https://media.licdn.com/mpr/mprx/0_k14DPHK2N-ddlTl0XtI-PwTfnrm4gTl0oB2tPwCKWzsdCLQxHzH3jI9YZYa6OQK15rV1y2r-Gmro",
+            "user_name": "Campcoders Account",
+            "user_id": "54d82a8e85dde2572bb70d2c",
+            "_id": "54d82a9285dde2572bb70d2e",
+            "__v": 0,
+            "comment": [],
+            "hires": {
+                "status": 0
+            },
+            "interests": {
+                "list": [],
+                "number": 0
+            },
+            "interviews": 0,
+            "shares": {
+                "list": [],
+                "number": 0
+            },
+            "likes": {
+                "list": [],
+                "number": 0
+            },
+            "file": "",
+            "description": "12312312321",
+            "hash_tag": [],
+            "title": "ApplyTitle"
+        }
+    ]
+}
+```
+
+
+### 24. Get jobs
+
+```
+GET http://jobpitch.campcoders.com/api/get_jobs
+Content-Type: application/json
+Cache-Control: no-cache
+
+{
+    "token"                 : "$2a$08$PAoqJ9SafffikdBp5Tow1HZMB75NcXnVh0zuYi",
+    "user_id"               : "54d82a8e85dde2572bb70d2c",
+    "own_of_app_id"         : "54d82a8e85dde2572bb70d2c",
+    "start"                 : 0,
+    "limit"                 : 5
+}
+
+    own_of_app_id la optional : = '' thi query tat ca application cua user top
+    neu own_of_app_id co gia tri thi la query tat ca applications cua 1 user
 
 
 ```

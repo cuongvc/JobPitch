@@ -207,7 +207,14 @@ app.get('/directive/home/left-sidebar',function(req,res){
 	Router_body.post('/get_notify',						 routes.get.notify);
 
 // --------GET APPLICATIONS -------------------------------
+	// get applications of any users
 	Router_body.post('/get_applications',			 routes.get.applications);
+
+// --------GET JOBS -------------------------------
+	// get jobs of  any company
+	Router_body.post('/get_jobs',			 				 routes.get.jobs);
+	
+
 
 
 
