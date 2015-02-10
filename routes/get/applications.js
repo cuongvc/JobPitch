@@ -10,7 +10,7 @@ module.exports				=	function(req, res){
 		var token         = data.token;
 		
 		var own_of_app_id = data.own_of_app_id;
-		var start         = data.start;
+		var skip          = data.skip;
 		var limit         = data.limit;
 	}
 
@@ -27,16 +27,15 @@ module.exports				=	function(req, res){
 				res.write(JSON.stringify({error_code : 1, msg : 'Authenticate is not success'}));
 				res.status(200).end();
 			} else {
-				console.log(own_of_app_id);
-				if (own_of_app_id == '' || typeof(own_of_app_id) == 'undefined'){
-				  var q = Application.find({}).limit(limit + start).sort({'time' : -1});
+				console.log(typeof(own_of_app_id) == 'undefined');
+				if ( typeof(own_of_app_id) == 'undefined' || own_of_app_id == ''){
+				  var q = Application.find({}).skip(skip).limit(limit).sort({'time' : -1});
 				}
 				else{
-					var q = Application.find({user_id : own_of_app_id}).limit(limit + start).sort({'time' : -1});
+					var q = Application.find({user_id : own_of_app_id}).skip(skip).limit(limit).sort({'time' : -1});
 				}
 
 				q.exec(function(err, applications){
-					applications = applications.slice(start, limit + start);
 					res.write(JSON.stringify({error_code : 0, applications : applications}));
 					res.status(200).end();
 

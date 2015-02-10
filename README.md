@@ -353,7 +353,9 @@ Cache-Control: no-cache
     "lat"           : 21.018549,
     "lng"           : 105.812198,
     "tag"           : "HR",
-    "address"       : "9 Nguyên Hong, Thành Công, Ba Đình, Hà Nội, Việt Nam"
+    "address"       : "9 Nguyên Hong, Thành Công, Ba Đình, Hà Nội, Việt Nam",
+    "skip"          : 0,
+    "limit"         : 50
 }
 
     + lat, lng, address la  required. Gui location cua user da luu.
@@ -1577,7 +1579,7 @@ Cache-Control: no-cache
 {
     "token"                     :  "$2a$08$tVRMd5Rv2PeGcvbwYB0O93247GhpvW",
     "user_id"                   :  "54d185c336691a8b0f1169cd"m,
-    "start"                     :  0,
+    "skip"                      :  0,
     "limit"                     :  20
 }
 
@@ -1678,7 +1680,7 @@ Cache-Control: no-cache
     "token"                 : "$2a$08$PAoqJ9SafffikdBp5Tow1HZMB75NcXnVh0zuYi",
     "user_id"               : "54d82a8e85dde2572bb70d2c",
     "own_of_app_id"         : "54d82a8e85dde2572bb70d2c",
-    "start"                 : 0,
+    "skip"                  : 0,
     "limit"                 : 5
 }
 
@@ -1772,7 +1774,7 @@ Cache-Control: no-cache
 {
     "token"                 : "$2a$08$wp7a4PdgPyoisWcEcys4QuupoKRUIm5QerVprUG09QJJjka3RgM2m",
     "user_id"               : "54d8238544aba1c5232c2ac1",
-    "start"                 : 0,
+    "skip"                  : 0,
     "limit"                 : 3,
     "own_of_job_id"         : "54d82403918494ac248e24c9"
 }
