@@ -8,7 +8,6 @@
 	box-shadow: 0 0 1px #ddd;
 	margin-bottom: 20px;
 	border-radius: 4px;
-	padding-bottom: 10px;
 }
 #jobs {
 	padding: 0px;
@@ -50,8 +49,8 @@
 }
 .job-comment{
 	width: auto;
-	padding: 5px;
-	margin: 10px 5px;
+	padding: 5px 15px;
+	margin: 0px;
 }
 .job-comment-body{
 	overflow: hidden;
@@ -87,12 +86,16 @@
 textarea{
 	border: none!important;
 }
-.apply-box .job-comment-body textarea{
-	border-color: #eee;
+.apply-box{
+	background-color: #F5F8FA;
+	border-top: 1px solid #eee;
+}
+.job-comment-body textarea{
 	width: 100%;
 	height: 60px;
 	resize: none;
-	border-radius: 4px;
+	margin-top: 5px;
+	border-radius: 6px;
 	padding: 5px;
 }
 .apply-box .job-comment-body textarea::scrollbar{
