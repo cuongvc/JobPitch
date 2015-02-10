@@ -8,7 +8,7 @@ module.exports								=	function(req, res){
 		
 		var user_id = data.user_id;
 		var token   = data.token;
-		var start   = data.start;
+		var skip    = data.skip;
 		var limit   = data.limit;
 		
 	}
@@ -24,32 +24,21 @@ module.exports								=	function(req, res){
 			if (!exist){
 				res.write(JSON.stringify({ error_code : 1, msg : 'Authenticate is not success' }));
 				res.status(200).end();
-			} else
+			} else{
+				var q = Notify.find({_id : {$in : user_exist.notifications.list}}).skip(skip).limit(limit).sort({'time' : -1});
+				q.exec(function(err, notifys){
 
-			Notify.find({_id : {$in : user_exist.notifications.list}}, function(err, notifys){
+					if (err){
+						console.log(err);
+						res.write(JSON.stringify({ error_code : 1, msg : err.toString() }));
+						res.status(200).end();
+					} else {
+						res.write(JSON.stringify({ error_code : 0, notifys : notifys }));
+						res.status(200).end();
+					}
 
-				if (err){
-					console.log(err);
-					res.write(JSON.stringify({ error_code : 1, msg : err.toString() }));
-					res.status(200).end();
-				} else {
-
-					notifys = notifys.slice(start, limit);
-					notifys.sort(function(x, y){
-						return x.time < y.time;
-					})
-
-					for (var i = 0 ; i < notifys.length ; i ++)
-						if (notifys[i].status == 0){
-								notifys[i].status = 1;
-								notifys[i].save(function(err){});
-							}
-
-					res.write(JSON.stringify({ error_code : 0, notifys : notifys }));
-					res.status(200).end();
-				}
-
-			})
+				})
+			}
 
 		})
 	}

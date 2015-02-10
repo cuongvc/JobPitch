@@ -10,7 +10,7 @@ module.exports				=	function(req, res){
 		var token         = data.token;
 		
 		var own_of_app_id = data.own_of_app_id;
-		var start         = data.start;
+		var skip          = data.skip;
 		var limit         = data.limit;
 	}
 
@@ -29,14 +29,13 @@ module.exports				=	function(req, res){
 			} else {
 				console.log(typeof(own_of_app_id) == 'undefined');
 				if ( typeof(own_of_app_id) == 'undefined' || own_of_app_id == ''){
-				  var q = Application.find({}).skip(start).limit(limit).sort({'time' : -1});
+				  var q = Application.find({}).skip(skip).limit(limit).sort({'time' : -1});
 				}
 				else{
-					var q = Application.find({user_id : own_of_app_id}).skip(start).limit(limit).sort({'time' : -1});
+					var q = Application.find({user_id : own_of_app_id}).skip(skip).limit(limit).sort({'time' : -1});
 				}
 
 				q.exec(function(err, applications){
-					// applications = applications.slice(start, limit + start);
 					res.write(JSON.stringify({error_code : 0, applications : applications}));
 					res.status(200).end();
 

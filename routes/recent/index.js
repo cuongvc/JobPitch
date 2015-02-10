@@ -14,6 +14,8 @@ module.exports					=	function(req, res){
 		var lng             = data.lng;
 		var address         = data.address;
 		var tag             = data.tag;
+		var skip            = data.skip;
+		var limit           = data.limit;
 	}
 
 	catch(err){
@@ -37,7 +39,9 @@ module.exports					=	function(req, res){
 			user_exist.save(function(err){ });
 
 			var result = [];
-			Job.find({}, function(err, jobs){
+			var q = Job.find({}).skip(skip).limit(limit).sort({'time' : -1}); 
+
+			q.exec(function(err, jobs){
 
 				async.waterfall([
 					function(next){
@@ -49,13 +53,6 @@ module.exports					=	function(req, res){
 						};						
 						next(null);
 					},
-
-					function(next){
-						result.sort(function(x, y){
-							return x.time < y.time;
-						});
-						next(null);
-					}
 
 				], function(err){
 					res.write(JSON.stringify({ error_code : 0, jobs : result}));
