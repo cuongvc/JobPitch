@@ -141,6 +141,7 @@ ul li{
 	box-shadow:  0 0 3px #000;
 	box-shadow: 0 0 3px #ddd;
 	padding: 3px 7px;
+	z-index: 99999;
 }
 .pvh-popover ul{
 	width: auto!important;
