@@ -18,27 +18,31 @@ TemplateApp.config(['$routeProvider', '$locationProvider', function($routeProvid
 		});
 
 }]);
-TemplateApp.directive('scroll',function($window,$parse){	
+TemplateApp.directive('scroll',function($window,JOB){	
 	return {
 		restrict: 'AE',
-		scope: {
-			LoadMore: '&',
-		},
 		link: function(scope,element,attrs){
 	        angular.element($window).bind("scroll", function() {
-	        	console.log(scope.LoadMore);
 	            var height = {
 	            	jobs: $('#jobs').height(),
 	            	sidebar: $('#sidebar').height(),
 	            };
 	            if(height.jobs < height.sidebar){
-	            	height.short = height.jobs;
+	            	height.short = {
+	            		value: height.jobs,
+	            		element: 'jobs',
+	            	};
 	            }else{
-	            	height.short = height.sidebar;
+	            	height.short = {
+	            		value: height.sidebar,
+	            		element: 'sidebar'
+	            	};
 	            }
 	            var scrollTop = $(window).scrollTop();
-	            if(scrollTop > height.short - 100){
-	            	
+	            console.log(scrollTop,height.short.value);
+	            if(scrollTop > height.short.value - 300){
+	            	console.log('a');
+	            	scope.LoadMore(height.short.element);
 	            }
 	        });
 		}
