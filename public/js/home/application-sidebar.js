@@ -1,4 +1,4 @@
-var ApplicationSideBar = angular.module('application-sidebar',['pitch.service','job.service','hashtag.service']);
+var ApplicationSideBar = angular.module('application-sidebar',['pitch.service','job.service','hashtag.service','like.service']);
 ApplicationSideBar.directive('applicationSidebar',function(){
 	return {
 		restrict: 'E',
@@ -8,7 +8,7 @@ ApplicationSideBar.directive('applicationSidebar',function(){
 		},
 	}
 })
-ApplicationSideBar.controller('ApplicationSideBarCtrl',function($scope,$http,JOB,PITCH){
+ApplicationSideBar.controller('ApplicationSideBarCtrl',function($scope,$http,JOB,PITCH,LIKE,HASHTAG){
 	var pitchs = new Array();
 	var InterestList = [
 				{
@@ -80,10 +80,9 @@ ApplicationSideBar.controller('ApplicationSideBarCtrl',function($scope,$http,JOB
 	var data = {
 		user_id : $scope.user._id,
 		token   : $scope.user.token,
-		start: 0,
-		limmit: 5,
+		skip: 0,
+		limit: 5,
 	};
-	console.log(JSON.stringify(data));
 	$http.post(STR_API_GET_PITCH,data).success(function(response){
 		console.log('Pitch',response);
 		if(response.error_code == 0){
@@ -92,10 +91,14 @@ ApplicationSideBar.controller('ApplicationSideBarCtrl',function($scope,$http,JOB
 				pitchs[k].comments = {
 					list: v.comment,
 					number: v.comment.length,
+				};
+				if(v.likes.list.indexOf($scope.user._id) > -1){
+					pitchs[k].likes.liked = true;
+				}else{
+					pitchs[k].likes.liked = false;
 				}
 			})
 			$scope.pitchs = pitchs;
-			console.log(pitchs);
 		}
 	})
 	$scope.ViewMorePitchComment = function(numberCmt,pitch){
@@ -104,8 +107,11 @@ ApplicationSideBar.controller('ApplicationSideBarCtrl',function($scope,$http,JOB
 		var index  = pitchs.indexOf(pitch);
 		if(i == length) return;
 		if(length - i > numberCmt) length = numberCmt + i;
+		var array_reverse = pitch.comments.all;
+			array_reverse.reverse();
 		for(i;i < length; i++){
-			pitch.comments.show.push(pitch.comments.all[i]);
+			console.log(i,':',array_reverse[i]);
+			pitch.comments.show.unshift(array_reverse[i]);
 		}
 		pitchs[index] = pitch;
 		$scope.pitchs = pitchs;
@@ -125,8 +131,9 @@ ApplicationSideBar.controller('ApplicationSideBarCtrl',function($scope,$http,JOB
 			pitch.comments = new Object();
 			pitch.comments.all = response.comment;
 			pitch.comments.number = response.comment.length;
-			if(response.comment.length > 3){
-				pitch.comments.show = [response.comment[0],response.comment[1],response.comment[2]];
+			var length = response.comment.length;
+			if(length > 3){
+				pitch.comments.show = [response.comment[length - 3],response.comment[length - 2],response.comment[length - 1]];
 			}else{
 				pitch.comments.show = response.comment;
 			}
@@ -134,6 +141,61 @@ ApplicationSideBar.controller('ApplicationSideBarCtrl',function($scope,$http,JOB
 			console.log(pitch);
 			$scope.pitchs = pitchs;
 		})
+	}
+	/*
+	* like pitch
+	*/
+	$scope.LikePitch = function(pitch){
+		var data = {
+			user_id        : $scope.user._id,
+			token          : $scope.user.token,
+			type_like      : 2,
+			job_id         : '',
+			application_id :  pitch._id,
+			comment_id     :  '',
+		};
+		var LikeService = LIKE.LikePitch(data);
+			LikeService.then(function(response){
+				if(response.error_code == 0){
+					var index = pitchs.indexOf(pitch);
+					if(pitch.likes.liked){
+						pitch.likes.number--;
+						pitch.likes.liked = false;
+					}else{
+						pitch.likes.number++;
+						pitch.likes.liked = true;
+					}
+					pitchs[index] = pitch;
+					$scope.pitchs = pitchs;
+				}
+			})
+	}
+	/*
+	* post pitch reply
+	*/
+	$scope.PostReply = function(PitchReply,pitch,evt){
+		if(evt.keyCode == 13){
+			var data = {
+				user_id : $scope.user._id,
+				token : $scope.user.token,
+				content : PitchReply,
+				hash_tag : HASHTAG.findHashTag(PitchReply),
+				application_parent : pitch._id,
+				comment_parent : "",
+			}
+			console.log('Pitch Reply:',data);
+			var PitchService = PITCH.postNewPitchComment(data);
+			PitchService.then(function(response){
+				if(response.error_code == 0){
+					$('#PitchReply').val('');
+					var index = pitchs.indexOf(pitch);
+					var comment = response.comment;
+					pitch.comments.all.push(comment);
+					pitch.comments.show.push(comment);
+					pitch.comments.number++;
+				}
+			})
+		}
 	}
 	
 })

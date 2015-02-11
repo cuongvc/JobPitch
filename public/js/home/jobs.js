@@ -1,4 +1,4 @@
-var Jobs = angular.module('jobs',['nightfury-upload','application-sidebar','left-sidebar','user-service','ui.bootstrap.popover','pitch.service','job.service','hashtag.service']);
+var Jobs = angular.module('jobs',['nightfury-upload','application-sidebar','left-sidebar','user-service','ui.bootstrap.popover','pitch.service','job.service','hashtag.service','like.service']);
 Jobs.directive('jobs',function(){
 	return {
 		restrict: 'E',
@@ -8,14 +8,16 @@ Jobs.directive('jobs',function(){
 		},
 	}
 })
-Jobs.controller('JobCtrl',function($scope,$http,USER,PITCH,JOB,HASHTAG){
+Jobs.controller('JobCtrl',function($scope,$http,USER,PITCH,JOB,HASHTAG,LIKE){
 	var jobs;
 	var data = {
 			user_id: $scope.user._id,
 			token: $scope.user.token,
+			skip: 0,
+			limit: 5,
 			lat: 21.018549,
 			lng: 105.812198,
-			address: "9 Nguyên Hong, Thành Công, Ba Đình, Hà Nội, Việt Nam"
+			address: "9 Nguyên Hong, Thành Công, Ba Đình, Hà Nội, Việt Nam",
 		}
 	var JobService = JOB.getJob(data);
 	JobService.then(function(response){
@@ -41,7 +43,7 @@ Jobs.controller('JobCtrl',function($scope,$http,USER,PITCH,JOB,HASHTAG){
 		    token: $scope.user.token,
 		    job_id: job._id,
 		}
-		JobService = PITCH.ViewPitch(jobs,job,data);
+		JobService = PITCH.ViewPitch(jobs,job,data,$scope.user._id);
 		JobService.then(function(data){
 			jobs = data;
 			$scope.jobs = jobs;
@@ -199,15 +201,11 @@ Jobs.controller('JobCtrl',function($scope,$http,USER,PITCH,JOB,HASHTAG){
 			application_id :  pitch._id,
 			comment_id     :  '',
 		};
-		$http.post(STR_API_LIKE,data).success(function(response){
-			console.log(response);
-			if(response.error_code == 0){
-				var index_job = jobs.indexOf(job);
-				var index_pitch = jobs[index_job].applications.loadFromSever.indexOf(pitch);
-				jobs[index_job].applications.loadFromSever[index_pitch].likes.number += 1;
+		var LikeService = LIKE.LikePitch(data);
+			LikeService.then(function(response){
+				jobs = LIKE.LikePitchHandler(jobs,job,pitch);
 				$scope.jobs = jobs;
-			}
-		})
+			})
 	}
 	$scope.ViewListLikeJob = function(job){
 		var users = job.likes.list;
