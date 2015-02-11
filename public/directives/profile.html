@@ -1,21 +1,119 @@
 <header></header>
-	<div class="container" id="company-profile">
-		<div class="col-md-24 col-md-offset-6 col-sm-24 col-sm-offset-6 col-xs-36">
-			<div class="cover">
-				<div class="cover-image">
-					<img src="http://www.fbcoverlover.com/covers/know-your-limitations-and-defy-them.jpg?i" alt="">
+<div class="container" id="company-profile">
+	<div class="col-md-24 col-md-offset-6 col-sm-24 col-sm-offset-6 col-xs-36">
+		<div class="cover">
+			<div class="cover-image">
+				<img src="http://www.fbcoverlover.com/covers/know-your-limitations-and-defy-them.jpg?i" alt="">
+			</div>
+			<div class="cover-menu">
+				<ul>
+					<li><a href="" class="semibold">Jobs<span>({{ profile.jobs_number }})</span></a></li>
+					<li ng-click="follow()"><a href="" class="semibold"><span><i class="fa fa-star followed-{{ profile.followed }}"></i></span> Following<span>({{ profile.follow_number }})</span></a></li>
+					<li><a href="" class="semibold">About</a></li>
+					<li><a href="" class="semibold">Contact</a></li>
+				</ul>
+			</div>
+			<div class="company-avatar">
+				<img ng-src="{{ profile.avatar }}">
+			</div>
+		</div> <!-- cover -->
+	</div>
+</div>
+<div class="container" id="company-job">
+	<div class="col-md-24 col-md-offset-6 col-sm-24 col-sm-offset-6 col-xs-36">
+	
+		<div ng-repeat="job in jobs" id="{{ job._id }}">
+			<div class="job">
+				<div class="image">
+					<img ng-src="{{ job.image }}">
 				</div>
-				<div class="cover-menu">
+				<div class="job-content">
+					<p><span class="company-title bold-text normal-text cp-title left-sidebar-blue-text" ng-click="ViewCompanyProfile($event,1)" ng-bind="job.title"></span></p>
+					<p><a class="gray-color cursor" ng-click="ViewUser(job.user_id)"><span>@</span><span ng-bind="job.userName"></span></a></p>
+					<p class="job-sort-desc normal-text" ng-bind="job.description"></p>
+				</div>
+				<div class="like-share small-text">
 					<ul>
-						<li><a href="" class="semibold">Jobs<span>({{ profile.jobs_number }})</span></a></li>
-						<li ng-click="follow()"><a href="" class="semibold"><span><i class="fa fa-star followed-{{ profile.followed }}"></i></span> Following<span>({{ profile.follow_number }})</span></a></li>
-						<li><a href="" class="semibold">About</a></li>
-						<li><a href="" class="semibold">Contact</a></li>
+						<li class="pull-left" ng-click="ViewPitch(job)"><span ng-bind="job.applications.number"></span> <span>pitch<span ng-if="job.applications.number > 1">s</span></span></li>
+						
+						<li class="pull-right"><span ng-bind="job.shares.number"></span> <span>share</span></li>
+						<li class="pull-right transition_500ms" 
+							ng-mouseover="ViewListLikeJob(job)"
+							ng-mouseout="HiddenListLike(job)">
+							<span ng-bind="job.likes.number"></span> <span ng-click="LikeJob(job)">like</span>
+							<div class="pvh-popover list-like-job pvh-popover-top hidden" ng-if="job.likes.number > 0">
+								<ul>
+									<li ng-repeat="user in job.likes.users" ng-bind="user.userName"></li>
+								</ul>
+							</div>
+						</li>
+						<li class="pull-right" ng-click="ShareJobOnFacebook(job)"><i class="fa fa-facebook"></i></li>
+						<li class="pull-right"><a target="_blank" href="https://plus.google.com/share?url=campcoders.com"><i class="fa fa-google-plus"></i></a></li>
+						<li class="pull-right"><a target="_blank" href="http://twitter.com/home?status={{ job.title }}+{{ BASE_URL }}/post/{{ job._id }}"><i class="fa fa-twitter"></i></a></li>
+						<li class="pull-right"><a target="_blank" href="http://www.linkedin.com/shareArticle?mini=true&url=campcoders.com&title={{ job.title }}&source=campcoders.com"><i class="fa fa-linkedin"></i></a></li>
 					</ul>
 				</div>
-				<div class="company-avatar">
-					<img ng-src="{{ profile.avatar }}">
+				<!-- APPLY BOX -->
+				<div class="job-comment gray-border apply-box" ng-if="job.showApplyBox == true && user.account_type != 1">
+					<div class="job-comment-avatar apply-box-avatar pull-left">
+						<img ng-src="{{ user.avatar.normal }}" alt="">
+					</div>
+					<div class="job-comment-body">
+						<div class="job-comment-body-textarea-group normal-text">
+							<textarea maxlength="144" ng-model="ApplyDesc" id="ApplyDesc" ng-keyup="ChangeApplyTextAreaHeight($event)" ng-change="ApplyTextAreaChange(ApplyDesc)" placeholder="Your pitch"></textarea>
+						</div>
+						<ul class="apply-box-info pull-left">
+							<li>
+								<span class="pull-right attack-file"  onclick="document.getElementById('attack-input').click();return;"></span>
+							</li>
+							<li>
+								<span class="pull-left"> {{ ApplyDescWordCount }}/144</span>
+							</li>
+						</ul>
+						<input id="attack-input" type="file" class="hidden">
+						<div class="apply-button-group">
+							<div class="btn-apply" ng-click="Apply(job,ApplyTitle,ApplyDesc)"><i class="fa fa-edit"></i> Pitch</div>
+						</div>
+					</div>
 				</div>
-			</div> <!-- cover -->
-		</div>
+				<!-- APPLY BOX -->
+				<!-- APPLICANT -->
+				<div class="job-comment gray-border animated fadeIn" ng-repeat="pitch in job.applications.loadFromSever">
+					<div class="job-comment-avatar pull-left">
+						<img class="animated fadeIn" ng-src="{{ pitch.user_avatar }}" alt="">
+					</div>
+					<div class="job-comment-body normal-text">
+						<p class="job-comment-desc"><span><strong class="blue-text" ng-bind="pitch.user_name"></strong></span> <span ng-bind="pitch.description" class="normal-text"></span></p>
+						<ul class="small-text pitch-like-share">
+							<li class="cursor pull-right" ng-click="getPitchComment(job,pitch)"><span ng-bind="pitch.number"></span> <span>comment</span></li>
+							<li class="cursor pull-right"><span ng-bind="pitch.shares.number"></span> <span>share</span></li>
+							<li class="cursor pull-right"><span ng-bind="pitch.likes.number"></span> <span ng-click="LikePitch(pitch,job)">like</span></li>
+							<li class="cursor pull-right"><span>5</span> <span>interest</span></li>
+						</ul>
+						<div class="pitch-comment">
+							<div class="animated fadeIn" ng-repeat="cmt in pitch.comments">
+								<div class="job-reply-pitch-image pull-left">
+									<img ng-src="{{ cmt.user_avatar }}">
+								</div>
+								<div class="job-reply-pitch-textarea">
+									<span class="blue-text"><strong ng-bind="cmt.user_name"></strong></span>
+									<span class="normal-text" ng-bind="cmt.content"></span>
+								</div>
+							</div>
+						</div> <!-- pitch-comment -->
+						<div class="job-reply-pitch animated fadeIn" ng-if="pitch.showReplyForm == true">
+							<div class="job-reply-pitch-image pull-left">
+								<img ng-src="{{user.avatar.normal }}">
+							</div>
+							<div class="job-reply-pitch-textarea">
+								<textarea class="normal-text" placeholder="Write a reply" ng-model="PitchReply" ng-keyup="PostPitchReply(PitchReply,job,pitch,$event)"></textarea>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- APPLICANT -->
+			</div><!-- job -->
+		</div> <!-- col-28 -->
+
 	</div>
+</div>

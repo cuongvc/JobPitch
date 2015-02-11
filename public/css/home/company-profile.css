@@ -1,6 +1,10 @@
 body{
 	padding-bottom: 600px;
 }
+#company-profile{
+	margin-bottom: 10px;
+	overflow: hidden;
+}
 #company-profile .cover-image{
 	overflow: auto;
 }
@@ -33,7 +37,7 @@ body{
 }
 #company-profile .cover{
 	height: auto;
-	position: absolute;
+	position: relative;
 }
 .company-avatar{
 	position: absolute;
@@ -46,4 +50,8 @@ body{
 }
 .followed-true{
 	color: #2dbea1;
+}
+
+#company-job{
+
 }

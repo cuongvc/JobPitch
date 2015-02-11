@@ -23,7 +23,7 @@
 						<li class="pull-left"><span ng-bind="pitch.interests.number"></span><span> interest</span></li>
 						<li class="pull-right"><span ng-bind="pitch.shares.number"></span><span> share</span></li>
 						<li class="pull-right"><span ng-bind="pitch.likes.number"></span><span> like</span></li>
-						<li class="pull-right" ng-click="ShowApplicationSidebarComment(pitch)"><span>48 <span>comment</span></span></li>
+						<li class="pull-right" ng-click="ShowApplicationSidebarComment(pitch)"><span ng-bind="pitch.comments.number"></span> <span> comment</span></li>
 					</ul>
 				</div>
 			</div>
@@ -41,16 +41,16 @@
 			</p>
 		</div>
 		<div class="gray-border application-sidebar-comment animated fadeIn col-md-36 col-sm-36" ng-if="pitch.showComment == true">
-			<div class="sidebar-cmt" ng-repeat="ApplicationSidebarComment in ApplicationSideBarComments">
+			<div class="sidebar-cmt" ng-repeat="ApplicationSidebarComment in pitch.comments.show">
 				<div class="sidebar-comment-image pull-left">
-					<img src="{{ ApplicationSidebarComment.avatar }}" alt="">
+					<img src="{{ ApplicationSidebarComment.user_avatar }}" alt="">
 				</div>
 				<div class="sidebar-comment-body">
-					<p><strong class="blue-text" ng-bind="ApplicationSidebarComment.username"></strong> <span class="normal-text" ng-bind="ApplicationSidebarComment.comment"></span></p>
+					<p><strong class="blue-text" ng-bind="ApplicationSidebarComment.user_name"></strong> <span class="normal-text" ng-bind="ApplicationSidebarComment.content"></span></p>
 				</div>
 			</div>
 			<div class="application-sidebar-number-comment">
-				<p class="text-right three-dot" ng-click="ApplicationSidebarViewMoreComment(5)">
+				<p class="text-right three-dot" ng-click="ViewMorePitchComment(5,pitch)">
 					<span></span>
 					<span></span>
 					<span></span>

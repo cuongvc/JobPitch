@@ -1,4 +1,4 @@
-var ApplicationSideBar = angular.module('application-sidebar',[]);
+var ApplicationSideBar = angular.module('application-sidebar',['pitch.service','job.service','hashtag.service']);
 ApplicationSideBar.directive('applicationSidebar',function(){
 	return {
 		restrict: 'E',
@@ -8,7 +8,7 @@ ApplicationSideBar.directive('applicationSidebar',function(){
 		},
 	}
 })
-ApplicationSideBar.controller('ApplicationSideBarCtrl',function($scope,$http){
+ApplicationSideBar.controller('ApplicationSideBarCtrl',function($scope,$http,JOB,PITCH){
 	var pitchs = new Array();
 	var InterestList = [
 				{
@@ -83,6 +83,7 @@ ApplicationSideBar.controller('ApplicationSideBarCtrl',function($scope,$http){
 		start: 0,
 		limmit: 5,
 	};
+	console.log(JSON.stringify(data));
 	$http.post(STR_API_GET_PITCH,data).success(function(response){
 		console.log('Pitch',response);
 		if(response.error_code == 0){
@@ -97,21 +98,42 @@ ApplicationSideBar.controller('ApplicationSideBarCtrl',function($scope,$http){
 			console.log(pitchs);
 		}
 	})
-	$scope.ApplicationSidebarViewMoreComment = function(numberCmt){
-		for(i=0;i<numberCmt;i++){
-			var newCmt = {username: 'Another User',comment: 'another comment'};
-			$scope.ApplicationSideBarComments.push(newCmt);
+	$scope.ViewMorePitchComment = function(numberCmt,pitch){
+		var i      = pitch.comments.show.length;
+		var length = pitch.comments.all.length;
+		var index  = pitchs.indexOf(pitch);
+		if(i == length) return;
+		if(length - i > numberCmt) length = numberCmt + i;
+		for(i;i < length; i++){
+			pitch.comments.show.push(pitch.comments.all[i]);
 		}
+		pitchs[index] = pitch;
+		$scope.pitchs = pitchs;
 	}
-	var ApplicationsSidebar = [];
-	for(i = 0; i < 5; i++){
-		ApplicationsSidebar.push({user: "Thanchet",showSideBarComment : false});
-	}
-	$scope.ApplicationsSidebar = ApplicationsSidebar;
 	$scope.ShowApplicationSidebarComment = function(pitch){
 		var index = pitchs.indexOf(pitch);
 		pitchs[index].showComment = true;
-		$scope.pitchs = pitchs;
+		if(pitch.loaded == true) return;
+		
+		var data = {
+			user_id: $scope.user._id,
+			token: $scope.user.token,
+			comments: pitch.comment,
+		}
+		var PitchService = PITCH.getPitchComment(data);
+		PitchService.then(function(response){
+			pitch.comments = new Object();
+			pitch.comments.all = response.comment;
+			pitch.comments.number = response.comment.length;
+			if(response.comment.length > 3){
+				pitch.comments.show = [response.comment[0],response.comment[1],response.comment[2]];
+			}else{
+				pitch.comments.show = response.comment;
+			}
+			pitchs[index] = pitch;
+			console.log(pitch);
+			$scope.pitchs = pitchs;
+		})
 	}
 	
 })
