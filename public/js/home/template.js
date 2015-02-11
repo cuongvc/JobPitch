@@ -38,8 +38,9 @@ TemplateApp.directive('scroll',function($window,JOB){
 	            		element: 'sidebar'
 	            	};
 	            }
-	            var scrollTop = $(window).scrollTop();
-	            if(scrollTop > height.short.value - 300){
+	            var scrollTop = $(window).scrollTop() + screen.height;
+	            console.log(screen.height,scrollTop,height.short.value);
+	            if(scrollTop >= height.short.value - 100){
 	            	scope.LoadMore(height.short.element);
 	            }
 	        });
