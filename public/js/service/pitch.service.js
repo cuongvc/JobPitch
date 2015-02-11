@@ -13,7 +13,7 @@ PitchService.service('PITCH',function($http,$q){
 	/*
 	* complete function ViewPitch
 	*/
-	this.ViewPitch = function(jobs,job,data){
+	this.ViewPitch = function(jobs,job,data,user_id){
 		var index = jobs.indexOf(job);
 		jobs[index].showApplyBox = true;
 		var pitchs = this.getPitch(data);
@@ -24,6 +24,11 @@ PitchService.service('PITCH',function($http,$q){
 				jobs[index].applications.loadFromSever = response.app;
 				jobs[index].applications.loadFromSever.forEach(function(v,k){
 					jobs[index].applications.loadFromSever[k].number = v.comment.length;
+					if(jobs[index].applications.loadFromSever[k].likes.list.indexOf(user_id) > -1){
+						jobs[index].applications.loadFromSever[k].likes.liked = true;
+					}else{
+						jobs[index].applications.loadFromSever[k].likes.liked = false;
+					}
 				})
 				defferer.resolve(jobs);
 			}else{
@@ -90,6 +95,7 @@ PitchService.service('PITCH',function($http,$q){
 	* post new pitch comment
 	*/
 	this.postNewPitchComment = function(data){
+		if(data.content == '') return;
 		var defferer = $q.defer();
 		$http.post(STR_API_COMMENT,data).success(function(response){
 			defferer.resolve(response);

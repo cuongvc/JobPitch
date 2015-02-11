@@ -18,4 +18,30 @@ TemplateApp.config(['$routeProvider', '$locationProvider', function($routeProvid
 		});
 
 }]);
+TemplateApp.directive('scroll',function($window,$parse){	
+	return {
+		restrict: 'AE',
+		scope: {
+			LoadMore: '&',
+		},
+		link: function(scope,element,attrs){
+	        angular.element($window).bind("scroll", function() {
+	        	console.log(scope.LoadMore);
+	            var height = {
+	            	jobs: $('#jobs').height(),
+	            	sidebar: $('#sidebar').height(),
+	            };
+	            if(height.jobs < height.sidebar){
+	            	height.short = height.jobs;
+	            }else{
+	            	height.short = height.sidebar;
+	            }
+	            var scrollTop = $(window).scrollTop();
+	            if(scrollTop > height.short - 100){
+	            	
+	            }
+	        });
+		}
+	}
+})
 
