@@ -151,6 +151,7 @@ ul li{
 	color: #fff!important;
 	font-size: 12px!important;
 	margin: 0px!important;
+	white-space: nowrap;
 }
 .pvh-popover-top::after{
 	display: block;
