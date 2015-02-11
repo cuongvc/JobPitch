@@ -521,12 +521,11 @@ Content-Type: application/json
 Cache-Control: no-cache
 
 {
-    "token"             : "$2a$08$MsIS...xaiYNfi",
-    "user_id"           : "54c9ee7a202b449e430cc43b",
+    "token"             : "$2a$08$RUmUJIm1SO7S/cb8/duN9O17HG7iTFyY45IMjUTWhdgAQPUJfaso.",
+    "user_id"           : "54d82a8e85dde2572bb70d2c",
     "type_account"      : "1",
-    "logo"              : "/tmp/upload_9821b519a328625a770f7a107780a202",
     "extension"         : "jpeg",
-    "address"           : "9 Nguyên Hồng, Thành Công, Ba Đình, Hà Nội, ",
+    "address"           : "9 Nguyên Hồng, Thành Công, Ba Đình, Hà Nội, Việt Nam",
     "contact"           : "",
     "website"           : "",
     "companyName"       : "",
@@ -534,7 +533,10 @@ Cache-Control: no-cache
     "userFullname"      : "",
     "industry"          : "",
     "education"         : "",
-    "year_of_birth"     : ""
+    "year_of_birth"     : "",
+    "skype"          : "campcoder",
+    "phone"          : "0987654321",
+    "companyEmail"   : "thanhah@campcoders.com"
 }
     token, user_id, type_account, address, contact is require
 
@@ -552,33 +554,63 @@ Cache-Control: no-cache
 {
     "error_code": 0,
     "user": {
-        "__v": 0,
-        "_id": "54c9ee7a202b449e430cc43b",
         "companyName": "",
-        "gender": "male",
-        "userName": "Coders Camp",
+        "__v": 11,
+        "_id": "54d82a8e85dde2572bb70d2c",
+        "userName": "Campcoders Account",
+        "contracts": {
+            "list": [],
+            "number": 0
+        },
+        "interests": {
+            "list": [],
+            "number": 0
+        },
+        "companyEmail": "thanhah@campcoders.com",
+        "phone": "0987654321",
+        "skype": "campcoder",
+        "verify": 0,
+        "email": "campcoders@gmail.com",
         "year_of_birth": null,
         "education": "",
         "industry": "",
         "userFullname": "",
-        "avatar_normal": "http://job.dev/images/normal_size/TalentImages/1422582404102.jpeg",
-        "avatar_small": "http://job.dev/images/small_size/TalentImages/1422582404102.jpeg",
-        "avatar": "http://job.dev/images/full_size/TalentImages/1422582404102.jpeg",
+        "cover_normal": "http://job.dev/images/full_size/UserImages/default-cover.jpeg",
+        "cover_small": "http://job.dev/images/full_size/UserImages/default-cover.jpeg",
+        "cover": "http://job.dev/images/full_size/UserImages/default-cover.jpeg",
+        "avatar_normal": "https://media.licdn.com/mpr/mprx/0_k14DPHK2N-ddlTl0XtI-PwTfnrm4gTl0oB2tPwCKWzsdCLQxHzH3jI9YZYa6OQK15rV1y2r-Gmro",
+        "avatar_small": "https://media.licdn.com/mpr/mprx/0_k14DPHK2N-ddlTl0XtI-PwTfnrm4gTl0oB2tPwCKWzsdCLQxHzH3jI9YZYa6OQK15rV1y2r-Gmro",
+        "avatar": "https://media.licdn.com/mpr/mprx/0_k14DPHK2N-ddlTl0XtI-PwTfnrm4gTl0oB2tPwCKWzsdCLQxHzH3jI9YZYa6OQK15rV1y2r-Gmro",
         "friends": [],
-        "myFollows": [],
-        "myApplications": [],
+        "myFollows": [
+            "54d82403918494ac248e24c9"
+        ],
+        "myApplications": [
+            "54d82a9285dde2572bb70d2e",
+            "54d82a9485dde2572bb70d2f",
+            "54d83570cd70876a37545958"
+        ],
         "myJobs": [],
         "followMes": [],
         "website": "",
         "companyFullname": "",
-        "logo_normal": "http://job.dev/images/normal_size/CompanyLogos/1422581837039.jpeg",
-        "logo_small": "http://job.dev/images/small_size/CompanyLogos/1422581837039.jpeg",
-        "logo": "http://job.dev/images/full_size/CompanyLogos/1422581837039.jpeg",
         "active": 1,
         "permission": 0,
-        "token": "$2a$08$MsIS/taIt3rc67utvP0f6uGjE4yn.dn6O/eIHBsq.15e1mxaiYNfi",
+        "token": "$2a$08$RUmUJIm1SO7S/cb8/duN9O17HG7iTFyY45IMjUTWhdgAQPUJfaso.",
         "messages": [],
-        "notifications": [],
+        "notifications": {
+            "default": {
+                "list": []
+            },
+            "list": [
+                "54d82a9485dde2572bb70d30",
+                "54d82e62124034e22f186e3a",
+                "54d82ec89c6695c730cf3de3",
+                "54d8356acd70876a37545957",
+                "54d83570cd70876a37545959"
+            ],
+            "unread": 5
+        },
         "contact": "",
         "google_infor": {
             "access_token": "",
@@ -590,13 +622,13 @@ Cache-Control: no-cache
             "id": ""
         },
         "linkedin_infor": {
-            "access_token": "",
-            "email": "",
-            "profileUrl": "",
+            "access_token": "AQWKO_gjNtramdlxu6URvHgDdIZ6_hLrqgBf13jJKULqgiKVpPcD7lHm36TRZ1hGmx2keyCRUC46LXyUc-nHmwIGykRss2gKd7nNmM0PPY6G495fXTyPVFy4d60jMI7LlPzVDT10Pc-2i5C2SkMwryFA5ww7Mdm9U-u27xq87em_s9ARvZA",
+            "email": "campcoders@gmail.com",
+            "profileUrl": "https://www.linkedin.com/pub/campcoders-account/b0/b45/746",
             "gender": "",
-            "username": "",
-            "avatar": "",
-            "id": ""
+            "username": "Campcoders Account",
+            "avatar": "https://media.licdn.com/mpr/mprx/0_k14DPHK2N-ddlTl0XtI-PwTfnrm4gTl0oB2tPwCKWzsdCLQxHzH3jI9YZYa6OQK15rV1y2r-Gmro",
+            "id": "qJ5hdiop9g"
         },
         "twitter_infor": {
             "token_secret": "",
@@ -609,24 +641,25 @@ Cache-Control: no-cache
             "id": ""
         },
         "fb_infor": {
-            "access_token": "CAAV3ZBbwWAoYBAFli79pXejjYngfhXxZAPdyh1csk29Ggqo7myGO8htQdcifCYvVRmCSobCOwZBcYvtW5ToUZCYGxKZABWfZCcK9Md9nY4cLj6a4z0xS8RvNdIv7WiwBwA7EOXF77gtjCCV2rK20fl6Fd6LT9mrAdYVjoS6yudGxFfxuyZAp4bAZBNzecYcgGv5ip8rrtpj6tEKE9uC2DUPT",
-            "email": "campcoders@gmail.com",
-            "profileUrl": "https://www.facebook.com/app_scoped_user_id/1388447568130299/",
-            "gender": "male",
-            "username": "Coders Camp",
-            "avatar": "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xpf1/v/t1.0-1/10429471_1382379502070439_8203398351903245362_n.jpg?oh=6910ddc76345d155b85b5181ca9ec73a&oe=5522B22A&__gda__=1428332989_5dea252caac1001e967472426a3ddecb",
-            "id": "1388447568130299"
+            "access_token": "",
+            "email": "",
+            "profileUrl": "",
+            "gender": "",
+            "username": "",
+            "avatar": "",
+            "id": ""
         },
         "local_infor": {
-            "email": "vcc.bka@gmail.com",
-            "password": "k12j3j12po312o;u3u213;u12o3b"
+            "email": "",
+            "password": ""
         },
-        "type_account": 1,
+        "type_account": 5,
         "location": {
-            "address": "9 Nguyên Hồng, Thành Công, Ba Đình, Hà Nội, Việt Nam",
+            "address": "9 Nguyên Hong, Thành Công, Ba Đình, Hà Nội, Việt Nam",
             "lng": 105.812198,
             "lat": 21.018549
         },
+        "isUser": 1,
         "address": "9 Nguyên Hồng, Thành Công, Ba Đình, Hà Nội, Việt Nam"
     }
 }
@@ -1921,5 +1954,34 @@ Cache-Control: no-cache
         }
     ]
 }
+```
+
+
+### 25. Edit avatar/cover
+
+```
+GET http://jobpitch.campcoders.com/api/edit_avatar
+Content-Type: application/json
+Cache-Control: no-cache
+
+{
+    "token"         : "$2a$08$wp7UIm5QerVprUG09QJJjka3RgM2m",
+    "user_id"       : "54d8238544aba1c5232c2ac1",
+    "type_image"    : 1,
+    "temp_path"     : "public/upload/upload_57beec5444e7716b2affb4cc6d3d7ef8",
+    "extension"     : "jpeg"
+}
+
+type_image : 1 la edit avatar. 2 la edit cover
+```
+##### Regex
+```
+
+
+```
+##### Return
+```
+{"error_code":0}
+
 ```
 

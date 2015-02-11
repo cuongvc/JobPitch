@@ -7,6 +7,7 @@ var bcrypt = require('bcrypt-nodejs');
 var domain = require('./../config/default').domain_default;
 var avatar_default = require('./../config/default').avatar_default;
 var logo_default = require('./../config/default').logo_default;
+var cover_default = require('./../config/default').cover_default;
 
 if (process.env.USER == 'root')
     var Oauth = require('./../config/Oauth');
@@ -246,21 +247,6 @@ var userSchema = mongoose.Schema({
         default: 1
     },
 
-    logo: {
-        type: String,
-        default: logo_default
-    },
-
-    logo_small: {
-        type: String,
-        default: logo_default
-    },
-
-    logo_normal: {
-        type: String,
-        default: logo_default
-    },
-
     companyName: {
         type: String
     },
@@ -317,6 +303,21 @@ var userSchema = mongoose.Schema({
     avatar_normal: {
         type: String,
         default: avatar_default
+    },
+
+    cover           : {
+        type    : String,
+        default : cover_default
+    },
+
+    cover_small     : {
+        type    : String,
+        default : cover_default
+    },
+
+    cover_normal    : {
+        type    : String,
+        default : cover_default
     },
 
     userName: {
@@ -540,10 +541,10 @@ userSchema.methods.getAvatarFb = function(access_token, callback) {
 }
 
 // ======================== EDIT PROFILE ====================================
-userSchema.methods.editProfile = function(address, contact, website, avatar, avatar_small, avatar_normal,
-    logo, logo_small, logo_normal, companyName, skype, phone, companyEmail,
+userSchema.methods.editProfile = function(address, contact, website, avatar, avatar_small, 
+    avatar_normal, companyName, skype, phone, companyEmail,
     userFullname, industry, education, year_of_birth, callback) {
-    console.log('EDIT PROFILE');
+
     this.address = address;
     this.contact = contact;
     this.website = website;
@@ -562,11 +563,6 @@ userSchema.methods.editProfile = function(address, contact, website, avatar, ava
         this.avatar_small = avatar_small;
     };
 
-    if (logo != '') {
-        this.logo = logo;
-        this.logo_small = logo_small;
-        this.logo_normal = logo_normal;
-    };
     console.log('callback this');
     callback(this);
 }
@@ -721,18 +717,6 @@ userSchema.methods.editInfor_user = function(user) {
     return this;
 }
 
-userSchema.methods.editInfor_company = function(company) {
-    this.logo = company.logo;
-    this.logo_small = company.logo_small;
-    this.logo_normal = company.logo_normal;
-    this.companyFullname = company.companyFullname;
-    this.companyName = company.companyName;
-    this.website = company.website;
-    this.industry = company.industry;
-    this.contact = company.contact;
-
-    return this;
-}
 
 // ================= MAKE TOKEN ===========================================
 

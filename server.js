@@ -167,7 +167,8 @@ app.get('/directive/home/left-sidebar',function(req,res){
 	Router_body.post('/apply',                 routes.apply);
 
 //  ------EDIT PROFILE --------------------------
-	Router_body.post('/edit_profile',          routes.edit_profile);
+	Router_body.post('/edit_profile',          routes.edit_profile.profile);
+	Router_body.post('/edit_avatar',           routes.edit_profile.avatar);
 
 //  ------MY JOBS --------------------------
 	Router_body.post('/my_jobs',          		 routes.my_wall.my_jobs);
@@ -210,14 +211,10 @@ app.get('/directive/home/left-sidebar',function(req,res){
 	// get applications of any users
 	Router_body.post('/get_applications',			 routes.get.applications);
 
-// --------GET JOBS -------------------------------
+// --------GET JOBS ---------------------------------------
 	// get jobs of  any company
 	Router_body.post('/get_jobs',			 				 routes.get.jobs);
 	
-
-
-
-
 // --------GET DATA FROM PERMALINK -------------------------------
 
 app.get('/:permalink',											 routes.get.permalink);
@@ -237,6 +234,6 @@ var server = app.listen(app.get('port'), function() {
 });
 
 
-
 // var io = require('socket.io').listen(server);
 // require('./my_module/chat/handler_socket')(io);
+
