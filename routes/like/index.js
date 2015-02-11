@@ -52,14 +52,14 @@ module.exports                    =	function(req, res){
 						} else
             var notification = new Notification();
             notification.newInfor(job_exist.user_id, user_exist.userName, 
-            										' like your job', job.title, job.id, '', 
-                                job.user_id, job.userName, job.permalink, 
+            										' like your job', job_exist.title, job_exist.id, '', 
+                                job_exist.user_id, job_exist.userName, job_exist.permalink, 
                                 user_exist.avatar_small, 13);
             var user_receive_notify = [];
             user_receive_notify.push(job_exist.user_id);
             console.log('emit like job');
             io_notify.emit('like_job', {user_receive_notify : user_receive_notify,
-                                          job                 : job});
+                                          job                 : job_exist});
                           
 						job_exist.addLike(user_exist._id, function(){
 							res.write(JSON.stringify({error_code : 0}));
