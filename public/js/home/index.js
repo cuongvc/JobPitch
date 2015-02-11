@@ -5,10 +5,13 @@ TemplateApp.controller('IndexCtrl',function($scope,$http,JOB){
 		history.pushState({},'','user/'+user_id);
 	}
 	$scope.LoadMore = function(element){
+		if(JobScroll.loading == true || PitchScroll.loading == true) return;
+		JobScroll.loading = true;
+		PitchScroll.loading = true;
 		/*
 		* LOAD MORE JOB
 		*/
-		JobScroll.start += JobScroll.limit;
+		if(JobScroll.stop == false) JobScroll.start += JobScroll.limit;
 		var data = {
 				user_id: $scope.user._id,
 				token: $scope.user.token,
@@ -26,11 +29,19 @@ TemplateApp.controller('IndexCtrl',function($scope,$http,JOB){
 				jobs.push(v);
 			})
 			$scope.jobs = jobs;
+			JobScroll.loading = false;
+			if(more_jobs.length == 0) JobScroll.stop = true;
 		})
 		/*
 		* LOAD MORE PITCH
 		*/
-		PitchScroll.start += PitchScroll.limit;
+		if(PitchScroll.stop == false) PitchScroll.start += PitchScroll.limit;
+		var data = {
+			user_id : $scope.user._id,
+			token   : $scope.user.token,
+			skip: PitchScroll.start,
+			limit: PitchScroll.limit,
+		};
 		$http.post(STR_API_GET_PITCH,data).success(function(response){
 			console.log('Load More Pitch',response);
 			if(response.error_code == 0){
@@ -49,7 +60,9 @@ TemplateApp.controller('IndexCtrl',function($scope,$http,JOB){
 				more_pitchs.forEach(function(v,k){
 					pitchs.push(v);
 				})
+				if(more_pitchs.length == 0) PitchScroll.stop = true;
 			}
+			PitchScroll.loading = false;
 		})
 	}
 })

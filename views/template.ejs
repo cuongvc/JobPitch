@@ -41,13 +41,18 @@
 		var JobScroll = {
 			start: 0,
 			limit: 4,
+			loading: false,
+			stop: false,
 		};
 		var PitchScroll = {
 			start: 0,
 			limit: 5,
+			loading: false,
+			stop: false,
 		};
 		var jobs = new Array();
 		var pitchs = new Array();
+		var loading = false;
 	</script>
 	<!-- ANIMATED -->
 	<link rel="stylesheet" type="text/css" href="/bower_components/animate.css/animate.min.css">
