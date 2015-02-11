@@ -7,7 +7,7 @@ var path   = require('path');
 	
 	// path_url : /images/small_size/
   // url_full_size : http://localhost:3000/.....
-  // type : JobImages | CompanyLogos | TalentImages
+  // type : JobImages | UserImages
 
 module.exports 					=	function(path_url, url_full_size, type,  callback){
 
