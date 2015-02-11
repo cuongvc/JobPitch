@@ -109,24 +109,24 @@ module.exports				=	function(req, res){
       ], function(err){
         var newJob = new Job();
         newJob.newInfor(image, image_small, image_normal, user_exist.id, user_exist.userName, title, 
-                        hash_tag, desc, lat, lng, address, link_direct, time, user_exist.followMes,
-                        function(object){
+                        hash_tag, desc, lat, lng, address, link_direct, time, 
+                        function(job){
 
-                          object.save(function(err){
-                            user_exist.addJob(object._id);
-                            respon_object(res, object);
+                          job.save(function(err){
+                            user_exist.addJob(job._id);
+                            respon_object(res, job);
 
-                            for (var i = 0 ; i < object.receive_notify.length ; i ++){
+                            for (var i = 0 ; i < user_exist.followMes.length ; i ++){
                               var notification = new Notification();
-                              notification.newInfor(object.receive_notify[i], user_exist.userName, 
-                                                    ' create new job', object.title, object.id, '', 
-                                                    object.user_id, object.userName, object.permalink, 
+                              notification.newInfor(user_exist.followMes[i], user_exist.userName, 
+                                                    ' create new job', job.title, job.id, '', 
+                                                    job.user_id, job.userName, job.permalink, 
                                                     user_exist.avatar_small, 11);
                             }
 
 
-                            io_notify.emit('create_job', {user_receive_notify : object.receive_notify,
-                                                          job                 : object});
+                            io_notify.emit('create_job', {user_receive_notify : user_exist.followMes,
+                                                          job                 : job});
 
                             })
                         }

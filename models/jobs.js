@@ -157,6 +157,7 @@ var jobSchema = mongoose.Schema({
         }]
     },
 
+    // user apply job
     receive_notify   : [{
         type        : ObjectId,
         ref         : 'users'
@@ -184,7 +185,7 @@ jobSchema.methods.containTag    = function(tag){
 
 jobSchema.methods.newInfor    = function(image, image_small, image_normal, user_id, userName
                                         ,title, hash_tag, description, lat, lng, address
-                                        ,link_direct, time , receive_notify, callback){
+                                        ,link_direct, time , callback){
 
     var job = this;
     if (image != '')
@@ -203,7 +204,6 @@ jobSchema.methods.newInfor    = function(image, image_small, image_normal, user_
     job.location.lat           = lat;
     job.location.lng           = lng;
     job.location.address       = address;
-    job.receive_notify         = receive_notify;
     
     var newPermalink = new Permalink();
     newPermalink.newInfor('', job._id, 2, title, function(){

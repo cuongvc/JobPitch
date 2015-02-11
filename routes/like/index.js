@@ -1,12 +1,14 @@
-var check_token                   = require('./../../my_module/check_exist').token;
+var check_token  = require('./../../my_module/check_exist').token;
 
-var Job                           = require('./../../models/jobs');
-var Application                   = require('./../../models/applications');
-var Comment                       = require('./../../models/comments');
+var Job          = require('./../../models/jobs');
+var Application  = require('./../../models/applications');
+var Comment      = require('./../../models/comments');
+var io_notify    = require('./../../my_module/socket');
+var Notification = require('./../../models/notifications');
 
 
 
-module.exports										=	function(req, res){
+module.exports                    =	function(req, res){
 
 	try{
 		var data 						=	req.body;
@@ -48,7 +50,17 @@ module.exports										=	function(req, res){
 							res.write(JSON.stringify({error_code : 1, msg : 'Job is not exist'}));
 							res.status(200).end();
 						} else
-						
+            var notification = new Notification();
+            notification.newInfor(job_exist.user_id, user_exist.userName, 
+            										' like your job', job.title, job.id, '', 
+                                job.user_id, job.userName, job.permalink, 
+                                user_exist.avatar_small, 13);
+            var user_receive_notify = [];
+            user_receive_notify.push(job_exist.user_id);
+            console.log('emit like job');
+            io_notify.emit('like_job', {user_receive_notify : user_receive_notify,
+                                          job                 : job});
+                          
 						job_exist.addLike(user_exist._id, function(){
 							res.write(JSON.stringify({error_code : 0}));
 							res.status(200).end();

@@ -23,8 +23,7 @@ var notificationSchema = mongoose.Schema({
 
 
     content          : {
-        userName_make_notify : String,
-        content              : String,
+        content              : String,  
         short_content        : String,
         job_id               : {
             type             : ObjectId,
@@ -34,6 +33,11 @@ var notificationSchema = mongoose.Schema({
             type             : ObjectId,
             ref              : 'applications'
         },
+        comment_id           : {
+            type             : ObjectId,
+            ref              : 'comments'
+        },
+        userName_make_notify : String,
         userAvatar_make_notify : {
             type         : String
         },
@@ -41,12 +45,12 @@ var notificationSchema = mongoose.Schema({
             type             : ObjectId,
             ref              : 'users'
         },
-
         userName_own_job     : {
             type             : String
-        },
+        }
     },
 
+    // type_notify = 11 : create job/ 1 :
     type_notify      : {
         type         : Number,
         default      : 0
@@ -59,9 +63,7 @@ var notificationSchema = mongoose.Schema({
     status           : {
         type         : Number,
         default      : 0
-    },
-
-
+    }
 
 });
 
@@ -100,7 +102,6 @@ notificationSchema.methods.newInfor    = function(user_id_receive, userName_make
         });
 
     })
-
 }   
 
 // create the model for notifications and expose it to our app

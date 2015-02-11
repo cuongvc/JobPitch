@@ -35,6 +35,11 @@ module.exports								=	function(req, res){
 					} else {
 						res.write(JSON.stringify({ error_code : 0, notifys : notifys }));
 						res.status(200).end();
+						
+						for (var  i = 0 ; i < notifys.length ; i ++){
+							notifys[i].status = 1;
+							notifys[i].save(function(err){})
+						}
 					}
 
 				})
