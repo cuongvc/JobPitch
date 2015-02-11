@@ -9,12 +9,11 @@ Jobs.directive('jobs',function(){
 	}
 })
 Jobs.controller('JobCtrl',function($scope,$http,USER,PITCH,JOB,HASHTAG,LIKE){
-	var jobs;
 	var data = {
 			user_id: $scope.user._id,
 			token: $scope.user.token,
-			skip: 0,
-			limit: 4,
+			skip: JobScroll.start,
+			limit: JobScroll.limit,
 			lat: 21.018549,
 			lng: 105.812198,
 			address: "9 Nguyên Hong, Thành Công, Ba Đình, Hà Nội, Việt Nam",

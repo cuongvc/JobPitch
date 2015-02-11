@@ -37,7 +37,17 @@
 		<% }else{ %>
 			document.location.href = "/login";
 		<% } %>
-
+		// Load jobs
+		var JobScroll = {
+			start: 0,
+			limit: 4,
+		};
+		var PitchScroll = {
+			start: 0,
+			limit: 5,
+		};
+		var jobs = new Array();
+		var pitchs = new Array();
 	</script>
 	<!-- ANIMATED -->
 	<link rel="stylesheet" type="text/css" href="/bower_components/animate.css/animate.min.css">

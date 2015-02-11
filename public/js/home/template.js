@@ -39,9 +39,7 @@ TemplateApp.directive('scroll',function($window,JOB){
 	            	};
 	            }
 	            var scrollTop = $(window).scrollTop();
-	            console.log(scrollTop,height.short.value);
 	            if(scrollTop > height.short.value - 300){
-	            	console.log('a');
 	            	scope.LoadMore(height.short.element);
 	            }
 	        });

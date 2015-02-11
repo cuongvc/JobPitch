@@ -9,7 +9,6 @@ ApplicationSideBar.directive('applicationSidebar',function(){
 	}
 })
 ApplicationSideBar.controller('ApplicationSideBarCtrl',function($scope,$http,JOB,PITCH,LIKE,HASHTAG){
-	var pitchs = new Array();
 	var InterestList = [
 				{
 					logo: "https://pbs.twimg.com/profile_images/498927400378318848/3hkPsMFk_normal.jpeg",
@@ -80,8 +79,8 @@ ApplicationSideBar.controller('ApplicationSideBarCtrl',function($scope,$http,JOB
 	var data = {
 		user_id : $scope.user._id,
 		token   : $scope.user.token,
-		skip: 0,
-		limit: 5,
+		skip: PitchScroll.start,
+		limit: PitchScroll.limit,
 	};
 	$http.post(STR_API_GET_PITCH,data).success(function(response){
 		console.log('Pitch',response);
