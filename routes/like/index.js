@@ -40,7 +40,6 @@ module.exports                    =	function(req, res){
 				// == LIKE JOB ==
 				if (type_like == 1){
 					Job.findOne({_id : job_id}, function(err, job_exist){
-						console.log(job_exist);
 						if (err){
 							res.write(JSON.stringify({error_code : 1, msg : err.toString()}));
 							res.status(200).end();
@@ -57,7 +56,6 @@ module.exports                    =	function(req, res){
                                 user_exist.avatar_small, 13);
             var user_receive_notify = [];
             user_receive_notify.push(job_exist.user_id);
-            console.log('emit like job');
             io_notify.emit('like_job', {user_receive_notify : user_receive_notify,
                                           job                 : job_exist});
                           

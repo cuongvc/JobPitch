@@ -28,7 +28,6 @@ module.exports			=	function(req, res){
       var file_name   =   Math.floor(Math.random() * 1000000 + 1) + new Date().getTime() + '.' + extension;
       var new_location = '/images/full_size/UserImages/'; 
       
-      console.log('temp_path : ', temp_path);
       fs.rename(temp_path, './public' + new_location + file_name,  function(err){
         if (err){
         	console.log(err);

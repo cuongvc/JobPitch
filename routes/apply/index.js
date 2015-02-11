@@ -21,7 +21,6 @@ module.exports = function(req, res) {
         var time = new Date(new Date().toGMTString()).toJSON();
         var file = data.file;
 
-        console.log(token, user_id, job_id, title, description, hash_tag, time, file);
     } catch (err) {
         res.write(JSON.stringify({
             error_code: 1,
