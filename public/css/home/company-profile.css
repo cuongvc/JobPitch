@@ -48,6 +48,8 @@
 }
 .company-avatar img{
 	border: 3px solid #fff;
+	width: 140px;
+	height: 140px;
 }
 .followed-true{
 	color: #2dbea1;
@@ -61,11 +63,23 @@
 	padding-bottom: 10px!important;
 	border-bottom: 1px solid #eee;
 }
+.company-job-bg > div:last-child .company-job{
+	border: none;
+}
 .company-job .image{
 	margin-bottom: 20px;
 	overflow: auto;
 }
 .company-job-comment{
-	padding: 5px 15px;
+	padding: 5px 15px 5px 40px;
 	margin: 0px;
+}
+.company-job .like-share ul{
+	padding: 0px 30px;
+}
+.company-job .job-content{
+	padding: 0px 30px;
+}
+.cp-about > div{
+	padding: 20px 30px;
 }

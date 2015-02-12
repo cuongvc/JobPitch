@@ -1,4 +1,4 @@
-var TemplateApp = angular.module('TemplateApp',['ngRoute','header','footer','jobs','create-job','setting','database','pitch.service','job.service','hashtag.service']);
+var TemplateApp = angular.module('TemplateApp',['ngRoute','header','company-job','company-about','company-contact','jobs','create-job','setting','database','pitch.service','job.service','hashtag.service']);
 TemplateApp.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
 
 	$routeProvider.
