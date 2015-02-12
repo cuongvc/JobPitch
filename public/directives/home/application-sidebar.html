@@ -50,7 +50,7 @@
 					<span></span>
 				</p>
 			</div>
-			<div class="sidebar-cmt" ng-repeat="ApplicationSidebarComment in pitch.comments.show">
+			<div class="sidebar-cmt" ng-repeat="ApplicationSidebarComment in pitch.comments.show track by $index">
 				<div class="sidebar-comment-image pull-left">
 					<img src="{{ ApplicationSidebarComment.user_avatar }}" alt="">
 				</div>

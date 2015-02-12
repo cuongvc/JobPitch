@@ -3,8 +3,11 @@
 		<div class="company-job-bg col-md-36 col-sm-36 col-xs-36">
 			<div ng-repeat="job in jobs" id="{{ job._id }}">
 				<div class="company-job">
+					<div class="company-job-image max-height-0 transition_500ms">
+						<img ng-src="{{ job.image }}" alt="">
+					</div>
 					<div class="job-content overflowhidden">
-						<p><span class="company-title bold-text normal-text cp-title left-sidebar-blue-text" ng-click="ViewCompanyProfile($event,1)" ng-bind="job.title"></span></p>
+						<p><span class="company-title bold-text normal-text cp-title left-sidebar-blue-text" ng-click="ToggleImage(job,$event)" ng-bind="job.title"></span></p>
 						<p class="job-sort-desc normal-text" ng-bind="job.description"></p>
 					</div>
 					<div class="like-share small-text">

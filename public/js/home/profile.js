@@ -24,6 +24,19 @@ TemplateApp.controller('ProfileCtrl',function($scope,$http,$routeParams,PITCH,JO
 			$scope.profile = profile;
 		} 
 	})
+	$scope.ToggleImage = function(job,evt){
+		var target = $(evt.target).parent().parent().parent().find('.company-job-image');
+		target.toggleClass('show-image');
+		var img_H = target.find('img').height();
+		if(target.hasClass('show-image')){
+			target.css('max-height','500px');
+			$scope.ViewPitch(job);
+			var scrollTop = $(window).scrollTop() + img_H;
+			$('body').animate({ scrollTop: scrollTop },img_H);
+		}else{
+			target.css('max-height', '0px');
+		}
+	}
 	$scope.follow = function(){
 		var data = {
 			user_id: $scope.user._id,

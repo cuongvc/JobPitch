@@ -67,6 +67,10 @@ ul li{
 .cursor{
 	cursor: pointer;
 }
+.max-height-0{
+	max-height: 0px;
+	overflow: hidden;
+}
 /**************************************************************************************/
 .scrollbar_none::scrollbar{
 	display: none;
@@ -84,7 +88,7 @@ ul li{
 	max-height: 10000px;
 }
 .transition_500ms{
-	transition: all 0.5s;
+	transition: all 0.5s linear;
 	-webkit-transition: all 0.5s;
 	-ms-transition: all 0.5s;
 	-o-transition: all 0.5s;
