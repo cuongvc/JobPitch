@@ -29,6 +29,8 @@ module.exports 								=	function(req, res){
 		var industry              = data.industry;
 		var education             = data.education;
 		var year_of_birth         = data.year_of_birth;
+
+		var moreInfor             = data.moreInfor;
 	}
 
 	catch(err){
@@ -49,7 +51,7 @@ module.exports 								=	function(req, res){
 					if (!err_exist){
 						user_exist.editProfile(address, contact, website, avatar, avatar_small, avatar_normal,
 							                     companyName, skype, phone, companyEmail, userFullname, industry, education, 
-							                     year_of_birth, function(user){
+							                     year_of_birth, moreInfor, function(user){
 							respon_object(0, res, user);
 							return 1;
 						})
@@ -59,7 +61,7 @@ module.exports 								=	function(req, res){
 
 			user_exist.editProfile(address, contact, website, '', '', '',
 							               companyName, skype, phone, companyEmail, userFullname, industry, education, 
-							               year_of_birth, function(user){
+							               year_of_birth, moreInfor, function(user){
 					respon_object(0, res, user);
 					return 1;
 			})

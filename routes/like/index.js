@@ -51,7 +51,7 @@ module.exports                    =	function(req, res){
 						} else
             var notification = new Notification();
             notification.newInfor(job_exist.user_id, user_exist.userName, 
-            										' like your job', job_exist.title, job_exist.id, '', 
+            										' like your job', job_exist.title, job_exist.id, '', '',
                                 job_exist.user_id, job_exist.userName, job_exist.permalink, 
                                 user_exist.avatar_small, 13);
             var user_receive_notify = [];

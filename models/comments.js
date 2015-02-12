@@ -88,8 +88,10 @@ commentSchema.methods.newInfor    = function(user_id, user_name, user_avatar,
     comment.user_name          = user_name;
     comment.user_avatar        = user_avatar;
     
-    comment.application_parent = application_parent;
-    comment.comment_parent     = comment_parent;
+    if (application_parent != '')
+        comment.application_parent = application_parent;
+    if (comment_parent != '')
+        comment.comment_parent     = comment_parent;
     comment.content            = content;
     comment.hash_tag           = hash_tag;
     comment.time               = new Date();
@@ -128,7 +130,7 @@ commentSchema.methods.addLike       = function(user_id, callback){
 }
 
 commentSchema.methods.editInfor     = function(comment){
-       return this;
+       return this;1
 }
 
 // create the model for comments and expose it to our app

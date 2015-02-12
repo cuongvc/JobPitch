@@ -395,7 +395,12 @@ var userSchema = mongoose.Schema({
             type: ObjectId,
             ref: 'contract'
         }]
-    }
+    },
+
+    moreInfor : [{
+        title : String,
+        value : String
+    }]
 
 });
 
@@ -543,7 +548,7 @@ userSchema.methods.getAvatarFb = function(access_token, callback) {
 // ======================== EDIT PROFILE ====================================
 userSchema.methods.editProfile = function(address, contact, website, avatar, avatar_small, 
     avatar_normal, companyName, skype, phone, companyEmail,
-    userFullname, industry, education, year_of_birth, callback) {
+    userFullname, industry, education, year_of_birth, moreInfor, callback) {
 
     this.address = address;
     this.contact = contact;
@@ -556,6 +561,7 @@ userSchema.methods.editProfile = function(address, contact, website, avatar, ava
     this.skype = skype;
     this.phone = phone;
     this.companyEmail = companyEmail;
+    this.moreInfor = moreInfor;
 
     if (avatar != '') {
         this.avatar = avatar;

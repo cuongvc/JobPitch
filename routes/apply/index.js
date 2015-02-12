@@ -70,7 +70,7 @@ module.exports = function(req, res) {
                                 var notification = new Notification();
                                 notification.newInfor(receive_notify[i], user_exist.userName,
                                     ' apply job', application.description, job_exist._id,
-                                    application._id, job_exist.user_id,
+                                    application._id, '', job_exist.user_id,
                                     job_exist.userName, job_exist.permalink,
                                     user_exist.avatar_small, 12);
                             }

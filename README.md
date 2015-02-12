@@ -536,7 +536,8 @@ Cache-Control: no-cache
     "year_of_birth"     : "",
     "skype"          : "campcoder",
     "phone"          : "0987654321",
-    "companyEmail"   : "thanhah@campcoders.com"
+    "companyEmail"   : "thanhah@campcoders.com",
+    "moreInfor"      : [{"title" : "", "value" : ""}]
 }
     token, user_id, type_account, address, contact is require
 
@@ -1960,7 +1961,7 @@ Cache-Control: no-cache
 ### 25. Edit avatar/cover
 
 ```
-GET http://jobpitch.campcoders.com/api/edit_avatar
+POST http://jobpitch.campcoders.com/api/edit_avatar
 Content-Type: application/json
 Cache-Control: no-cache
 
@@ -1985,3 +1986,71 @@ type_image : 1 la edit avatar. 2 la edit cover
 
 ```
 
+
+### 26. Get User infor for contact
+
+```
+GET     http://job.dev/api/user/54db9ac592f6e6181fe5fd3b
+Content-Type: application/json
+Cache-Control: no-cache
+
+```
+##### Regex
+```
+
+
+```
+##### Return
+```
+{
+    "error_code": 0,
+    "user": {
+        "__v": 0,
+        "_id": "54db9ac592f6e6181fe5fd3b",
+        "userName": "cuongvu",
+        "moreInfor": [],
+        "contracts": {
+            "list": [],
+            "number": 0
+        },
+        "interests": {
+            "list": [],
+            "number": 0
+        },
+        "companyEmail": "",
+        "phone": "",
+        "skype": "",
+        "verify": 0,
+        "email": "vcc.bka@gmail.com",
+        "year_of_birth": null,
+        "education": "",
+        "industry": "",
+        "userFullname": "",
+        "cover_normal": "http://job.dev/images/full_size/UserImages/default-cover.jpeg",
+        "cover_small": "http://job.dev/images/full_size/UserImages/default-cover.jpeg",
+        "cover": "http://job.dev/images/full_size/UserImages/default-cover.jpeg",
+        "avatar_normal": "http://job.dev/images/full_size/UserImages/default-avatar.png",
+        "avatar_small": "http://job.dev/images/full_size/UserImages/default-avatar.png",
+        "avatar": "http://job.dev/images/full_size/UserImages/default-avatar.png",
+        "friends": [],
+        "myFollows": [],
+        "myApplications": [],
+        "myJobs": [],
+        "followMes": [],
+        "website": "",
+        "companyFullname": "",
+        "active": 1,
+        "permission": 0,
+        "contact": "",
+        "type_account": 1,
+        "location": {
+            "address": "9 Nguyên Hong, Thành Công, Ba Đình, Hà Nội, Việt Nam",
+            "lng": 105.812198,
+            "lat": 21.018549
+        },
+        "isUser": 2,
+        "address": ""
+    }
+}
+
+```

@@ -75,7 +75,6 @@ module.exports				=	function(req, res){
 
             var file_name   =   Math.floor(Math.random() * 1000000 + 1) + new Date().getTime() + '.' + extension;
             var new_location = '/images/full_size/JobImages/'; 
-            console.log('temp_path : ', temp_path);
             fs.rename(temp_path, './public' + new_location + file_name, 
               function(err){
                 if (err){
@@ -119,7 +118,7 @@ module.exports				=	function(req, res){
                             for (var i = 0 ; i < user_exist.followMes.length ; i ++){
                               var notification = new Notification();
                               notification.newInfor(user_exist.followMes[i], user_exist.userName, 
-                                                    ' create new job', job.title, job.id, '', 
+                                                    ' create new job', job.title, job.id, '', '',
                                                     job.user_id, job.userName, job.permalink, 
                                                     user_exist.avatar_small, 11);
                             }
