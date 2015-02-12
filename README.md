@@ -2121,3 +2121,27 @@ Cache-Control: no-cache
 }
 
 ```
+
+### 27. Forgot password
+
+```
+POST     http://jobpitch.campcoders.com/api/forgot_password
+Content-Type: application/json
+Cache-Control: no-cache
+
+{
+  "email" : "vcc.bka@gmail.com"
+}
+
+
+```
+##### Regex
+```
+
+
+```
+##### Return
+```
+{"error_code":0}
+
+```
