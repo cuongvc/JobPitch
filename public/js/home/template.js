@@ -23,6 +23,7 @@ TemplateApp.directive('scroll',function($window,JOB){
 		restrict: 'AE',
 		link: function(scope,element,attrs){
 	        angular.element($window).bind("scroll", function() {
+	        	if(window.location.pathname != '/') return;
 	            var height = {
 	            	jobs: $('#jobs').height(),
 	            	sidebar: $('#sidebar').height(),
@@ -39,7 +40,6 @@ TemplateApp.directive('scroll',function($window,JOB){
 	            	};
 	            }
 	            var scrollTop = $(window).scrollTop() + screen.height;
-	            console.log(screen.height,scrollTop,height.short.value);
 	            if(scrollTop >= height.short.value - 100){
 	            	scope.LoadMore(height.short.element);
 	            }

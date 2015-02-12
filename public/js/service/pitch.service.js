@@ -13,29 +13,26 @@ PitchService.service('PITCH',function($http,$q){
 	/*
 	* complete function ViewPitch
 	*/
-	this.ViewPitch = function(jobs,job,data,user_id){
-		var index = jobs.indexOf(job);
-		jobs[index].showApplyBox = true;
-		var pitchs = this.getPitch(data);
-		var defferer = $q.defer();
-		pitchs.then(function(response){
-			console.log('View Pitch:',response);
-			if(response.error_code == 0){
-				jobs[index].applications.loadFromSever = response.app;
-				jobs[index].applications.loadFromSever.forEach(function(v,k){
-					jobs[index].applications.loadFromSever[k].number = v.comment.length;
-					if(jobs[index].applications.loadFromSever[k].likes.list.indexOf(user_id) > -1){
-						jobs[index].applications.loadFromSever[k].likes.liked = true;
-					}else{
-						jobs[index].applications.loadFromSever[k].likes.liked = false;
-					}
-				})
-				defferer.resolve(jobs);
+	this.getPitchHandler = function(jobs,job,user_id,pitchs){
+		var index                       = jobs.indexOf(job);
+		job.showApplyBox               = true;
+		job.applications.loadFromServer = pitchs;
+		job.applications.loadFromServer.forEach(function(v,k){
+			job.applications.loadFromServer[k].number = v.comment.length;
+			if(jobs[index].applications.loadFromServer[k].likes.list.indexOf(user_id) > -1){
+				jobs[index].applications.loadFromServer[k].likes.liked = true;
 			}else{
-				defferer.resolve(jobs);
+				jobs[index].applications.loadFromServer[k].likes.liked = false;
+			}
+
+			if(jobs[index].applications.loadFromServer[k].interests.list.indexOf(user_id) > -1){
+				jobs[index].applications.loadFromServer[k].interests.interested = true;
+			}else{
+				jobs[index].applications.loadFromServer[k].interests.interested = false;
 			}
 		})
-		return defferer.promise;
+		jobs[index] = job;
+		return jobs;
 	}
 	/*
 	* post new Pitch
@@ -55,7 +52,7 @@ PitchService.service('PITCH',function($http,$q){
 	this.postNewPitchHandler = function(jobs,job,application){
 		var index = jobs.indexOf(job);
 		application.number = 0;
-		jobs[index].applications.loadFromSever.push(application);
+		jobs[index].applications.loadFromServer.push(application);
 		jobs[index].applications.number++;
 		return jobs;
 	}
@@ -74,15 +71,15 @@ PitchService.service('PITCH',function($http,$q){
 	*/
 	this.ViewPitchComment = function(jobs,job,pitch,data){
 		var index_job = jobs.indexOf(job);
-		var index_pitch = job.applications.loadFromSever.indexOf(pitch);
-		jobs[index_job].applications.loadFromSever[index_pitch].showReplyForm = true;
+		var index_pitch = job.applications.loadFromServer.indexOf(pitch);
+		jobs[index_job].applications.loadFromServer[index_pitch].showReplyForm = true;
 		var PitchCommentService = this.getPitchComment(data);
 		var defferer = $q.defer();
 		PitchCommentService.then(function(response){
 			console.log('pitch comment:',response);
 			if(response.error_code == 0){
-				jobs[index_job].applications.loadFromSever[index_pitch].comments = response.comment;
-				jobs[index_job].applications.loadFromSever[index_pitch].loaded = true;
+				jobs[index_job].applications.loadFromServer[index_pitch].comments = response.comment;
+				jobs[index_job].applications.loadFromServer[index_pitch].loaded = true;
 				defferer.resolve(jobs);
 			}else{
 				alert(response.msg)
@@ -107,9 +104,39 @@ PitchService.service('PITCH',function($http,$q){
 	*/
 	this.postNewPitchCommentHandler = function(jobs,job,pitch,comment){
 		var index_job = jobs.indexOf(job);
-		var index_pitch = job.applications.loadFromSever.indexOf(pitch);
-		jobs[index_job].applications.loadFromSever[index_pitch].comments.push(comment);
-		jobs[index_job].applications.loadFromSever[index_pitch].number++;
+		var index_pitch = job.applications.loadFromServer.indexOf(pitch);
+		jobs[index_job].applications.loadFromServer[index_pitch].comments.push(comment);
+		jobs[index_job].applications.loadFromServer[index_pitch].number++;
 		return jobs;
 	}
+	/*
+	* get pitch sidebar
+	*/
+	this.getPitchSidebar = function(data){
+		var defferer = $q.defer();
+		$http.post(STR_API_GET_PITCH,data).success(function(response){
+			defferer.resolve(response);
+		})
+		return defferer.promise;
+	}
+	this.getPitchSidebarHandler = function(pitchs,user_id){
+		pitchs.forEach(function(v,k){
+			pitchs[k].comments = {
+				list: v.comment,
+				number: v.comment.length,
+			};
+			if(v.likes.list.indexOf(user_id) > -1){
+				pitchs[k].likes.liked = true;
+			}else{
+				pitchs[k].likes.liked = false;
+			}
+			if(v.interests.list.indexOf(user_id) > -1){
+				pitchs[k].interests.interested = true;
+			}else{
+				pitchs[k].interests.interested = false;
+			}
+		})
+		return pitchs;
+	}
+	
 })

@@ -19,8 +19,15 @@
 	var STR_API_GET_PITCH        = BASE_URL + '/api/get_applications';
 	var STR_API_GET_COMMENTS     = BASE_URL + '/api/get_comments';
 	var STR_API_MY_JOBS          = BASE_URL + '/api/my_jobs';
+	var STR_API_INTEREST         = BASE_URL + '/api/interest';
+	var STR_API_GET_JOB          = BASE_URL + '/api/get_jobs';
+	var STR_API_EDIT_AVATAR      = BASE_URL + '/api/edit_avatar';
 	/*
 	* SOCKET EVENT
 	*/
 	var CREATE_JOB_SOCKET_EVENT  = 'create_job';
 	var APPLY_JOB_SOCKET_EVENT   = 'apply_job';
+	/*
+	* OTHER
+	*/
+	var SIDEBAR_NUMBER_COMMENT   = 3;

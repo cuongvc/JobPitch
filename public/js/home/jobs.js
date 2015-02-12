@@ -1,4 +1,4 @@
-var Jobs = angular.module('jobs',['nightfury-upload','application-sidebar','left-sidebar','user-service','ui.bootstrap.popover','pitch.service','job.service','hashtag.service','like.service']);
+var Jobs = angular.module('jobs',['nightfury-upload','application-sidebar','left-sidebar','user-service','ui.bootstrap.popover','pitch.service','job.service','hashtag.service','like.service','interest.service','route.service']);
 Jobs.directive('jobs',function(){
 	return {
 		restrict: 'E',
@@ -8,7 +8,17 @@ Jobs.directive('jobs',function(){
 		},
 	}
 })
-Jobs.controller('JobCtrl',function($scope,$http,USER,PITCH,JOB,HASHTAG,LIKE){
+Jobs.controller('JobCtrl',function($scope,$http,USER,PITCH,JOB,HASHTAG,LIKE,INTEREST,ROUTE){
+	/*
+	* View user
+	*/
+	$scope.ViewUser = function(user_id,evt){
+		ROUTE.ViewUserProfile(user_id,evt);
+	}
+	/*
+	* load jobs
+	*/
+	JobScroll.start = 0;
 	var data = {
 			user_id: $scope.user._id,
 			token: $scope.user.token,
@@ -42,10 +52,15 @@ Jobs.controller('JobCtrl',function($scope,$http,USER,PITCH,JOB,HASHTAG,LIKE){
 		    token: $scope.user.token,
 		    job_id: job._id,
 		}
-		JobService = PITCH.ViewPitch(jobs,job,data,$scope.user._id);
-		JobService.then(function(data){
-			jobs = data;
-			$scope.jobs = jobs;
+		var PitchService = PITCH.getPitch(data);
+		PitchService.then(function(response){
+			if(response.error_code == 0){
+				jobs = PITCH.getPitchHandler(jobs,job,$scope.user._id,response.app);
+				console.log(jobs);
+				$scope.jobs = jobs;
+			}else{
+				alert(response.msg);
+			}
 		})
 	}
 
@@ -188,6 +203,8 @@ Jobs.controller('JobCtrl',function($scope,$http,USER,PITCH,JOB,HASHTAG,LIKE){
 					jobs[index].likes.users.push(me);
 				}
 				$scope.jobs = jobs;
+			}else{
+				alert(response.msg);
 			}
 		})
 	}
@@ -235,4 +252,25 @@ Jobs.controller('JobCtrl',function($scope,$http,USER,PITCH,JOB,HASHTAG,LIKE){
 	$scope.HiddenListLike = function(job){
 		$('.list-like-job').addClass('hidden');
 	}
-})
+	/*************************************************************************************************************/
+											/*PITCH COMMENT*/
+	/*************************************************************************************************************/
+	$scope.InterestPitch = function(pitch,job){
+		var data = {
+			user_id : $scope.user._id,
+			token   : $scope.user.token,
+			app_id  : pitch._id,
+		};
+		var InterestService = INTEREST.postInterest(data);
+		InterestService.then(function(response){
+			console.log(response);
+			if(response.error_code == 0){
+				jobs = INTEREST.postInterestHandler(jobs,job,pitch);
+				$scope.jobs = jobs;
+			}else{
+				alert(response.msg);
+			}
+		})
+	}
+
+})	

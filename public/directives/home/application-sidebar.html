@@ -20,7 +20,7 @@
 				</div>
 				<div class="application-sidebar-like-share small-text">
 					<ul>
-						<li class="pull-left"><span ng-bind="pitch.interests.number"></span><span> interest</span></li>
+						<li class="pull-left"><span ng-bind="pitch.interests.number"></span><span ng-click="InterestPitch(pitch)"> interest</span></li>
 						<li class="pull-right"><span ng-bind="pitch.shares.number"></span><span> share</span></li>
 						<li class="pull-right" ng-click="LikePitch(pitch)"><span ng-bind="pitch.likes.number"></span><span> like</span></li>
 						<li class="pull-right" ng-click="ShowApplicationSidebarComment(pitch)"><span ng-bind="pitch.comments.number"></span> <span> comment</span></li>
@@ -30,8 +30,10 @@
 		</div>
 		<div class="application-sidebar-company-logo gray-border">
 			<ul class="col-md-36 col-sm-36 col-xs-36">
-				<li ng-repeat="interest in InterestList" class="col-md-12 col-sm-12 col-xs-12">
-					<img class="animated fadeIn center-block" ng-src="{{ interest.logo }}" alt="">
+				<li ng-repeat="interest in pitch.interests.loadFromServer" class="col-md-12 col-sm-12 col-xs-12">
+					<a href="/user/{{ interest._id }}" ng-click="ViewCompany(interest._id,$event)">
+						<img class="animated fadeIn center-block" ng-src="{{ interest.avatar_small }}" alt="">
+					</a>
 				</li>
 			</ul>
 			<p class="pull-right application-sidebar-company-view-more three-dot" ng-click="LoadMoreInterestLogo()" title="View All">
@@ -48,7 +50,7 @@
 					<span></span>
 				</p>
 			</div>
-			<div class="sidebar-cmt" ng-repeat="ApplicationSidebarComment in pitch.comments.show">
+			<div class="sidebar-cmt" ng-repeat="ApplicationSidebarComment in pitch.comments.show track by $index">
 				<div class="sidebar-comment-image pull-left">
 					<img src="{{ ApplicationSidebarComment.user_avatar }}" alt="">
 				</div>

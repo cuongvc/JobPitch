@@ -24,5 +24,15 @@ JobService.service('JOB',function($http,$q){
 		})
 		return jobs;
 	}
+	/*
+	* get jobs in company profile page
+	*/
+	this.getCompanyJob = function(data){
+		var defferer = $q.defer();
+		$http.post(STR_API_GET_JOB,data).success(function(response){
+			defferer.resolve(response);			
+		})
+		return defferer.promise;
+	}
 
 })

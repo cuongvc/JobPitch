@@ -1,5 +1,6 @@
 
 #company-profile{
+	margin-top: 60px;
 	margin-bottom: 10px;
 	overflow: hidden;
 }
@@ -9,6 +10,8 @@
 
 #company-profile .cover-image img{
 	width: 100%;
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
 }
 #company-profile .cover-menu{
 	height: 40px;
@@ -49,7 +52,20 @@
 .followed-true{
 	color: #2dbea1;
 }
-
-#company-job{
-
+.company-job-bg{
+	background: #fff;
+	padding: 10px 0px;
+}
+.company-job{
+	padding-top: 20px!important;
+	padding-bottom: 10px!important;
+	border-bottom: 1px solid #eee;
+}
+.company-job .image{
+	margin-bottom: 20px;
+	overflow: auto;
+}
+.company-job-comment{
+	padding: 5px 15px;
+	margin: 0px;
 }

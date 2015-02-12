@@ -1,4 +1,4 @@
-var ApplicationSideBar = angular.module('application-sidebar',['pitch.service','job.service','hashtag.service','like.service']);
+var ApplicationSideBar = angular.module('application-sidebar',['pitch.service','job.service','hashtag.service','like.service','interest.service','user-service','route.service']);
 ApplicationSideBar.directive('applicationSidebar',function(){
 	return {
 		restrict: 'E',
@@ -8,47 +8,8 @@ ApplicationSideBar.directive('applicationSidebar',function(){
 		},
 	}
 })
-ApplicationSideBar.controller('ApplicationSideBarCtrl',function($scope,$http,JOB,PITCH,LIKE,HASHTAG){
-	var InterestList = [
-				{
-					logo: "https://pbs.twimg.com/profile_images/498927400378318848/3hkPsMFk_normal.jpeg",
-				},
-				{
-					logo: "https://pbs.twimg.com/profile_images/188302352/nasalogo_twitter_bigger.jpg",
-				},
-				{
-					logo: "https://pbs.twimg.com/profile_images/2675282220/2fddf0955beb9b9d8f2d57eb988f4b2e_normal.jpeg",
-				}
-			];
-	var pushLogo = [
-				{
-					logo: "https://pbs.twimg.com/profile_images/3513354941/24aaffa670e634a7da9a087bfa83abe6_bigger.png",
-				},
-				{
-					logo: "https://pbs.twimg.com/profile_images/529308402661339136/Yb0c2yz8_normal.png",
-				},
-				{
-					logo: "https://pbs.twimg.com/profile_images/531806988846370816/GEPB7aLh_normal.png",
-				},
-				{
-					logo: "https://pbs.twimg.com/profile_images/498927400378318848/3hkPsMFk_normal.jpeg",
-				},
-				{
-					logo: "https://pbs.twimg.com/profile_images/188302352/nasalogo_twitter_bigger.jpg",
-				},
-				{
-					logo: "https://pbs.twimg.com/profile_images/2675282220/2fddf0955beb9b9d8f2d57eb988f4b2e_normal.jpeg",
-				},
-				{
-					logo: "https://pbs.twimg.com/profile_images/3513354941/24aaffa670e634a7da9a087bfa83abe6_bigger.png",
-				},
-				{
-					logo: "https://pbs.twimg.com/profile_images/529308402661339136/Yb0c2yz8_normal.png",
-				},
-				{
-					logo: "https://pbs.twimg.com/profile_images/531806988846370816/GEPB7aLh_normal.png",
-				}
-			];
+ApplicationSideBar.controller('ApplicationSideBarCtrl',function($scope,$http,JOB,PITCH,LIKE,HASHTAG,INTEREST,USER,ROUTE){
+	var InterestList = new Array();
 	$scope.InterestList = InterestList;
 	$scope.ApplicationSideBarComments = [
 		{username: 'Facebook', comment: 'Bạn nghĩ thế nào khi làm ứng dung mượt mà như Facebook App',avatar: "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xap1/v/t1.0-1/p160x160/10888891_792437770805243_2605756062524274878_n.jpg?oh=444e0545d1bbada68355d8e5c6ab8828&oe=5561A471&__gda__=1431450996_805f65e459f6cd3eb2d621d08d3d6151"},
@@ -60,6 +21,9 @@ ApplicationSideBar.controller('ApplicationSideBarCtrl',function($scope,$http,JOB
 			InterestList.push(v);
 		})
 		$scope.InterestList = InterestList;
+	}
+	$scope.ViewCompany = function(user_id,evt){
+		ROUTE.ViewUserProfile(user_id,evt);
 	}
 
 	/******************************************************************************************/
@@ -76,41 +40,41 @@ ApplicationSideBar.controller('ApplicationSideBarCtrl',function($scope,$http,JOB
 	/******************************************************************************************/
 									/*GET PITCH*/
 	/******************************************************************************************/
+	PitchScroll.start = 0;
 	var data = {
 		user_id : $scope.user._id,
 		token   : $scope.user.token,
 		skip: PitchScroll.start,
 		limit: PitchScroll.limit,
 	};
-	$http.post(STR_API_GET_PITCH,data).success(function(response){
-		console.log('Pitch',response);
-		if(response.error_code == 0){
-			pitchs = response.applications;
-			pitchs.forEach(function(v,k){
-				pitchs[k].comments = {
-					list: v.comment,
-					number: v.comment.length,
-				};
-				if(v.likes.list.indexOf($scope.user._id) > -1){
-					pitchs[k].likes.liked = true;
-				}else{
-					pitchs[k].likes.liked = false;
-				}
-			})
-			$scope.pitchs = pitchs;
-		}
-	})
+	var PitchService = PITCH.getPitchSidebar(data);
+		PitchService.then(function(response){
+			if(response.error_code == 0){
+				pitchs = PITCH.getPitchSidebarHandler(response.applications,$scope.user._id);
+				pitchs.forEach(function(v,k){
+					var UserService = USER.get(v.interests.list,$scope.user._id,$scope.user.token);
+						UserService.then(function(response){
+							if(response.error_code == 0){
+								pitchs[k].interests.loadFromServer = response.users;
+							}else{
+								alert(response.msg);
+							}
+						})
+				})
+				$scope.pitchs = pitchs;
+			}else{
+				alert(response.msg);
+			}
+		})
+
 	$scope.ViewMorePitchComment = function(numberCmt,pitch){
 		var i      = pitch.comments.show.length;
 		var length = pitch.comments.all.length;
 		var index  = pitchs.indexOf(pitch);
 		if(i == length) return;
 		if(length - i > numberCmt) length = numberCmt + i;
-		var array_reverse = pitch.comments.all;
-			array_reverse.reverse();
 		for(i;i < length; i++){
-			console.log(i,':',array_reverse[i]);
-			pitch.comments.show.unshift(array_reverse[i]);
+			pitch.comments.show.unshift(pitch.comments.all[i]);
 		}
 		pitchs[index] = pitch;
 		$scope.pitchs = pitchs;
@@ -127,18 +91,25 @@ ApplicationSideBar.controller('ApplicationSideBarCtrl',function($scope,$http,JOB
 		}
 		var PitchService = PITCH.getPitchComment(data);
 		PitchService.then(function(response){
-			pitch.comments = new Object();
-			pitch.comments.all = response.comment;
-			pitch.comments.number = response.comment.length;
-			var length = response.comment.length;
-			if(length > 3){
-				pitch.comments.show = [response.comment[length - 3],response.comment[length - 2],response.comment[length - 1]];
+			if(response.error_code == 0){
+				pitch.comments.all = response.comment;
+				pitch.comments.all.reverse();
+				pitch.comments.show = [];
+				pitch.comments.number = response.comment.length;
+				var length = response.comment.length;
+				if(length > SIDEBAR_NUMBER_COMMENT){
+					for(i = 0; i <SIDEBAR_NUMBER_COMMENT; i++){
+						pitch.comments.show.unshift(pitch.comments.all[i])
+					}
+				}else{
+					pitch.comments.show = pitch.comments.all;
+				}
+				pitchs[index] = pitch;
+				console.log(pitch);
+				$scope.pitchs = pitchs;
 			}else{
-				pitch.comments.show = response.comment;
+				alert(response.msg);
 			}
-			pitchs[index] = pitch;
-			console.log(pitch);
-			$scope.pitchs = pitchs;
 		})
 	}
 	/*
@@ -196,5 +167,30 @@ ApplicationSideBar.controller('ApplicationSideBarCtrl',function($scope,$http,JOB
 			})
 		}
 	}
+	/*************************************************************************************************************/
+											/*PITCH COMMENT*/
+	/*************************************************************************************************************/
+	$scope.InterestPitch = function(pitch){
+		var data = {
+			user_id : $scope.user._id,
+			token   : $scope.user.token,
+			app_id  : pitch._id,
+		};
+		var InterestService = INTEREST.postInterest(data);
+		InterestService.then(function(response){
+			console.log(response);
+			var index_pitch = pitchs.indexOf(pitch);
+			if(pitch.interests.interested){
+				pitch.interests.interested = false;
+				pitch.interests.number--;
+			}else{
+				pitch.interests.interested = true;
+				pitch.interests.number++;
+			}
+			pitchs[index_pitch] = pitch;
+			$scope.pitchs = pitchs;
+		})
+	}
+
 	
 })
