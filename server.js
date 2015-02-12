@@ -56,7 +56,9 @@ app.get('/export-pdf/:pitch_id',function(req,res){
 	res.render('export-pdf.ejs');
 })
 
-
+app.get('/account/reset_password/:resetKey',		 function(req, res){
+	res.render('reset_password.ejs', {reset_key : req.params.resetKey});
+})
 /**************** API GET USER, JOB, APPLICATION NOT AUTHENTICATE ******************/
 
 // app.get('/user/:user_id',function(req,res){
@@ -215,6 +217,10 @@ app.get('/directive/home/left-sidebar',function(req,res){
 	// get jobs of  any company
 	Router_body.post('/get_jobs',			 				 routes.get.jobs);
 	
+	// FORGOT PASSWORD
+	Router_body.post('/forgot_password', 		 	 routes.forgot_password.forgot_password);
+	Router_body.post('/reset_password',				 routes.forgot_password.reset_password);
+
 // --------GET DATA FROM PERMALINK -------------------------------
 
 app.get('/:permalink',											 routes.get.permalink);

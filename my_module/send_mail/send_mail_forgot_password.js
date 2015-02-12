@@ -20,7 +20,7 @@ module.exports          =   function(res, email, key){
         if (err || !user_exist){
             res.json({error_code : 308, msg : ' Email is incorrect'});
         } else{
-            var content = '<p>Dear ' + user_exist.username + ', <br> We received a request to reset the password of your account. <br> If you made this request, please click the link below to get it back, or just ignore this email. <br> Link reset password : http://jobpitch.campcoders.com/api/reset_password/' + key + '</p>';
+            var content = '<p>Dear ' + user_exist.userName + ', <br> We received a request to reset the password of your account. <br> If you made this request, please click the link below to get it back, or just ignore this email. <br> Link reset password : http://jobpitch.campcoders.com/account/reset_password/' + key + '</p>';
 
             var mailOptions = {
                 from: 'campcoders@gmail.com', // sender address
