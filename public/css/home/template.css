@@ -14,6 +14,7 @@ body{
 	/*font-family: 'Proxima Nova';*/
 	font-family: arial!important;
 	background: #EEEEEE!important;
+	overflow-y: scroll;
 }
 @media(min-width:1500px){
 	.container{
@@ -66,6 +67,10 @@ ul li{
 .cursor{
 	cursor: pointer;
 }
+.max-height-0{
+	max-height: 0px;
+	overflow: hidden;
+}
 /**************************************************************************************/
 .scrollbar_none::scrollbar{
 	display: none;
@@ -83,7 +88,7 @@ ul li{
 	max-height: 10000px;
 }
 .transition_500ms{
-	transition: all 0.5s;
+	transition: all 0.5s linear;
 	-webkit-transition: all 0.5s;
 	-ms-transition: all 0.5s;
 	-o-transition: all 0.5s;
@@ -195,4 +200,10 @@ div > .gray-border:last-child{
 }
 .left-sidebar-blue-text, .left-sidebar-blue-text *{
 	color: #0084B4!important;
+}
+/****************************************************************************************/
+										/*BACKGROUND*/
+/****************************************************************************************/
+.white-bg{
+	background: #fff;
 }

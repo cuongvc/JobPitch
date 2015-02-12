@@ -1,7 +1,8 @@
 TemplateApp.controller('ProfileCtrl',function($scope,$http,$routeParams,PITCH,JOB,HASHTAG,INTEREST,LIKE,USER){
-	$scope.BASE_URL = BASE_URL;
-	$scope.user     = user;
-	$scope.logedin  = logedin;
+	$scope.BASE_URL           = BASE_URL;
+	$scope.user               = user;
+	$scope.logedin            = logedin;
+	$scope.CompanyProfilePage = 1;
 	var profile;
 	var jobs;
 	var data = {
@@ -23,6 +24,19 @@ TemplateApp.controller('ProfileCtrl',function($scope,$http,$routeParams,PITCH,JO
 			$scope.profile = profile;
 		} 
 	})
+	$scope.ToggleImage = function(job,evt){
+		var target = $(evt.target).parent().parent().parent().find('.company-job-image');
+		target.toggleClass('show-image');
+		var img_H = target.find('img').height();
+		if(target.hasClass('show-image')){
+			target.css('max-height','500px');
+			$scope.ViewPitch(job);
+			var scrollTop = $(window).scrollTop() + img_H;
+			$('body').animate({ scrollTop: scrollTop },img_H);
+		}else{
+			target.css('max-height', '0px');
+		}
+	}
 	$scope.follow = function(){
 		var data = {
 			user_id: $scope.user._id,
@@ -77,6 +91,15 @@ TemplateApp.controller('ProfileCtrl',function($scope,$http,$routeParams,PITCH,JO
 			$scope.showCrop = showCrop;
 		}
 	})
+	$scope.changeAvatarCropChange = function(c){
+		console.log(c);
+		$scope.changeAvatarImage.coords = {
+			x: c.x,
+			y: c.y,
+			width: c.w,
+			height: c.y2 - c.y,
+		};
+	}
 	$scope.Crop = function(){
 		showCrop = false;
 		$scope.showCrop = showCrop;
@@ -93,6 +116,7 @@ TemplateApp.controller('ProfileCtrl',function($scope,$http,$routeParams,PITCH,JO
 				    type_image    : 1,
 				    temp_path     : path,
 				    extension     : $scope.changeAvatarImage.extension,
+				    coords        : $scope.changeAvatarImage.coords,
 				};
 			console.log(JSON.stringify(data));
 			$http.post(STR_API_EDIT_AVATAR,data).success(function(response){
@@ -101,6 +125,29 @@ TemplateApp.controller('ProfileCtrl',function($scope,$http,$routeParams,PITCH,JO
 			})
 		}
 	})
+	/****************************************************************************************************/
+											/*APPLY*/
+	/****************************************************************************************************/
+	$scope.Apply = function(job, ApplyDesc){
+		var data = {
+			user_id: $scope.user._id,
+			token: $scope.user.token,
+			job_id: job._id,
+			title: "",
+			description: ApplyDesc,
+			hash_tag: HASHTAG.findHashTag(ApplyDesc),
+			file: '',
+		};
+		console.log('post New Pitch:',data);
+		$('#ApplyDesc').val('');
+		PitchService = PITCH.postNewPitch(data);
+		PitchService.then(function(response){
+			if(response.error_code == 0){
+				jobs = PITCH.postNewPitchHandler(jobs,job,response.application);
+				$scope.jobs = jobs;
+			}
+		})
+	}
 	/****************************************************************************************************/
 											/*GET LIST JOBS*/
 	/****************************************************************************************************/

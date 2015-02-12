@@ -60,7 +60,7 @@
 			</div>
 			<div class="application-sidebar-comment-box sidebar-cmt">
 				<div class="sidebar-comment-image pull-left">
-					<img src="{{ ApplicationSidebarComment.user_avatar }}" alt="">
+					<img src="{{ user.avatar.normal }}" alt="">
 				</div>
 				<div class="sidebar-comment-body">
 					<textarea id="PitchReply" ng-keyup="PostReply(PitchReply,pitch,$event)" ng-model="PitchReply" placeholder="Write a reply"></textarea>
