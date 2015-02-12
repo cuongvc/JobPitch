@@ -222,6 +222,7 @@ app.get('/:permalink',											 routes.get.permalink);
 // --------GET INFOR A USER(CONTACT) ---------------------------------------
 
 app.get('/api/user/:user_id',								 routes.get.user);
+app.get('/api/job/:job_id',									 routes.get.job);
 
 // =================================== LISTEN BY IP AND PORT ========================
 

@@ -3,6 +3,7 @@ var check_user                = require('./../../my_module/check_exist').user;
 var respon_object             = require('./../../my_module/respon_object').user;
 
 var Permalink                 = require('./../../models/permalinks');
+var send_email_register       = require('./../../my_module/send_mail/send_mail_register');
 
 module.exports								=	function(req, res){
 
@@ -33,6 +34,7 @@ module.exports								=	function(req, res){
 					req._passport.session.user = user._id;
 
         	respon_object(1, res, user);
+        	send_email_register(email,  user_name);
 				})
 			}
 		})

@@ -781,6 +781,8 @@ userSchema.methods.addMyFollow = function(user_id, callback) {
             callback();
         })
     } else {
+        console.log('remove from my follow');
+
         this.myFollows.splice(this.myFollows.indexOf(user_id), 1);
         this.save(function(err) {
             callback();
@@ -797,6 +799,7 @@ userSchema.methods.addFollowMe = function(user_id, callback) {
             callback();
         })
     } else {
+        console.log('remove from follow me');
         this.followMes.splice(this.followMes.indexOf(user_id), 1);
         this.save(function(err) {
             callback();

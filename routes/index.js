@@ -1,33 +1,35 @@
-exports.upload_photo =   require('./upload_photo');
+exports.upload_photo    = require('./upload_photo');
 
-exports.logout       =		require('./logout');
+exports.logout          = require('./logout');
 
-exports.job          =		require('./job');
+exports.job             = require('./job');
 
-exports.login        =   require('./login');
+exports.login           = require('./login');
 
-exports.recent       =   require('./recent');
+exports.recent          = require('./recent');
 
-exports.apply        =   require('./apply');
+exports.apply           = require('./apply');
 
-exports.edit_profile =   require('./edit_profile');
+exports.edit_profile    = require('./edit_profile');
 
-exports.my_wall      =   require('./my_wall');
+exports.my_wall         = require('./my_wall');
 
-exports.signup       =   require('./signup');
+exports.signup          = require('./signup');
 
-exports.search       =   require('./search');
+exports.search          = require('./search');
 
-exports.get          =   require('./get');
+exports.get             = require('./get');
 
-exports.upload_file  =   require('./upload_file');
+exports.upload_file     = require('./upload_file');
 
-exports.comment      =   require('./comment');
+exports.comment         = require('./comment');
 
-exports.like         =   require('./like');
+exports.like            = require('./like');
 
-exports.interest     =   require('./interest');
+exports.interest        = require('./interest');
 
-exports.hire         =   require('./hire');
+exports.hire            = require('./hire');
 
-exports.follow       =   require('./follow');
+exports.follow          = require('./follow');
+
+exports.forgot_password = require('./forgot_password');

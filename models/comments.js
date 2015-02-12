@@ -14,7 +14,7 @@ var commentSchema = mongoose.Schema({
         ref: 'users'
     },
 
-    user_name: {
+    userName: {
         type: String
     },
 
@@ -70,6 +70,11 @@ var commentSchema = mongoose.Schema({
     application_parent: {
         type: ObjectId,
         ref: 'applications'
+    },
+
+    job_parent: {
+        type: ObjectId,
+        ref : 'jobs'
     }
 
 
@@ -80,18 +85,23 @@ commentSchema.methods.isOwn         = function(companyId){
     return (companyId == this.companyId);
 }
 
-commentSchema.methods.newInfor    = function(user_id, user_name, user_avatar, 
-                                        application_parent, comment_parent, content, 
+commentSchema.methods.newInfor    = function(user_id, userName, user_avatar, 
+                                        application_parent, comment_parent, job_parent, content, 
                                         hash_tag, callback){
     var comment = this;
     comment.user_id            = user_id;
-    comment.user_name          = user_name;
+    comment.userName          = userName;
     comment.user_avatar        = user_avatar;
     
-    if (application_parent != '')
+    if (application_parent != ''){
         comment.application_parent = application_parent;
+
+    }
     if (comment_parent != '')
         comment.comment_parent     = comment_parent;
+
+    comment.job_parent = job_parent;
+
     comment.content            = content;
     comment.hash_tag           = hash_tag;
     comment.time               = new Date();
