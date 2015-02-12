@@ -10,6 +10,10 @@ TemplateApp.controller('ProfileCtrl',function($scope,$http,$routeParams,PITCH,JO
 		token: $scope.user.token,
 		users: [$routeParams.user_id],
 	}
+	var url = STR_API_USER_PROFILE + '/' + $routeParams.user_id;
+	$http.get(url).success(function(response){
+		console.log(response);
+	})
 	$http.post(STR_API_GET_USER,data).success(function(response){
 		console.log(response);
 		if(response.error_code == 0){
@@ -92,7 +96,6 @@ TemplateApp.controller('ProfileCtrl',function($scope,$http,$routeParams,PITCH,JO
 		}
 	})
 	$scope.changeAvatarCropChange = function(c){
-		console.log(c);
 		$scope.changeAvatarImage.coords = {
 			x: c.x,
 			y: c.y,
@@ -116,9 +119,7 @@ TemplateApp.controller('ProfileCtrl',function($scope,$http,$routeParams,PITCH,JO
 				    type_image    : 1,
 				    temp_path     : path,
 				    extension     : $scope.changeAvatarImage.extension,
-				    coords        : $scope.changeAvatarImage.coords,
 				};
-			console.log(JSON.stringify(data));
 			$http.post(STR_API_EDIT_AVATAR,data).success(function(response){
 				console.log(response);
 				document.location.reload();
@@ -171,6 +172,7 @@ TemplateApp.controller('ProfileCtrl',function($scope,$http,$routeParams,PITCH,JO
 											/*ViewPitch*/
 	/****************************************************************************************************/
 	$scope.ViewPitch = function(job){
+		if(job.showApplyBox) return;
 		var data = {
 		    user_id: $scope.user._id,
 		    token: $scope.user.token,

@@ -15,7 +15,7 @@ PitchService.service('PITCH',function($http,$q){
 	*/
 	this.getPitchHandler = function(jobs,job,user_id,pitchs){
 		var index                       = jobs.indexOf(job);
-		job.showApplyBox               = true;
+		job.showApplyBox                = true;
 		job.applications.loadFromServer = pitchs;
 		job.applications.loadFromServer.forEach(function(v,k){
 			job.applications.loadFromServer[k].number = v.comment.length;
@@ -67,6 +67,27 @@ PitchService.service('PITCH',function($http,$q){
 		return defferer.promise;
 	}
 	/*
+	* get pitch comment handler
+	*/
+	this.getPitchCommentHandler = function(pitchs, pitch, comments){
+		var index = pitchs.indexOf(pitch);
+		pitch.comments.all   = comments;
+		pitch.comments.all.forEach(function(v,k){
+			var object = new Date(v.time);
+			var time = {
+				raw: v.time,
+				object: object,
+				json: object.toJSON(),
+			}
+			pitch.comments.all[k].time = time;
+		})
+		pitch.comments.limit = 3;
+		pitchs[index]        = pitch;
+		console.log(pitchs);
+		return pitchs;
+
+	}
+	/*
 	* view pitch comment
 	*/
 	this.ViewPitchComment = function(jobs,job,pitch,data){
@@ -88,6 +109,7 @@ PitchService.service('PITCH',function($http,$q){
 		})
 		return defferer.promise;
 	}
+
 	/*
 	* post new pitch comment
 	*/
@@ -123,7 +145,7 @@ PitchService.service('PITCH',function($http,$q){
 		pitchs.forEach(function(v,k){
 			pitchs[k].comments = {
 				list: v.comment,
-				number: v.comment.length,
+				numberOfComment: v.comment.length,
 			};
 			if(v.likes.list.indexOf(user_id) > -1){
 				pitchs[k].likes.liked = true;
@@ -135,6 +157,7 @@ PitchService.service('PITCH',function($http,$q){
 			}else{
 				pitchs[k].interests.interested = false;
 			}
+
 		})
 		return pitchs;
 	}

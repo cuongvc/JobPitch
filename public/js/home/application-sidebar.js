@@ -8,6 +8,11 @@ ApplicationSideBar.directive('applicationSidebar',function(){
 		},
 	}
 })
+ApplicationSideBar.filter('reverse', function() {
+	return function(items) {
+		return items.slice().reverse();
+	};
+});
 ApplicationSideBar.controller('ApplicationSideBarCtrl',function($scope,$http,JOB,PITCH,LIKE,HASHTAG,INTEREST,USER,ROUTE){
 	var InterestList = new Array();
 	$scope.InterestList = InterestList;
@@ -61,6 +66,7 @@ ApplicationSideBar.controller('ApplicationSideBarCtrl',function($scope,$http,JOB
 							}
 						})
 				})
+				console.log('Pitchs Sidebar:',pitchs);
 				$scope.pitchs = pitchs;
 			}else{
 				alert(response.msg);
@@ -68,18 +74,12 @@ ApplicationSideBar.controller('ApplicationSideBarCtrl',function($scope,$http,JOB
 		})
 
 	$scope.ViewMorePitchComment = function(numberCmt,pitch){
-		var i      = pitch.comments.show.length;
-		var length = pitch.comments.all.length;
-		var index  = pitchs.indexOf(pitch);
-		if(i == length) return;
-		if(length - i > numberCmt) length = numberCmt + i;
-		for(i;i < length; i++){
-			pitch.comments.show.unshift(pitch.comments.all[i]);
-		}
+		var index = pitchs.indexOf(pitch);
+		pitch.comments.limit += numberCmt;
+		if(pitch.comments.limit > pitch.comments.all.length) pitch.comments.limit = pitch.comments.all.length;
 		pitchs[index] = pitch;
-		$scope.pitchs = pitchs;
 	}
-	$scope.ShowApplicationSidebarComment = function(pitch){
+	$scope.ViewPitchcomment = function(pitch){
 		var index = pitchs.indexOf(pitch);
 		pitchs[index].showComment = true;
 		if(pitch.loaded == true) return;
@@ -92,21 +92,9 @@ ApplicationSideBar.controller('ApplicationSideBarCtrl',function($scope,$http,JOB
 		var PitchService = PITCH.getPitchComment(data);
 		PitchService.then(function(response){
 			if(response.error_code == 0){
-				pitch.comments.all = response.comment;
-				pitch.comments.all.reverse();
-				pitch.comments.show = [];
-				pitch.comments.number = response.comment.length;
-				var length = response.comment.length;
-				if(length > SIDEBAR_NUMBER_COMMENT){
-					for(i = 0; i <SIDEBAR_NUMBER_COMMENT; i++){
-						pitch.comments.show.unshift(pitch.comments.all[i])
-					}
-				}else{
-					pitch.comments.show = pitch.comments.all;
+				if(response.comment.length > 0){
+					pitchs = PITCH.getPitchCommentHandler(pitchs,pitch,response.comment);
 				}
-				pitchs[index] = pitch;
-				console.log(pitch);
-				$scope.pitchs = pitchs;
 			}else{
 				alert(response.msg);
 			}
@@ -136,7 +124,6 @@ ApplicationSideBar.controller('ApplicationSideBarCtrl',function($scope,$http,JOB
 						pitch.likes.liked = true;
 					}
 					pitchs[index] = pitch;
-					$scope.pitchs = pitchs;
 				}
 			})
 	}
@@ -157,12 +144,13 @@ ApplicationSideBar.controller('ApplicationSideBarCtrl',function($scope,$http,JOB
 			var PitchService = PITCH.postNewPitchComment(data);
 			PitchService.then(function(response){
 				if(response.error_code == 0){
-					$('#PitchReply').val('');
+					$('.sidebar-comment-body textarea').val('');
 					var index = pitchs.indexOf(pitch);
 					var comment = response.comment;
+					if(pitch.comments.all == undefined) pitch.comments.all = new Array();
 					pitch.comments.all.push(comment);
-					pitch.comments.show.push(comment);
-					pitch.comments.number++;
+					pitch.comments.numberOfComment++;
+					pitchs[index] = pitch;
 				}
 			})
 		}
@@ -179,16 +167,19 @@ ApplicationSideBar.controller('ApplicationSideBarCtrl',function($scope,$http,JOB
 		var InterestService = INTEREST.postInterest(data);
 		InterestService.then(function(response){
 			console.log(response);
-			var index_pitch = pitchs.indexOf(pitch);
-			if(pitch.interests.interested){
-				pitch.interests.interested = false;
-				pitch.interests.number--;
+			if(response.error_code == 0){
+				var index_pitch = pitchs.indexOf(pitch);
+				if(pitch.interests.interested){
+					pitch.interests.interested = false;
+					pitch.interests.number--;
+				}else{
+					pitch.interests.interested = true;
+					pitch.interests.number++;
+				}
+				pitchs[index_pitch] = pitch;
 			}else{
-				pitch.interests.interested = true;
-				pitch.interests.number++;
+				alert(response.msg);
 			}
-			pitchs[index_pitch] = pitch;
-			$scope.pitchs = pitchs;
 		})
 	}
 
