@@ -5,6 +5,8 @@ var io_notify = require('./../../my_module/socket');
 
 var Notification = require('./../../models/notifications');
 
+var content_noti = require('./../../config/content_noti');
+
 module.exports = function(req, res) {
 
     try {
@@ -62,13 +64,13 @@ module.exports = function(req, res) {
 
                         var newNotification = new Notification();
                         newNotification.newInfor(
-                            application_exist.user_id, user_exist.userName, 'interest your application',
+                            application_exist.user_id, user_exist.userName, content_noti.interest_application,
                             application_exist.description, application_exist.job_id, application_exist._id,
-                            '', '', job_exist.permalink, user_exist.avatar_small, 21);
+                            '', '', '', user_exist.avatar_small, 21);
 
                         var receive_notify = [];
                         receive_notify.push(application_exist.user_id);
-
+                        console.log('EMIT interest_app');
                         io_notify.emit('interest_app', {
                             user_receive_notify: receive_notify,
                             app: application_exist

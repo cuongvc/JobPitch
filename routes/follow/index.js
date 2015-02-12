@@ -22,7 +22,10 @@ module.exports										=	function(req, res){
 	}
 
 	finally{
-
+		if (user_id == user_follow_id){
+			res.write(JSON.stringify({ error_code : 1, msg : 'Cannot follow yourself' }));
+			res.status(200).end();
+		} else
 		check_token(user_id, token, function(exist, user_exist){
 
 			if (!exist){
@@ -39,17 +42,17 @@ module.exports										=	function(req, res){
 						res.status(200).end();
 					} else
 
-					if (!user_exist){
+					if (!user_exist_2){
 						res.write(JSON.stringify({error_code : 1, msg : 'Follow user is not exist'}));
 						res.status(200).end();
 					} else {
-
-					user_exist.addMyFollow(user_follow_id, function(){
-						user_exist_2.addFollowMe(user_id, function(){
-							res.write(JSON.stringify({error_code : 0}));
-							res.status(200).end();
-						})
-					})}
+						
+						user_exist.addMyFollow(user_follow_id, function(){
+							user_exist_2.addFollowMe(user_id, function(){
+								res.write(JSON.stringify({error_code : 0}));
+								res.status(200).end();
+							})
+						})}
 
 				})
 		})

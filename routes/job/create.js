@@ -16,6 +16,8 @@ var io_notify           = require('./../../my_module/socket');
 var Notification        = require('./../../models/notifications');
 var Permalink           = require('./../../models/permalinks');
 
+var content_noti        = require('./../../config/content_noti');
+
 module.exports				=	function(req, res){
 
   try{
@@ -118,7 +120,7 @@ module.exports				=	function(req, res){
                             for (var i = 0 ; i < user_exist.followMes.length ; i ++){
                               var notification = new Notification();
                               notification.newInfor(user_exist.followMes[i], user_exist.userName, 
-                                                    ' create new job', job.title, job.id, '', '',
+                                                    content_noti.create_job , job.title, job.id, '', '',
                                                     job.user_id, job.userName, job.permalink, 
                                                     user_exist.avatar_small, 11);
                             }

@@ -20,8 +20,6 @@ var notificationSchema = mongoose.Schema({
         default      : ''
     },
 
-
-
     content          : {
         content              : String,  
         short_content        : String,
@@ -99,7 +97,6 @@ notificationSchema.methods.newInfor    = function(user_id_receive, userName_make
             if (err || !user_exist){
                 return 0;
             } else{
-                console.log('USERS EXIST : ', user_exist);
                 user_exist.notifications.list.push(notify);
                 user_exist.notifications.unread ++;
                 user_exist.save(function(err){});

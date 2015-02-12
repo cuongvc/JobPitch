@@ -1188,11 +1188,13 @@ Cache-Control: no-cache
     "content"               : "Ban tung lam voi chuc vu gi?",
     "hash_tag"              : ["Php", "Nodejs", "Android", "Campcoders.com"],
     "application_parent"    : "",
-    "comment_parent"        : "54d104892b6d292c1e71cb96"
+    "comment_parent"        : "54d104892b6d292c1e71cb96",
+    "job_parent"            : "54d104892b6d292c1e71cb96"
 }
 
 application_parent va comment_parent o day la application/comment ma user 
 comment vao. Chi 1 trong 2 co gia tri, cai con lai bang ""
+job_parent la require
 
 ```
 ##### Regex
@@ -1208,6 +1210,7 @@ comment vao. Chi 1 trong 2 co gia tri, cai con lai bang ""
         "__v": 0,
         "time": "Wed Feb 04 2015 00:38:29 GMT+0700 (ICT)",
         "comment_parent": "54d104892b6d292c1e71cb96",
+        "job_parent" : "54d104892b6d292c1e71cb96",
         "user_avatar": "Cường Vũ",
         "user_name": "https://lh5.googleusercontent.com/-IlI6TyJIlrs/AAAAAAAAAAI/AAAAAAAAAC8/AsmFVAZBIkw/photo.jpg",
         "user_id": "54cf8e29a2d2bf0f2c849c35",
@@ -2050,6 +2053,70 @@ Cache-Control: no-cache
         },
         "isUser": 2,
         "address": ""
+    }
+}
+
+```
+
+### 27. Get job
+
+```
+GET     http://job.dev/api/job/54db9ac592f6e6181fe5fd3b
+Content-Type: application/json
+Cache-Control: no-cache
+
+```
+##### Regex
+```
+
+
+```
+##### Return
+```
+{
+    "error_code": 0,
+    "job": {
+        "time": "2015-02-11T02:10:33.000Z",
+        "user_id": "54db9ac592f6e6181fe5fd3b",
+        "_id": "54daba19c3c29f571b82451b",
+        "__v": 0,
+        "receive_notify": [],
+        "contracts": {
+            "list": [],
+            "number": 0
+        },
+        "hires": 0,
+        "interviews": 0,
+        "applications": {
+            "list": [],
+            "number": 0
+        },
+        "shares": {
+            "list": [],
+            "number": 0
+        },
+        "likes": {
+            "list": [],
+            "number": 0
+        },
+        "status": 4,
+        "link_direct": "http://campcoders.com",
+        "location": {
+            "address": "Ngõ 34 - Nguyên Hồng, Láng Hạ, Đống Đa, Hà Nội, Việt Nam",
+            "lng": 105.810339,
+            "lat": 21.016481
+        },
+        "description": "Quản lý toàn bộ công tác tuyển dụng nhân sự - Hỗ trợ thực hiện các hoạt động đào tạo và tái đào tạo- Quản lý giám sát hoạt động nhân sự trong Khách Sạn- Xây dựng, quản lý, tổ chức và thực hiện các chính sách nhân sự cho nhân viên theo quy định của Khách Sạn",
+        "hash_tag": [
+            "Nodejs",
+            "Angular"
+        ],
+        "permalink": "nh-n-s-",
+        "title": "nhân sự",
+        "userName": "CuongVC93",
+        "image_normal": "http://job.dev/images/normal_size/JobImages/1423621317648.jpeg",
+        "image_small": "http://job.dev/images/small_size/JobImages/1423621317648.jpeg",
+        "image": "http://job.dev/images/full_size/JobImages/1423621317648.jpeg"
     }
 }
 

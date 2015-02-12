@@ -1,13 +1,14 @@
-var nodemailer = require('nodemailer');
-var fs         = require('fs');
-var Users      = require('./../../models/users');
+var nodemailer         = require('nodemailer');
+var fs                 = require('fs');
+var Users              = require('./../../models/users');
+
 
 // create reusable transporter object using SMTP transport
 var transporter = nodemailer.createTransport({
     service: 'Gmail',
     auth: {
-        user: 'losty.app@gmail.com',
-        pass: 'Losty@123456'
+        user: 'campcoders@gmail.com',
+        pass: 'Coc@123456'
     }
 });
 
@@ -16,23 +17,32 @@ module.exports          =   function(email, username){
     // the same transporter object for all e-mails
 
     // setup e-mail data with unicode symbols
-    var content = '<p>Dear ' + username  + ', Welcome to LostyApp! <br> Please send us an email to losty.app@gmail.com<br>Your Losty Team</p>';
+    var send_mail_register_html = __dirname + 'send_mail_register.html';
 
-    var mailOptions = {
-        from: 'losty.app@gmail.com', // sender address
-        to: [email],
-        subject: 'Register success Lostyapp',           // Subject line
-        text: content,                 // plaintext body
-        html: content
-    };
+    var content = '<p>Dear ' + username  + ', Welcome to JobPitch! <br> Please send us an email to campcoders@gmail.com<br>Campcoders Team</p>';
 
-    // send mail with defined transport object
-    transporter.sendMail(mailOptions, function(error, info){
-        if(error){
-            console.log(error);
-        }else{
-            console.log('Message sent: ' + info.response);
-        }
-    });
+    // fs.readFile(send_mail_register_html, function (err, html) {
+    //     if (err) {
+    //         throw err; 
+    //     }       
+        var mailOptions = {
+            from: 'campcoders@gmail.com', // sender address
+            to: [email],
+            subject: 'Register success JobPitch',           // Subject line
+            text: content,                 // plaintext body
+            html: content
+        };
+
+        // send mail with defined transport object
+        transporter.sendMail(mailOptions, function(error, info){
+            if(error){
+                console.log(error);
+            }else{
+                console.log('Message sent: ' + info.response);
+            }
+        });
+    // });
+
+
 }
 

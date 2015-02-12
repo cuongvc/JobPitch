@@ -12,21 +12,16 @@ TemplateApp.controller('ProfileCtrl',function($scope,$http,$routeParams,PITCH,JO
 	}
 	var url = STR_API_USER_PROFILE + '/' + $routeParams.user_id;
 	$http.get(url).success(function(response){
-		console.log(response);
-	})
-	$http.post(STR_API_GET_USER,data).success(function(response){
-		console.log(response);
-		if(response.error_code == 0){
-			profile = response.users[0];
-			if(profile.followMes.indexOf($scope.user._id) < 0){
-				profile.followed = false;
-			}else{
-				profile.followed = true;
-			}
-			profile.follow_number = profile.followMes.length;
-			profile.jobs_number = profile.myJobs.length;
-			$scope.profile = profile;
-		} 
+		profile = response.user;
+		if(profile.followMes.indexOf($scope.user._id) < 0){
+			profile.followed = false;
+		}else{
+			profile.followed = true;
+		}
+		profile.follow_number = profile.followMes.length;
+		profile.jobs_number = profile.myJobs.length;
+		console.log(profile);
+		$scope.profile = profile;
 	})
 	$scope.ToggleImage = function(job,evt){
 		var target = $(evt.target).parent().parent().parent().find('.company-job-image');
@@ -65,6 +60,9 @@ TemplateApp.controller('ProfileCtrl',function($scope,$http,$routeParams,PITCH,JO
 			}
 		})
 	}
+	/****************************************************************************************************/
+											/*CHANGE AVATAR*/
+	/****************************************************************************************************/
 	$scope.changeAvatar = function(){
 		if($routeParams.user_id == $scope.user._id){
 			$('#change-avatar-input').click();
@@ -92,7 +90,7 @@ TemplateApp.controller('ProfileCtrl',function($scope,$http,$routeParams,PITCH,JO
 	$scope.$watch(function(){return $scope.changeAvatarImage.preview;},function(){
 		if($scope.changeAvatarImage.preview != undefined && $scope.changeAvatarImage.preview != ''){
 			showCrop = true;
-			$scope.showCrop = showCrop;
+			$scope.changeAvatarImage.showCrop = showCrop;
 		}
 	})
 	$scope.changeAvatarCropChange = function(c){
@@ -103,9 +101,9 @@ TemplateApp.controller('ProfileCtrl',function($scope,$http,$routeParams,PITCH,JO
 			height: c.y2 - c.y,
 		};
 	}
-	$scope.Crop = function(){
+	$scope.CropAvatar = function(){
 		showCrop = false;
-		$scope.showCrop = showCrop;
+		$scope.changeAvatarImage.showCrop = showCrop;
 		$scope.changeAvatarImage.startUpload = true;
 	}
 	$scope.$watch(function(){
@@ -119,6 +117,71 @@ TemplateApp.controller('ProfileCtrl',function($scope,$http,$routeParams,PITCH,JO
 				    type_image    : 1,
 				    temp_path     : path,
 				    extension     : $scope.changeAvatarImage.extension,
+				};
+			$http.post(STR_API_EDIT_AVATAR,data).success(function(response){
+				console.log(response);
+				document.location.reload();
+			})
+		}
+	})
+	/****************************************************************************************************/
+											/*CHANGE COVER*/
+	/****************************************************************************************************/
+	$scope.changeCover = function(){
+		if($routeParams.user_id == $scope.user._id){
+			$('#change-cover-input').click();
+			return;
+		}
+	}
+	$scope.changeCoverImage = {
+		upload: {
+			url: STR_UPLOAD_IMAGE,
+			postData: 'image',
+			dir: {
+				name: 'dir',
+				dir: 'upload/thumb',
+			},
+		},
+		progress : {
+			show: false,
+		},
+		clearOnclick: true,
+		crop: true,
+	};
+	$scope.ChangeCoverOpts = {
+		aspectRatio: 2.75,
+	};
+	$scope.$watch(function(){return $scope.changeCoverImage.preview;},function(){
+		console.log($scope.changeCoverImage.preview);
+		if($scope.changeCoverImage.preview != undefined && $scope.changeCoverImage.preview != ''){
+			showCrop = true;
+			$scope.changeCoverImage.showCrop = showCrop;
+		}
+	})
+	$scope.changeCoverCropChange = function(c){
+		$scope.changeCoverImage.coords = {
+			x: c.x,
+			y: c.y,
+			width: c.w,
+			height: c.y2 - c.y,
+		};
+	}
+	$scope.Crop = function(){
+		showCrop = false;
+		$scope.showCrop = showCrop;
+		$scope.changeCoverImage.startUpload = true;
+	}
+	$scope.$watch(function(){
+		return $scope.changeCoverImage.path;
+	},function(){
+		var path = $scope.changeCoverImage.path;
+		if(path != undefined && path != ''){
+			var data = {
+				    user_id       : $scope.user._id,
+				    token         : $scope.user.token,
+				    type_image    : 2,
+				    temp_path     : path,
+				    extension     : $scope.changeCoverImage.extension,
 				};
 			$http.post(STR_API_EDIT_AVATAR,data).success(function(response){
 				console.log(response);

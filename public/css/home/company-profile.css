@@ -8,7 +8,7 @@
 	overflow: auto;
 }
 
-#company-profile .cover-image img{
+#company-profile .cover-image > img{
 	width: 100%;
 	border-top-left-radius: 8px;
 	border-top-right-radius: 8px;
@@ -46,7 +46,7 @@
 	left: 10px;
 	background: #eee;
 }
-.company-avatar img{
+.company-avatar > img{
 	border: 3px solid #fff;
 	width: 140px;
 	height: 140px;
@@ -86,4 +86,15 @@
 }
 .company-job-image img{
 	width: 100%;
+}
+.edit-cover{
+	position: absolute;
+	z-index: 1;
+	top: 10;
+	right: 10;
+}
+.edit-cover img{
+	width: 30px!important;
+	height: 30px!important;
+	cursor: pointer;
 }

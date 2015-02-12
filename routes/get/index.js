@@ -13,3 +13,5 @@ exports.applications    = require('./applications');
 exports.jobs            = require('./jobs');
 
 exports.user            = require('./user');
+
+exports.job             = require('./job');

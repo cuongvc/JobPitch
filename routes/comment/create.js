@@ -2,6 +2,11 @@ var check_token                   = require('./../../my_module/check_exist').tok
 var Comment                       = require('./../../models/comments');
 var Application                   = require('./../../models/applications');
 
+var Notification                  = require('./../../models/notifications');
+
+var io_notify           = require('./../../my_module/socket');
+var content_noti                  = require('./../../config/content_noti');
+
 module.exports										=	function(req, res){
 
 	try{
@@ -13,6 +18,7 @@ module.exports										=	function(req, res){
 		var hash_tag           = data.hash_tag;
 		var application_parent = data.application_parent;
 		var comment_parent     = data.comment_parent;
+		var job_parent         = data.job_parent;
 	}
 
 	catch(err){
@@ -30,7 +36,7 @@ module.exports										=	function(req, res){
 
 				var newComment   = new Comment();
 				newComment.newInfor(user_exist._id, user_exist.userName, user_exist.avatar_normal, application_parent, 
-														comment_parent, content, hash_tag, 
+														comment_parent, job_parent, content, hash_tag, 
 														function(comment){
 					comment.save(function(err){
 						console.log(err);
@@ -53,6 +59,19 @@ module.exports										=	function(req, res){
 								app_exist.addComment(comment._id, function(){
 									res.write(JSON.stringify({error_code : 0, comment : comment }));
 									res.status(200).end();
+
+                  var notification = new Notification();
+                  notification.newInfor(app_exist.user_id, user_exist.userName,
+                                	content_noti.comment_apply1, comment.content, 
+                                	comment.job_parent, '', comment._id,
+                                	'', '', comment.permalink,
+                                	user_exist.avatar_small, 25);
+                  var user_receive_notify = [];
+                  user_receive_notify.push(app_exist.user_id);
+                  io_notify.emit('comment_apply', { user_receive_notify: user_receive_notify,
+                                									    comment: comment
+                  });
+
 								});
 							}
 						});
@@ -75,10 +94,23 @@ module.exports										=	function(req, res){
 								return 1;
 							} else{
 
-							cmt_exist.addComment(comment._id, function(){
-								res.write(JSON.stringify({error_code : 0, comment : comment }));
-								res.status(200).end();
-							});
+								cmt_exist.addComment(comment._id, function(){
+									res.write(JSON.stringify({error_code : 0, comment : comment }));
+									res.status(200).end();
+
+	                var notification = new Notification();
+	                notification.newInfor(cmt_exist.user_id, user_exist.userName,
+	                                	content_noti.comment_comment1, comment.content, 
+	                                	comment.job_parent, '', comment._id,
+	                                	'', '', comment.permalink,
+	                                	user_exist.avatar_small, 25);
+	                var user_receive_notify = [];
+	                user_receive_notify.push(cmt_exist.user_id);
+	                io_notify.emit('comment_comment', { user_receive_notify: user_receive_notify,
+	                                									    comment: comment
+	                });
+
+								});
 
 							}
 						});
