@@ -43,7 +43,7 @@
 .company-avatar{
 	position: absolute;
 	bottom: 20px;
-	left: 10px;
+	left: 30px;
 	background: #eee;
 }
 .company-avatar > img{

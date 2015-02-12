@@ -39,7 +39,7 @@ app.get('/login_fb', function(req, res){
 /*
 * index
 */
-var DIRECTIVE_URL = ['/','/user/:user_id','/user'];
+var DIRECTIVE_URL = ['/','/user/:user_id','/user','/u/:user_id'];
 app.get(DIRECTIVE_URL,function(req, res){
 	res.render('template.ejs',{user: req.user});
 })
