@@ -23,6 +23,7 @@
 	var STR_API_GET_JOB          = BASE_URL + '/api/get_jobs';
 	var STR_API_EDIT_AVATAR      = BASE_URL + '/api/edit_avatar';
 	var STR_API_USER_PROFILE     = BASE_URL + '/api/user';
+	var STR_API_FORGOT_PASSWORD  = BASE_URL + '/api/forgot_password';
 	/*
 	* SOCKET EVENT
 	*/

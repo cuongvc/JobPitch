@@ -10,6 +10,10 @@ TemplateApp.config(['$routeProvider', '$locationProvider', function($routeProvid
 			templateUrl: '../directives/profile.html', 
 			controller: 'ProfileCtrl'
 		}).
+		when('/forgot-password', {
+			templateUrl: '../directives/forgot-password.html', 
+			controller: 'ForgotPasswordCtrl'
+		}).
 		otherwise({redirectTo: '/'});
 
 		$locationProvider.html5Mode({
