@@ -536,7 +536,8 @@ Cache-Control: no-cache
     "year_of_birth"     : "",
     "skype"          : "campcoder",
     "phone"          : "0987654321",
-    "companyEmail"   : "thanhah@campcoders.com"
+    "companyEmail"   : "thanhah@campcoders.com",
+    "moreInfor"      : [{"title" : "", "value" : ""}]
 }
     token, user_id, type_account, address, contact is require
 
