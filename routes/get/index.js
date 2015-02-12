@@ -11,3 +11,5 @@ exports.permalink 			= require('./permalink');
 exports.applications    = require('./applications');
 
 exports.jobs            = require('./jobs');
+
+exports.user            = require('./user');

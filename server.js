@@ -219,6 +219,10 @@ app.get('/directive/home/left-sidebar',function(req,res){
 
 app.get('/:permalink',											 routes.get.permalink);
 
+// --------GET INFOR A USER(CONTACT) ---------------------------------------
+
+app.get('/api/user/:user_id',								 routes.get.user);
+
 // =================================== LISTEN BY IP AND PORT ========================
 
 app.set('port', process.env.PORT || port);
