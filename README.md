@@ -2120,6 +2120,8 @@ Cache-Control: no-cache
     }
 }
 
+<<<<<<< HEAD
+=======
 ```
 
 ### 27. Forgot password
@@ -2144,4 +2146,5 @@ Cache-Control: no-cache
 ```
 {"error_code":0}
 
+>>>>>>> f34e34afef74be4ae4fd2ef534f710237c035837
 ```

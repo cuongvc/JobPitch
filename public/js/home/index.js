@@ -45,14 +45,14 @@ TemplateApp.controller('IndexCtrl',function($scope,$http,JOB){
 			if(response.error_code == 0){
 				more_pitchs = response.applications;
 				more_pitchs.forEach(function(v,k){
-					pitchs[k].comments = {
+					more_pitchs[k].comments = {
 						list: v.comment,
-						number: v.comment.length,
+						numberOfComment: v.comment.length,
 					};
 					if(v.likes.list.indexOf($scope.user._id) > -1){
-						pitchs[k].likes.liked = true;
+						more_pitchs[k].likes.liked = true;
 					}else{
-						pitchs[k].likes.liked = false;
+						more_pitchs[k].likes.liked = false;
 					}
 				})
 				more_pitchs.forEach(function(v,k){

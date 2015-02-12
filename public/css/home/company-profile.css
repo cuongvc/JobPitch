@@ -8,7 +8,7 @@
 	overflow: auto;
 }
 
-#company-profile .cover-image img{
+#company-profile .cover-image > img{
 	width: 100%;
 	border-top-left-radius: 8px;
 	border-top-right-radius: 8px;
@@ -43,10 +43,10 @@
 .company-avatar{
 	position: absolute;
 	bottom: 20px;
-	left: 10px;
+	left: 15px;
 	background: #eee;
 }
-.company-avatar img{
+.company-avatar > img{
 	border: 3px solid #fff;
 	width: 140px;
 	height: 140px;
@@ -75,15 +75,26 @@
 	margin: 0px;
 }
 .company-job .like-share ul{
-	padding: 0px 30px;
+	padding: 0px 15px;
 }
 .company-job .job-content{
 	margin-top: 15px;
-	padding: 0px 30px;
+	padding: 0px 15px;
 }
 .cp-about > div{
 	padding: 20px 30px;
 }
 .company-job-image img{
 	width: 100%;
+}
+.edit-cover{
+	position: absolute;
+	z-index: 1;
+	top: 10;
+	right: 10;
+}
+.edit-cover img{
+	width: 30px!important;
+	height: 30px!important;
+	cursor: pointer;
 }

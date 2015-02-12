@@ -22,6 +22,7 @@
 	var STR_API_INTEREST         = BASE_URL + '/api/interest';
 	var STR_API_GET_JOB          = BASE_URL + '/api/get_jobs';
 	var STR_API_EDIT_AVATAR      = BASE_URL + '/api/edit_avatar';
+	var STR_API_USER_PROFILE     = BASE_URL + '/api/user';
 	/*
 	* SOCKET EVENT
 	*/
