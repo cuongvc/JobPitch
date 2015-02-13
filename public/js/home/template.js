@@ -10,6 +10,11 @@ TemplateApp.config(['$routeProvider', '$locationProvider', function($routeProvid
 			templateUrl: '../directives/profile.html', 
 			controller: 'ProfileCtrl'
 		}).
+		when('/u/:user_id', {
+			templateUrl: '../directives/user/user-profile.html', 
+			controller: 'UserProfileCtrl'
+		}).
+
 		when('/forgot-password', {
 			templateUrl: '../directives/forgot-password.html', 
 			controller: 'ForgotPasswordCtrl'

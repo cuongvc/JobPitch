@@ -10,19 +10,15 @@ TemplateApp.controller('ProfileCtrl',function($scope,$http,$routeParams,PITCH,JO
 		token: $scope.user.token,
 		users: [$routeParams.user_id],
 	}
-	var url = STR_API_USER_PROFILE + '/' + $routeParams.user_id;
-	$http.get(url).success(function(response){
-		profile = response.user;
-		if(profile.followMes.indexOf($scope.user._id) < 0){
-			profile.followed = false;
-		}else{
-			profile.followed = true;
-		}
-		profile.follow_number = profile.followMes.length;
-		profile.jobs_number = profile.myJobs.length;
-		console.log(profile);
-		$scope.profile = profile;
-	})
+	var UserService = USER.getProfile($routeParams.user_id);
+		UserService.then(function(response){
+			if(response.error_code == 0){
+				profile = USER.getProfileHandler(response.user,$scope.user._id);
+				$scope.profile = profile;
+			}else{
+				alert(response.msg);
+			}
+		})
 	$scope.ToggleImage = function(job,evt){
 		var target = $(evt.target).parent().parent().parent().find('.company-job-image');
 		target.toggleClass('show-image');

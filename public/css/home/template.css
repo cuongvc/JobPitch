@@ -207,3 +207,18 @@ div > .gray-border:last-child{
 .white-bg{
 	background: #fff;
 }
+/****************************************************************************************/
+										/*FB ICON*/
+/****************************************************************************************/
+.fb-icon{
+	display: block;
+	width: 20px;
+	height: 20px;
+	background: url('../../images/fb_icon.png');
+	background-repeat: no-repeat;
+	background-size: auto;
+	cursor: pointer;
+}
+.fb-dropdown-setting{
+	background-position: -91px -147px;
+}

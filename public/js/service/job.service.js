@@ -34,5 +34,20 @@ JobService.service('JOB',function($http,$q){
 		})
 		return defferer.promise;
 	}
+	/*
+	* edit job
+	*/
+	this.edit = function(data){
+		var defferer = $q.defer();
+		$http.post(STR_API_EDIT_JOB,data).success(function(response){
+			defferer.resolve(response);
+		})
+		return defferer.promise;
+	}
+	this.editHandler = function(jobs,job,newJob){
+		var index = jobs.indexOf(job);
+		jobs[index] = newJob;
+		return jobs;
+	}
 
 })

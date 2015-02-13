@@ -24,6 +24,7 @@
 	var STR_API_EDIT_AVATAR      = BASE_URL + '/api/edit_avatar';
 	var STR_API_USER_PROFILE     = BASE_URL + '/api/user';
 	var STR_API_FORGOT_PASSWORD  = BASE_URL + '/api/forgot_password';
+	var STR_API_EDIT_JOB         = BASE_URL + '/api/edit_job';
 	/*
 	* SOCKET EVENT
 	*/

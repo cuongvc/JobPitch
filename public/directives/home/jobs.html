@@ -8,6 +8,16 @@
 						<img ng-src="{{ job.image }}">
 					</div>
 					<div class="job-content">
+						<div class="job-setting dropdown-toggle" id="dropdownMenu-{{ job._id }}" data-toggle="dropdown" aria-expanded="true"><span class="fb-icon fb-dropdown-setting"></span></div>
+						<!-- DROPDOWN -->
+						<ul class="dropdown-menu pull-right" role="menu" aria-labelledby="dropdownMenu-{{ job._id }}">
+						    <li role="presentation"><a role="menuitem" tabindex="-1" href="" ng-click="EditJob(job)">Edit</a></li>
+						    <li role="presentation"><a role="menuitem" tabindex="-1" href="">Turn off notification</a></li>
+						    <li class="divider"></li>
+						    <li role="presentation"><a role="menuitem" tabindex="-1" href="">Hide</a></li>
+						    <li role="presentation"><a role="menuitem" tabindex="-1" href="">Delete</a></li>
+						</ul>
+						<!-- DROPDOWN -->
 						<p><span class="company-title bold-text normal-text cp-title left-sidebar-blue-text" ng-click="ViewCompanyProfile($event,1)" ng-bind="job.title"></span></p>
 						<p><a class="gray-color cursor" ng-href="/user/{{ job.user_id }}" ng-click="ViewUser(job.user_id,$event)"><span>@</span><span ng-bind="job.userName"></span></a></p>
 						<p class="job-sort-desc normal-text" ng-bind="job.description"></p>
@@ -98,7 +108,47 @@
 		<application-sidebar></application-sidebar>
 		<left-sidebar></left-sidebar>
 
+		
+		<!-- Modal -->
+		<div class="modal fade" id="EditModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        <h4 class="modal-title" id="myModalLabel">Edit Job</h4>
+		      </div>
+		      <div class="modal-body">
+		        <div class="form-group">
+			        <input type="text" class="job-edit-title" ng-model="EditJob.title" placeholder="Title">
+			    </div>
+			    <div class="form-group">
+			    	<input type="file" id="job-edit-file" nightfury-onchange-upload="JobEditImage" ng-model="EditImage">
+			    </div>
+			    <div class="form-group">
+			    	<input type="text" class="job-edit-address" ng-model="EditJob.location.address" placeholder="Address">
+			    </div>
+			    <div class="form-group">
+			    	<textarea ng-model="EditJob.description" class="job-edit-description" placeholder="Description"></textarea>
+			    </div>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-primary" ng-click="SaveEdit(EditJob,EditJob.title,EditJob.location.address,EditJob.description)">Save changes</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>	
+		<div id="create-job-crop-image" ng-if="showEditCrop == true">
+			<div class="center-block">
+				<div>
+					<img ng-src="{{ JobEditImage.preview }}" data-on-change="EditJobCropChange" angular-crop="EditJobCropCoverOpts">
+					<button class="fa fa-crop pull-left" ng-click="EditCrop()"> Crop</button>
+					<button class="fa fa-file pull-left" ng-click="ReSelectFile()"> Select file</button>
+				</div>
+			</div>
+		</div>
 
-	
+
+
+
 	</div>
 </div>
