@@ -68,6 +68,18 @@ Header.controller('HeaderCtrl',function($scope,$http){
 			};
 		addNewNotification(newNoti,response);
 	});
+	IO.on(INTEREST_SOCKET_EVENT,function(response){
+		console.log(INTEREST_SOCKET_EVENT,response);
+	})
+	IO.on(LIKE_PITCH_SOCKET_EVENT,function(response){
+		console.log(LIKE_PITCH_SOCKET_EVENT,response);
+	})
+	IO.on(LIKE_COMMENT_SOCKET_EVENT,function(response){
+		console.log(LIKE_COMMENT_SOCKET_EVENT,response);
+	})
+
+
+
 	function makeShortNotificationTitle(title){
 		var shortTitle = title;
 		if(shortTitle.length > 40) shortTitle = shortTitle.substring(shortTitle,40) + '...';

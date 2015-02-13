@@ -28,9 +28,8 @@
 	/*
 	* SOCKET EVENT
 	*/
-	var CREATE_JOB_SOCKET_EVENT  = 'create_job';
-	var APPLY_JOB_SOCKET_EVENT   = 'apply_job';
-	/*
-	* OTHER
-	*/
-	var SIDEBAR_NUMBER_COMMENT   = 3;
+	var CREATE_JOB_SOCKET_EVENT   = 'create_job';
+	var APPLY_JOB_SOCKET_EVENT    = 'apply_job';
+	var INTEREST_SOCKET_EVENT     = 'interest_app';
+	var LIKE_PITCH_SOCKET_EVENT   = 'like_app';
+	var LIKE_COMMENT_SOCKET_EVENT = 'like_comment';
