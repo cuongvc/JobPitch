@@ -63,3 +63,6 @@
 .application-sidebar-header p a{
 	text-decoration: none!important;
 }
+.sidebar-element{
+	padding: 10px;
+}
