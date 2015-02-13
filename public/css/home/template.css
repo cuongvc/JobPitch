@@ -222,3 +222,9 @@ div > .gray-border:last-child{
 .fb-dropdown-setting{
 	background-position: -91px -147px;
 }
+
+
+
+.notification-box ul li .notification-box-image img, .application-sidebar-avatar img, .job-comment-avatar img, .job-reply-pitch-image img{
+	border-radius: 100%;
+}
