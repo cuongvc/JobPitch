@@ -1,4 +1,4 @@
-TemplateApp.controller('UserProfileCtrl',function($scope,$http,$routeParams,PITCH,USER,ROUTE){
+TemplateApp.controller('UserProfileCtrl',function($scope,$http,$routeParams,PITCH,USER,ROUTE,HASHTAG){
 	$scope.user = user;
 	$scope.logedin = logedin;
 	var profile;
