@@ -215,7 +215,7 @@ TemplateApp.controller('ProfileCtrl',function($scope,$http,$routeParams,PITCH,JO
 		user_id: $scope.user._id,
 		token  : $scope.user.token,
 		skip: 0,
-		limit: 5,
+		limit: 50,
 		own_of_job_id: $routeParams.user_id,
 	};
 	var JobService = JOB.getCompanyJob(data);
