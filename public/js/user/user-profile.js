@@ -84,4 +84,32 @@ TemplateApp.controller('UserProfileCtrl',function($scope,$http,$routeParams,PITC
 			}
 		})
 	}
+	/*
+	* post pitch reply
+	*/
+	$scope.PostReply = function(PitchReply,pitch,evt){
+		if(evt.keyCode == 13){
+			var data = {
+				user_id : $scope.user._id,
+				token : $scope.user.token,
+				content : PitchReply,
+				hash_tag : HASHTAG.findHashTag(PitchReply),
+				application_parent : pitch._id,
+				comment_parent : "",
+			}
+			console.log('Pitch Reply:',data);
+			var PitchService = PITCH.postNewPitchComment(data);
+			PitchService.then(function(response){
+				if(response.error_code == 0){
+					$('.sidebar-comment-body textarea').val('');
+					var index = pitchs.indexOf(pitch);
+					var comment = response.comment;
+					if(pitch.comments.all == undefined) pitch.comments.all = new Array();
+					pitch.comments.all.push(comment);
+					pitch.comments.numberOfComment++;
+					pitchs[index] = pitch;
+				}
+			})
+		}
+	}
 })
