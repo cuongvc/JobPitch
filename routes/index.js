@@ -33,3 +33,5 @@ exports.hire            = require('./hire');
 exports.follow          = require('./follow');
 
 exports.forgot_password = require('./forgot_password');
+
+exports.export_pdf      = require('./export_pdf');

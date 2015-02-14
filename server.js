@@ -227,6 +227,9 @@ app.get('/directive/home/left-sidebar',function(req,res){
 	Router_body.post('/forgot_password', 		 	 routes.forgot_password.forgot_password);
 	Router_body.post('/reset_password',				 routes.forgot_password.reset_password);
 
+	// EXPORT TO PDF
+	Router_body.post('/export_pdf',						 routes.export_pdf);
+
 // --------GET DATA FROM PERMALINK -------------------------------
 
 app.get('/:permalink',											 routes.get.permalink);

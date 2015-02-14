@@ -140,7 +140,7 @@ module.exports				=	function(req, res){
   }
 
   catch(err){
-    res.write(JSON.stringify({error_code : 201, msg : err.toString()}));             //  Input is invalid
+    res.write(JSON.stringify({error_code : 1, msg : err.toString()}));             //  Input is invalid
     res.status(200).end();
   }
 
