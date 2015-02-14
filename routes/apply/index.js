@@ -1,10 +1,10 @@
-var check_job = require('./../../my_module/check_exist').job;
-var check_token = require('./../../my_module/check_exist').token;
-var Application = require('./../../models/applications');
+var check_job     = require('./../../my_module/check_exist').job;
+var check_token   = require('./../../my_module/check_exist').token;
+var Application   = require('./../../models/applications');
 var respon_object = require('./../../my_module/respon_object').application;
 
-var io_notify = require('./../../my_module/socket');
-var Notification = require('./../../models/notifications');
+var io_notify     = require('./../../my_module/socket');
+var Notification  = require('./../../models/notifications');
 
 
 module.exports = function(req, res) {

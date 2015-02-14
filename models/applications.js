@@ -21,7 +21,7 @@ var applicationSchema = mongoose.Schema({
         ref          : 'users' 
     },
 
-    user_name        : {
+    userName        : {
         type         : String
     },
 
@@ -124,13 +124,13 @@ applicationSchema.methods.isOwn         = function(companyId){
     return (companyId == this.companyId);
 }
 
-applicationSchema.methods.newInfor    = function(user_id, user_name, user_avatar, 
+applicationSchema.methods.newInfor    = function(user_id, userName, user_avatar, 
                                         job_id, title, hash_tag, description, time, 
                                         file, companyName, companyId, callback){
 
     var app = this;
     app.user_id        = user_id;
-    app.user_name      = user_name;
+    app.userName        = userName;
     app.user_avatar    = user_avatar;
 
     app.job_id         = job_id;
