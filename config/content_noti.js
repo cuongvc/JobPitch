@@ -1,9 +1,9 @@
 var content = {
     "create_job": "create new job",
 
-    "apply_job_1": "Pitch your job",
+    "apply_job_1": "pith your job",
 
-    "apply_job_2": "Pitch job",
+    "apply_job_2": "pith job",
 
     "like_job_1": "like your job",
 
