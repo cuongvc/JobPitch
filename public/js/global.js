@@ -32,6 +32,7 @@
 	var APPLY_JOB_SOCKET_EVENT    = 'apply_job';
 	var INTEREST_SOCKET_EVENT     = 'interest_app';
 	var LIKE_PITCH_SOCKET_EVENT   = 'like_app';
+	var LIKE_JOB_SOCKET_EVENT     = 'like_job';
 	var LIKE_COMMENT_SOCKET_EVENT = 'like_comment';
 
 	/*
@@ -39,6 +40,8 @@
 	*/
 
 	var SOCKET_ACTION = new Object();
-		SOCKET_ACTION[CREATE_JOB_SOCKET_EVENT] = 'create a job';
-		SOCKET_ACTION[APPLY_JOB_SOCKET_EVENT] = 'pitch on a job';
+		SOCKET_ACTION[CREATE_JOB_SOCKET_EVENT] = 'create new job';
+		SOCKET_ACTION[APPLY_JOB_SOCKET_EVENT]  = 'pitch on a job';
+		SOCKET_ACTION[LIKE_PITCH_SOCKET_EVENT] = 'like your pitch';
+		SOCKET_ACTION[LIKE_JOB_SOCKET_EVENT]   = 'like your job';
 		

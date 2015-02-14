@@ -1,4 +1,4 @@
-var Jobs = angular.module('jobs',['nightfury-upload','application-sidebar','left-sidebar','user-service','ui.bootstrap.popover','pitch.service','job.service','hashtag.service','like.service','interest.service','route.service']);
+var Jobs = angular.module('jobs',['nightfury-upload','application-sidebar','left-sidebar','user-service','ui.bootstrap.popover','pitch.service','job.service','hashtag.service','like.service','interest.service','route.service','socket.service']);
 Jobs.directive('jobs',function(){
 	return {
 		restrict: 'E',
@@ -8,7 +8,7 @@ Jobs.directive('jobs',function(){
 		},
 	}
 })
-Jobs.controller('JobCtrl',function($scope,$http,USER,PITCH,JOB,HASHTAG,LIKE,INTEREST,ROUTE){
+Jobs.controller('JobCtrl',function($scope,$http,USER,PITCH,JOB,HASHTAG,LIKE,INTEREST,ROUTE,SOCKET){
 	/*
 	* View user
 	*/
@@ -41,6 +41,32 @@ Jobs.controller('JobCtrl',function($scope,$http,USER,PITCH,JOB,HASHTAG,LIKE,INTE
 		jobs.unshift(data.job);
 		$scope.jobs = jobs;
 		console.log(jobs);
+		$scope.$apply();
+	})
+	IO.on(APPLY_JOB_SOCKET_EVENT,function(data){
+		if(SOCKET.checkUserReciveNotification($scope.user._id, data.user_receive_notify) == false) return;
+
+		var pitch = data.app;
+			pitch = PITCH.pitchHandler(pitch,$scope.user._id);
+
+		SOCKET.pushPitchToRecentJob(jobs,pitch);
+	});
+	IO.on(LIKE_PITCH_SOCKET_EVENT,function(data){
+
+		if(SOCKET.checkUserReciveNotification($scope.user._id, data.user_receive_notify) == false) return;
+		
+		jobs = LIKE.addLikePitch(jobs,data.job_id,data.app_id,data.id_user_make_notify);
+		$scope.jobs = jobs;
+		$scope.$apply();
+	})
+	IO.on(LIKE_JOB_SOCKET_EVENT,function(data){
+
+		if(SOCKET.checkUserReciveNotification($scope.user._id, data.user_receive_notify) == false) return;
+
+		jobs = LIKE.addLikeJob(jobs,data.job_id,data.id_user_make_notify);
+		
+		$scope.jobs = jobs;
+		
 		$scope.$apply();
 	})
 	/*************************************************************************************************************/
@@ -78,11 +104,15 @@ Jobs.controller('JobCtrl',function($scope,$http,USER,PITCH,JOB,HASHTAG,LIKE,INTE
 			token: $scope.user.token,
 			comments: pitch.comment,
 		}
-		var JobService = PITCH.ViewPitchComment(jobs,job,pitch,data);
-		JobService.then(function(data){
-			jobs = data;
-			$scope.jobs = jobs;
-		})
+		var JobService = PITCH.getPitchComment(data);
+			JobService.then(function(response){
+				if(response.error_code == 0){
+					jobs = PITCH.getPitchCommentHandler(jobs,job,pitch,response.comment);
+					$scope.jobs = jobs;
+				}else{
+					alert(response.msg);
+				}
+			})
 	}
 	/*************************************************************************************************************/
 											/*PITCH*/

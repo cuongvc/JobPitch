@@ -76,13 +76,13 @@
 						<div class="job-comment-body normal-text">
 							<p class="job-comment-desc"><span><strong class="blue-text" ng-bind="pitch.user_name"></strong></span> <span ng-bind="pitch.description" class="normal-text"></span></p>
 							<ul class="small-text pitch-like-share">
-								<li class="cursor pull-right" ng-click="getPitchComment(job,pitch)"><span ng-bind="pitch.number"></span> <span>comment</span></li>
+								<li class="cursor pull-right" ng-click="getPitchComment(job,pitch)"><span ng-bind="pitch.comments.numberOfComment"></span> <span>comment</span></li>
 								<li class="cursor pull-right"><span ng-bind="pitch.shares.number"></span> <span>share</span></li>
 								<li class="cursor pull-right"><span ng-bind="pitch.likes.number"></span> <span ng-click="LikePitch(pitch,job)">like</span></li>
 								<li class="cursor pull-right"><span ng-bind="pitch.interests.number"></span> <span ng-click="InterestPitch(pitch,job)">interest</span></li>
 							</ul>
 							<div class="pitch-comment">
-								<div class="animated fadeIn" ng-repeat="cmt in pitch.comments">
+								<div class="animated fadeIn" ng-repeat="cmt in pitch.comments.list">
 									<div class="job-reply-pitch-image pull-left">
 										<img ng-src="{{ cmt.user_avatar }}">
 									</div>

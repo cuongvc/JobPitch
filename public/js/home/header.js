@@ -1,4 +1,4 @@
-var Header = angular.module('header',[]);
+var Header = angular.module('header',['socket.service']);
 Header.directive('header',function(){
 	return {
 		restrict: 'E',
@@ -26,10 +26,9 @@ Header.directive('header',function(){
 		},
 	}
 })
-Header.controller('HeaderCtrl',function($scope,$http){
+Header.controller('HeaderCtrl',function($scope,$http,SOCKET){
 	var notifications = {
 		list: [],
-		raw: [],
 		unread: 0,
 		loaded: false,
 	};
@@ -40,53 +39,78 @@ Header.controller('HeaderCtrl',function($scope,$http){
 	/*************************************************************************************************************/
 	IO.on(CREATE_JOB_SOCKET_EVENT,function(data){
 		console.log('create_job:',data);
-		var newRawNoti = {
-			type: CREATE_JOB_SOCKET_EVENT,
-			data: data,
-		};
-		var shortTitle = makeShortNotificationTitle(data.job.title);
-		var newNoti = {
-				user: data.job.userName,
-				image: data.job.image_small,
-				action: SOCKET_ACTION[CREATE_JOB_SOCKET_EVENT],
-				content: shortTitle
-			}
-		addNewNotification(newNoti, newRawNoti);
 		
-	})
-	IO.on(APPLY_JOB_SOCKET_EVENT,function(response){
-		console.log(APPLY_JOB_SOCKET_EVENT,response);
-		
-		if(response.application.user_id == $scope.user._id) return;
-		var shortTitle = makeShortNotificationTitle(response.application.description);
-		var newNoti = {
-				user: response.application.user_name,
-				image: response.application.user_avatar,
-				action: SOCKET_ACTION[APPLY_JOB_SOCKET_EVENT],
-				content: shortTitle
+		if(SOCKET.checkUserReciveNotification($scope.user._id, data.user_receive_notify) == false) return;
+
+		var more_data = {
+			    type: CREATE_JOB_SOCKET_EVENT,
+			    value: {
+			        job_id: data.job_id,
+			    }
 			};
-		addNewNotification(newNoti,response);
+		addNewNotification(SOCKET.makeNewNotification(data,SOCKET_ACTION[CREATE_JOB_SOCKET_EVENT],more_data));
+	})
+	IO.on(APPLY_JOB_SOCKET_EVENT,function(data){
+		console.log(APPLY_JOB_SOCKET_EVENT,data);
+		
+		if(SOCKET.checkUserReciveNotification($scope.user._id, data.user_receive_notify) == false) return;
+		
+		var more_data = {
+					type: APPLY_JOB_SOCKET_EVENT, 
+					value: {
+						job_id: data.job_id,
+						pitch_id: data.app_id,
+					}, 
+				};
+		addNewNotification(SOCKET.makeNewNotification(data,SOCKET_ACTION[APPLY_JOB_SOCKET_EVENT],more_data));
 	});
-	IO.on(INTEREST_SOCKET_EVENT,function(response){
-		console.log(INTEREST_SOCKET_EVENT,response);
+	IO.on(INTEREST_SOCKET_EVENT,function(data){
+		console.log(INTEREST_SOCKET_EVENT,data);
+		
+		if(SOCKET.checkUserReciveNotification($scope.user._id, data.user_receive_notify) == false) return;
+
+		var more_data = {
+				type: APPLY_JOB_SOCKET_EVENT, 
+				value: {
+					job_id: data.job_id,
+					pitch_id: data.app_id,
+				}, 
+			};
+		addNewNotification(SOCKET.makeNewNotification(data,SOCKET_ACTION[APPLY_JOB_SOCKET_EVENT],more_data));
 	})
-	IO.on(LIKE_PITCH_SOCKET_EVENT,function(response){
-		console.log(LIKE_PITCH_SOCKET_EVENT,response);
+	IO.on(LIKE_PITCH_SOCKET_EVENT,function(data){
+		console.log(LIKE_PITCH_SOCKET_EVENT,data);
+
+		if(SOCKET.checkUserReciveNotification($scope.user._id, data.user_receive_notify) == false) return;
+		
+		var more_data = {
+				type: LIKE_PITCH_SOCKET_EVENT, 
+				value: {
+					job_id: data.job_id,
+					pitch_id: data.app_id,
+				}, 
+			};
+		addNewNotification(SOCKET.makeNewNotification(data,SOCKET_ACTION[LIKE_PITCH_SOCKET_EVENT],more_data));
 	})
-	IO.on(LIKE_COMMENT_SOCKET_EVENT,function(response){
-		console.log(LIKE_COMMENT_SOCKET_EVENT,response);
+	IO.on(LIKE_JOB_SOCKET_EVENT,function(data){
+		console.log(LIKE_JOB_SOCKET_EVENT,data);
+
+		if(SOCKET.checkUserReciveNotification($scope.user._id, data.user_receive_notify) == false) return;
+
+		var more_data = {
+				type: LIKE_JOB_SOCKET_EVENT, 
+				value: {
+					job_id: data.job_id,
+				}, 
+			};
+		addNewNotification(SOCKET.makeNewNotification(data,SOCKET_ACTION[LIKE_JOB_SOCKET_EVENT],more_data));
 	})
 
 
 
-	function makeShortNotificationTitle(title){
-		var shortTitle = title;
-		if(shortTitle.length > 40) shortTitle = shortTitle.substring(shortTitle,40) + '...';
-		return shortTitle;
-	}
-	function addNewNotification(newNotifi, newRawNoti){
+	
+	function addNewNotification(newNotifi){
 		notifications.list.unshift(newNotifi);
-		notifications.raw.unshift(newRawNoti);
 		notifications.unread++;
 		$scope.notifications = notifications;
 		$scope.$apply();
@@ -115,7 +139,6 @@ Header.controller('HeaderCtrl',function($scope,$http){
 				console.log(response);
 				if(response.error_code == 0){
 					notifications.list = new Array();
-					notifications.raw = new Array();
 					notifications.loaded = true;
 					response.notifys.forEach(function(v,k){
 						var newNotifi = {
@@ -125,7 +148,6 @@ Header.controller('HeaderCtrl',function($scope,$http){
 							content: v.content.short_content,
 						}
 						notifications.list.push(newNotifi);
-						notifications.raw.push(v);
 					})
 				}
 			})
