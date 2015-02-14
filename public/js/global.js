@@ -33,3 +33,12 @@
 	var INTEREST_SOCKET_EVENT     = 'interest_app';
 	var LIKE_PITCH_SOCKET_EVENT   = 'like_app';
 	var LIKE_COMMENT_SOCKET_EVENT = 'like_comment';
+
+	/*
+	* SOCKET ACTION
+	*/
+
+	var SOCKET_ACTION = new Object();
+		SOCKET_ACTION[CREATE_JOB_SOCKET_EVENT] = 'create a job';
+		SOCKET_ACTION[APPLY_JOB_SOCKET_EVENT] = 'pitch on a job';
+		

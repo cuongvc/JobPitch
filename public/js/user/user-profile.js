@@ -95,6 +95,7 @@ TemplateApp.controller('UserProfileCtrl',function($scope,$http,$routeParams,PITC
 				content : PitchReply,
 				hash_tag : HASHTAG.findHashTag(PitchReply),
 				application_parent : pitch._id,
+				job_parent: pitch.job_id,
 				comment_parent : "",
 			}
 			console.log('Pitch Reply:',data);
