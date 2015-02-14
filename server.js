@@ -52,6 +52,9 @@ app.get('/login',function(req,res){
 app.get('/signup',function(req,res){
 	res.render('signup.ejs');
 })
+app.get('/forgot-password',function(req,res){
+	res.render('forgot-password.ejs');
+})
 app.get('/export-pdf/:pitch_id',function(req,res){
 	res.render('export-pdf.ejs');
 })

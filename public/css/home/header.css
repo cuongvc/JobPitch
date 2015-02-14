@@ -4,9 +4,6 @@
 	border-radius: 0px;
 	font-size: 13px;
 }
-.navbar-default .navbar-brand{
-	color: #fafafa!important;
-}
 .navbar-nav > li  > a{
 	color: #fff!important;
 }
@@ -21,10 +18,11 @@
 	position: relative;
 }
 #navbar-left ul li > .notification-icon{
+	font-weight: bolder;
 	position: absolute;
-	background: #e74c3c;
+	background: #0084B4;
 	border-radius: 3px;
-	box-shadow: 0 0 5px #333;
+	box-shadow: 0 0 5px #898989;
 	padding: 2px 5px;
 	font-size: 11px;
 	color: #fafafa;
@@ -35,7 +33,14 @@
 	position: absolute;
 	z-index: 15;
 	max-height: 400px;
-	overflow-y: scroll;
+	overflow: hidden;
+	border-radius: 4px;
+}
+.notification-box::scrollbar{
+	display: none;
+}
+.notification-box::-webkit-scrollbar{
+	display: none;
 }
 .notification-box ul{
 	background: #fff;
@@ -89,4 +94,13 @@
 .navbar-left .form-group .glyphicon-search{
 	right: -25px;
 	color: #8899a6;
+}
+.navbar-left .fa, .navbar-brand .fa{
+	color: #fef!important;
+	font-size: 18px;
+	text-shadow: 0px 0px 5px #444;
+}
+.navbar-brand .fa{
+	font-size: 22px;
+	margin-top: -3px;
 }

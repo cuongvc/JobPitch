@@ -207,3 +207,24 @@ div > .gray-border:last-child{
 .white-bg{
 	background: #fff;
 }
+/****************************************************************************************/
+										/*FB ICON*/
+/****************************************************************************************/
+.fb-icon{
+	display: block;
+	width: 20px;
+	height: 20px;
+	background: url('../../images/fb_icon.png');
+	background-repeat: no-repeat;
+	background-size: auto;
+	cursor: pointer;
+}
+.fb-dropdown-setting{
+	background-position: -91px -147px;
+}
+
+
+
+.notification-box ul li .notification-box-image img, .application-sidebar-avatar img, .job-comment-avatar img, .job-reply-pitch-image img{
+	border-radius: 2px;
+}

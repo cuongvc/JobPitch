@@ -1,0 +1,104 @@
+<link rel="stylesheet" type="text/css" href="/css/user/user-profile.css">
+<header></header>
+<div class="container" id="user-profile">
+	<div class="col-md-24 col-md-offset-6 col-sm-24 col-sm-offset-6 col-xs-36">
+		<div class="user-header col-md-36 col-sm-36 col-xs-36 white-bg card">
+			<div class="col-md-8 col-sm-8 col-xs-36">
+				<div class="user-avatar pull-left">
+					<img ng-src="{{ profile.avatar }}" alt="">
+				</div>
+			</div>
+			<div class="col-md-28 col-sm-28 col-xs-36">
+				<div class="user-username">
+					<p class="overflowhidden">
+						<strong ng-bind="profile.userName"></strong>
+						<span class="pull-right three-dot" ng-click="UserFunction()">
+							<span></span>
+							<span></span>
+							<span></span>
+						</span>
+					</p>
+				</div>
+				<div class="user-function" ng-if="showUserFunction == true">
+					<ul>
+						<li class="animated fadeInRight" ng-mouseover="iconCommentsHover = ''" ng-mouseout="iconCommentsHover = '-o'"><i class="fa fa-comments{{ iconCommentsHover }}"></i></li>
+						<li class="animated fadeInRight"  ng-mouseover="iconEnvelopeHover = ''" ng-mouseout="iconEnvelopeHover = '-o'"><i class="fa fa-envelope{{ iconEnvelopeHover }}"></i></li>
+					</ul>
+				</div>
+				<div class="user-summary">
+					<p class="gray-color">Writing and Producing Content Marketing and PR Communications Strategies (gplatt@gothammediastrategies.com)</p>
+				</div>
+				<div class="user-social">
+					<ul>
+						<li><span><a href="https://facebook.com/Thanchet.Tk21"><i class="fa fa-facebook"></i></a></span></li>
+						<li><span><a href="https://twitter.com/thanchet_tk21"><i class="fa fa-twitter"></i></a></span></li>
+						<li><span><a href="https://plus.google.com/104465736792159696990/posts"><i class="fa fa-google-plus"></i></a></span></li>
+						<li><span><a href="https://www.linkedin.com/profile/view?id=375349613"><i class="fa fa-linkedin"></i></a></span></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+<div class="container">
+	<div class="col-md-24 col-md-offset-6 col-sm-24 col-sm-offset-6 col-xs-36 transition_500ms">
+		<div ng-repeat="pitch in pitchs" class=" col-md-36 col-sm-36 col-xs-36 sidebar-element transition_500ms">
+			<div class="pitch-sidebar-content gray-border">
+				<div class="application-sidebar-applicant">
+					<div class="application pull-left">
+						<div class="application-sidebar-avatar">
+							<img ng-src="{{ pitch.user_avatar }}">
+						</div>	
+					</div>
+					<div class="application-sidebar-header">
+						<p class="application-sidebar-name"><strong class="blue-text" ng-bind="pitch.user_name"></strong></p>
+						<p class=" pull-left"><a href="/user/{{pitch.companyId}}" ng-click="ViewUser(pitch.companyId,$event)"><span class="application-sidebar-company-name gray-color">@<span ng-bind="pitch.companyName"></span></span></a></p>
+					</div>
+				</div>
+				<div class="application-sidebar-body">
+					<div class="application-sidebar-apply-content">
+						<p class="pull-left"><span ng-bind="pitch.description"></span></p>
+					</div>
+					<div class="application-sidebar-like-share small-text">
+						<ul>
+							<li class="pull-left"><span ng-bind="pitch.interests.number"></span><span ng-click="InterestPitch(pitch)"> interest</span></li>
+							<li class="pull-right"><span ng-bind="pitch.shares.number"></span><span> share</span></li>
+							<li class="pull-right" ng-click="LikePitch(pitch)"><span ng-bind="pitch.likes.number"></span><span> like</span></li>
+							<li class="pull-right" ng-click="ViewPitchcomment(pitch)"><span ng-bind="pitch.comments.numberOfComment"></span> <span> comment</span></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+			<div class="gray-border application-sidebar-comment animated fadeIn col-md-36 col-sm-36" ng-if="pitch.showComment == true">
+				<div class="application-sidebar-number-comment">
+					<p class="text-right three-dot" ng-click="ViewMorePitchComment(5,pitch)">
+						<span></span>
+						<span></span>
+						<span></span>
+					</p>
+				</div>
+				<div class="sidebar-cmt" ng-repeat="PitchCmt in pitch.comments.all">
+					<div class="sidebar-comment-image pull-left">
+						<img src="{{ PitchCmt.user_avatar }}" alt="">
+					</div>
+					<div class="sidebar-comment-body">
+						<p><strong class="blue-text" ng-bind="PitchCmt.userName"></strong> <span class="normal-text" ng-bind="PitchCmt.content"></span></p>
+					</div>
+				</div>
+				<div class="application-sidebar-comment-box sidebar-cmt">
+					<div class="sidebar-comment-image pull-left">
+						<img src="{{ user.avatar.normal }}" alt="">
+					</div>
+					<div class="sidebar-comment-body">
+						<textarea id="PitchReply" ng-keyup="PostReply(PitchReply,pitch,$event)" ng-model="PitchReply" placeholder="Write a reply"></textarea>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

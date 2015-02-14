@@ -10,8 +10,8 @@
 					</div>	
 				</div>
 				<div class="application-sidebar-header">
-					<p class="application-sidebar-name"><strong ng-bind="pitch.user_name"></strong></p>
-					<p class=" pull-left"><span class="application-sidebar-company-name gray-color" ng-click="ViewUser(pitch.companyId)">@<span ng-bind="pitch.companyName"></span></span></p>
+					<p class="application-sidebar-name"><a href="/u/{{ pitch.user_id }}" ng-click="ViewNormalUser(pitch.user_id,$event)"><strong ng-bind="pitch.user_name"></strong></a></p>
+					<p class=" pull-left"><span class="application-sidebar-company-name gray-color" ng-click="ViewUser(pitch.companyId,$event)">@<span ng-bind="pitch.companyName"></span></span></p>
 				</div>
 			</div>
 			<div class="application-sidebar-body">
@@ -55,7 +55,7 @@
 					<img src="{{ PitchCmt.user_avatar }}" alt="">
 				</div>
 				<div class="sidebar-comment-body">
-					<p><strong class="blue-text" ng-bind="PitchCmt.user_name"></strong> <span class="normal-text" ng-bind="PitchCmt.content"></span></p>
+					<p><strong class="blue-text" ng-bind="PitchCmt.userName"></strong> <span class="normal-text" ng-bind="PitchCmt.content"></span></p>
 				</div>
 			</div>
 			<div class="application-sidebar-comment-box sidebar-cmt">

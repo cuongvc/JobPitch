@@ -30,7 +30,10 @@ ApplicationSideBar.controller('ApplicationSideBarCtrl',function($scope,$http,JOB
 	$scope.ViewCompany = function(user_id,evt){
 		ROUTE.ViewUserProfile(user_id,evt);
 	}
-
+	$scope.ViewNormalUser = function(user_id,evt){
+		var url = '/u/' + user_id;
+		ROUTE.RedirectTo(url,evt);
+	}
 	/******************************************************************************************/
 									/*SOCKET*/
 	/******************************************************************************************/

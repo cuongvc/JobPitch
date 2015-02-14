@@ -17,7 +17,7 @@
       <div id="navbar-left">
         <ul class="nav navbar-nav navbar-left">
           <li>
-            <a ng-click="LoadNotifications($event)"><i class="fa fa-bell-o"></i></a>
+            <a ng-click="LoadNotifications($event)"><i class="fa fa-bell"></i></a>
             <span class="notification-icon" ng-bind="notifications.unread" ng-if="notifications.unread > 0"></span>
             <div class="notification-box hidden">
               <ul>
@@ -38,7 +38,7 @@
             </div> <!-- notification-box -->
           </li>
           <li>
-            <a><i class="fa fa-comment-o"></i></a>
+            <a><i class="fa fa-comments"></i></a>
             <span class="notification-icon">69</span>
              <div class="notification-box hidden">
               <ul>
@@ -79,7 +79,8 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" ng-bind="user.username"><span class="fa fa-cog"></span></a>
             <ul class="dropdown-menu" role="menu">
               <li><a href="#" ng-click="ShowPage(page.setting)">Settings</a></li>
-              <li><a href="/user/{{ user._id }}">Profile</a></li>
+              <li ng-if="user.account_type == 1"><a href="/user/{{ user._id }}">Profile</a></li>
+              <li ng-if="user.account_type != 1"><a href="/u/{{ user._id }}">Profile</a></li>
               <li><a href="#">Something else here</a></li>
               <li class="divider"></li>
               <li><a href="/logout">Logout</a></li>

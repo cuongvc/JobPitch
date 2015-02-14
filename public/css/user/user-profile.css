@@ -1,0 +1,68 @@
+#user-profile{
+	margin-top: 60px;
+}
+.user-header{
+	padding: 20px 10px;
+}
+.user-avatar img{
+	width: 100%;
+	border-radius: 2px;
+}
+.user-username p strong{
+	font-size: 18px;
+}
+.user-function ul{
+	position: absolute;
+	top: -5px;
+	right: 40px;
+	font-size: 18px;
+}
+.user-function ul li{
+	padding: 10px;
+	border-radius: 100%;
+	color: #8899a6;
+}
+.user-social{
+	margin-top: 30px;
+}
+.user-social ul{
+	display: inline-block;
+	width: 100%;
+}
+.user-social ul li{
+	font-size: 30px!important;	
+	margin-right: 30px;
+}
+.user-social ul li span a i {
+ 	color: #8899a6!important;
+ }
+.card {
+	position: relative;
+	margin: 0.5rem 0 1rem 0;
+	background-color: #fff;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	background-clip: padding-box; 
+}
+.application-sidebar-comment{
+	margin-top: 0px!important;
+}
+.application-sidebar-comment .three-dot{
+	margin-top: 0px;
+}
+.pitch-sidebar-content{
+	margin-bottom: 0px;
+}
+.sidebar-cmt{
+	margin-left: 5px;
+}
+.application-sidebar-header p a{
+	text-decoration: none!important;
+}
+.sidebar-element{
+	padding: 10px;
+}

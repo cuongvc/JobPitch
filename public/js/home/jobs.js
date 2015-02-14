@@ -186,7 +186,6 @@ Jobs.controller('JobCtrl',function($scope,$http,USER,PITCH,JOB,HASHTAG,LIKE,INTE
 					jobs[index].likes.number--;
 					jobs[index].likes.users.forEach(function(v,k){
 						if(v._id == $scope.user._id){
-							console.log('a');
 							jobs[index].likes.users.splice(k);
 						}
 					})
@@ -272,5 +271,88 @@ Jobs.controller('JobCtrl',function($scope,$http,USER,PITCH,JOB,HASHTAG,LIKE,INTE
 			}
 		})
 	}
-
+	/*************************************************************************************************************/
+											/*EDIT JOB*/
+	/*************************************************************************************************************/
+	$scope.EditJob = function(job){
+		console.log(job);
+		$scope.EditJob = job;
+		$('#EditModal').modal('show');
+	}
+	var showEditCrop = false;
+	$scope.showEditCrop  = showEditCrop;
+	$scope.JobEditImage = {
+		upload: {
+			url: STR_UPLOAD_IMAGE,
+			postData: 'image',
+			dir: {
+				name: 'dir',
+				dir: 'upload/thumb',
+			},
+		},
+		progress : {
+			show: false,
+		},
+		clearOnclick: true,
+		crop: true,
+	}
+	$scope.EditJobCropCoverOpts = {
+		aspectRatio: 2.7,
+	};
+	$scope.$watch(function(){return $scope.JobEditImage.preview;},function(){
+		if($scope.JobEditImage.preview != undefined && $scope.JobEditImage.preview != ''){
+			showEditCrop = true;
+			$scope.showEditCrop = showEditCrop;
+		}
+	})
+	
+	$scope.EditJobCropChange = function(c){
+		console.log(c);
+		$scope.JobEditImage.coords = {
+			x: c.x,
+			y: c.y,
+			width: c.w,
+			height: c.y2 - c.y,
+		};
+	}
+	$scope.EditCrop = function(){
+		showEditCrop = false;
+		$scope.showEditCrop = showEditCrop;
+		$scope.JobEditImage.startUpload = true;
+	}
+	/*
+	* save edit info
+	*/
+	$scope.SaveEdit = function(job,title,address,desc){
+		if($scope.JobEditImage.path == undefined || $scope.JobEditImage.path == ''){
+			alert('Please wait unti image upload complete');
+			return;
+		}
+		var HashTags = HASHTAG.findHashTag(title).concat(HASHTAG.findHashTag(desc));
+		var data = {
+			user_id: $scope.user._id,
+			token: $scope.user.token,
+			job_id: job._id,
+			title: title,
+			desc: desc,
+			hash_tag: HashTags,
+			link_direct: '',
+			lat: '17',
+			lng: '104',
+			address: address,
+			temp_path: $scope.JobEditImage.path,
+			extension: $scope.JobEditImage.extension,
+		};
+		console.log(data);
+		var JobService = JOB.edit(data);
+			JobService.then(function(response){
+				if(response.error_code == 0){
+					jobs = JOB.editHandler(jobs,job,response.job);
+					$scope.jobs = jobs;
+					$('#EditModal').modal('hide');
+				}else{
+					alert(response.msg);
+				}
+			})
+	}
 })	

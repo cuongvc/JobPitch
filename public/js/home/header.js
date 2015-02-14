@@ -6,6 +6,22 @@ Header.directive('header',function(){
 		link: function(scope,element,attrs){
 			$('body').click(function(){
 				$('.notification-box').addClass('hidden');
+				
+			})
+			$('.notification-box').bind('mousewheel DOMMouseScroll', function(e) {
+			    var scrollTo = null;
+
+			    if (e.type == 'mousewheel') {
+			        scrollTo = (e.originalEvent.wheelDelta * -1);
+			    }
+			    else if (e.type == 'DOMMouseScroll') {
+			        scrollTo = 40 * e.originalEvent.detail;
+			    }
+
+			    if (scrollTo) {
+			        e.preventDefault();
+			        $(this).scrollTop(scrollTo + $(this).scrollTop());
+			    }
 			})
 		},
 	}
@@ -52,6 +68,18 @@ Header.controller('HeaderCtrl',function($scope,$http){
 			};
 		addNewNotification(newNoti,response);
 	});
+	IO.on(INTEREST_SOCKET_EVENT,function(response){
+		console.log(INTEREST_SOCKET_EVENT,response);
+	})
+	IO.on(LIKE_PITCH_SOCKET_EVENT,function(response){
+		console.log(LIKE_PITCH_SOCKET_EVENT,response);
+	})
+	IO.on(LIKE_COMMENT_SOCKET_EVENT,function(response){
+		console.log(LIKE_COMMENT_SOCKET_EVENT,response);
+	})
+
+
+
 	function makeShortNotificationTitle(title){
 		var shortTitle = title;
 		if(shortTitle.length > 40) shortTitle = shortTitle.substring(shortTitle,40) + '...';
