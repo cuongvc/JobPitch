@@ -17,8 +17,11 @@ module.exports				=	function(req, res){
   try{
     var data = req.body;
 
+    
     var user_id       = data['user_id'];
     var token         = data['token'];
+    var job_id        = data['job_id'];
+
     var title         = data['title'];
     var hash_tag      = data['hash_tag'];
     var desc          = data['desc'];
@@ -29,13 +32,11 @@ module.exports				=	function(req, res){
     var time          = new Date(new Date().toGMTString()).toJSON();
     var temp_path     = data['temp_path'];
     var extension     = data['extension'];
-    var job_id        = data['job_id'];
 
     var image = '', image_small = '', image_normal = '';
         
     check_token(user_id, token, function(exist, user_exist){
       if (!exist){
-        console.log('Authenticate is incorrect');
   	    res.write(JSON.stringify({error_code : 1, msg : 'Authenticate is incorrect'}));
   	    res.status(200).end();
         return 0;
@@ -44,7 +45,6 @@ module.exports				=	function(req, res){
       check_job(job_id, function(exist2, job_exist){
 
         if (!exist2){
-          console.log('Job is not exist');
           res.write(JSON.stringify({error_code : 1, msg : 'Job is not exist'}));
           res.status(200).end();
           return 1;
@@ -79,13 +79,16 @@ module.exports				=	function(req, res){
               }
           }
         ], function(err){
-          console.log('edit Infor', job_exist);
 
-          job_exist.newInfor(image, image_small, image_normal, user_exist.id, user_exist.userName,
+          job_exist.editInfor(image, image_small, image_normal, user_exist.id, user_exist.userName,
                             title, hash_tag, desc, lat, lng, address, link_direct, time,
-                            function(object){
-                              console.log(object);
-                              respon_object(res, object);
+                            function(job){
+                              job.save(function(err){
+                                if (err)
+                                  console.log(err);
+                                respon_object(res, job);  
+                              })
+                              
                             }
           ) 
         })
@@ -98,7 +101,4 @@ module.exports				=	function(req, res){
     res.status(200).end();
   }
 
-  finally{
-  	console.log('finally');
-  }
 }	

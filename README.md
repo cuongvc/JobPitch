@@ -142,17 +142,19 @@ Content-Type: form-data
 Cache-Control: no-cache
 
 {
-    "token"         : "$2a$08$X0jvCjP377cp5eqPAwVvr.uZqLN/AssoagMvMBs0YG576LUMZFDSa",
-    "user_id"       : "54c8580e86d5ce565ceb3168",
-    "desc"          : "33333333333333333",
-    "title"         : "3333333333333333333333",
-    "hash_tag"      : ["nodejs", "php", "android"],
-    "link_direct"   : "http://campcoders.com",
+    "token"         : "$2a$08$bWiMv7dpwoGmzl78hxoGXe4AXMcZnhKK1n8XZe2glnGGg9PZOzqZ.",
+    "user_id"       : "54deb68032f4c1f223bc6e72",
+    "job_id"        : "54deb69d32f4c1f223bc6e74",
+    "desc"          : "Quản lý toàn bộ công tác tuyển dụng nhân sự - Hỗ trợ thực hiện các hoạt động đào tạo và tái đào tạo- Quản lý giám sát hoạt động nhân sự trong Khách Sạn- Xây dựng, quản lý, tổ chức và thực hiện các chính sách nhân sự cho nhân viên theo quy định của Khách Sạn",
+    "title"         : "TUYEN NHAN SU",
+    "tagLine"       : "nhân sự",
+    "link_direct"   : "this is link_direct",
     "lat"           : 100,
     "lng"           : 100,
+    "hash_tag"      : [],
     "address"       : "Ha Noi, Viet Nam",
-    "temp_path"     : "/tmp/upload_dd91afe009b519b97be380d6654f0626",
-    "extension"     : "jpeg" 
+    "temp_path"     : "",
+    "extension"     : "" 
 }
 
 Tat ca cac truong khong sua doi thi gui noi dung cu. Neu khong upload image 
@@ -175,15 +177,50 @@ create job
 {
     "error_code": 0,
     "job": {
-        "__v": 0,
-        "time": "Wed Jan 28 2015 13:44:16 GMT-0500 (EST)",
-        "user_id": "54c8580e86d5ce565ceb3168",
-        "_id": "54c92e026145bc0a616cefb1",
+        "__v": 3,
+        "_id": "54deb69d32f4c1f223bc6e74",
+        "time": "2015-02-14T03:17:47.000Z",
+        "user_id": "54deb68032f4c1f223bc6e72",
+        "_keywords": [
+            "qu",
+            "ng",
+            "tui",
+            "nh",
+            "h",
+            "tr",
+            "th",
+            "hi",
+            "ho",
+            "gi",
+            "trong",
+            "kh",
+            "ch",
+            "s",
+            "x",
+            "cho",
+            "vi",
+            "theo",
+            "qui",
+            "tuyen",
+            "nhan",
+            "su",
+            "cuongvu"
+        ],
+        "receive_notify": [
+            "54deb7c4767662cf2473e666"
+        ],
+        "contracts": {
+            "list": [],
+            "number": 0
+        },
         "hires": 0,
         "interviews": 0,
         "applications": {
-            "list": [],
-            "number": 0
+            "list": [
+                "54deb7d1767662cf2473e668",
+                "54deb7e5767662cf2473e66c"
+            ],
+            "number": 2
         },
         "shares": {
             "list": [],
@@ -194,21 +231,20 @@ create job
             "number": 0
         },
         "status": 1,
-        "link_direct": "http://campcoders.com",
+        "link_direct": "this is link_direct",
         "location": {
             "address": "Ha Noi, Viet Nam",
             "lng": 100,
             "lat": 100
         },
-        "description": "..........................n",
-        "hash_tag": [
-            "HR",
-            "Campcoders.com"
-        ],
-        "title": "nhân sự",
-        "image_normal": "http://jobpitch.campcoders.c....2470922792.jpeg",
-        "image_small": "http://jobpitch.campcoder....422470922792.jpeg",
-        "image": "http://jobpitch.campcoders.co.............22792.jpeg"
+        "description": "Qu..ho nhân viên theo quy định cua Khách Sạn",
+        "hash_tag": [],
+        "permalink": "TUYEN-NHAN-SU",
+        "title": "TUYEN NHAN SU",
+        "userName": "cuongvu",
+        "image_normal": "http://job.dev/images/normal_size/JobImages/1423882833073.jpeg",
+        "image_small": "http://job.dev/images/small_size/JobImages/1423882833073.jpeg",
+        "image": "http://job.dev/images/full_size/JobImages/1423882833073.jpeg"
     }
 }
 

@@ -218,8 +218,6 @@ jobSchema.methods.newInfor    = function(image, image_small, image_normal, user_
             callback(job);
         })    
     });    
-
-
 }   
 
 jobSchema.methods.distance      = function(lat, lng){
@@ -228,9 +226,36 @@ jobSchema.methods.distance      = function(lat, lng){
     return distance(location1, location2) < distanceLimit;
 }
 
-jobSchema.methods.editInfor     = function(job){
-       return this;
-}
+jobSchema.methods.editInfor    = function(image, image_small, image_normal, user_id, userName
+                                        ,title, hash_tag, description, lat, lng, address
+                                        ,link_direct, time , callback){
+
+    var job = this;
+    if (image != '')
+        job.image              = image;
+    if (image_small != '')
+        job.image_small        = image_small;
+    if (image_normal != '')
+        job.image_normal       = image_normal;
+    job.userName               = userName;
+    job.user_id                = user_id;
+    job.title                  = title;
+    job.hash_tag               = hash_tag;
+    job.description            = description;
+    job.link_direct            = link_direct;
+    job.time                   = time;
+    job.location.lat           = lat;
+    job.location.lng           = lng;
+    job.location.address       = address;
+    
+    var newPermalink = new Permalink();
+    newPermalink.newInfor('', job._id, 2, title, function(){
+        job.permalink =  newPermalink.permalink;
+        add_hashTag_job(hash_tag, job._id, function(){
+            callback(job);
+        })    
+    });    
+}   
 
 
 jobSchema.methods.addApply      = function(user_id, application, callback){
