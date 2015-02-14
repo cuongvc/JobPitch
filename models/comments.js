@@ -1,5 +1,8 @@
 // load the things we need
 var mongoose            = require('mongoose');
+var searchPlugin        = require('mongoose-search-plugin');
+
+
 var ObjectId            = mongoose.Schema.Types.ObjectId;
 var bcrypt              = require('bcrypt-nodejs');
 var domain              = require('./../config/default').domain_default;
@@ -79,6 +82,10 @@ var commentSchema = mongoose.Schema({
 
 
 });
+
+commentSchema.plugin(searchPlugin, {
+        fields : ['content', 'hash_tag']
+})
 
 // check comment is Own of account
 commentSchema.methods.isOwn         = function(companyId){

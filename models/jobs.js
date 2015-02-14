@@ -1,18 +1,20 @@
 // load the things we need
-var mongoose                = require('mongoose');
-var ObjectId                = mongoose.Schema.Types.ObjectId;
-var bcrypt                  = require('bcrypt-nodejs');
-var domain                  = require('./../config/default').domain_default;
-var distanceLimit           = require('./../config/default').distanceLimit;
-var image_default           = require('./../config/default').jobImage_default;
-var distance                = require('./../my_module/map/distance');
-var add_hashTag_job         = require('./../my_module/add_hashTag').job;
-var Jobs                    = require('./jobs');
-// var autoIncrement           = require('mongoose-auto-increment');
+var mongoose         = require('mongoose');
+var searchPlugin     = require('mongoose-search-plugin');
+
+var ObjectId         = mongoose.Schema.Types.ObjectId;
+var bcrypt           = require('bcrypt-nodejs');
+var domain           = require('./../config/default').domain_default;
+var distanceLimit    = require('./../config/default').distanceLimit;
+var image_default    = require('./../config/default').jobImage_default;
+var distance         = require('./../my_module/map/distance');
+var add_hashTag_job  = require('./../my_module/add_hashTag').job;
+var Jobs             = require('./jobs');
+// var autoIncrement = require('mongoose-auto-increment');
 // autoIncrement.initialize(mongoose);
 
-var make_permalink          = require('./../my_module/make_permalink');
-var Permalink               = require('./permalinks');
+var make_permalink   = require('./../my_module/make_permalink');
+var Permalink        = require('./permalinks');
 
 
 // define the schema for our job model
@@ -165,6 +167,10 @@ var jobSchema = mongoose.Schema({
     
 
 });
+
+jobSchema.plugin(searchPlugin, {
+        fields : ['description', 'title', 'userName', 'hash_tag']
+})
 
 // check job is Own of account
 jobSchema.methods.isOwn         = function(user_id){

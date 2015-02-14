@@ -1,10 +1,12 @@
 // load the things we need
 var mongoose        = require('mongoose');
+var searchPlugin    = require('mongoose-search-plugin');
+
 var ObjectId        = mongoose.Schema.Types.ObjectId;
 var bcrypt          = require('bcrypt-nodejs');
 var domain          = require('./../config/default').domain_default;
 var add_hashTag_app = require('./../my_module/add_hashTag').app;
-var check_user            = require('./../my_module/check_exist').user;  
+var check_user      = require('./../my_module/check_exist').user;  
 var User            = require('./users');
 
 
@@ -118,6 +120,10 @@ var applicationSchema = mongoose.Schema({
     }
 
 });
+
+applicationSchema.plugin(searchPlugin, {
+        fields : ['description', 'hash_tag']
+})
 
 // check application is Own of account
 applicationSchema.methods.isOwn         = function(companyId){

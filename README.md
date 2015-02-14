@@ -2119,9 +2119,6 @@ Cache-Control: no-cache
         "image": "http://job.dev/images/full_size/JobImages/1423621317648.jpeg"
     }
 }
-
-<<<<<<< HEAD
-=======
 ```
 
 ### 27. Forgot password
@@ -2145,6 +2142,165 @@ Cache-Control: no-cache
 ##### Return
 ```
 {"error_code":0}
+```
 
->>>>>>> f34e34afef74be4ae4fd2ef534f710237c035837
+### 27. Search by keyword
+
+```
+POST     http://jobpitch.campcoders.com/api/search_keyword
+Content-Type: application/json
+Cache-Control: no-cache
+
+{
+    "keyword"                   :  "nodejs"
+}
+
+
+
+```
+##### Regex
+```
+
+
+```
+##### Return
+```
+{
+    "error_code": 0,
+    "results": {
+        "jobs": {
+            "results": [
+                {
+                    "_relevance": 1,
+                    "__v": 2,
+                    "_id": "54deb69d32f4c1f223bc6e74",
+                    "_keywords": [
+                        "nodej",
+                        "cuongvu"
+                    ],
+                    "description": "nodejs 2",
+                    "hash_tag": [],
+                    "hires": 0,
+                    "image": "http://job.dev/images/full_size/JobImages/1423882833073.jpeg",
+                    "image_normal": "http://job.dev/images/normal_size/JobImages/1423882833073.jpeg",
+                    "image_small": "http://job.dev/images/small_size/JobImages/1423882833073.jpeg",
+                    "interviews": 0,
+                    "link_direct": "",
+                    "permalink": "nodejs",
+                    "receive_notify": [
+                        "54deb7c4767662cf2473e666"
+                    ],
+                    "status": 1,
+                    "time": "2015-02-14T02:44:45.000Z",
+                    "title": "nodejs",
+                    "userName": "cuongvu",
+                    "user_id": "54deb68032f4c1f223bc6e72",
+                    "contracts": {
+                        "list": [],
+                        "number": 0
+                    },
+                    "applications": {
+                        "list": [
+                            "54deb7d1767662cf2473e668",
+                            "54deb7e5767662cf2473e66c"
+                        ],
+                        "number": 2
+                    },
+                    "shares": {
+                        "list": [],
+                        "number": 0
+                    },
+                    "likes": {
+                        "list": [],
+                        "number": 0
+                    },
+                    "location": {
+                        "address": "ha noi, nguyen hong",
+                        "lng": 105.810339,
+                        "lat": 21.016481
+                    }
+                }
+            ],
+            "totalCount": 1
+        },
+        "applications": {
+            "results": [
+                {
+                    "_relevance": 1,
+                    "__v": 2,
+                    "_id": "54deb7e5767662cf2473e66c",
+                    "_keywords": [
+                        "nodej",
+                        "pitch"
+                    ],
+                    "comment": [
+                        "54deb7eb767662cf2473e66f",
+                        "54deb93b3f4ac39026a70347"
+                    ],
+                    "companyId": "54deb68032f4c1f223bc6e72",
+                    "companyName": "cuongvu",
+                    "description": "nodejs pitch",
+                    "file": "",
+                    "hash_tag": [],
+                    "interviews": 0,
+                    "job_id": "54deb69d32f4c1f223bc6e74",
+                    "time": "2015-02-14T02:50:13.000Z",
+                    "title": "",
+                    "userName": "Cường Vũ",
+                    "user_avatar": "https://lh5.googleusercontent.com/-IlI6TyJIlrs/AAAAAAAAAAI/AAAAAAAAAC8/AsmFVAZBIkw/photo.jpg",
+                    "user_id": "54deb7c4767662cf2473e666",
+                    "hires": {
+                        "status": 0
+                    },
+                    "interests": {
+                        "list": [],
+                        "number": 0
+                    },
+                    "shares": {
+                        "list": [],
+                        "number": 0
+                    },
+                    "likes": {
+                        "list": [],
+                        "number": 0
+                    }
+                }
+            ],
+            "totalCount": 1
+        },
+        "comments": {
+            "results": [
+                {
+                    "_relevance": 1.561904761904762,
+                    "time": "Sat Feb 14 2015 09:55:55 GMT+0700 (ICT)",
+                    "job_parent": "54deb69d32f4c1f223bc6e74",
+                    "application_parent": "54deb7e5767662cf2473e66c",
+                    "user_avatar": "https://lh5.googleusercontent.com/-IlI6TyJIlrs/AAAAAAAAAAI/AAAAAAAAAC8/AsmFVAZBIkw/photo.jpg",
+                    "userName": "Cường Vũ",
+                    "user_id": "54deb7c4767662cf2473e666",
+                    "_keywords": [
+                        "nodej",
+                        "comment"
+                    ],
+                    "_id": "54deb93b3f4ac39026a70347",
+                    "comments": [],
+                    "content": "nodejs comment",
+                    "hash_tag": [],
+                    "__v": 0,
+                    "shares": {
+                        "list": [],
+                        "number": 0
+                    },
+                    "likes": {
+                        "list": [],
+                        "number": 0
+                    }
+                }
+            ],
+            "totalCount": 1
+        }
+    }
+}
+
+
 ```

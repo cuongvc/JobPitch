@@ -179,8 +179,11 @@ app.get('/directive/home/left-sidebar',function(req,res){
 	Router_body.post('/my_jobs',          		 routes.my_wall.my_jobs);
 	Router_body.post('/my_applications',   		 routes.my_wall.my_applications);
 
-//  ------TAGS --------------------------------
+//  ------SEARCH --------------------------------
+	// by tags
 	Router_body.post('/search_tag',      		   routes.search.tag);
+
+	Router_body.post('/search_keyword',      	 routes.search.keyword);	
 
 	app.get('/api/tags',											 routes.get.tags);
 
