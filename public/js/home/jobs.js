@@ -152,6 +152,7 @@ Jobs.controller('JobCtrl',function($scope,$http,USER,PITCH,JOB,HASHTAG,LIKE,INTE
 				content : PitchReply,
 				hash_tag : HASHTAG.findHashTag(PitchReply),
 				application_parent : pitch._id,
+				job_parent: job._id,
 				comment_parent : "",
 			}
 			console.log(data);

@@ -40,7 +40,6 @@ Header.controller('HeaderCtrl',function($scope,$http){
 	/*************************************************************************************************************/
 	IO.on(CREATE_JOB_SOCKET_EVENT,function(data){
 		console.log('create_job:',data);
-		notifications.unread++;
 		var newRawNoti = {
 			type: CREATE_JOB_SOCKET_EVENT,
 			data: data,
@@ -49,7 +48,7 @@ Header.controller('HeaderCtrl',function($scope,$http){
 		var newNoti = {
 				user: data.job.userName,
 				image: data.job.image_small,
-				action: 'create new job',
+				action: SOCKET_ACTION[CREATE_JOB_SOCKET_EVENT],
 				content: shortTitle
 			}
 		addNewNotification(newNoti, newRawNoti);
@@ -63,7 +62,7 @@ Header.controller('HeaderCtrl',function($scope,$http){
 		var newNoti = {
 				user: response.application.user_name,
 				image: response.application.user_avatar,
-				action: 'pitch on a job',
+				action: SOCKET_ACTION[APPLY_JOB_SOCKET_EVENT],
 				content: shortTitle
 			};
 		addNewNotification(newNoti,response);
@@ -115,6 +114,8 @@ Header.controller('HeaderCtrl',function($scope,$http){
 			$http.post(STR_API_GET_NOTIFICATION,data).success(function(response){
 				console.log(response);
 				if(response.error_code == 0){
+					notifications.list = new Array();
+					notifications.raw = new Array();
 					notifications.loaded = true;
 					response.notifys.forEach(function(v,k){
 						var newNotifi = {

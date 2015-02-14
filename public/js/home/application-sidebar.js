@@ -141,6 +141,7 @@ ApplicationSideBar.controller('ApplicationSideBarCtrl',function($scope,$http,JOB
 				content : PitchReply,
 				hash_tag : HASHTAG.findHashTag(PitchReply),
 				application_parent : pitch._id,
+				job_parent: pitch.job_id,
 				comment_parent : "",
 			}
 			console.log('Pitch Reply:',data);
