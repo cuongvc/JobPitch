@@ -67,9 +67,13 @@ module.exports = function(req, res) {
                                 user_exist.avatar_small, 13);
                             var user_receive_notify = [];
                             user_receive_notify.push(job_exist.user_id);
+
                             io_notify.emit('like_job', {
                                 user_receive_notify: user_receive_notify,
-                                job: job_exist
+                                avatar_user_make_notify : user_exist.avatar_small,
+                                userName_user_make_notify : user_exist.userName,
+                                content : job_exist.title, 
+                                job_id : job_exist._id
                             });
 
                             job_exist.addLike(user_exist._id, function() {
@@ -113,7 +117,10 @@ module.exports = function(req, res) {
                             user_receive_notify.push(app_exist.user_id);
                             io_notify.emit('like_app', {
                                 user_receive_notify: user_receive_notify,
-                                app: app_exist
+                                avatar_user_make_notify : user_exist.avatar_small,
+                                userName_user_make_notify : user_exist.userName,
+                                content : app_exist.description, 
+                                job_id : app_exist.job_id, app_id : app_exist._id
                             });
                             app_exist.addLike(user_exist._id, function() {
                                 res.write(JSON.stringify({
@@ -132,7 +139,6 @@ module.exports = function(req, res) {
                     Comment.findOne({
                         _id: comment_id
                     }, function(err, comment_exist) {
-                        console.log(comment_exist);
                         if (err) {
                             res.write(JSON.stringify({
                                 error_code: 1,
@@ -158,7 +164,11 @@ module.exports = function(req, res) {
                             user_receive_notify.push(comment_exist.user_id);
                             io_notify.emit('like_comment', {
                                 user_receive_notify: user_receive_notify,
-                                comments: comment_exist
+                                avatar_user_make_notify : user_exist.avatar_small,
+                                userName_user_make_notify : user_exist.userName,
+                                content : comment_exist.description, 
+                                job_id : comment_exist.job_parent, app_id : comment_exist.application_parent, 
+                                comment_id : comment_exist._id
                             });
                             comment_exist.addLike(user_exist._id, function() {
                                 res.write(JSON.stringify({

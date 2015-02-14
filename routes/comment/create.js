@@ -69,7 +69,12 @@ module.exports										=	function(req, res){
                   var user_receive_notify = [];
                   user_receive_notify.push(app_exist.user_id);
                   io_notify.emit('comment_apply', { user_receive_notify: user_receive_notify,
-                                									    comment: comment
+									                                avatar_user_make_notify : user_exist.avatar_small,
+									                                userName_user_make_notify : user_exist.userName,
+									                                content : comment.description, 
+									                                job_id : comment.job_parent, 
+									                                app_id : comment.application_parent, 
+									                                comment_id : comment._id
                   });
 
 								});
@@ -106,9 +111,15 @@ module.exports										=	function(req, res){
 	                                	user_exist.avatar_small, 25);
 	                var user_receive_notify = [];
 	                user_receive_notify.push(cmt_exist.user_id);
-	                io_notify.emit('comment_comment', { user_receive_notify: user_receive_notify,
-	                                									    comment: comment
-	                });
+
+                  io_notify.emit('comment_comment', { user_receive_notify: user_receive_notify,
+									                                avatar_user_make_notify : user_exist.avatar_small,
+									                                userName_user_make_notify : user_exist.userName,
+									                                content : comment.description, 
+									                                job_id : comment.job_parent, 
+									                                app_id : comment.application_parent, 
+									                                comment_id : comment._id
+                  });
 
 								});
 
