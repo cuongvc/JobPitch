@@ -70,13 +70,14 @@ module.exports = function(req, res) {
 
                         var receive_notify = [];
                         receive_notify.push(application_exist.user_id);
-                        console.log('EMIT interest_app');
                         io_notify.emit('interest_app', {
                             user_receive_notify: receive_notify,
-                            app: application_exist
+                            avatar_user_make_notify : user_exist.avatar_small,
+                            userName_user_make_notify : user_exist.userName,
+                            content : application_exist.description, 
+                            job_id : application_exist.job_id, 
+                            app_id : application_exist._id
                         });
-
-
                     });
                 }
 
