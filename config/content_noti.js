@@ -15,21 +15,21 @@ var content = {
 
     "change_status_job": "change status job",
 
-    "interest_application": "interest your Pith",
+    "interest_application": "interest your pith",
 
     "hire_for_job": "hire you for job",
 
-    "like_apply1": "like your Pitch",
+    "like_apply1": "like your pith",
 
-    "like_apply2": "like Pitch",
+    "like_apply2": "like pith",
 
-    "share_apply1": "share your Pitch",
+    "share_apply1": "share your pith",
 
-    "share_apply2": "share Pitch",
+    "share_apply2": "share pith",
 
-    "comment_apply1": "comment your Pitch",
+    "comment_apply1": "comment your pith",
 
-    "comment_apply2": "comment Pitch",
+    "comment_apply2": "comment pith",
 
     "like_comment1": "like your comment",
 

@@ -16,7 +16,7 @@ module.exports				=	function(req, res){
 	finally{
 		var NodePDF = require('nodepdf');
 		 
-		var pdf = new NodePDF(link_html, 'google.pdf', {
+		var pdf = new NodePDF('http://job.dev', 'google.pdf', {
 		    'viewportSize': {
 		        'width': 1440,
 		        'height': 900
@@ -35,12 +35,14 @@ module.exports				=	function(req, res){
 		// listen for stdout from phantomjs 
 		pdf.on('stdout', function(stdout){
 		     // handle 
+		     console.log('stdout : ', stdout);
 		});
 		 
 		// listen for stderr from phantomjs 
 		pdf.on('stderr', function(stderr){
 		    // handle 
+		    console.log('stderr : ', stderr);
 		});	
-}
+	}
 
 }
