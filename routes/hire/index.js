@@ -87,6 +87,7 @@ module.exports								=	function(req, res){
 	                            user_receive_notify: receive_notify,
 	                            avatar_user_make_notify : user_exist.avatar_small,
 	                            userName_user_make_notify : user_exist.userName,
+	                            id_user_make_notify : user_exist._id,
 	                            content : application_exist.description, 
 	                            job_id : application_exist.job_id, 
 	                            app_id : application_exist._id

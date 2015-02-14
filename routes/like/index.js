@@ -72,6 +72,7 @@ module.exports = function(req, res) {
                                 user_receive_notify: user_receive_notify,
                                 avatar_user_make_notify : user_exist.avatar_small,
                                 userName_user_make_notify : user_exist.userName,
+                                id_user_make_notify : user_exist._id,
                                 content : job_exist.title, 
                                 job_id : job_exist._id
                             });
@@ -119,6 +120,7 @@ module.exports = function(req, res) {
                                 user_receive_notify: user_receive_notify,
                                 avatar_user_make_notify : user_exist.avatar_small,
                                 userName_user_make_notify : user_exist.userName,
+                                id_user_make_notify : user_exist._id,
                                 content : app_exist.description, 
                                 job_id : app_exist.job_id, app_id : app_exist._id
                             });
@@ -166,6 +168,7 @@ module.exports = function(req, res) {
                                 user_receive_notify: user_receive_notify,
                                 avatar_user_make_notify : user_exist.avatar_small,
                                 userName_user_make_notify : user_exist.userName,
+                                id_user_make_notify : user_exist._id,
                                 content : comment_exist.description, 
                                 job_id : comment_exist.job_parent, app_id : comment_exist.application_parent, 
                                 comment_id : comment_exist._id

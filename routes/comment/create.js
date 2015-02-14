@@ -71,6 +71,7 @@ module.exports										=	function(req, res){
                   io_notify.emit('comment_apply', { user_receive_notify: user_receive_notify,
 									                                avatar_user_make_notify : user_exist.avatar_small,
 									                                userName_user_make_notify : user_exist.userName,
+									                                id_user_make_notify : user_exist._id,
 									                                content : comment.description, 
 									                                job_id : comment.job_parent, 
 									                                app_id : comment.application_parent, 
