@@ -2152,9 +2152,18 @@ Content-Type: application/json
 Cache-Control: no-cache
 
 {
-    "keyword"                   :  "nodejs"
+    "keyword"                   :  "nodejs",
+    "skip"                      : 0,
+    "limit"                     : 1,
+    "return_job"                : 1,
+    "return_app"                : 1,
+    "return_comment"            : 1
 }
 
+skip, limit: app dung voi moi loai
+return_job = 1: return ca job tim duoc. return_job = 0 : khong return job tim duoc
+return_app = 1: return ca app tim duoc. return_app = 0 : khong return app tim duoc
+return_comment = 1: return ca comment tim duoc. return_comment = 0 : khong return comment tim duoc
 
 
 ```

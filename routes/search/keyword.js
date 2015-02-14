@@ -14,6 +14,10 @@ module.exports									=	function(req, res){
 		var keyword       		= data.keyword;
 		var skip 							= data.skip;
 		var limit             = data.limit;
+
+		var return_job        = data.return_job;
+		var return_app        = data.return_app;
+		var return_comment    = data.return_comment;
 	}	
 
 	catch(err){
@@ -30,39 +34,48 @@ module.exports									=	function(req, res){
 
 		async.waterfall([
 			function(next){
-				Job.search(keyword, {}, {
-					sort : {time : 1},
-					limit : limit,
-					skip  : skip
-				}, function(err, jobs){
-					job_array = jobs;
+				if (!return_job ){
 					next(null);
-				});
-				
+				} else{
+					Job.search(keyword, {}, {
+						sort : {time : 1},
+						limit : limit,
+						skip  : skip
+					}, function(err, jobs){
+						job_array = jobs;
+						next(null);
+					});
+				}
 			},
 
 			function(next){
-				Application.search(keyword, {}, {
-					sort : {time : 1},
-					limit : limit,
-					skip  : skip
-				}, function(err, apps){
-					application_array = apps;
+				if (!return_app){
 					next(null);
-				});
-				
+				} else {
+					Application.search(keyword, {}, {
+						sort : {time : 1},
+						limit : limit,
+						skip  : skip
+					}, function(err, apps){
+						application_array = apps;
+						next(null);
+					});
+				}
 			},
 
 			function(next){
-				Comment.search(keyword, {}, {
-					sort : {time : 1},
-					limit : limit,
-					skip  : skip
-				}, function(err, cmts){
-					comment_array = cmts;
-					next(null)
-				});
-				
+				if (!return_comment){
+					next(null);
+				} else{
+					Comment.search(keyword, {}, {
+						sort : {time : 1},
+						limit : limit,
+						skip  : skip
+					}, function(err, cmts){
+						comment_array = cmts;
+						next(null)
+					});
+				}
 			}],
 
 			function(err){
