@@ -135,13 +135,13 @@ commentSchema.methods.addLike       = function(user_id, callback){
         this.likes.list.splice(this.likes.list.indexOf(user_id), 1);
         this.likes.number --;
         this.save(function(err){
-            callback();
+            callback(0);
         })
     } else{
         this.likes.list.push(user_id);
         this.likes.number ++;
         this.save(function(err){
-            callback();
+            callback(1);
         })
     }
 }

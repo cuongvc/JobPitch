@@ -46,10 +46,7 @@ module.exports = function(req, res) {
                         _id: job_id
                     }, function(err, job_exist) {
                         if (err) {
-                            res.write(JSON.stringify({
-                                error_code: 1,
-                                msg: err.toString()
-                            }));
+                            res.write(JSON.stringify({  error_code: 1,  msg: err.toString() }));
                             res.status(200).end();
                         } else
 
@@ -60,29 +57,32 @@ module.exports = function(req, res) {
                             }));
                             res.status(200).end();
                         } else {
-                            var notification = new Notification();
-                            notification.newInfor(job_exist.user_id, user_exist.userName,
-                                content_noti.like_job1, job_exist.title, job_exist.id, '', '',
-                                job_exist.user_id, job_exist.userName, job_exist.permalink,
-                                user_exist.avatar_small, 13);
-                            var user_receive_notify = [];
-                            user_receive_notify.push(job_exist.user_id);
 
-                            io_notify.emit('like_job', {
-                                user_receive_notify: user_receive_notify,
-                                avatar_user_make_notify : user_exist.avatar_small,
-                                userName_user_make_notify : user_exist.userName,
-                                id_user_make_notify : user_exist._id,
-                                content : job_exist.title, 
-                                job_id : job_exist._id
-                            });
+                            job_exist.addLike(user_exist._id, function(like) {
 
-                            job_exist.addLike(user_exist._id, function() {
-                                res.write(JSON.stringify({
-                                    error_code: 0
-                                }));
+                                res.write(JSON.stringify({  error_code: 0 }));
                                 res.status(200).end();
+
+                                if (like) {
+                                    var notification = new Notification();
+                                    notification.newInfor(job_exist.user_id, user_exist.userName,
+                                        content_noti.like_job1, job_exist.title, job_exist.id, '', '',
+                                        job_exist.user_id, job_exist.userName, job_exist.permalink,
+                                        user_exist.avatar_small, 13);
+                                    var user_receive_notify = [];
+                                    user_receive_notify.push(job_exist.user_id);
+
+                                    io_notify.emit('like_job', {
+                                        user_receive_notify: user_receive_notify,
+                                        avatar_user_make_notify: user_exist.avatar_small,
+                                        userName_user_make_notify: user_exist.userName,
+                                        id_user_make_notify: user_exist._id,
+                                        content: job_exist.title,
+                                        job_id: job_exist._id
+                                    });
+                                }
                             });
+
                         }
 
                     })
@@ -95,40 +95,41 @@ module.exports = function(req, res) {
                     }, function(err, app_exist) {
                         console.log(app_exist);
                         if (err) {
-                            res.write(JSON.stringify({
-                                error_code: 1,
-                                msg: err.toString()
-                            }));
+                            res.write(JSON.stringify({ error_code: 1,  msg: err.toString() }));
                             res.status(200).end();
                         } else
 
                         if (!app_exist) {
-                            res.write(JSON.stringify({
-                                error_code: 1,
-                                msg: 'Application is not exist'
-                            }));
+                            res.write(JSON.stringify({   error_code: 1,  msg: 'Application is not exist' }));
                             res.status(200).end();
                         } else {
-                            var notification = new Notification();
-                            notification.newInfor(app_exist.user_id, user_exist.userName,
-                                content_noti.like_apply1, app_exist.description, app_exist.job_id, app_exist._id, '',
-                                app_exist.user_id, app_exist.userName, app_exist.permalink,
-                                user_exist.avatar_small, 23);
-                            var user_receive_notify = [];
-                            user_receive_notify.push(app_exist.user_id);
-                            io_notify.emit('like_app', {
-                                user_receive_notify: user_receive_notify,
-                                avatar_user_make_notify : user_exist.avatar_small,
-                                userName_user_make_notify : user_exist.userName,
-                                id_user_make_notify : user_exist._id,
-                                content : app_exist.description, 
-                                job_id : app_exist.job_id, app_id : app_exist._id
-                            });
-                            app_exist.addLike(user_exist._id, function() {
+
+                            app_exist.addLike(user_exist._id, function(like) {
+
                                 res.write(JSON.stringify({
                                     error_code: 0
                                 }));
                                 res.status(200).end();
+                                if (like) {
+                                    var notification = new Notification();
+                                    notification.newInfor(app_exist.user_id, user_exist.userName,
+                                        content_noti.like_apply1, app_exist.description, app_exist.job_id,
+                                        app_exist._id, '', app_exist.user_id, app_exist.userName,
+                                        app_exist.permalink,
+                                        user_exist.avatar_small, 23);
+                                    var user_receive_notify = [];
+                                    user_receive_notify.push(app_exist.user_id);
+                                    io_notify.emit('like_app', {
+                                        user_receive_notify: user_receive_notify,
+                                        avatar_user_make_notify: user_exist.avatar_small,
+                                        userName_user_make_notify: user_exist.userName,
+                                        id_user_make_notify: user_exist._id,
+                                        content: app_exist.description,
+                                        job_id: app_exist.job_id,
+                                        app_id: app_exist._id
+                                    });
+                                }
+
                             });
                         }
 
@@ -142,42 +143,39 @@ module.exports = function(req, res) {
                         _id: comment_id
                     }, function(err, comment_exist) {
                         if (err) {
-                            res.write(JSON.stringify({
-                                error_code: 1,
-                                msg: err.toString()
-                            }));
+                            res.write(JSON.stringify({ error_code: 1,  msg: err.toString()   }));
                             res.status(200).end();
                         } else
 
                         if (!comment_exist) {
-                            res.write(JSON.stringify({
-                                error_code: 1,
-                                msg: 'Comment is not exist'
+                            res.write(JSON.stringify({ error_code: 1, msg: 'Comment is not exist'
                             }));
                             res.status(200).end();
                         } else {
-                            var notification = new Notification();
-                            notification.newInfor(comment_exist.user_id, user_exist.userName,
-                                content_noti.like_comment1, comment_exist.content, 
-                                comment_exist.job_parent, '', comment_exist._id,
-                                comment_exist.user_id, comment_exist.userName, comment_exist.permalink,
-                                user_exist.avatar_small, 31);
-                            var user_receive_notify = [];
-                            user_receive_notify.push(comment_exist.user_id);
-                            io_notify.emit('like_comment', {
-                                user_receive_notify: user_receive_notify,
-                                avatar_user_make_notify : user_exist.avatar_small,
-                                userName_user_make_notify : user_exist.userName,
-                                id_user_make_notify : user_exist._id,
-                                content : comment_exist.description, 
-                                job_id : comment_exist.job_parent, app_id : comment_exist.application_parent, 
-                                comment_id : comment_exist._id
-                            });
-                            comment_exist.addLike(user_exist._id, function() {
-                                res.write(JSON.stringify({
-                                    error_code: 0
-                                }));
+
+                            comment_exist.addLike(user_exist._id, function(like) {
+                                res.write(JSON.stringify({ error_code: 0 }));
                                 res.status(200).end();
+                                if (like) {
+                                    var notification = new Notification();
+                                    notification.newInfor(comment_exist.user_id, user_exist.userName,
+                                        content_noti.like_comment1, comment_exist.content,
+                                        comment_exist.job_parent, '', comment_exist._id,
+                                        comment_exist.user_id, comment_exist.userName, comment_exist.permalink,
+                                        user_exist.avatar_small, 31);
+                                    var user_receive_notify = [];
+                                    user_receive_notify.push(comment_exist.user_id);
+                                    io_notify.emit('like_comment', {
+                                        user_receive_notify: user_receive_notify,
+                                        avatar_user_make_notify: user_exist.avatar_small,
+                                        userName_user_make_notify: user_exist.userName,
+                                        id_user_make_notify: user_exist._id,
+                                        content: comment_exist.description,
+                                        job_id: comment_exist.job_parent,
+                                        app_id: comment_exist.application_parent,
+                                        comment_id: comment_exist._id
+                                    });
+                                }
                             });
                         }
 
