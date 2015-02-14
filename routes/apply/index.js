@@ -81,7 +81,8 @@ module.exports = function(req, res) {
                                 avatar_user_make_notify : user_exist.avatar_small,
                                 userName_user_make_notify : user_exist.userName,
                                 content : application.description, 
-                                job_id : job_exist._id, app_id : application._id
+                                job_id : job_exist._id, app_id : application._id, 
+                                app : application
                             });
 
                             job_exist.addApply(user_id, application._id, function() {

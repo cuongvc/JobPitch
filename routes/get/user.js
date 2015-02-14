@@ -1,3 +1,5 @@
+// get infor user
+
 var User  										= require('./../../models/users');
 var check_token               = require('./../../my_module/check_exist').token;
 
@@ -14,7 +16,7 @@ module.exports								=	function(req, res){
 	}
 
 	finally{
-			User.findOne({_id : user_id}, '-local_infor -fb_infor -twitter_infor -linkedin_infor -google_infor -notifications -messages -token', function(err, user){
+			User.findOne({_id : user_id}, '-local_infor.password -fb_infor.access_token -twitter_infor.access_token -twitter_infor.token_secret -linkedin_infor.access_token -google_infor.access_token -notifications -messages -token', function(err, user){
 
 				if (err){
 					res.write(JSON.stringify({ error_code : 1, msg : err.toString() }));

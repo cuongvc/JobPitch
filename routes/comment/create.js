@@ -74,7 +74,8 @@ module.exports										=	function(req, res){
 									                                content : comment.description, 
 									                                job_id : comment.job_parent, 
 									                                app_id : comment.application_parent, 
-									                                comment_id : comment._id
+									                                comment_id : comment._id,
+									                                comment : comment
                   });
 
 								});
