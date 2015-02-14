@@ -1,3 +1,6 @@
+var bcrypt = require('bcrypt-nodejs');
+var domain = require('./../../config/default').domain_default;
+
 module.exports				=	function(req, res){
 
 	try{
@@ -15,8 +18,8 @@ module.exports				=	function(req, res){
 
 	finally{
 		var NodePDF = require('nodepdf');
-		 
-		var pdf = new NodePDF('http://job.dev', 'google.pdf', {
+		var save_state = '/pdf/' + bcrypt.hashSync((new Date()).toString(), bcrypt.genSaltSync(8), null) + '.pdf';
+		var pdf = new NodePDF(link_html, './public' + save_state, {
 		    'viewportSize': {
 		        'width': 1440,
 		        'height': 900
@@ -30,6 +33,10 @@ module.exports				=	function(req, res){
 		 
 		pdf.on('done', function(pathToFile){
 		    console.log('done : ', pathToFile);
+		    var link_pdf = domain + save_state;
+		    console.log('link : ', link_pdf);
+		    res.write(JSON.stringify({error_code : 0, link_pdf : link_pdf}));
+		    res.status(200).end();
 		});
 		 
 		// listen for stdout from phantomjs 

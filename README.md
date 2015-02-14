@@ -2349,3 +2349,32 @@ return_comment = 1: return ca comment tim duoc. return_comment = 0 : khong retur
 
 
 ```
+
+### 28. Export to pdf
+
+```
+POST     http://jobpitch.campcoders.com/api/export_pdf
+Content-Type: application/json
+Cache-Control: no-cache
+
+{
+    "link_html"                   :  "https://www.npmjs.com/package/nodepdf"
+}
+
+
+```
+##### Regex
+```
+
+
+```
+##### Return
+```
+{
+    "pdf_link": "http://jobpitch.campcoders.com/...."
+   
+}
+
+
+```
+

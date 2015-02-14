@@ -1,17 +1,17 @@
 var content = {
     "create_job": "create new job",
 
-    "apply_job_1": "pith your job",
+    "apply_job1": "pith your job",
 
-    "apply_job_2": "pith job",
+    "apply_job2": "pith job",
 
-    "like_job_1": "like your job",
+    "like_job1": "like your job",
 
-    "like_job_2": "like job",
+    "like_job2": "like job",
 
-    "share_job_1": "share your job",
+    "share_job1": "share your job",
 
-    "share_job_2": "share job",
+    "share_job2": "share job",
 
     "change_status_job": "change status job",
 
