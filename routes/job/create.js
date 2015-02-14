@@ -127,7 +127,9 @@ module.exports				=	function(req, res){
 
 
                             io_notify.emit('create_job', {user_receive_notify : user_exist.followMes,
-                                                          job                 : job});
+                                                          avatar_user_make_notify : user_exist.avatar_small,
+                                                          userName_user_make_notify : user_exist.userName,
+                                                          content : job.title, job_id : job._id});
 
                             })
                         }
