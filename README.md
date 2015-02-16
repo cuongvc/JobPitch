@@ -2378,3 +2378,28 @@ Cache-Control: no-cache
 
 ```
 
+### 29. Delete job
+
+```
+POST     http://jobpitch.campcoders.com/api/delete_job
+Content-Type: application/json
+Cache-Control: no-cache
+
+{
+    "token"         : "$2aMcZnhKK1n8XZe2glnGGg9PZOzqZ.",
+    "user_id"       : "54deb68032f4c1f223bc6e72",
+    "job_id"        : "54deb69d32f4c1f223bc6e74"
+}
+
+```
+##### Regex
+```
+
+
+```
+##### Return
+```
+{"error_code":0}
+
+```
+

@@ -164,12 +164,15 @@ app.get('/directive/home/left-sidebar',function(req,res){
 	Router_body.post('/create_job',  			 		 routes.job.create);
 	Router_body.post('/edit_job',   			 		 routes.job.edit);
 	Router_body.post('/job_detail',  			 		 routes.job.detail);
+	Router_body.post('/delete_job',						 routes.job.delete);
 
 //  ------RECENT --------------------------
 	Router_body.post('/recent',                routes.recent);
 
 //  ------APPLY --------------------------
-	Router_body.post('/apply',                 routes.apply);
+	Router_body.post('/apply',                 routes.apply.create);
+	// Router_body.post('/edit_apply',            routes.apply.edit);
+	// Router_body.post('/delete_apply',          routes.apply.delete);
 
 //  ------EDIT PROFILE --------------------------
 	Router_body.post('/edit_profile',          routes.edit_profile.profile);
