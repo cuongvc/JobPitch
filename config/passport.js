@@ -189,12 +189,12 @@ module.exports = function(User_env, passport) {
         consumerKey     : configAuth.twitterAuth.consumerKey,
         consumerSecret  : configAuth.twitterAuth.consumerSecret,
         callbackURL     : configAuth.twitterAuth.callbackURL,
+        passReqToCallback : true
     },
     function(req, token, tokenSecret, profile, done) {
-        console.log('PROFILE TWITTER : ', profile);
         // asynchronous
         process.nextTick(function() {
-            // if (!req.user){
+            if (!req.user){
             // check if the user is already logged in
                 User.findOne({ 'twitter_infor.id' : profile.id }, function(err, user) {
                     if (err)
@@ -218,15 +218,15 @@ module.exports = function(User_env, passport) {
                     }
                 });
 
-            // } else{
-            //     var user = req.user;
-            //     user.twitter_infor.access_token = token;
-            //     user.twitter_infor.token_secret = tokenSecret;
-            //     user.makeToken();
-            //     user.save(function(err){
-            //         return done(null, user);
-            //     })
-            // }
+            } else{
+                var user = req.user;
+                user.twitter_infor.access_token = token;
+                user.twitter_infor.token_secret = tokenSecret;
+                user.makeToken();
+                user.save(function(err){
+                    return done(null, user);
+                })
+            }
             
         });
 
