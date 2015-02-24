@@ -1,0 +1,19 @@
+<link rel="stylesheet" type="text/css" href="/css/home/left-sidebar.css">
+
+<div id="left-sidebar" class="col-md-4 col-sm-4 hidden-xs" ng-controller="LeftSidebarCtrl">
+	<div class="left-sidebar-tags">
+		<h3 class="semibold">Top Jobs</h3>
+		<ul>
+			<li ng-repeat="tag in LeftSidebarTags"><span ng-bind="tag.name"></span></li>
+		</ul>
+	</div>
+
+
+	<div class="left-sidebar-tags">
+		<h3 class="semibold">Top Companies</h3>
+		<ul>
+			<li ng-repeat="company in LeftSidebarCompanies"><span ng-bind="company.name"></span></li>
+		</ul>
+	</div>
+
+</div>

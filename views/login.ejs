@@ -1,0 +1,74 @@
+<html>
+<head>
+	<title>Job Pitch</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+	<script type="text/javascript" src="bower_components/angular/angular.min.js"></script>		
+	<script type="text/javascript" src="bower_components/nightfury_bootstrap_36grid/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/js/global.js"></script>
+	<script type="text/javascript">
+		var STR_API_SIGN_UP = BASE_URL + '/api/signup_email';
+	</script>
+	<script type="text/javascript" src="js/home/login.js"></script>
+	<link rel="stylesheet" type="text/css" href="bower_components/nightfury_bootstrap_36grid/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="bower_components/nightfury_bootstrap_36grid/css/bootstrap-theme.min.css">
+	<link rel="stylesheet" type="text/css" href="/bower_components/fontawesome/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="css/home/template.css">
+	<link rel="stylesheet" type="text/css" href="css/home/login.css">
+</head>
+<body ng-app="LoginApp" ng-controller="LoginCtrl">
+	<div id="login" ng-style="{{ LoginStyle }}">
+		<div id="opacity" class="container-fluid">
+			<div class="col-md-10 col-md-offset-13 col-sm-18 col-sm-offset-9 col-xs-36">
+				<div id="login-form" class="col-md-36 col-sm-36 col-xs-36">
+					<div>
+						<h3 class="text-center">For User</h3>
+						<ul class="social">
+							<li>
+								<a href="/auth/facebook">
+									<i class="fa fa-facebook"></i>
+								</a>
+							</li>
+							<li>
+								<a href="/auth/google">
+									<i class="fa fa-google-plus"></i>
+								</a>
+							</li>
+							<li>
+								<a href="/auth/twitter">
+									<i class="fa fa-twitter"></i>
+								</a>
+							</li>
+							<li>
+								<a href="/auth/linkedin">
+									<i class="fa fa-linkedin"></i>
+								</a>
+							</li>
+						</ul>
+					</div>
+					<div class="normal-login" id="forRecruiter">
+						<h3 class="text-center">For Recruiter</h3>
+						<form ng-submit="SignIn(user)" id="loginForm">
+							<div class="form-group">
+								<input type="email" id="email" name="email" ng-model="user.email" placeholder="Email">
+							</div>
+							<div class="form-group">
+								<input type="password" id="password" name="password" ng-model="user.password" placeholder="Password">
+							</div>
+							<div class="form-group">
+								<input type="submit" value="Sign In">
+							</div>
+						</form>
+					</div>
+					<div id="signup-forgot" class="col-md-36 col-sm-36 col-xs-36">
+						<ul>
+							<li><a href="/forgot-password">Forgot password</a></li>
+							<li><a href="/signup">Create new account</a></li>
+						</ul>
+					</div> <!-- signup-forgot -->
+				</div> <!-- login-form -->
+			</div>
+		</div>
+	</div>
+</body>
+</html>

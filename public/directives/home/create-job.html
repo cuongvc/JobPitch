@@ -1,0 +1,41 @@
+
+<div id="create-job" ng-controller="CreateJobCtrl" ng-if="user.account_type == 1">
+	<div id="create-job-btn">
+		<button ng-click="ShowForm(true)" ng-if="ShowCreateJobForm == false">	
+			<img class="center-block" id="create-job-plus" src="../images/plus.png" alt="">
+			<img class="center-block hidden" id="create-job-edit" src="../images/edit.png" alt="">
+		</button>
+	</div>
+	<div id="create-job-form" ng-if="ShowCreateJobForm == true">
+		<div id="create-job-crop-image" ng-if="showCrop == true">
+			<div class="center-block">
+				<div>
+					<img ng-src="{{ CreateJobImage.preview }}" data-on-change="CreateJobCropChange" angular-crop="CreateJobCropCoverOpts">
+					<button class="fa fa-crop pull-left" ng-click="Crop()"> Crop</button>
+					<button class="fa fa-file pull-left" ng-click="ReSelectFile()"> Select file</button>
+				</div>
+			</div>
+		</div>
+		<div id="job-form">
+			<div class="job-form-nav">
+				<ul>
+					<li ng-click="ShowForm(false)"><span class="gmail-icon job-form-close"></span></li>
+					<li><span class="gmail-icon job-form-fullscreen"></span></li>
+				</ul>
+			</div>
+		    <form>
+		    	<input class="semibold" id="new-job-title" type="text" ng-model="JobTitle" placeholder="Job title" maxlength="160">
+				<div class="form-group">
+			    	<textarea placeholder="Job description" ng-model="JobDesc" maxlength="255"></textarea>
+			    </div>		    	
+				<div class="form-group">
+			    	<input type="file" ng-model="Image" nightfury-onchange-upload="CreateJobImage">
+			    </div>		    	
+			    <div class="form-group">
+			    	<input type="text" value="" ng-model="Address" placeholder="Address for work">
+			    </div>
+			    <button class="btn btn-success" ng-click="CreateJob(JobTitle,JobDesc,Address)">CREATE</button>
+		    </form>
+		</div>
+	</div>
+</div>

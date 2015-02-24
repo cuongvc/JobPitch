@@ -1,0 +1,38 @@
+<html>
+<head>
+	<title>Job Pitch</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<script type="text/javascript" src="/bower_components/jquery/dist/jquery.min.js"></script>
+	<script type="text/javascript" src="/bower_components/angular/angular.min.js"></script>		
+	<script type="text/javascript" src="/bower_components/nightfury_bootstrap_36grid/js/bootstrap.min.js"></script>
+
+	<script type="text/javascript">
+		var BASE_URL = 'http://job.dev';
+		var STR_API_RECENT = BASE_URL + '/api/recent';
+	</script>
+	
+	<script type="text/javascript" src="/bower_components/nightfury/src/database.js"></script>
+	<script type="text/javascript" src="/js/home/header.js"></script>
+	<script type="text/javascript" src="/js/home/setting.js"></script>
+	<script type="text/javascript" src="/js/home/tag-list.js"></script>
+	<script type="text/javascript" src="/js/home/create-job.js"></script>
+	<script type="text/javascript" src="/js/home/jobs.js"></script>
+	<script type="text/javascript" src="/js/home/footer.js"></script>
+	<script type="text/javascript" src="/js/home/index.js"></script>
+	<link rel="stylesheet" type="text/css" href="/bower_components/animate.css/animate.min.css">
+	<link rel="stylesheet" type="text/css" href="/bower_components/nightfury_bootstrap_36grid/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/bower_components/nightfury_bootstrap_36grid/css/bootstrap-theme.min.css">
+	<link rel="stylesheet" type="text/css" href="/bower_components/fontawesome/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="/css/home/template.css">
+	<link rel="stylesheet" type="text/css" href="/css/home/index.css">
+
+</head>
+<body ng-app="IndexApp" ng-controller="IndexCtrl">
+	<header></header>
+	<profile ng-if="PAGE == page.setting" page="{{ page.setting }}"></profile>
+	<tag-list ng-if="PAGE == page.index" page="{{ page.index }}"></tag-list>
+	<jobs ng-if="PAGE == page.index" page="{{ page.index }}"></jobs>
+	<create-job ng-if="PAGE == page.index" page="{{ page.index }}"></create-job>
+	<footer></footer>
+</body>
+</html>

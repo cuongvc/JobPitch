@@ -1,0 +1,175 @@
+
+
+#create-job-btn{
+	position: fixed;
+	bottom: 20px;
+	right: 20px;
+}
+#create-job-btn button{
+	border: none;
+	background: #db4437;
+	height: 56px;
+	position: relative;
+	width: 56px;
+	border-radius: 100%;
+	box-shadow: 0px 5px 10px #aba;
+}
+#create-job-btn button:focus{
+	outline: none;
+}
+#create-job-btn button img{
+	width: 30px;
+}
+.create-job-button-transition{
+	width: 0px!important;
+	transform: rotate(360deg);
+	-webkit-transform: rotate(360deg);
+}
+.create-job-transition{
+	transition: all 0.3s;
+	-webkit-transition: all 0.3s;
+}
+#create-job-form{
+	position: fixed;
+	bottom: 0px;
+	right: 0px;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background: rgba(0,0,0,0.7);
+	animation: create-job-form-bg 0.5s;
+	-webkit-animation: create-job-form-bg 0.5s;
+}
+@keyframes create-job-form-bg{
+	from {opacity: 0;}
+	to {opacity: 1}
+}
+@-webkit-keyframes create-job-form-bg{
+	from {opacity: 0;}
+	to {opacity: 1}
+}
+#job-form{
+	height: auto;
+	width: 100%;
+	overflow: auto;
+	background: #fff;
+	max-width: 600px;
+	position: absolute;
+	bottom: 0px;
+	right: 0px;
+	animation: showform 0.5s;
+	-webkit-animation: showform 0.5s;
+	box-shadow: 0 0 10px #000;
+	font-size: 16px!important;
+}
+@keyframes showform{
+	from {width: 0px;}
+	to {width: 100%;}
+}
+@-webkit-keyframes showform{
+	from {width: 0px;}
+	to {width: 100%;}
+}
+#job-form textarea{
+	width: 100%;
+	border: none;
+	min-height: 100px;
+}
+#job-form input[type="text"]{
+	width: 100%;
+	border: none;
+	height: 30px;
+}
+#job-form form button{
+	box-shadow: none!important;
+	border: none!important;
+	border-radius: 1px!important;
+}
+#job-form input[type="text"]:focus{
+	outline: none;
+}
+#job-form form{
+	padding: 7px;
+}
+#job-form textarea:focus{
+	outline: none;
+}
+.job-form-nav{
+	background: #404040;
+}
+.job-form-nav ul{
+	margin: 0px;
+}
+.job-form-nav ul li{
+	margin-top: 3px;
+}
+.gmail-icon{
+	background: no-repeat url('../../images/gmail_icon.png');
+	width: 24px;
+	height: 24px;
+	display: block;
+	cursor: pointer;
+}
+.gmail-icon:hover{
+
+}
+.job-form-close{
+	background-position: 0 -391px;
+}
+.job-form-fullscreen{
+	background-position: 0 -151px;
+}
+tags-input .tags{
+	height: auto!important;
+	border: none!important;
+	box-shadow: none!important;
+}
+/***********************************************************************************/
+							/*CROP*/
+/***********************************************************************************/
+#create-job-crop-image{
+	background: rgba(0,0,0,0.9);
+	position: fixed;
+	top: 0;left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 9999!important;
+}
+#create-job-crop-image > div{
+	display: table;
+	height: 100%;
+}
+#create-job-crop-image > div > div{
+	max-width: 500px;
+	max-height: 500px;
+	display: table-cell;
+	vertical-align: middle;
+}
+#create-job-crop-image > div > div > img{
+	width: 100%;
+	max-width: 100%;
+	max-height: 100%;
+}
+#create-job-crop-image > div > div > button{
+	border: none;
+	box-shadow: none;
+	border-radius: 0px;
+	padding: 10px 15px;
+}
+#create-job-crop-image > div > div > .fa-crop{
+	background: #2980b9;
+}
+#create-job-crop-image > div > div > .fa-file{
+	background: #ddd;
+}
+.job-comment-body .attack-file{
+	color: #333;
+	display: block;
+	background: url('../../images/gmail_icon_2.png') 0 -238px;
+	width: 24px;
+	height: 24px;
+}
+.job-comment-body{
+	color: #8899a6;
+	font-size: 13px;
+}
