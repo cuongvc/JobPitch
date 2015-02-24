@@ -172,7 +172,7 @@ app.get('/directive/home/left-sidebar',function(req,res){
 //  ------APPLY --------------------------
 	Router_body.post('/apply',                 routes.apply.create);
 	// Router_body.post('/edit_apply',            routes.apply.edit);
-	// Router_body.post('/delete_apply',          routes.apply.delete);
+	Router_body.post('/delete_apply',          routes.apply.delete);
 
 //  ------EDIT PROFILE --------------------------
 	Router_body.post('/edit_profile',          routes.edit_profile.profile);

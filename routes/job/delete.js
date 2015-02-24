@@ -41,6 +41,12 @@ module.exports = function(req, res) {
                         } else{
                             res.write(JSON.stringify({error_code : 0}))
                             res.status(200).end();
+
+                            user_exist.myJobs.splice(user_exist.myJobs.indexOf(job_id), 1);
+                            user_exist.save(function(err){
+                            	if (err)
+                            		console.log(err);
+                            })
                         }
                     });
 
