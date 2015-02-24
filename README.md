@@ -2403,3 +2403,308 @@ Cache-Control: no-cache
 
 ```
 
+### 30. Delete Application
+
+```
+POST     http://jobpitch.campcoders.com/api/delete_apply
+Content-Type: application/json
+Cache-Control: no-cache
+
+{
+    "token"                 : "$2a$08$DL.k4rWU07MMkQbfZePnXPXfUjA0FJFMbz1PEhm",
+    "user_id"               : "54deb7c4767662cf2473e666",
+    "app_id"                : "54ebf0c2443d4fe11cbffc48"
+
+}
+
+```
+##### Regex
+```
+
+
+```
+##### Return
+```
+{"error_code":0}
+
+```
+
+
+### 31. Delete Comment
+
+```
+POST     http://jobpitch.campcoders.com/api/delete_comment
+Content-Type: application/json
+Cache-Control: no-cache
+
+{
+    "token"                 : "$2a$08$JBSMlHKdPW4SiSf38LfcsnE1cq3vKaWHOC",
+    "user_id"               : "54deb7c4767662cf2473e666",
+    "cmt_id"                : "54ec1c69dcc477911f240059"
+
+}
+
+```
+##### Regex
+```
+
+
+```
+##### Return
+```
+{"error_code":0}
+
+```
+
+### 32. Edit Apply
+
+```
+POST     http://jobpitch.campcoders.com/api/edit_apply
+Content-Type: application/json
+Cache-Control: no-cache
+
+{
+    "token"                 : "$2a$08$f69u5BJvllnlcgqCrYBVT.15OJHEt88iToOwyCbZ0LVEUb/ATfbmO",
+    "user_id"               : "54deb7c4767662cf2473e666",
+    "title"                 : "I can do it",
+    "app_id"                : "54ec0b97d5e8c0b512f3f27e",
+    "description"           : "APPLY CHANGE",
+    "hash_tag"              : ["Php", "Nodejs", "Android", "Campcoders.com", "1", "2", "3", "4", "5", "6"],
+    "file"                  : ""
+}
+
+
+```
+##### Regex
+```
+
+
+```
+##### Return
+```
+{
+    "error_code": 0,
+    "app": {
+        "__v": 15,
+        "_id": "54ec0b97d5e8c0b512f3f27e",
+        "companyId": "54deb68032f4c1f223bc6e72",
+        "companyName": "cuongvu",
+        "job_id": "54ebee4da14809601ab0f81a",
+        "time": "2015-02-24T10:29:56.000Z",
+        "userName": "Cường Vũ",
+        "user_avatar": "https://lh5.googleusercontent.com/-IlI6TyJIlrs/AAAAAAAAAAI/AAAAAAAAAC8/AsmFVAZBIkw/photo.jpg",
+        "user_id": "54deb7c4767662cf2473e666",
+        "_keywords": [
+            "appli",
+            "chang",
+            "php",
+            "nodej",
+            "android",
+            "campcod",
+            "com"
+        ],
+        "comment": [
+            "54ec1c69dcc477911f240059",
+            "54ec1c72dcc477911f24005b",
+            "54ec1c72dcc477911f24005d",
+            "54ec1c72dcc477911f24005f",
+            "54ec1c9ddcc477911f240062"
+        ],
+        "hires": {
+            "status": 0
+        },
+        "interests": {
+            "list": [],
+            "number": 0
+        },
+        "interviews": 0,
+        "shares": {
+            "list": [],
+            "number": 0
+        },
+        "likes": {
+            "list": [],
+            "number": 0
+        },
+        "file": "",
+        "description": "APPLY CHANGE",
+        "hash_tag": [
+            "Php",
+            "Nodejs",
+            "Android",
+            "Campcoders.com",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6"
+        ],
+        "title": "I can do it"
+    }
+}
+```
+
+
+### 33. Edit Comment
+
+```
+POST     http://jobpitch.campcoders.com/api/edit_comment
+Content-Type: application/json
+Cache-Control: no-cache
+
+{
+    "token"                 : "$2a$08$V8Qcu7Ec4E5N9Dl.z4rUq.3n079IZoacTMu5e",
+    "user_id"               : "54deb68032f4c1f223bc6e72",
+    "comment_id"            : "54ec1c69dcc477911f240059",
+    "content"               : "Comment moi",
+    "hash_tag"              : ["Php", "Nodejs", "Android", "Campcoders.com"]
+}
+
+
+
+```
+##### Regex
+```
+
+
+```
+##### Return
+```
+{
+    "error_code": 0,
+    "comment": {
+        "__v": 2,
+        "_id": "54ec1c69dcc477911f240059",
+        "application_parent": "54ec0b97d5e8c0b512f3f27e",
+        "job_parent": "54ebee4da14809601ab0f81a",
+        "time": "2015-02-24T10:45:00.000Z",
+        "userName": "cuongvu",
+        "user_avatar": "http://job.dev/images/full_size/UserImages/default-avatar.png",
+        "user_id": "54deb68032f4c1f223bc6e72",
+        "_keywords": [
+            "comment",
+            "moi",
+            "php",
+            "nodej",
+            "android",
+            "campcod",
+            "com"
+        ],
+        "comments": [],
+        "shares": {
+            "list": [],
+            "number": 0
+        },
+        "likes": {
+            "list": [],
+            "number": 0
+        },
+        "content": "Comment moi",
+        "hash_tag": [
+            "Php",
+            "Nodejs",
+            "Android",
+            "Campcoders.com"
+        ]
+    }
+}
+
+
+```
+
+### 34. Return top job
+
+```
+GET     http://jobpitch.campcoders.com/api/top_job
+Content-Type: application/json
+Cache-Control: no-cache
+
+```
+##### Regex
+```
+
+
+```
+##### Return
+```
+{
+    "error_code": 0,
+    "top_job": [
+        {
+            "_id": "54ebe9bf4bd2a19f106a9db4",
+            "title": "QA Manager"
+        },
+        {
+            "_id": "54ebe9f04bd2a19f106a9db6",
+            "title": "DotGear Studio: Game Desginer"
+        },
+        {
+            "_id": "54ebea5d4bd2a19f106a9db8",
+            "title": "Chuyên Viên Kế Toán Cấp Cao"
+        },
+        {
+            "_id": "54ec64490a7875e13bd6e6ba",
+            "title": "Tttt"
+        },
+        {
+            "_id": "54ebead74bd2a19f106a9dba",
+            "title": "FlappyBird: Game Designer"
+        },
+        {
+            "_id": "54ebeae04bd2a19f106a9dbc",
+            "title": "Engineering Manager"
+        }
+    ]
+}
+
+```
+
+
+### 35. Return top company
+
+```
+GET     http://jobpitch.campcoders.com/api/top_company
+Content-Type: application/json
+Cache-Control: no-cache
+
+```
+##### Regex
+```
+
+
+```
+##### Return
+```
+{
+    "error_code": 0,
+    "top_job": [
+        {
+            "_id": "54ebe9bf4bd2a19f106a9db4",
+            "title": "QA Manager"
+        },
+        {
+            "_id": "54ebe9f04bd2a19f106a9db6",
+            "title": "DotGear Studio: Game Desginer"
+        },
+        {
+            "_id": "54ebea5d4bd2a19f106a9db8",
+            "title": "Chuyên Viên Kế Toán Cấp Cao"
+        },
+        {
+            "_id": "54ec64490a7875e13bd6e6ba",
+            "title": "Tttt"
+        },
+        {
+            "_id": "54ebead74bd2a19f106a9dba",
+            "title": "FlappyBird: Game Designer"
+        },
+        {
+            "_id": "54ebeae04bd2a19f106a9dbc",
+            "title": "Engineering Manager"
+        }
+    ]
+}
+
+```
+

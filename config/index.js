@@ -1,5 +1,6 @@
 var flash        = require('connect-flash');
 var path         =   require('path');
+var subdomain    = require('express-subdomain');
 
 var morgan       = require('morgan');
 var cookieParser = require('cookie-parser');
@@ -12,7 +13,7 @@ var helmet       = require('helmet');
 var favicon = require('serve-favicon');
 
 // module.exports = function(app, id, Router_raw, Router_formdata, Router_body){
-module.exports = function(app, Router_formdata, Router_body, passport){
+module.exports = function(app, Router_formdata, Router_body, Router_subdomain, passport){
     app.use(helmet());
     app.use(morgan('dev')); // log every request to the console
     app.use(cookieParser()); // read cookies (needed for auth)
@@ -48,6 +49,8 @@ module.exports = function(app, Router_formdata, Router_body, passport){
 
     app.use('/api', Router_formdata);
     app.use('/api', Router_body);
+
+    app.use(subdomain('m', Router_subdomain));
 
     // app.use('/api', Router_raw);
 }

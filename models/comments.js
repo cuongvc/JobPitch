@@ -146,8 +146,19 @@ commentSchema.methods.addLike       = function(user_id, callback){
     }
 }
 
-commentSchema.methods.editInfor     = function(comment){
-       return this;1
+commentSchema.methods.editInfor     = function(content, hash_tag, time, callback){
+    var comment = this;
+    comment.content = content;
+    comment.hash_tag = hash_tag;
+    comment.time     = time;
+    add_hashTag_comment(hash_tag, comment._id, function(){
+        comment.save(function(err){
+            if (err){
+                console.log('ERR : ', err);
+            }
+            callback(comment);           
+        })
+    });
 }
 
 // create the model for comments and expose it to our app
