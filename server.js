@@ -63,6 +63,12 @@ app.get('/export-pdf/:pitch_id',function(req,res){
 app.get('/account/reset_password/:resetKey',		 function(req, res){
 	res.render('reset_password.ejs', {reset_key : req.params.resetKey});
 })
+
+var MOBILE = ['/mobile','/mobile/pitch','/mobile/notification','/mobile/message','/mobile/login','/mobile/signup','/mobile/user/:user_id','/mobile/job/:job_id'];
+app.get(MOBILE,function(req,res){
+	res.render('mobile.ejs',{user: req.user});
+})
+
 /**************** API GET USER, JOB, APPLICATION NOT AUTHENTICATE ******************/
 
 // app.get('/user/:user_id',function(req,res){

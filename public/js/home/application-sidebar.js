@@ -106,7 +106,7 @@ ApplicationSideBar.controller('ApplicationSideBarCtrl',function($scope,$http,JOB
 	$scope.ViewPitchcomment = function(pitch){
 		var index = pitchs.indexOf(pitch);
 		pitchs[index].showComment = true;
-		if(pitch.loaded == true) return;
+		if(pitch.comments.loaded == true) return;
 		
 		var data = {
 			user_id: $scope.user._id,
@@ -117,7 +117,7 @@ ApplicationSideBar.controller('ApplicationSideBarCtrl',function($scope,$http,JOB
 		PitchService.then(function(response){
 			if(response.error_code == 0){
 				if(response.comment.length > 0){
-					pitchs = PITCH.getPitchCommentHandler(pitchs,pitch,response.comment);
+					pitchs = PITCH.getSidebarPitchCommentHandler(pitchs,pitch,response.comment);
 				}
 			}else{
 				alert(response.msg);
@@ -172,8 +172,8 @@ ApplicationSideBar.controller('ApplicationSideBarCtrl',function($scope,$http,JOB
 					$('.sidebar-comment-body textarea').val('');
 					var index = pitchs.indexOf(pitch);
 					var comment = response.comment;
-					if(pitch.comments.all == undefined) pitch.comments.all = new Array();
-					pitch.comments.all.push(comment);
+					if(pitch.comments.list == undefined) pitch.comments.list = new Array();
+					pitch.comments.list.push(comment);
 					pitch.comments.numberOfComment++;
 					pitchs[index] = pitch;
 				}

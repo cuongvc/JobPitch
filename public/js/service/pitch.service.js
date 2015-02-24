@@ -93,6 +93,14 @@ PitchService.service('PITCH',function($http,$q){
 
 		return jobs;
 	}
+	this.getSidebarPitchCommentHandler = function(pitchs,pitch,comments){
+		var index_pitch = pitchs.indexOf(pitch);
+		pitch.comments.list   = comments;
+		pitch.comments.loaded = true;
+		pitch.showReplyForm   = true;
+		pitchs[index_pitch] = pitch;
+		return pitchs;
+	}
 
 	/*
 	* post new pitch comment
