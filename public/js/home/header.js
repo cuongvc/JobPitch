@@ -27,6 +27,24 @@ Header.directive('header',function(){
 	}
 })
 Header.controller('HeaderCtrl',function($scope,$http,SOCKET){
+	function findBootstrapEnvironment() {
+	    var envs = ['xs', 'sm', 'md', 'lg'];
+
+	    $el = $('<div>');
+	    $el.appendTo($('body'));
+
+	    for (var i = envs.length - 1; i >= 0; i--) {
+	        var env = envs[i];
+
+	        $el.addClass('hidden-'+env);
+	        if ($el.is(':hidden')) {
+	            $el.remove();
+	            return env
+	        }
+	    };
+	}
+	if(findBootstrapEnvironment() == 'xs') document.location.href = 'mobile';
+
 	var notifications = {
 		list: [],
 		unread: 0,
