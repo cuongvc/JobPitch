@@ -148,7 +148,6 @@ TemplateApp.controller('ProfileCtrl',function($scope,$http,$routeParams,PITCH,JO
 		aspectRatio: 2.75,
 	};
 	$scope.$watch(function(){return $scope.changeCoverImage.preview;},function(){
-		console.log($scope.changeCoverImage.preview);
 		if($scope.changeCoverImage.preview != undefined && $scope.changeCoverImage.preview != ''){
 			showCrop = true;
 			$scope.changeCoverImage.showCrop = showCrop;
@@ -221,7 +220,7 @@ TemplateApp.controller('ProfileCtrl',function($scope,$http,$routeParams,PITCH,JO
 	var JobService = JOB.getCompanyJob(data);
 	JobService.then(function(response){
 		if(response.error_code == 0){
-			jobs = response.jobs;
+			jobs = JOB.JobHandler(response.jobs,$scope.user._id);
 			$scope.jobs = jobs;
 		}else{
 			alert(response.msg);
@@ -241,6 +240,7 @@ TemplateApp.controller('ProfileCtrl',function($scope,$http,$routeParams,PITCH,JO
 		PitchService.then(function(response){
 			if(response.error_code == 0){
 				jobs = PITCH.getPitchHandler(jobs,job,$scope.user._id,response.app);
+				console.log(jobs);
 				$scope.jobs = jobs;
 			}else{
 				alert(response.msg);
@@ -258,11 +258,16 @@ TemplateApp.controller('ProfileCtrl',function($scope,$http,$routeParams,PITCH,JO
 			token: $scope.user.token,
 			comments: pitch.comment,
 		}
-		var JobService = PITCH.ViewPitchComment(jobs,job,pitch,data);
-		JobService.then(function(data){
-			jobs = data;
-			$scope.jobs = jobs;
-		})
+		var JobService = PITCH.getPitchComment(data);
+			JobService.then(function(response){
+				if(response.error_code == 0){
+					jobs = PITCH.getPitchCommentHandler(jobs,job,pitch,response.comment);
+					console.log(jobs);
+					$scope.jobs = jobs;
+				}else{
+					alert(response.msg);
+				}
+			})
 	}
 	/*************************************************************************************************************/
 											/*REPLY PITCH*/

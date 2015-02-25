@@ -45,7 +45,7 @@ Jobs.controller('JobCtrl',function($scope,$http,USER,PITCH,JOB,HASHTAG,LIKE,INTE
 	})
 	IO.on(APPLY_JOB_SOCKET_EVENT,function(data){
 		if(SOCKET.checkUserReciveNotification($scope.user._id, data.user_receive_notify) == false) return;
-
+		if(data.id_user_make_notify == $scope.user._id) return;
 		var pitch = data.app;
 			pitch = PITCH.pitchHandler(pitch,$scope.user._id);
 
