@@ -122,7 +122,6 @@ CreateJob.controller('CreateJobCtrl',function($scope,$http,GOOGLEMAP,HASHTAG){
 						newJob.address = Address;
 						newJob.position = position;
 						console.log(newJob);
-						return;
 					$http.post(STR_API_CREATE_JOB,newJob).success(function(response){
 						console.log(response);
 						if(response.error_code == 0){
