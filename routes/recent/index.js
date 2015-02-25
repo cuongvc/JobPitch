@@ -70,6 +70,7 @@ module.exports					=	function(req, res){
 
 				async.waterfall([
 					function(next){
+						console.log('PASS FIND : ', result);		
 
 						for (var i = 0 ; i < jobs.length; i ++){
 							if (jobs[i].containTag(tag) && jobs[i].distance(lat, lng) ){
