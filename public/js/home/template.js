@@ -14,7 +14,10 @@ TemplateApp.config(['$routeProvider', '$locationProvider', function($routeProvid
 			templateUrl: '../directives/user/user-profile.html', 
 			controller: 'UserProfileCtrl'
 		}).
-
+		when('/job/:job_id', {
+			templateUrl: '../directives/home/view-job.html', 
+			controller: 'ViewJobCtrl'
+		}).
 		when('/forgot-password', {
 			templateUrl: '../directives/forgot-password.html', 
 			controller: 'ForgotPasswordCtrl'

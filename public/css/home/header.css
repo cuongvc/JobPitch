@@ -104,3 +104,9 @@
 	font-size: 22px;
 	margin-top: -3px;
 }
+.notification-box a{
+	text-decoration: none;
+}
+.notification-box a span, .notification-box-body a strong{
+	color: #333;
+}

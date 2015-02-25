@@ -1,7 +1,7 @@
 TemplateApp.controller('IndexCtrl',function($scope,$http,JOB){
 	$scope.user    = user;
 	$scope.logedin = logedin;
-	
+	$scope.BASE_URL = BASE_URL;
 	$scope.LoadMore = function(element){
 		if(JobScroll.loading == true || PitchScroll.loading == true) return;
 		JobScroll.loading = true;

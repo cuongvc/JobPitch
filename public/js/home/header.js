@@ -1,4 +1,4 @@
-var Header = angular.module('header',['socket.service']);
+var Header = angular.module('header',['socket.service','notification.service','route.service']);
 Header.directive('header',function(){
 	return {
 		restrict: 'E',
@@ -26,7 +26,7 @@ Header.directive('header',function(){
 		},
 	}
 })
-Header.controller('HeaderCtrl',function($scope,$http,SOCKET){
+Header.controller('HeaderCtrl',function($scope,$http,SOCKET,NOTIFICATION,ROUTE){
 	function findBootstrapEnvironment() {
 	    var envs = ['xs', 'sm', 'md', 'lg'];
 
@@ -53,6 +53,12 @@ Header.controller('HeaderCtrl',function($scope,$http,SOCKET){
 	$scope.notifications = notifications;
 	console.log(notifications);
 	/*************************************************************************************************************/
+											/*VIEW NOTIFICATION && USER*/
+	/*************************************************************************************************************/
+	$scope.ViewNotification = function(url,evt){
+		ROUTE.RedirectTo(url,evt);
+	}
+	/*************************************************************************************************************/
 											/*SOCKET*/
 	/*************************************************************************************************************/
 	IO.on(CREATE_JOB_SOCKET_EVENT,function(data){
@@ -64,7 +70,8 @@ Header.controller('HeaderCtrl',function($scope,$http,SOCKET){
 			    type: CREATE_JOB_SOCKET_EVENT,
 			    value: {
 			        job_id: data.job_id,
-			    }
+			    },
+			    url: '/job/'+job_id,	
 			};
 		addNewNotification(SOCKET.makeNewNotification(data,SOCKET_ACTION[CREATE_JOB_SOCKET_EVENT],more_data));
 	})
@@ -79,6 +86,7 @@ Header.controller('HeaderCtrl',function($scope,$http,SOCKET){
 						job_id: data.job_id,
 						pitch_id: data.app_id,
 					}, 
+					url: "",
 				};
 		addNewNotification(SOCKET.makeNewNotification(data,SOCKET_ACTION[APPLY_JOB_SOCKET_EVENT],more_data));
 	});
@@ -93,6 +101,7 @@ Header.controller('HeaderCtrl',function($scope,$http,SOCKET){
 					job_id: data.job_id,
 					pitch_id: data.app_id,
 				}, 
+				url: "",
 			};
 		addNewNotification(SOCKET.makeNewNotification(data,SOCKET_ACTION[APPLY_JOB_SOCKET_EVENT],more_data));
 	})
@@ -107,6 +116,7 @@ Header.controller('HeaderCtrl',function($scope,$http,SOCKET){
 					job_id: data.job_id,
 					pitch_id: data.app_id,
 				}, 
+				url: "",
 			};
 		addNewNotification(SOCKET.makeNewNotification(data,SOCKET_ACTION[LIKE_PITCH_SOCKET_EVENT],more_data));
 	})
@@ -120,6 +130,7 @@ Header.controller('HeaderCtrl',function($scope,$http,SOCKET){
 				value: {
 					job_id: data.job_id,
 				}, 
+				url: "",
 			};
 		addNewNotification(SOCKET.makeNewNotification(data,SOCKET_ACTION[LIKE_JOB_SOCKET_EVENT],more_data));
 	})
@@ -153,22 +164,14 @@ Header.controller('HeaderCtrl',function($scope,$http,SOCKET){
 				start: 0, 
 				limit: 10,
 			};
-			$http.post(STR_API_GET_NOTIFICATION,data).success(function(response){
-				console.log(response);
-				if(response.error_code == 0){
-					notifications.list = new Array();
-					notifications.loaded = true;
-					response.notifys.forEach(function(v,k){
-						var newNotifi = {
-							user: v.content.userName_make_notify,
-							image: v.content.userAvatar_make_notify,
-							action: v.content.content,
-							content: v.content.short_content,
-						}
-						notifications.list.push(newNotifi);
-					})
-				}
-			})
+			var NotificationService = NOTIFICATION.getNotification(data);
+				NotificationService.then(function(response){
+					if(response.error_code == 0){
+						notifications = NOTIFICATION.getNotificationHandler(notifications,response.notifys);
+						console.log(notifications);
+						$scope.notifications = notifications;
+					}
+				})
 		}
 	}
 	

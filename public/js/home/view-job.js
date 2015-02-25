@@ -1,35 +1,25 @@
-var Jobs = angular.module('jobs',['nightfury-upload','application-sidebar','left-sidebar','user-service','ui.bootstrap.popover','pitch.service','job.service','hashtag.service','like.service','interest.service','route.service','socket.service']);
-Jobs.directive('jobs',function(){
-	return {
-		restrict: 'E',
-		templateUrl: '/directives/home/jobs.html',
-		link: function(scope,element,attrs){
-			// $('#ApplyDesc').elastic();
-		},
-	}
-})
-Jobs.controller('JobCtrl',function($scope,$http,USER,PITCH,JOB,HASHTAG,LIKE,INTEREST,ROUTE,SOCKET){
+TemplateApp.controller('ViewJobCtrl',function($scope,$http,$routeParams,USER,PITCH,JOB,HASHTAG,LIKE,INTEREST,ROUTE,SOCKET){
+	$scope.user = user;
+	$scope.logedin = logedin;
+
+	var jobs = new Array();
 	/*
-	* View user
+	* get Job & Pitch
 	*/
-	$scope.ViewUser = function(user_id,evt){
-		ROUTE.ViewUserProfile(user_id,evt);
-	}
-	/*
-	* load jobs
-	*/
-	JobScroll.start = 0;
 	var data = {
-			user_id: $scope.user._id,
-			token: $scope.user.token,
-			skip: JobScroll.start,
-			limit: JobScroll.limit,
+	    user_id: $scope.user._id,
+	    token: $scope.user.token,
+	    job_id: $routeParams.job_id,
+	};
+	var PitchService = PITCH.getPitch(data);
+	PitchService.then(function(response){
+		if(response.error_code == 0){
+			jobs = [response.job];
+			jobs = PITCH.getPitchHandler(jobs,response.job,$scope.user._id,response.app);
+			$scope.jobs = jobs;
+		}else{
+			alert(response.msg);
 		}
-	var JobService = JOB.getJob(data);
-	JobService.then(function(response){
-		console.log(response);
-		jobs = JOB.JobHandler(response.jobs,$scope.user._id);
-		$scope.jobs = jobs;
 	})
 	/*************************************************************************************************************/
 											/*SOCKET*/
@@ -299,88 +289,4 @@ Jobs.controller('JobCtrl',function($scope,$http,USER,PITCH,JOB,HASHTAG,LIKE,INTE
 			}
 		})
 	}
-	/*************************************************************************************************************/
-											/*EDIT JOB*/
-	/*************************************************************************************************************/
-	$scope.EditJob = function(job){
-		console.log(job);
-		$scope.EditJob = job;
-		$('#EditModal').modal('show');
-	}
-	var showEditCrop = false;
-	$scope.showEditCrop  = showEditCrop;
-	$scope.JobEditImage = {
-		upload: {
-			url: STR_UPLOAD_IMAGE,
-			postData: 'image',
-			dir: {
-				name: 'dir',
-				dir: 'upload/thumb',
-			},
-		},
-		progress : {
-			show: false,
-		},
-		clearOnclick: true,
-		crop: true,
-	}
-	$scope.EditJobCropCoverOpts = {
-		aspectRatio: 2.7,
-	};
-	$scope.$watch(function(){return $scope.JobEditImage.preview;},function(){
-		if($scope.JobEditImage.preview != undefined && $scope.JobEditImage.preview != ''){
-			showEditCrop = true;
-			$scope.showEditCrop = showEditCrop;
-		}
-	})
-	
-	$scope.EditJobCropChange = function(c){
-		console.log(c);
-		$scope.JobEditImage.coords = {
-			x: c.x,
-			y: c.y,
-			width: c.w,
-			height: c.y2 - c.y,
-		};
-	}
-	$scope.EditCrop = function(){
-		showEditCrop = false;
-		$scope.showEditCrop = showEditCrop;
-		$scope.JobEditImage.startUpload = true;
-	}
-	/*
-	* save edit info
-	*/
-	$scope.SaveEdit = function(job,title,address,desc){
-		if($scope.JobEditImage.path == undefined || $scope.JobEditImage.path == ''){
-			alert('Please wait unti image upload complete');
-			return;
-		}
-		var HashTags = HASHTAG.findHashTag(title).concat(HASHTAG.findHashTag(desc));
-		var data = {
-			user_id: $scope.user._id,
-			token: $scope.user.token,
-			job_id: job._id,
-			title: title,
-			desc: desc,
-			hash_tag: HashTags,
-			link_direct: '',
-			lat: '17',
-			lng: '104',
-			address: address,
-			temp_path: $scope.JobEditImage.path,
-			extension: $scope.JobEditImage.extension,
-		};
-		console.log(data);
-		var JobService = JOB.edit(data);
-			JobService.then(function(response){
-				if(response.error_code == 0){
-					jobs = JOB.editHandler(jobs,job,response.job);
-					$scope.jobs = jobs;
-					$('#EditModal').modal('hide');
-				}else{
-					alert(response.msg);
-				}
-			})
-	}
-})	
+})
