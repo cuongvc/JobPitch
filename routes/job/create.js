@@ -32,6 +32,8 @@ module.exports				=	function(req, res){
     var lat           = data['lat'];
     var lng           = data['lng']
     var address       = data['address'];
+    var city          = data['city'];
+    var country       = data['country'];
     var time          = new Date(new Date().toGMTString()).toJSON();
     var temp_path     = data['temp_path'];
     var extension     = data['extension'];
@@ -110,7 +112,7 @@ module.exports				=	function(req, res){
       ], function(err){
         var newJob = new Job();
         newJob.newInfor(image, image_small, image_normal, user_exist.id, user_exist.userName, title, 
-                        hash_tag, desc, lat, lng, address, link_direct, time, 
+                        hash_tag, desc, lat, lng, address, city, country, link_direct, time, 
                         function(job){
 
                           job.save(function(err){

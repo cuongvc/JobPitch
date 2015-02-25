@@ -2,6 +2,7 @@
 var mongoose         = require('mongoose');
 var searchPlugin     = require('mongoose-search-plugin');
 
+var User             = require('./users');
 var ObjectId         = mongoose.Schema.Types.ObjectId;
 var bcrypt           = require('bcrypt-nodejs');
 var domain           = require('./../config/default').domain_default;
@@ -84,6 +85,16 @@ var jobSchema = mongoose.Schema({
         address      : {
             type         : String,
             default      : ''
+        },
+
+        city         : {
+            type         : String,
+            default      : ''
+        },
+
+        country      : {
+            type         : String,
+            default      : ''
         }
     },
 
@@ -125,6 +136,11 @@ var jobSchema = mongoose.Schema({
             type        : ObjectId,
             ref         : 'users'
         }]
+    },
+
+    score            : {
+        type         : Number,
+        default      : 0
     },
 
     applications     : {
@@ -227,7 +243,7 @@ jobSchema.methods.distance      = function(lat, lng){
 }
 
 jobSchema.methods.editInfor    = function(image, image_small, image_normal, user_id, userName
-                                        ,title, hash_tag, description, lat, lng, address
+                                        ,title, hash_tag, description, lat, lng, address, city, country
                                         ,link_direct, time , callback){
 
     var job = this;
@@ -247,7 +263,9 @@ jobSchema.methods.editInfor    = function(image, image_small, image_normal, user
     job.location.lat           = lat;
     job.location.lng           = lng;
     job.location.address       = address;
-    
+    job.location.city          = city;
+    job.location.country       = country;
+
     var newPermalink = new Permalink();
     newPermalink.newInfor('', job._id, 2, title, function(){
         job.permalink =  newPermalink.permalink;
@@ -259,30 +277,71 @@ jobSchema.methods.editInfor    = function(image, image_small, image_normal, user
 
 
 jobSchema.methods.addApply      = function(user_id, application, callback){
+    var job = this;
+    if (job.receive_notify.indexOf(user_id) == -1)
+        job.receive_notify.push(user_id);
 
-    if (this.receive_notify.indexOf(user_id) == -1)
-        this.receive_notify.push(user_id);
+    User.findOne({
+        _id: job.user_id
+    }, function(err, user_own_job) {
+        user_own_job.score++;
+        user_own_job.save(function(err) {
+            if (err) {
+                console.log(err);
+            }
+        })
+    })
 
-    this.applications.list.push(application);
-    this.applications.number ++;
-    this.save(function(err){
+    job.applications.list.push(application);
+    job.applications.number ++;
+    job.score ++;
+    job.save(function(err){
         callback();
     })
 }
 
 jobSchema.methods.addLike       = function(user_id, callback){
-    if (this.likes.list.indexOf(user_id) != -1){
-        this.likes.list.splice(this.likes.list.indexOf(user_id), 1);
-        this.likes.number --;
-        this.save(function(err){
+    var job = this;
+    if (job.likes.list.indexOf(user_id) != -1) {
+        job.likes.list.splice(job.likes.list.indexOf(user_id), 1);
+        job.likes.number--;
+        job.score--;
+        job.save(function(err) {
             callback(0);
         })
+
+        User.findOne({
+            _id: job.user_id
+        }, function(err, user_own_job) {
+            user_own_job.score--;
+            user_own_job.save(function(err) {
+                if (err) {
+                    console.log(err);
+                }
+            })
+        })
+
+
     } else{
-        this.likes.list.push(user_id);
-        this.likes.number ++;
-        this.save(function(err){
+        job.likes.list.push(user_id);
+        job.likes.number ++;
+        job.score ++;
+        job.save(function(err){
             callback(1);
         })
+
+        User.findOne({
+            _id: job.user_id
+        }, function(err, user_own_job) {
+            user_own_job.score++;
+            user_own_job.save(function(err) {
+                if (err) {
+                    console.log(err);
+                }
+            })
+        })
+
+
     }
 }
 

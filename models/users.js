@@ -34,18 +34,19 @@ var userSchema = mongoose.Schema({
 
     location: {
         lat: {
-            type: Number,
-            default: 40.681966
+            type: Number
         },
 
         lng: {
-            type: Number,
-            default: -73.998220
+            type: Number
         },
 
-        address: {
-            type: String,
-            default: "417 Clinton St Brooklyn, NY 11231, Hoa Kỳ"
+        city: {
+            type: String
+        },
+
+        country : {
+            type : String
         }
     },
 
@@ -235,6 +236,11 @@ var userSchema = mongoose.Schema({
     token: {
         type: String,
         default: ''
+    },
+
+    score : {
+        type : Number,
+        default : 0
     },
 
     permission: {
@@ -738,6 +744,7 @@ userSchema.methods.makeToken = function() {
 
 userSchema.methods.addJob = function(job_id) {
     this.myJobs.push(job_id);
+    this.score ++;
     this.save(function(err) {
         return 0;
     });
@@ -795,11 +802,13 @@ userSchema.methods.addMyFollow = function(user_id, callback) {
 userSchema.methods.addFollowMe = function(user_id, callback) {
     if (this.followMes.indexOf(user_id) == -1) {
         this.followMes.push(user_id);
+        this.score ++;
         this.save(function(err) {
             callback();
         })
     } else {
         console.log('remove from follow me');
+        this.score --;
         this.followMes.splice(this.followMes.indexOf(user_id), 1);
         this.save(function(err) {
             callback();

@@ -239,6 +239,9 @@ app.get('/directive/home/left-sidebar',function(req,res){
 	// EXPORT TO PDF
 	Router_body.post('/export_pdf',						 routes.export_pdf);
 
+	// SWING CURRENT
+	Router_body.post('/swing_current', 				 routes.swing_current);
+
 // --------GET DATA FROM PERMALINK -------------------------------
 
 app.get('/:permalink',											 routes.get.permalink);

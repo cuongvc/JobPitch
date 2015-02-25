@@ -14,12 +14,10 @@ module.exports = function(req, res) {
     memoryCache.get('top_company', function(err, result) {
         console.log(result);
         if (err || !result || typeof(result) == 'undefined') {
-            console.log('search top company');
             User.find({isUser : 2}, 'userName followMes',  function(err, companys) {
                 
                 companys.sort(function(company_1, company_2) {
-                    console.log(company_1 , company_2 );
-                    return company_1.followMes.length < company_2.followMes.length;
+                   return company_1.score < company_2.score;
                 });
 
                 companys = companys.slice(0, 10);

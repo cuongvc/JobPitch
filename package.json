@@ -47,6 +47,7 @@
     "express-subdomain": "~1.0.3",
     "subdomain": "~1.2.0",
     "apicache": "0.0.12",
-    "cache-manager": "~0.18.0"
+    "cache-manager": "~0.18.0",
+    "geoip-lite": "~1.1.5"
   }
 }

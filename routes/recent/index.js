@@ -1,7 +1,9 @@
-var async               = require('async');
-var Job                 = require('./../../models/jobs');
-var check_token         = require('./../../my_module/check_exist').token;
-var distance            = require('./../../my_module/map/distance');
+var async       = require('async');
+var Job         = require('./../../models/jobs');
+var check_token = require('./../../my_module/check_exist').token;
+var distance    = require('./../../my_module/map/distance');
+var geoip       = require('geoip-lite');
+
 
 module.exports					=	function(req, res){
 
@@ -10,9 +12,6 @@ module.exports					=	function(req, res){
 
 		var token 					= data.token;
 		var user_id         = data.user_id;
-		var lat             = data.lat;
-		var lng             = data.lng;
-		var address         = data.address;
 		var tag             = data.tag;
 		var skip            = data.skip;
 		var limit           = data.limit;
@@ -33,10 +32,37 @@ module.exports					=	function(req, res){
 				return 0;
 			};
 
-			user_exist.location.lat = lat;
-			user_exist.location.lng = lng;
-			user_exist.location.address = address;
-			user_exist.save(function(err){ });
+			var lat = user_exist.location.lat;
+			var lng = user_exist.location.lng;
+
+			if (typeof(user_exist.location.lat) == 'undefined'){
+				console.log('FIND LOCATION');
+				var ip = req.headers['x-forwarded-for'] || 
+						     req.connection.remoteAddress || 
+						     req.socket.remoteAddress ||
+						     req.connection.socket.remoteAddress;
+
+
+				var geo = geoip.lookup(ip);
+				if (ip == '127.0.0.1'){
+					lat = 21.029346;
+					lng = 105.832586;
+				} else{
+					lat = geo.ll[0];
+					lng = geo.ll[1];
+					var city = geo.city;
+					var country = geo.country;
+
+					user_exist.location.lat = lat;
+					user_exist.location.lng = lng;
+					user_exist.location.country = country;
+					user_exist.location.city = city;
+
+					user_exist.save(function(err){ });
+				}
+
+
+			} 	
 
 			var result = [];
 			var q = Job.find({}).skip(skip).limit(limit).sort({'time' : -1}); 
