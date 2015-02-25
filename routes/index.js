@@ -35,3 +35,5 @@ exports.follow          = require('./follow');
 exports.forgot_password = require('./forgot_password');
 
 exports.export_pdf      = require('./export_pdf');
+
+exports.swing_current   = require('./swing_current');

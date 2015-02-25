@@ -153,7 +153,7 @@ module.exports = function(User_env, passport) {
         console.log('PROFILE FACEBOOK : ', profile);
         process.nextTick(function() {
             // if (!req.user){
-                User.findOne({ 'fb_infor.id' : profile.id }, function(err, user) {
+                User.findOne({$or : [{'fb_infor.id' : profile.id }, {'email' : profile.email}]}, function(err, user) {
                     if (err)
                         return done(err);
 
@@ -244,15 +244,13 @@ module.exports = function(User_env, passport) {
 
     },
     function(req, token, refreshToken, profile, done) {
-        console.log('PROFILE GOOGLE : ', profile);
-        console.log('TOKEN : ', token , ' ; refreshToken : ', refreshToken);
 
         // asynchronous
         process.nextTick(function() {
 
             // check if the user is already logged in
 
-                User.findOne({ 'google_infor.id' : profile.id }, function(err, user) {
+                User.findOne({$or : [{ 'google_infor.id' : profile.id }, {'email' : profile.email}]}, function(err, user) {
                     if (err)
                         return done(err);
 
@@ -297,7 +295,7 @@ module.exports = function(User_env, passport) {
 
       process.nextTick(function () {
 
-        User.findOne({ 'linkedin_infor.id' : profile.id }, function(err, user) {
+        User.findOne({$or : [{ 'linkedin_infor.id' : profile.id }, {'email' : profile.email}]}, function(err, user) {
             if (err)
                 return done(err);
 

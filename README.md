@@ -386,20 +386,10 @@ Cache-Control: no-cache
 {
     "token"         : "$2a$08$X0jvCjP37...0YG576LUMZFDSa",
     "user_id"       : "54c8580e86d5ce565ceb3168",
-    "lat"           : 21.018549,
-    "lng"           : 105.812198,
     "tag"           : "HR",
-    "address"       : "9 Nguyên Hong, Thành Công, Ba Đình, Hà Nội, Việt Nam",
     "skip"          : 0,
     "limit"         : 50
 }
-
-    + lat, lng, address la  required. Gui location cua user da luu.
-
-        Neu user doi location hoac thong tin user khong co location (khi lan 
-        dau dang nhap - de mac dinh lat = 40.681966, lng =  -73.998220, 
-        address = "417 Clinton St Brooklyn, NY 11231, Hoa Kỳ") thi xin 
-        quyen lay location roi gui. 
 
     + tag : filter job theo tag
 
@@ -2704,6 +2694,37 @@ Cache-Control: no-cache
             "title": "Engineering Manager"
         }
     ]
+}
+
+```
+
+### 36. Swing current
+
+```
+POST     http://jobpitch.campcoders.com/api/swing_current
+Content-Type: application/json
+Cache-Control: no-cache
+
+{
+    "token"                 : "$2a$08$YVdz7YmQhuVcY55Zc7tnXeReCXXnBv6O8IHPc1wra89Kn/X1J2Wm2",
+    "user_id"               : "54deb68032f4c1f223bc6e72",
+    "lat"                   : "21.023730",
+    "lng"                   : "105.800764",
+    "city"                  : "Ha Noi",
+    "country"               : "Viet Nam"
+
+}
+
+```
+##### Regex
+```
+
+
+```
+##### Return
+```
+{
+    "error_code": 0
 }
 
 ```

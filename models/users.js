@@ -34,18 +34,19 @@ var userSchema = mongoose.Schema({
 
     location: {
         lat: {
-            type: Number,
-            default: 40.681966
+            type: Number
         },
 
         lng: {
-            type: Number,
-            default: -73.998220
+            type: Number
         },
 
-        address: {
-            type: String,
-            default: "417 Clinton St Brooklyn, NY 11231, Hoa Kỳ"
+        city: {
+            type: String
+        },
+
+        country : {
+            type : String
         }
     },
 
