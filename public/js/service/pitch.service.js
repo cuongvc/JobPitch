@@ -64,7 +64,12 @@ PitchService.service('PITCH',function($http,$q){
 	this.postNewPitchHandler = function(jobs,job,application){
 		var index = jobs.indexOf(job);
 		application.number = 0;
+		application.comments = {
+			numberOfComment: 0,
+			list: [],
+		};
 		jobs[index].applications.loadFromServer.push(application);
+		jobs[index].applications.list.push(application._id);
 		jobs[index].applications.number++;
 		return jobs;
 	}
