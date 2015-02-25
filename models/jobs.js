@@ -95,7 +95,13 @@ var jobSchema = mongoose.Schema({
         country      : {
             type         : String,
             default      : ''
-        }
+        },
+
+        state      : {
+            type         : String,
+            default      : ''
+        },
+
     },
 
     link_direct      : {
@@ -206,7 +212,7 @@ jobSchema.methods.containTag    = function(tag){
 }
 
 jobSchema.methods.newInfor    = function(image, image_small, image_normal, user_id, userName
-                                        ,title, hash_tag, description, lat, lng, address, city, country
+                                        ,title, hash_tag, description, lat, lng, address, city, country, state
                                         ,link_direct, time , callback){
 
     var job = this;
@@ -228,6 +234,7 @@ jobSchema.methods.newInfor    = function(image, image_small, image_normal, user_
     job.location.address       = address;
     job.location.city          = city;
     job.location.country       = country;
+    job.location.state         = state;
     
     var newPermalink = new Permalink();
     newPermalink.newInfor('', job._id, 2, title, function(){
@@ -245,7 +252,7 @@ jobSchema.methods.distance      = function(lat, lng){
 }
 
 jobSchema.methods.editInfor    = function(image, image_small, image_normal, user_id, userName
-                                        ,title, hash_tag, description, lat, lng, address, city, country
+                                        ,title, hash_tag, description, lat, lng, address, city, country, state
                                         ,link_direct, time , callback){
 
     var job = this;
@@ -267,6 +274,7 @@ jobSchema.methods.editInfor    = function(image, image_small, image_normal, user
     job.location.address       = address;
     job.location.city          = city;
     job.location.country       = country;
+    job.location.state         = state;
 
     var newPermalink = new Permalink();
     newPermalink.newInfor('', job._id, 2, title, function(){

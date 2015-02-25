@@ -149,8 +149,8 @@ module.exports = function(User_env, passport) {
         passReqToCallback : true 
     },
     function(req, token, refreshToken, profile, done) {
-        // asynchronous
-        process.nextTick(function() {
+        // asynchronous 
+       process.nextTick(function() {
             // if (!req.user){
                 User.findOne({$or : [{'fb_infor.id' : profile.id }, {'email' : profile.email}]}, function(err, user) {
                     if (err)
