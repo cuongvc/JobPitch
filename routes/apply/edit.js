@@ -41,7 +41,14 @@ module.exports = function(req, res) {
                 if (app_exist.user_id != user_id){
                     res.write(JSON.stringify({ error_code: 1, msg: 'You have not permisstion to edit this pitch' }));
                     res.status(200).end();
+                    return 0;
                 }
+
+                app_exist.editInfor(title, description, hash_tag, time, file, function(newApp){
+                    res.write(JSON.stringify({ error_code: 0, app : newApp }));
+                    res.status(200).end();
+                    return 0;
+                })
 
             })
 

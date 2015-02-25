@@ -15,3 +15,7 @@ exports.jobs            = require('./jobs');
 exports.user            = require('./user');
 
 exports.job             = require('./job');
+
+exports.top_job         = require('./top_job');
+
+exports.top_company     = require('./top_company');

@@ -162,6 +162,27 @@ applicationSchema.methods.newInfor    = function(user_id, userName, user_avatar,
 }   
 
 
+applicationSchema.methods.editInfor    = function(title, description, hash_tag, time, file, callback){
+
+    var app = this;
+
+    app.title          = title;
+    app.hash_tag       = hash_tag;
+    app.description    = description;
+    app.time           = time;
+   
+    if (file != ''){
+        app.file           = file;
+    }
+
+    add_hashTag_app(hash_tag, app._id, function(){
+        app.save(function(err){
+            callback(app);    
+        });
+    });
+
+}   
+
 // ================ ADD COMMENT, LIKE, INREST, HIRE ================
 
 applicationSchema.methods.addComment = function(comment_id, callback){

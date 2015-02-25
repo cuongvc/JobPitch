@@ -17,6 +17,7 @@ var db_url          								= 	require('./config/default').database;
 // config router type
 var Router_body     								=   express.Router();
 var Router_formdata 								=   express.Router();
+var Router_subdomain                =   express.Router();
 var routes          								=   require('./routes/index');
 
 var User                            =   require('./models/users');
@@ -30,7 +31,7 @@ var Permalink 										  = 	require('./models/permalinks');
 // connect to our database
 mongoose.connect(db_url); 
 
-require('./config/index.js')(app, Router_formdata, Router_body, passport);
+require('./config/index.js')(app, Router_formdata, Router_body, Router_subdomain, passport);
 
 app.get('/login_fb', function(req, res){
 	res.render('login_fb.html');
@@ -159,6 +160,11 @@ app.get('/directive/home/left-sidebar',function(req,res){
 // ============================ API ============================================
 
 
+  Router_subdomain.get('/aaa/bbb',										   function(req, res){
+  	res.write(JSON.stringify({'HELLO' : 'WORLD'}));
+  	res.status(200).end();
+  })
+
 //  ----- LOGIN --------------------------
 	require('./routes/login').social(app, passport);
 
@@ -179,7 +185,7 @@ app.get('/directive/home/left-sidebar',function(req,res){
 
 //  ------APPLY --------------------------
 	Router_body.post('/apply',                 routes.apply.create);
-	// Router_body.post('/edit_apply',            routes.apply.edit);
+	Router_body.post('/edit_apply',            routes.apply.edit);
 	Router_body.post('/delete_apply',          routes.apply.delete);
 
 //  ------EDIT PROFILE --------------------------
@@ -204,6 +210,9 @@ app.get('/directive/home/left-sidebar',function(req,res){
 //  ------ COMMENT ------------------------------
 	Router_body.post('/comment',							 routes.comment.create);
 	Router_body.post('/get_comments',          routes.comment.get_comments);
+	Router_body.post('/delete_comment',		     routes.comment.delete);
+	Router_body.post('/edit_comment',		       routes.comment.edit);
+
 
 //  ------ LIKE--- ------------------------------
 	Router_body.post('/like',							 		 routes.like);
@@ -243,12 +252,17 @@ app.get('/directive/home/left-sidebar',function(req,res){
 
 // --------GET DATA FROM PERMALINK -------------------------------
 
-app.get('/:permalink',											 routes.get.permalink);
+	app.get('/:permalink',										 routes.get.permalink);
 
 // --------GET INFOR A USER(CONTACT) ---------------------------------------
 
-app.get('/api/user/:user_id',								 routes.get.user);
-app.get('/api/job/:job_id',									 routes.get.job);
+	app.get('/api/user/:user_id',							 routes.get.user);
+	app.get('/api/job/:job_id',								 routes.get.job);
+
+// -------- RETURN TOP JOB, COMPANY -------------------------------------------------
+
+	app.get('/api/top_job',						 routes.get.top_job);
+	app.get('/api/top_company',				 routes.get.top_company);
 
 // =================================== LISTEN BY IP AND PORT ========================
 
