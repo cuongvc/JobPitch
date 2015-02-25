@@ -17,7 +17,7 @@ var GoogleMap = angular.module('google-map-service',[]);
 				lng: results[0].geometry.location.D,
 				formatted_address: results[0].formatted_address,
 			};
-			if(results[0].address_components != undefined && results[1].address_components != undefined && results[0].address_components.length < results[1].address_components.length){
+			if(results[0] != undefined && results[1] != undefined && results[0].address_components.length < results[1].address_components.length){
 				var location = results[1].address_components;
 			}else{
 				var location = results[0].address_components;
@@ -33,6 +33,15 @@ var GoogleMap = angular.module('google-map-service',[]);
 					data.city = v;
 				}
 			});
+			if(data.city == undefined){
+				data.city = "";
+			}
+			if(data.country == undefined){
+				data.country = "";
+			}
+			if(data.state == undefined){
+				data.state = "";
+			}
 			return data;
 		}
 	})
