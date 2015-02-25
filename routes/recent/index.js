@@ -61,7 +61,6 @@ module.exports					=	function(req, res){
 					user_exist.save(function(err){ });
 				}
 
-
 			} 	
 
 			var result = [];
@@ -76,11 +75,13 @@ module.exports					=	function(req, res){
 							if (jobs[i].containTag(tag) && jobs[i].distance(lat, lng) ){
 								result.push(jobs[i]);
 							}
-						};						
+						};				
+						console.log('PASS DISTANCE : ', result);		
 						next(null);
 					},
 
 				], function(err){
+
 					res.write(JSON.stringify({ error_code : 0, jobs : result}));
 					res.status(200).end();
 				});
