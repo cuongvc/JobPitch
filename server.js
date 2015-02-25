@@ -253,6 +253,10 @@ app.get('/directive/home/left-sidebar',function(req,res){
 	// SWING CURRENT
 	Router_body.post('/swing_current', 				 routes.swing_current);
 
+	// SHARE
+	Router_body.post('/share_job',             routes.share.job);
+	Router_body.post('/share_apply',           routes.share.apply);
+
 // --------GET DATA FROM PERMALINK -------------------------------
 
 	app.get('/:permalink',										 routes.get.permalink);
@@ -264,8 +268,8 @@ app.get('/directive/home/left-sidebar',function(req,res){
 
 // -------- RETURN TOP JOB, COMPANY -------------------------------------------------
 
-	app.get('/api/top_job',						 routes.get.top_job);
-	app.get('/api/top_company',				 routes.get.top_company);
+	app.get('/api/top_job',						 				 routes.get.top_job);
+	app.get('/api/top_company',				 				 routes.get.top_company);
 
 // =================================== LISTEN BY IP AND PORT ========================
 
