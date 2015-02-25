@@ -2731,3 +2731,57 @@ Cache-Control: no-cache
 
 ```
 
+### 37. Share job
+
+```
+POST     http://jobpitch.campcoders.com/api/share_job
+Content-Type: application/json
+Cache-Control: no-cache
+
+{
+    "token"                 : "$2a$08$cSgfHvg.S59MO0JAXoOyT3GqaoEQJYKYyGxhzu.",
+    "user_id"               : "54deb68032f4c1f223bc6e72",
+    "job_id"                : "54ebee4da14809601ab0f81a"
+}
+
+```
+##### Regex
+```
+
+
+```
+##### Return
+```
+{
+    "error_code": 0
+}
+
+```
+
+### 38. Share apply
+
+```
+POST     http://jobpitch.campcoders.com/api/share_apply
+Content-Type: application/json
+Cache-Control: no-cache
+
+{
+    "token"                 : "$2a$08$cSgfHvg.S59MO0JAXo.aoEQJYKYyGxhzu.",
+    "user_id"               : "54deb68032f4c1f223bc6e72",
+    "app_id"                : "54ec0b97d5e8c0b512f3f27e"
+}
+
+```
+##### Regex
+```
+
+
+```
+##### Return
+```
+{
+    "error_code": 0
+}
+
+```
+

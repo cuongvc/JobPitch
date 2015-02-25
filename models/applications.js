@@ -194,19 +194,68 @@ applicationSchema.methods.addComment = function(comment_id, callback){
 
 
 applicationSchema.methods.addLike       = function(user_id, callback){
-    if (this.likes.list.indexOf(user_id) != -1){
-        this.likes.list.splice(this.likes.list.indexOf(user_id), 1);
-        this.likes.number --;
-        this.save(function(err){
+    var app = this;
+    if (app.likes.list.indexOf(user_id) != -1){
+        app.likes.list.splice(app.likes.list.indexOf(user_id), 1);
+        app.likes.number --;
+
+        User.findOne({
+            _id: app.user_id
+        }, function(err, user_own_app) {
+            user_own_app.score--;
+            user_own_app.save(function(err) {
+                if (err) {
+                    console.log(err);
+                }
+            })
+        })
+
+        app.save(function(err){
             callback(0);
         })
+
+
+
+
     } else{
-        this.likes.list.push(user_id);
-        this.likes.number ++;
-        this.save(function(err){
+        app.likes.list.push(user_id);
+        app.likes.number ++;
+
+        User.findOne({
+            _id: app.user_id
+        }, function(err, user_own_app) {
+            user_own_app.score++;
+            user_own_app.save(function(err) {
+                if (err) {
+                    console.log(err);
+                }
+            })
+        })
+
+        app.save(function(err){
             callback(1);
         })
     }
+}
+
+applicationSchema.methods.addShare       = function(user_id){
+    var app = this;
+    app.shares.list.push(user_id);
+    app.shares.number ++;
+
+    User.findOne({
+        _id: app.user_id
+    }, function(err, user_own_job) {
+        user_own_job.score++;
+        user_own_job.save(function(err) {
+            if (err) {
+                console.log(err);
+            }
+        })
+    })
+
+    app.save(function(err){});
+
 }
 
 applicationSchema.methods.addInterest       = function(user_id, callback){
@@ -214,6 +263,17 @@ applicationSchema.methods.addInterest       = function(user_id, callback){
     if (app.interests.list.indexOf(user_id) != -1){
         app.interests.list.splice(app.interests.list.indexOf(user_id), 1);
         app.interests.number --;
+
+        User.findOne({
+            _id: app.user_id
+        }, function(err, user_own_job) {
+            user_own_job.score--;
+            user_own_job.save(function(err) {
+                if (err) {
+                    console.log(err);
+                }
+            })
+        })
 
         app.save(function(err){
             callback();
@@ -225,12 +285,16 @@ applicationSchema.methods.addInterest       = function(user_id, callback){
 
         User.findOne({_id : app.user_id}, function(err, user_exist){
             if (!err && user_exist){
+
+                user_exist.score ++;
+                user_exist.save(function(err){});
+
                 user_exist.addInterest(user_id, function(){
                     app.save(function(err){
-                        console.log('App save');
                         callback();
                     })            
                 })
+
             } else{
                 callback();
             }

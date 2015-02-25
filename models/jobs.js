@@ -345,6 +345,29 @@ jobSchema.methods.addLike       = function(user_id, callback){
     }
 }
 
+jobSchema.methods.addShare       = function(user_id){
+    var job = this;
+
+    job.shares.list.push(user_id);
+    job.shares.number ++;
+    job.score ++;
+    job.save(function(err){
+    })
+
+    User.findOne({
+        _id: job.user_id
+    }, function(err, user_own_job) {
+        user_own_job.score++;
+        user_own_job.save(function(err) {
+            if (err) {
+                console.log(err);
+            }
+        })
+    })
+
+}
+
+
 jobSchema.methods.addContract       = function(contract, callback){
     if (this.contracts.list.indexOf(contract._id) == -1){
         this.contracts.list.push(contract._id);
