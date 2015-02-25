@@ -70,14 +70,14 @@ module.exports					=	function(req, res){
 
 				async.waterfall([
 					function(next){
-						console.log('PASS FIND : ', jobs);		
+						// console.log('PASS FIND : ', jobs);		
 
 						for (var i = 0 ; i < jobs.length; i ++){
 							if (jobs[i].containTag(tag) && jobs[i].distance(lat, lng) ){
 								result.push(jobs[i]);
 							}
 						};				
-						console.log('PASS DISTANCE : ', result);		
+						// console.log('PASS DISTANCE : ', result);		
 						next(null);
 					},
 
