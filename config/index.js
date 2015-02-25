@@ -21,7 +21,7 @@ module.exports = function(app, Router_formdata, Router_body, Router_subdomain, p
     // app.use(bodyParser());            //  get information from html form
     app.use(bodyParser.json());
     app.use(bodyParser.json({limit: '50mb'}));
-    app.use(bodyParser.urlencoded({limit: '50mb'}));
+    // app.use(bodyParser.urlencoded({limit: '50mb'}));
 
     require('./passport')(process.argv[2], passport); // pass passport for configuration
 

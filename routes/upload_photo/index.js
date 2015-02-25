@@ -18,7 +18,7 @@ module.exports				=	function(req, res){
       var height = fields['height'];
 
       if (err){
-      	console.log('Error : ', err);
+      	console.log('SAO LAI LOI O DAY??? Error : ', err);
         res.write(JSON.stringify({error_code : 1, msg : err.toString()}));
         res.status(200).end();
       } else{
@@ -43,13 +43,13 @@ module.exports				=	function(req, res){
             gm(temp_path)
               .crop(width, height, x, y)
               .autoOrient()
-              .write(temp_path, function (err) {
+              .write(temp_path + '_', function (err) {
                 if (err) {
-                  console.log('Error : ', err);
+                  console.log('Error : ', err, 'when write tempath : ', temp_path);
                 }
                 else{
                   console.log('CROP SUCCESS');
-                  res.write(JSON.stringify({error_code : 0, path : temp_path, extension : extension}));
+                  res.write(JSON.stringify({error_code : 0, path : temp_path + '_', extension : extension}));
                   res.status(200).end();
                 }
             })  

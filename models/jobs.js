@@ -206,7 +206,7 @@ jobSchema.methods.containTag    = function(tag){
 }
 
 jobSchema.methods.newInfor    = function(image, image_small, image_normal, user_id, userName
-                                        ,title, hash_tag, description, lat, lng, address
+                                        ,title, hash_tag, description, lat, lng, address, city, country
                                         ,link_direct, time , callback){
 
     var job = this;
@@ -226,6 +226,8 @@ jobSchema.methods.newInfor    = function(image, image_small, image_normal, user_
     job.location.lat           = lat;
     job.location.lng           = lng;
     job.location.address       = address;
+    job.location.city          = city;
+    job.location.country       = country;
     
     var newPermalink = new Permalink();
     newPermalink.newInfor('', job._id, 2, title, function(){

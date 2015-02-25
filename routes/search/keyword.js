@@ -38,7 +38,7 @@ module.exports									=	function(req, res){
 					next(null);
 				} else{
 					Job.search(keyword, {}, {
-						sort : {time : 1},
+						sort : {time : -1},
 						limit : limit,
 						skip  : skip
 					}, function(err, jobs){
@@ -53,7 +53,7 @@ module.exports									=	function(req, res){
 					next(null);
 				} else {
 					Application.search(keyword, {}, {
-						sort : {time : 1},
+						sort : {time : -1},
 						limit : limit,
 						skip  : skip
 					}, function(err, apps){
@@ -68,7 +68,7 @@ module.exports									=	function(req, res){
 					next(null);
 				} else{
 					Comment.search(keyword, {}, {
-						sort : {time : 1},
+						sort : {time : -1},
 						limit : limit,
 						skip  : skip
 					}, function(err, cmts){

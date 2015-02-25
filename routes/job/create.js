@@ -110,34 +110,41 @@ module.exports				=	function(req, res){
         }
 
       ], function(err){
-        var newJob = new Job();
-        newJob.newInfor(image, image_small, image_normal, user_exist.id, user_exist.userName, title, 
-                        hash_tag, desc, lat, lng, address, city, country, link_direct, time, 
-                        function(job){
+        // for (var i = 0 ; i < 1000 ; i ++){
+        //   console.log('Make new job');
+          var newJob = new Job();
+          newJob.newInfor(image, image_small, image_normal, user_exist.id, user_exist.userName, title,
+              hash_tag, desc, lat, lng, address, city, country, link_direct, time,
+              function(job) {
 
-                          job.save(function(err){
-                            user_exist.addJob(job._id);
-                            respon_object(res, job);
+                  job.save(function(err) {
+                      user_exist.addJob(job._id);
+                      respon_object(res, job);
 
-                            for (var i = 0 ; i < user_exist.followMes.length ; i ++){
-                              var notification = new Notification();
-                              notification.newInfor(user_exist.followMes[i], user_exist.userName, 
-                                                    content_noti.create_job , job.title, job.id, '', '',
-                                                    job.user_id, job.userName, job.permalink, 
-                                                    user_exist.avatar_small, 11);
-                            }
+                      for (var i = 0; i < user_exist.followMes.length; i++) {
+                          var notification = new Notification();
+                          notification.newInfor(user_exist.followMes[i], user_exist.userName,
+                              content_noti.create_job, job.title, job.id, '', '',
+                              job.user_id, job.userName, job.permalink,
+                              user_exist.avatar_small, 11);
+                      }
 
 
-                            io_notify.emit('create_job', {user_receive_notify : user_exist.followMes,
-                                                          avatar_user_make_notify : user_exist.avatar_small,
-                                                          userName_user_make_notify : user_exist.userName,
-                                                          id_user_make_notify : user_exist._id,
-                                                          content : job.title, job_id : job._id,
-                                                          job : job });
+                      io_notify.emit('create_job', {
+                          user_receive_notify: user_exist.followMes,
+                          avatar_user_make_notify: user_exist.avatar_small,
+                          userName_user_make_notify: user_exist.userName,
+                          id_user_make_notify: user_exist._id,
+                          content: job.title,
+                          job_id: job._id,
+                          job: job
+                      });
 
-                            })
-                        }
-        ) 
+                  })
+              }
+          )
+
+        // }
       })
     })
   }
