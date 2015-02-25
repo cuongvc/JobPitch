@@ -63,11 +63,17 @@ Cache-Control: no-cache
     "title"         : "nhân sự",
     "hash_tag"      : ["HR", "Campcoders.com"],
     "link_direct"   : "this is link_direct",
-    "lat"           : 100,
-    "lng"           : 100,
-    "address"       : "Ha Noi, Viet Nam",
-    "city"          : "Ha Noi",
-    "country"       : "Viet Nam",
+
+    "address"       : 'Khu Đô Thị Nam Thăng Long, Phú Thượng, Tây Hồ, Hà Nội, Việt Nam',
+    "position"      : 
+       { "lat": 21.0721265,
+         "lng": 105.81098910000003,
+         "formatted_address": 'Khu Đô Thị Nam Thăng Long, Phú Thượng, Tây Hồ, Hà Nội, Việt Nam',
+         "state": { long_name: 'Hà Nội', short_name: 'Hà Nội', types: [Object] },
+         "country": { long_name: 'Việt Nam', short_name: 'VN', types: [Object] },
+         "city": '' 
+        },
+
     "temp_path"     : "/tmp/upload_fcfb4234b9a58ed1052b53a8e30dca92",
     "extension"     : "jpeg",
 
@@ -151,12 +157,19 @@ Cache-Control: no-cache
     "title"         : "TUYEN NHAN SU",
     "tagLine"       : "nhân sự",
     "link_direct"   : "this is link_direct",
-    "lat"           : 100,
-    "lng"           : 100,
     "hash_tag"      : [],
-    "address"       : "Ha Noi, Viet Nam",
     "temp_path"     : "",
-    "extension"     : "" 
+    "extension"     : "",
+
+    "position"      : 
+       { "lat": 21.0721265,
+         "lng": 105.81098910000003,
+         "formatted_address": 'Khu Đô Thị Nam Thăng Long, Phú Thượng, Tây Hồ, Hà Nội, Việt Nam',
+         "state": { long_name: 'Hà Nội', short_name: 'Hà Nội', types: [Object] },
+         "country": { long_name: 'Việt Nam', short_name: 'VN', types: [Object] },
+         "city": '' 
+    }
+
 }
 
 Tat ca cac truong khong sua doi thi gui noi dung cu. Neu khong upload image 

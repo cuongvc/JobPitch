@@ -149,9 +149,8 @@ module.exports = function(User_env, passport) {
         passReqToCallback : true 
     },
     function(req, token, refreshToken, profile, done) {
-        // asynchronous
-        console.log('PROFILE FACEBOOK : ', profile);
-        process.nextTick(function() {
+        // asynchronous 
+       process.nextTick(function() {
             // if (!req.user){
                 User.findOne({$or : [{'fb_infor.id' : profile.id }, {'email' : profile.email}]}, function(err, user) {
                     if (err)
@@ -163,11 +162,16 @@ module.exports = function(User_env, passport) {
                         newUser.newInforFb(token, profile, function(object){
                             return done(null, user); // user found, return that user
                         }); 
-                    } else{
+                        return;
+                    } 
+
+                    if (user.fb_infor.id == profile.id){
                         user.makeToken();
                         user.save(function(err){
                             return done(null, user);    
                         })
+                    } else{
+                        return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
                     }
                 });
             // } else{
@@ -256,6 +260,11 @@ module.exports = function(User_env, passport) {
 
                     if (user) {
                         // if there is a user id already but no token (user was linked at one point and then removed)
+                        
+                        if (user.google_infor.id != profile.id){
+                            return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
+                        }
+
                         if (!user.google_infor.token) {
                             user.access_token = token;
                             user.makeToken();
@@ -300,7 +309,11 @@ module.exports = function(User_env, passport) {
                 return done(err);
 
             if (user) {
-                
+
+                if (user.linkedin_infor.id != profile.id){
+                    return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
+                }
+
                 user.linkedin_infor.access_token = accessToken;
                 user.makeToken();
                 user.save(function(err) {
