@@ -1,4 +1,4 @@
-var CreateJob = angular.module('create-job',['angular-crop']);
+var CreateJob = angular.module('create-job',['angular-crop','google-map-service','hashtag.service']);
 CreateJob.directive('createJob',function(){
 	return {
 		restrict: 'E',
@@ -19,7 +19,7 @@ CreateJob.directive('createJob',function(){
 		},
 	}
 })
-CreateJob.controller('CreateJobCtrl',function($scope,$http){
+CreateJob.controller('CreateJobCtrl',function($scope,$http,GOOGLEMAP,HASHTAG){
 	var ShowCreateJobForm = false;
 	$scope.ShowCreateJobForm = ShowCreateJobForm;
 	$scope.ShowForm = function(stt){
@@ -87,41 +87,34 @@ CreateJob.controller('CreateJobCtrl',function($scope,$http){
 			alert('Please wait until upload complete');
 			return;
 		}
-
-		console.log(JobTitle,JobDesc,Address);
-		var TitleHashTags = JobTitle.match(/#\S+/g);
-		var DescHashTags  = JobDesc.match(/#\S+/g);
-		var HashTags = new Array();
-		if(TitleHashTags != null && DescHashTags != null){
-			HashTags = TitleHashTags.concat(DescHashTags);
-		}else{
-			if(TitleHashTags == null){
-				HashTags = DescHashTags;
-			}
-			if(DescHashTags == null){
-				HashTags = TitleHashTags;
-			}
-		}
-		if(HashTags == null) HashTags = [];
-		var newJob = new Object();
-			newJob.user_id = $scope.user._id;
-			newJob.token = $scope.user.token;
-			newJob.title = JobTitle;
-			newJob.desc = JobDesc;
-			newJob.hash_tag = HashTags;
-			newJob.temp_path = $scope.CreateJobImage.path;
-			newJob.link_direct = '';
-			newJob.extension = $scope.CreateJobImage.extension
-			newJob.lat = 21.016481;
-			newJob.lng = 105.810339;
-			newJob.address = Address;
-		$http.post(STR_API_CREATE_JOB,newJob).success(function(response){
-			console.log(response);
-			if(response.error_code == 0){
-				ShowCreateJobForm = false;
-				$scope.ShowCreateJobForm = ShowCreateJobForm;
-			}
+		/*
+		* get Location
+		*/
+		var GoogleMapService = GOOGLEMAP.getLocation(Address);
+		GoogleMapService.then(function(response){
+			if (response.status == google.maps.GeocoderStatus.OK) {
+				var position = GOOGLEMAP.parsePosition(response.results);
+				console.log(position);
+				var HashTags = HASHTAG.findHashTag(JobTitle).concat(HASHTAG.findHashTag(JobDesc));
+				var newJob = new Object();
+					newJob.user_id = $scope.user._id;
+					newJob.token = $scope.user.token;
+					newJob.title = JobTitle;
+					newJob.desc = JobDesc;
+					newJob.hash_tag = HashTags;
+					newJob.temp_path = $scope.CreateJobImage.path;
+					newJob.extension = $scope.CreateJobImage.extension
+					newJob.address = Address;
+					newJob.position = position;
+					console.log(newJob);
+				$http.post(STR_API_CREATE_JOB,newJob).success(function(response){
+					console.log(response);
+					if(response.error_code == 0){
+						ShowCreateJobForm = false;
+						$scope.ShowCreateJobForm = ShowCreateJobForm;
+					}
+				})
+			};
 		})
-		console.log(JSON.stringify(newJob)); 
 	}
 })
