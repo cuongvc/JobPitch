@@ -18,7 +18,7 @@ module.exports				=	function(req, res){
       var height = fields['height'];
 
       if (err){
-      	console.log('Error : ', err);
+      	console.log('SAO LAI LOI O DAY??? Error : ', err);
         res.write(JSON.stringify({error_code : 1, msg : err.toString()}));
         res.status(200).end();
       } else{
