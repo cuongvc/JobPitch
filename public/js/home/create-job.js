@@ -1,4 +1,4 @@
-var CreateJob = angular.module('create-job',['angular-crop','google-map-service','hashtag.service']);
+var CreateJob = angular.module('create-job',['angular-crop','google-map-service','hashtag.service','ui.bootstrap']);
 CreateJob.directive('createJob',function(){
 	return {
 		restrict: 'E',
@@ -55,6 +55,22 @@ CreateJob.controller('CreateJobCtrl',function($scope,$http,GOOGLEMAP,HASHTAG){
 		    });
 		imgInput.click();
 	}
+
+	/**********************************************************************************/
+									/*Location suggestions*/
+	/**********************************************************************************/
+	var locations = new Array();
+	$scope.locations = locations;
+	$scope.LocationSuggestion = function(add){
+		var GoogleMapService = GOOGLEMAP.getLocation(add);
+		GoogleMapService.then(function(response){
+			if(response.status == google.maps.GeocoderStatus.OK){
+				console.log(response.results);
+				locations = response.results;
+				$scope.locations = locations;
+			}
+		})
+	}
 	/**********************************************************************************/
 									/*CREATE JOB*/
 	/**********************************************************************************/
@@ -91,30 +107,29 @@ CreateJob.controller('CreateJobCtrl',function($scope,$http,GOOGLEMAP,HASHTAG){
 		* get Location
 		*/
 		var GoogleMapService = GOOGLEMAP.getLocation(Address);
-		GoogleMapService.then(function(response){
-			if (response.status == google.maps.GeocoderStatus.OK) {
-				var position = GOOGLEMAP.parsePosition(response.results);
-				console.log(position);
-				var HashTags = HASHTAG.findHashTag(JobTitle).concat(HASHTAG.findHashTag(JobDesc));
-				var newJob = new Object();
-					newJob.user_id = $scope.user._id;
-					newJob.token = $scope.user.token;
-					newJob.title = JobTitle;
-					newJob.desc = JobDesc;
-					newJob.hash_tag = HashTags;
-					newJob.temp_path = $scope.CreateJobImage.path;
-					newJob.extension = $scope.CreateJobImage.extension
-					newJob.address = Address;
-					newJob.position = position;
-					console.log(newJob);
-				$http.post(STR_API_CREATE_JOB,newJob).success(function(response){
-					console.log(response);
-					if(response.error_code == 0){
-						ShowCreateJobForm = false;
-						$scope.ShowCreateJobForm = ShowCreateJobForm;
-					}
-				})
-			};
-		})
+			GoogleMapService.then(function(response){
+				if (response.status == google.maps.GeocoderStatus.OK) {
+					var position = GOOGLEMAP.parsePosition(response.results);
+					var HashTags = HASHTAG.findHashTag(JobTitle).concat(HASHTAG.findHashTag(JobDesc));
+					var newJob = new Object();
+						newJob.user_id = $scope.user._id;
+						newJob.token = $scope.user.token;
+						newJob.title = JobTitle;
+						newJob.desc = JobDesc;
+						newJob.hash_tag = HashTags;
+						newJob.temp_path = $scope.CreateJobImage.path;
+						newJob.extension = $scope.CreateJobImage.extension
+						newJob.address = Address;
+						newJob.position = position;
+						console.log(newJob);
+					$http.post(STR_API_CREATE_JOB,newJob).success(function(response){
+						console.log(response);
+						if(response.error_code == 0){
+							ShowCreateJobForm = false;
+							$scope.ShowCreateJobForm = ShowCreateJobForm;
+						}
+					})
+				};
+			})
 	}
 })
