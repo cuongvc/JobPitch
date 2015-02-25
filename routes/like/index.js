@@ -64,6 +64,7 @@ module.exports = function(req, res) {
                                 res.status(200).end();
 
                                 if (like) {
+
                                     var notification = new Notification();
                                     notification.newInfor(job_exist.user_id, user_exist.userName,
                                         content_noti.like_job1, job_exist.title, job_exist.id, '', '',

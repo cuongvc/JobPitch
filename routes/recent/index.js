@@ -36,7 +36,7 @@ module.exports					=	function(req, res){
 			var lng = user_exist.location.lng;
 
 			if (typeof(user_exist.location.lat) == 'undefined'){
-
+				console.log('FIND LOCATION');
 				var ip = req.headers['x-forwarded-for'] || 
 						     req.connection.remoteAddress || 
 						     req.socket.remoteAddress ||
@@ -44,18 +44,23 @@ module.exports					=	function(req, res){
 
 
 				var geo = geoip.lookup(ip);
-				console.log(geo);
-				lat = geo.ll[0];
-				lng = geo.ll[1];
-				var city = geo.city;
-				var country = geo.country;
+				if (ip == '127.0.0.1'){
+					lat = 21.029346;
+					lng = 105.832586;
+				} else{
+					lat = geo.ll[0];
+					lng = geo.ll[1];
+					var city = geo.city;
+					var country = geo.country;
 
-				user_exist.location.lat = lat;
-				user_exist.location.lng = lng;
-				user_exist.location.country = country;
-				user_exist.location.city = city;
+					user_exist.location.lat = lat;
+					user_exist.location.lng = lng;
+					user_exist.location.country = country;
+					user_exist.location.city = city;
 
-				user_exist.save(function(err){ });
+					user_exist.save(function(err){ });
+				}
+
 
 			} 	
 

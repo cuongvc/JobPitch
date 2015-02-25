@@ -11,17 +11,15 @@ var limit = 10;
 
 module.exports = function(req, res) {
     memoryCache.get('top_job', function(err, result) {
-				console.log(result);
         if (err || !result || typeof(result) == 'undefined') {
         	  console.log('search top job');
 
             Job.find({}, 'title applications', function(err, jobs) {
                 jobs.sort(function(job_1, job_2) {
-                    return job_1.applications.number < job_2.applications.number;
+                    return job_1.score < job_2.score;
                 });
 
                 jobs = jobs.slice(0, 10);
-                console.log(jobs);
                 res.write(JSON.stringify({
                     error_code: 0,
                     top_job: jobs

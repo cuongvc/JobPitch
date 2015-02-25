@@ -66,6 +66,8 @@ Cache-Control: no-cache
     "lat"           : 100,
     "lng"           : 100,
     "address"       : "Ha Noi, Viet Nam",
+    "city"          : "Ha Noi",
+    "country"       : "Viet Nam",
     "temp_path"     : "/tmp/upload_fcfb4234b9a58ed1052b53a8e30dca92",
     "extension"     : "jpeg",
 

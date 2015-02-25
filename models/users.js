@@ -238,6 +238,11 @@ var userSchema = mongoose.Schema({
         default: ''
     },
 
+    score : {
+        type : Number,
+        default : 0
+    },
+
     permission: {
         type: Number,
         default: 0
@@ -739,6 +744,7 @@ userSchema.methods.makeToken = function() {
 
 userSchema.methods.addJob = function(job_id) {
     this.myJobs.push(job_id);
+    this.score ++;
     this.save(function(err) {
         return 0;
     });
@@ -796,11 +802,13 @@ userSchema.methods.addMyFollow = function(user_id, callback) {
 userSchema.methods.addFollowMe = function(user_id, callback) {
     if (this.followMes.indexOf(user_id) == -1) {
         this.followMes.push(user_id);
+        this.score ++;
         this.save(function(err) {
             callback();
         })
     } else {
         console.log('remove from follow me');
+        this.score --;
         this.followMes.splice(this.followMes.indexOf(user_id), 1);
         this.save(function(err) {
             callback();
