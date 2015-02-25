@@ -36,7 +36,7 @@ module.exports					=	function(req, res){
 			var lng = user_exist.location.lng;
 
 			if (typeof(user_exist.location.lat) == 'undefined'){
-				console.log(req.ip);
+				console.log(req);
 				var geo = geoip.lookup(req.ip);
 				console.log(geo);
 				lat = geo.ll[0];
