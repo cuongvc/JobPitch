@@ -64,7 +64,7 @@ module.exports					=	function(req, res){
 			} 	
 
 			var result = [];
-			var q = Job.find({}).skip(skip).limit(limit).sort({'time' : -1}); 
+			var q = Job.find({}).sort({'time' : -1}); 
 
 			q.exec(function(err, jobs){
 
@@ -83,7 +83,7 @@ module.exports					=	function(req, res){
 
 				], function(err){
 
-					res.write(JSON.stringify({ error_code : 0, jobs : result}));
+					res.write(JSON.stringify({ error_code : 0, jobs : result.slice(skip, limit)}));
 					res.status(200).end();
 				});
 			})
