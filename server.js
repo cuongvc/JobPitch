@@ -17,6 +17,8 @@ var db_url          								= 	require('./config/default').database;
 // config router type
 var Router_body     								=   express.Router();
 var Router_formdata 								=   express.Router();
+var Router_subdomain								=   express.Router();
+
 var routes          								=   require('./routes/index');
 
 var User                            =   require('./models/users');
@@ -30,7 +32,7 @@ var Permalink 										  = 	require('./models/permalinks');
 // connect to our database
 mongoose.connect(db_url); 
 
-require('./config/index.js')(app, Router_formdata, Router_body, passport);
+require('./config/index.js')(app, Router_formdata, Router_body, Router_subdomain, passport);
 
 app.get('/login_fb', function(req, res){
 	res.render('login_fb.html');
@@ -252,7 +254,6 @@ app.get('/:permalink',											 routes.get.permalink);
 
 // --------GET INFOR A USER(CONTACT) ---------------------------------------
 
-<<<<<<< HEAD
 	app.get('/api/user/:user_id',							 routes.get.user);
 	app.get('/api/job/:job_id',								 routes.get.job);
 
@@ -260,10 +261,6 @@ app.get('/:permalink',											 routes.get.permalink);
 
 	app.get('/api/top_job',						 				 routes.get.top_job);
 	app.get('/api/top_company',				 				 routes.get.top_company);
-=======
-app.get('/api/user/:user_id',								 routes.get.user);
-app.get('/api/job/:job_id',									 routes.get.job);
->>>>>>> 797783eea511ccdce893deb266b0fd7c1ab3feb3
 
 // =================================== LISTEN BY IP AND PORT ========================
 
