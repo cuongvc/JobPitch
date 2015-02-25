@@ -2,8 +2,8 @@
 <head>
 	<title>JobPitch</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-	<base href="http://jobpitch.campcoders.com">
-	<!-- <base href="http://job.dev"> -->
+	<!-- <base href="http://jobpitch.campcoders.com"> -->
+	<base href="http://job.dev">
 	<script type="text/javascript" src="/bower_components/jquery/dist/jquery.min.js"></script>
 	<script type="text/javascript" src="/bower_components/angular/angular.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-route.min.js"></script>
@@ -85,6 +85,9 @@
 	<script type="text/javascript" src="/bower_components/nightfury/src/database.js"></script>
 	<script type="text/javascript" src="/bower_components/nightfury/src/upload.js"></script>
 
+	<!-- GOOGLE MAP -->
+	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDtiKSl4UI6eEFMwgIo-klAeGFEzzppTPk"></script>
+
 	<script type="text/javascript" src="/js/home/header.js"></script>
 	<script type="text/javascript" src="/js/home/setting.js"></script>
 	<script type="text/javascript" src="/js/home/create-job.js"></script>
@@ -104,6 +107,7 @@
 	<script type="text/javascript" src="/js/service/interest.service.js"></script>
 	<script type="text/javascript" src="/js/service/route.service.js"></script>
 	<script type="text/javascript" src="/js/service/socket.service.js"></script>
+	<script type="text/javascript" src="/js/service/google.map.js"></script>
 	<!-- SERVICE -->
 
 	<script type="text/javascript" src="/js/home/template.js"></script>
@@ -122,6 +126,8 @@
 	<link rel="stylesheet" type="text/css" href="css/home/left-sidebar.css">
 	<link rel="stylesheet" type="text/css" href="css/home/company-profile.css">
 	<!-- css -->
+
+
 
 </head>
 <body ng-class="{{ checkPassword }}" ng-app="TemplateApp" ng-view>
