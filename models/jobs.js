@@ -73,13 +73,11 @@ var jobSchema = mongoose.Schema({
 
     location         : {
         lat          : {
-            type         : Number,
-            default      : 200
+            type         : Number
         },
 
         lng          : {
-            type         : Number,
-            default      : 200
+            type         : Number
         },
 
         address      : {

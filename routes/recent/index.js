@@ -61,27 +61,29 @@ module.exports					=	function(req, res){
 					user_exist.save(function(err){ });
 				}
 
-
 			} 	
 
 			var result = [];
-			var q = Job.find({}).skip(skip).limit(limit).sort({'time' : -1}); 
+			var q = Job.find({}).sort({'time' : -1}); 
 
 			q.exec(function(err, jobs){
 
 				async.waterfall([
 					function(next){
+						// console.log('PASS FIND : ', jobs);		
 
 						for (var i = 0 ; i < jobs.length; i ++){
 							if (jobs[i].containTag(tag) && jobs[i].distance(lat, lng) ){
 								result.push(jobs[i]);
 							}
-						};						
+						};				
+						// console.log('PASS DISTANCE : ', result);		
 						next(null);
 					},
 
 				], function(err){
-					res.write(JSON.stringify({ error_code : 0, jobs : result}));
+
+					res.write(JSON.stringify({ error_code : 0, jobs : result.slice(skip, limit)}));
 					res.status(200).end();
 				});
 			})
