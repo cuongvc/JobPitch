@@ -45,7 +45,7 @@ module.exports				=	function(req, res){
               .autoOrient()
               .write(temp_path, function (err) {
                 if (err) {
-                  console.log('Error : ', err);
+                  console.log('Error : ', err, 'when write tempath : ', temp_path);
                 }
                 else{
                   console.log('CROP SUCCESS');
