@@ -1,10 +1,10 @@
-var check_job     = require('./../../my_module/check_exist').job;
-var check_token   = require('./../../my_module/check_exist').token;
-var Application   = require('./../../models/applications');
+var check_job = require('./../../my_module/check_exist').job;
+var check_token = require('./../../my_module/check_exist').token;
+var Application = require('./../../models/applications');
 var respon_object = require('./../../my_module/respon_object').application;
 
-var io_notify     = require('./../../my_module/socket');
-var Notification  = require('./../../models/notifications');
+var io_notify = require('./../../my_module/socket');
+var Notification = require('./../../models/notifications');
 
 
 module.exports = function(req, res) {
@@ -48,7 +48,7 @@ module.exports = function(req, res) {
                 res.status(200).end();
             } else
 
-              check_job(job_id, function(exist2, job_exist) {
+                check_job(job_id, function(exist2, job_exist) {
 
                 if (!exist2) {
                     res.write(JSON.stringify({
@@ -60,7 +60,8 @@ module.exports = function(req, res) {
                 } else {
 
                     var application = new Application();
-                    application.newInfor(user_id, user_exist.userName, user_exist.avatar_small, job_id, title, hash_tag,
+                    application.newInfor(user_id, user_exist.userName, user_exist.avatar_small, 
+                        job_id, job_exist.title, title, hash_tag,
                         description, time, file, job_exist.userName, job_exist.user_id,
                         function(application) {
 
@@ -78,12 +79,13 @@ module.exports = function(req, res) {
 
                             io_notify.emit('apply_job', {
                                 user_receive_notify: receive_notify,
-                                avatar_user_make_notify : user_exist.avatar_small,
-                                userName_user_make_notify : user_exist.userName,
-                                id_user_make_notify : user_exist._id,
-                                content : application.description, 
-                                job_id : job_exist._id, app_id : application._id, 
-                                app : application
+                                avatar_user_make_notify: user_exist.avatar_small,
+                                userName_user_make_notify: user_exist.userName,
+                                id_user_make_notify: user_exist._id,
+                                content: application.description,
+                                job_id: job_exist._id,
+                                app_id: application._id,
+                                app: application
                             });
 
                             job_exist.addApply(user_id, application._id, function() {

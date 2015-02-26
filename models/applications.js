@@ -18,6 +18,11 @@ var applicationSchema = mongoose.Schema({
         ref          : 'jobs',
     },
 
+    job_title        : {
+        type         : String,
+        default      : ''
+    },
+
     user_id          : {
         type         : ObjectId,
         ref          : 'users' 
@@ -131,7 +136,7 @@ applicationSchema.methods.isOwn         = function(companyId){
 }
 
 applicationSchema.methods.newInfor    = function(user_id, userName, user_avatar, 
-                                        job_id, title, hash_tag, description, time, 
+                                        job_id, job_title, title, hash_tag, description, time, 
                                         file, companyName, companyId, callback){
 
     var app = this;
@@ -139,7 +144,9 @@ applicationSchema.methods.newInfor    = function(user_id, userName, user_avatar,
     app.userName        = userName;
     app.user_avatar    = user_avatar;
 
+
     app.job_id         = job_id;
+    app.job_title      = job_title;
     app.title          = title;
     app.hash_tag       = hash_tag;
     app.description    = description;
