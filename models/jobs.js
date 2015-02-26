@@ -200,6 +200,7 @@ var options = {
 };
 
 jobSchema.plugin(searchPlugin, options);
+
 // check job is Own of account
 jobSchema.methods.isOwn         = function(user_id){
     return (user_id == this.user_id);

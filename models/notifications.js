@@ -66,10 +66,10 @@ var notificationSchema = mongoose.Schema({
 });
 
 
-notificationSchema.methods.newInfor    = function(user_id_receive, userName_make_notify, content, 
-                                                short_content, job_id, app_id, comment_id, 
-                                                userId_own_job, userName_own_job, link, 
-                                                userAvatar_make_notify, type_notify){
+notificationSchema.methods.newInfor = function(user_id_receive, userName_make_notify, content,
+                                                short_content, job_id, app_id, comment_id,
+                                                userId_own_job, userName_own_job, link,
+                                                userAvatar_make_notify, type_notify) {
 
     var notify = this;
     notify.user_id_receive = user_id_receive;
@@ -77,7 +77,8 @@ notificationSchema.methods.newInfor    = function(user_id_receive, userName_make
     notify.content.userName_make_notify = userName_make_notify;
     notify.content.content = content;
     notify.content.short_content = short_content;
-    notify.content.userId_own_job = userId_own_job;
+    if (userId_own_job != '')
+        notify.content.userId_own_job = userId_own_job;
     notify.content.userName_make_notify = userName_make_notify;
 
     if (app_id != '')
@@ -93,6 +94,9 @@ notificationSchema.methods.newInfor    = function(user_id_receive, userName_make
 
 
     notify.save(function(err){
+        if (err){
+            console.log(err);
+        }
         User.findOne({_id : user_id_receive}, function(err, user_exist){
             if (err || !user_exist){
                 return 0;

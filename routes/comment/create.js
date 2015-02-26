@@ -4,7 +4,7 @@ var Application                   = require('./../../models/applications');
 
 var Notification                  = require('./../../models/notifications');
 
-var io_notify           = require('./../../my_module/socket');
+var io_notify           					= require('./../../my_module/socket');
 var content_noti                  = require('./../../config/content_noti');
 
 module.exports										=	function(req, res){
@@ -61,6 +61,7 @@ module.exports										=	function(req, res){
 									res.status(200).end();
 
                   var notification = new Notification();
+                  console.log('Make notify');
                   notification.newInfor(app_exist.user_id, user_exist.userName,
                                 	content_noti.comment_apply1, comment.content, 
                                 	comment.job_parent, '', comment._id,
@@ -68,15 +69,17 @@ module.exports										=	function(req, res){
                                 	user_exist.avatar_small, 25);
                   var user_receive_notify = [];
                   user_receive_notify.push(app_exist.user_id);
-                  io_notify.emit('comment_apply', { user_receive_notify: user_receive_notify,
-									                                avatar_user_make_notify : user_exist.avatar_small,
-									                                userName_user_make_notify : user_exist.userName,
-									                                id_user_make_notify : user_exist._id,
-									                                content : comment.description, 
-									                                job_id : comment.job_parent, 
-									                                app_id : comment.application_parent, 
-									                                comment_id : comment._id,
-									                                comment : comment
+                  io_notify.emit('comment_apply', {
+                              user_receive_notify: user_receive_notify,
+                              avatar_user_make_notify: user_exist.avatar_small,
+                              userName_user_make_notify: user_exist.userName,
+                              id_user_make_notify: user_exist._id,
+                              content: comment.content,
+                              job_id: comment.job_parent,
+                              app_id: comment.application_parent,
+                              comment_id: comment._id,
+                              comment: comment
+
                   });
 
 								});
@@ -105,6 +108,8 @@ module.exports										=	function(req, res){
 									res.write(JSON.stringify({error_code : 0, comment : comment }));
 									res.status(200).end();
 
+									
+									
 	                var notification = new Notification();
 	                notification.newInfor(cmt_exist.user_id, user_exist.userName,
 	                                	content_noti.comment_comment1, comment.content, 
@@ -117,7 +122,7 @@ module.exports										=	function(req, res){
                   io_notify.emit('comment_comment', { user_receive_notify: user_receive_notify,
 									                                avatar_user_make_notify : user_exist.avatar_small,
 									                                userName_user_make_notify : user_exist.userName,
-									                                content : comment.description, 
+									                                content : comment.content, 
 									                                job_id : comment.job_parent, 
 									                                app_id : comment.application_parent, 
 									                                comment_id : comment._id
