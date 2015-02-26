@@ -1,4 +1,4 @@
-var TemplateApp = angular.module('TemplateApp',['ngRoute','header','company-job','company-about','company-contact','jobs','create-job','setting','database','pitch.service','job.service','hashtag.service']);
+var TemplateApp = angular.module('TemplateApp',['ngRoute','header','company-job','company-about','company-contact','jobs','create-job','setting','database','pitch.service','job.service','hashtag.service','company.service']);
 TemplateApp.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
 
 	$routeProvider.
@@ -21,6 +21,10 @@ TemplateApp.config(['$routeProvider', '$locationProvider', function($routeProvid
 		when('/search/:query', {
 			templateUrl: '../directives/home/search/search-result.html', 
 			controller: 'SearchResultCtrl'
+		}).
+		when('/tag/:tag', {
+			templateUrl: '../directives/home/search/search-tag-result.html', 
+			controller: 'SearchTagResultCtrl'
 		}).
 		when('/forgot-password', {
 			templateUrl: '../directives/forgot-password.html', 

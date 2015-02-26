@@ -216,7 +216,12 @@ Header.controller('HeaderCtrl',function($scope,$http,$routeParams,SOCKET,NOTIFIC
 
 	$scope.ChangeHeaderSearchValue = function(value,evt){
 		if(evt.keyCode == 13){
-			var url = '/search/' + value;
+			if(value.charAt(0) == '#'){
+				var tag = value.substring(1);
+				var url = '/tag/'+tag;
+			}else{
+				var url = '/search/' + value;
+			}
 			ROUTE.GoTo(url);
 		}
 	}

@@ -20,6 +20,9 @@ TemplateApp.controller('SearchResultCtrl',function($scope,$http,$routeParams,SEA
 
 			SearchResultPitch = PITCH.getPitchSidebarHandler(response.results.applications.results,$scope.user._id);
 			$scope.SearchResultPitch = SearchResultPitch;
+			if(SearchResultJobs.length == 0 && SearchResultPitch.length == 0){
+				alert('No result found');
+			}
 		}else{
 			alert(response.msg);
 		}

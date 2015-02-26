@@ -3,8 +3,14 @@ TemplateApp.controller('ProfileCtrl',function($scope,$http,$routeParams,PITCH,JO
 	$scope.user               = user;
 	$scope.logedin            = logedin;
 	$scope.CompanyProfilePage = 1;
+	
 	var profile = USER.getProfileHandler($scope.user,$scope.user._id);
 		$scope.profile = profile;
+
+	var showEditProfileButton = false;
+		if($routeParams.user_id == $scope.user._id) showEditProfileButton = true;
+		$scope.showEditProfileButton = showEditProfileButton;
+
 	var jobs;
 	$scope.ToggleImage = function(job,evt){
 		var target = $(evt.target).parent().parent().parent().find('.company-job-image');
