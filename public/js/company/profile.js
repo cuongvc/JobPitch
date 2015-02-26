@@ -3,22 +3,9 @@ TemplateApp.controller('ProfileCtrl',function($scope,$http,$routeParams,PITCH,JO
 	$scope.user               = user;
 	$scope.logedin            = logedin;
 	$scope.CompanyProfilePage = 1;
-	var profile;
+	var profile = USER.getProfileHandler($scope.user,$scope.user._id);
+		$scope.profile = profile;
 	var jobs;
-	var data = {
-		user_id: $scope.user._id,
-		token: $scope.user.token,
-		users: [$routeParams.user_id],
-	}
-	var UserService = USER.getProfile($routeParams.user_id);
-		UserService.then(function(response){
-			if(response.error_code == 0){
-				profile = USER.getProfileHandler(response.user,$scope.user._id);
-				$scope.profile = profile;
-			}else{
-				alert(response.msg);
-			}
-		})
 	$scope.ToggleImage = function(job,evt){
 		var target = $(evt.target).parent().parent().parent().find('.company-job-image');
 		target.toggleClass('show-image');
