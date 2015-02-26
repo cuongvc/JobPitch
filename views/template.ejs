@@ -17,29 +17,25 @@
 	<script type="text/javascript">
 		var STR_API_RECENT = BASE_URL + '/api/recent';
 		<% if(user != undefined){ %>
+			var user = <%-JSON.stringify(user)%>;
 			var logedin = true;
-			var avatar_normal = "<%= user.avatar_normal %>"; 
-				avatar_normal = avatar_normal.replace(/&amp;/g, "&").replace(/&gt;/g, ">").replace(/&lt;/g, "<").replace(/&quot;/g, '"');
-			var avatar_small = "<%= user.avatar_small %>"; 
-				avatar_small = avatar_small.replace(/&amp;/g, "&").replace(/&gt;/g, ">").replace(/&lt;/g, "<").replace(/&quot;/g, '"');
-			var avatar_origin = "<%= user.avatar %>"; 
-				avatar_origin = avatar_origin.replace(/&amp;/g, "&").replace(/&gt;/g, ">").replace(/&lt;/g, "<").replace(/&quot;/g, '"');
-			var user = {
-					_id: "<%= user._id %>",
-					token: "<%= user.token %>",
-					account_type: "<%= user.type_account %>",
-					avatar: {
-						normal: avatar_normal,
-						small: avatar_small,
-						origin: avatar_origin,
-					},
-					username: "<%= user.userName %>",
-					notifications: "<% JSON.stringify(user.notifications) %>",
-				}
-			console.log(user);
+			
 		<% }else{ %>
 			document.location.href = "/login";
 		<% } %>
+		var avatar_normal = user.avatar_normal; 
+			avatar_normal = avatar_normal.replace(/&amp;/g, "&").replace(/&gt;/g, ">").replace(/&lt;/g, "<").replace(/&quot;/g, '"');
+		var avatar_small = user.avatar_small; 
+			avatar_small = avatar_small.replace(/&amp;/g, "&").replace(/&gt;/g, ">").replace(/&lt;/g, "<").replace(/&quot;/g, '"');
+		var avatar_origin = user.avatar; 
+			avatar_origin = avatar_origin.replace(/&amp;/g, "&").replace(/&gt;/g, ">").replace(/&lt;/g, "<").replace(/&quot;/g, '"');
+		user.avatar = {
+				normal: avatar_normal,
+				small: avatar_small,
+				origin: avatar_origin,
+			},
+		user.username = user.userName;
+		console.log(user);
 		// Load jobs
 		var JobScroll = {
 			start: 0,
@@ -111,6 +107,7 @@
 	<script type="text/javascript" src="/js/service/route.service.js"></script>
 	<script type="text/javascript" src="/js/service/socket.service.js"></script>
 	<script type="text/javascript" src="/js/service/search.service.js"></script>
+	<script type="text/javascript" src="/js/service/comment.service.js"></script>
 	<script type="text/javascript" src="/js/service/google.map.js"></script>
 	<!-- SERVICE -->
 

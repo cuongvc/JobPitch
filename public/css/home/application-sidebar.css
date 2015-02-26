@@ -41,9 +41,6 @@
 .application-sidebar-company-name{
 	cursor: pointer;
 }
-.application-sidebar-company-name:hover{
-	text-decoration: underline;
-}
 .application-sidebar-header > p:first-child{
 	margin-top: 5px; 
 	margin-bottom: 0px;

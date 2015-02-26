@@ -1,8 +1,8 @@
 
 
 <div id="sidebar" class="col-md-12 col-sm-12 hidden-xs transition_500ms" ng-controller="ApplicationSideBarCtrl">
-	<div ng-repeat="pitch in pitchs" class="sidebar-element transition_500ms">
-		<div class="pitch-sidebar-content gray-border">
+	<div ng-repeat="pitch in pitchs track by $index" class="sidebar-element transition_500ms">
+		<div class="pitch-sidebar-content gray-border animated fadeIn">
 			<div class="application-sidebar-applicant">
 				<div class="application pull-left">
 					<div class="application-sidebar-avatar">
@@ -11,7 +11,7 @@
 				</div>
 				<div class="application-sidebar-header">
 					<p class="application-sidebar-name"><a href="/u/{{ pitch.user_id }}" ng-click="ViewNormalUser(pitch.user_id,$event)"><strong ng-bind="pitch.userName"></strong></a></p>
-					<p class=" pull-left"><span class="application-sidebar-company-name small-text" ng-click="ViewUser(pitch.companyId,$event)"><span>pitch to </span><span ng-bind="pitch.companyName"></span></span></p>
+					<p class=" pull-left"><span class="application-sidebar-company-name small-text"><span>pitch to</span> <strong ng-bind="pitch.short_job_title"></strong> <span>by</span> <span class="blue-color">@</span><span class="blue-color" ng-click="ViewUser(pitch.companyId,$event)" ng-bind="pitch.companyName"></span></span></p>
 				</div>
 			</div>
 			<div class="application-sidebar-body">

@@ -66,7 +66,7 @@ Header.controller('HeaderCtrl',function($scope,$http,$routeParams,SOCKET,NOTIFIC
 
 	var notifications = {
 		list: [],
-		unread: 0,
+		unread: $scope.user.notifications.unread,
 		loaded: false,
 	};
 	$scope.notifications = notifications;
@@ -117,14 +117,14 @@ Header.controller('HeaderCtrl',function($scope,$http,$routeParams,SOCKET,NOTIFIC
 		if(SOCKET.checkUserReciveNotification($scope.user._id, data.user_receive_notify) == false) return;
 
 		var more_data = {
-				type: APPLY_JOB_SOCKET_EVENT, 
+				type: INTEREST_SOCKET_EVENT, 
 				value: {
 					job_id: data.job_id,
 					pitch_id: data.app_id,
 				}, 
 				url: "",
 			};
-		addNewNotification(SOCKET.makeNewNotification(data,SOCKET_ACTION[APPLY_JOB_SOCKET_EVENT],more_data));
+		addNewNotification(SOCKET.makeNewNotification(data,SOCKET_ACTION[INTEREST_SOCKET_EVENT],more_data));
 	})
 	IO.on(LIKE_PITCH_SOCKET_EVENT,function(data){
 		console.log(LIKE_PITCH_SOCKET_EVENT,data);
@@ -155,8 +155,21 @@ Header.controller('HeaderCtrl',function($scope,$http,$routeParams,SOCKET,NOTIFIC
 			};
 		addNewNotification(SOCKET.makeNewNotification(data,SOCKET_ACTION[LIKE_JOB_SOCKET_EVENT],more_data));
 	})
+	IO.on(COMMENT_PITCH_SOCKET_EVENT,function(data){
+		console.log(COMMENT_PITCH_SOCKET_EVENT,data);
 
+		if(SOCKET.checkUserReciveNotification($scope.user._id, data.user_receive_notify) == false) return;
 
+		var more_data = {
+				type: COMMENT_PITCH_SOCKET_EVENT, 
+				value: {
+					job_id: data.job_id,
+				}, 
+				url: "",
+			};
+		addNewNotification(SOCKET.makeNewNotification(data,SOCKET_ACTION[COMMENT_PITCH_SOCKET_EVENT],more_data));
+		console.log(more_data);
+	})
 
 	
 	function addNewNotification(newNotifi){

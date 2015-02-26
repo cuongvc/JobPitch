@@ -51,8 +51,8 @@ Jobs.controller('JobCtrl',function($scope,$http,USER,PITCH,JOB,HASHTAG,LIKE,INTE
 		SOCKET.pushPitchToRecentJob(jobs,pitch);
 	});
 	IO.on(LIKE_PITCH_SOCKET_EVENT,function(data){
-
 		if(SOCKET.checkUserReciveNotification($scope.user._id, data.user_receive_notify) == false) return;
+		if(data.id_user_make_notify == $scope.user._id) return;
 		
 		jobs = LIKE.addLikePitch(jobs,data.job_id,data.app_id,data.id_user_make_notify);
 		$scope.jobs = jobs;
@@ -248,7 +248,7 @@ Jobs.controller('JobCtrl',function($scope,$http,USER,PITCH,JOB,HASHTAG,LIKE,INTE
 		};
 		var LikeService = LIKE.LikePitch(data);
 			LikeService.then(function(response){
-				jobs = LIKE.LikePitchHandler(jobs,job,pitch);
+				jobs = LIKE.LikePitchHandler(jobs,job,pitch,data.user_id);
 				$scope.jobs = jobs;
 			})
 	}
