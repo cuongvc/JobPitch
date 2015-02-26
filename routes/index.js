@@ -39,3 +39,5 @@ exports.export_pdf      = require('./export_pdf');
 exports.swing_current   = require('./swing_current');
 
 exports.share           = require('./share');
+
+exports.suggest         = require('./suggest');
