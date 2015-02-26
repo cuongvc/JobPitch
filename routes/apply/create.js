@@ -18,6 +18,7 @@ module.exports = function(req, res) {
         var title = data.title;
         var description = data.description;
         var hash_tag = data.hash_tag;
+        var tagname  = data.tagname;
         var time = new Date(new Date().toGMTString()).toJSON();
         var file = data.file;
 
@@ -61,7 +62,7 @@ module.exports = function(req, res) {
 
                     var application = new Application();
                     application.newInfor(user_id, user_exist.userName, user_exist.avatar_small, 
-                        job_id, job_exist.title, title, hash_tag,
+                        job_id, job_exist.title, title, hash_tag, tagname,
                         description, time, file, job_exist.userName, job_exist.user_id,
                         function(application) {
 

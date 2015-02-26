@@ -2855,3 +2855,68 @@ Cache-Control: no-cache
 }
 
 ```
+
+### 36. Suggest hashtag
+
+```
+GET     http://jobpitch.campcoders.com/api/suggest/hashtag
+Content-Type: application/json
+Cache-Control: no-cache
+
+```
+##### Regex
+```
+
+
+```
+##### Return
+```
+{
+    "error_code": 0,
+    "hashtag": [
+        {
+            "_id": "54eeda81e5195b671393c260",
+            "number": 3,
+            "name": "#php"
+        },
+        {
+            "_id": "54eedaddb4330bb714dd6692",
+            "number": 2,
+            "name": "#android"
+        },
+        {
+            "_id": "54eeda6ce5195b671393c25d",
+            "number": 3,
+            "name": "#nodejs"
+        }
+    ]
+}
+
+```
+
+### 37. Suggest tagname
+
+```
+GET     http://jobpitch.campcoders.com/api/suggest/tagname
+Content-Type: application/json
+Cache-Control: no-cache
+
+```
+##### Regex
+```
+
+
+```
+##### Return
+```
+{
+    "error_code": 0,
+    "tagname": [
+        {
+            "_id": "54eef31ef87632e72c4db927",
+            "tagname": "cuongvu_123"
+        }
+    ]
+}
+
+```

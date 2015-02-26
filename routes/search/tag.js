@@ -47,7 +47,7 @@ module.exports									=	function(req, res){
 					res.write(JSON.stringify({error_code : 0, jobs : jobs}));
 					res.status(200).end();
 				})
-			} else{
+			} else if (position == 2) {
 
 				Application.find({_id : {$in : tag_exist.app_id}}, function(err, applications){
 
@@ -62,6 +62,30 @@ module.exports									=	function(req, res){
 					
 				})
 
+			} else {
+
+				Job.find({_id : {$in : tag_exist.job_id}}, function(err, jobs){
+
+					if (err){
+						console.log(err);
+						res.write(JSON.stringify({error_code : 1, msg : err.toString()}));
+						res.status(200).end();
+					};
+
+					Application.find({_id : {$in : tag_exist.app_id}}, function(err, applications){
+
+						if (err){
+							console.log(err);
+							res.write(JSON.stringify({error_code : 1, msg : err.toString()}));
+							res.status(200).end();
+						};
+
+						res.write(JSON.stringify({error_code : 0, applications : applications, jobs : jobs}));
+						res.status(200).end();
+						
+				})
+
+				})
 			}
 
 		})	

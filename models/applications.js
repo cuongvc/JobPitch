@@ -45,6 +45,18 @@ var applicationSchema = mongoose.Schema({
         type         : String
     }],
 
+    tagname          : {
+        type         : [{
+            name     : String,
+            user_id  : {
+                type : ObjectId,
+                ref  : 'users'
+            }
+        }],
+        default      : []
+    },
+
+
     description      : {
         type         : String,
         default      : ''
@@ -143,7 +155,7 @@ applicationSchema.methods.isOwn         = function(companyId){
 }
 
 applicationSchema.methods.newInfor    = function(user_id, userName, user_avatar, 
-                                        job_id, job_title, title, hash_tag, description, time, 
+                                        job_id, job_title, title, hash_tag, tagname, description, time, 
                                         file, companyName, companyId, callback){
 
     var app = this;
@@ -156,6 +168,7 @@ applicationSchema.methods.newInfor    = function(user_id, userName, user_avatar,
     app.job_title      = job_title;
     app.title          = title;
     app.hash_tag       = hash_tag;
+    app.tagname        = tagname;
     app.description    = description;
     app.time           = time;
 
@@ -176,12 +189,13 @@ applicationSchema.methods.newInfor    = function(user_id, userName, user_avatar,
 }   
 
 
-applicationSchema.methods.editInfor    = function(title, description, hash_tag, time, file, callback){
+applicationSchema.methods.editInfor    = function(title, description, hash_tag, tagname, time, file, callback){
 
     var app = this;
 
     app.title          = title;
     app.hash_tag       = hash_tag;
+    app.tagname        = tagname;
     app.description    = description;
     app.time           = time;
    

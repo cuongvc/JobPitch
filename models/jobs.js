@@ -67,6 +67,17 @@ var jobSchema = mongoose.Schema({
         default      : []
     },
 
+    tagname          : {
+        type         : [{
+            name     : String,
+            user_id  : {
+                type : ObjectId,
+                ref  : 'users'
+            }
+        }],
+        default      : []
+    },
+
     description      : {
         type         : String,
         default      : '',
@@ -219,7 +230,7 @@ jobSchema.methods.containTag    = function(tag){
 }
 
 jobSchema.methods.newInfor    = function(image, image_small, image_normal, user_id, userName
-                                        ,title, hash_tag, description, lat, lng, address, city, country, state
+                                        ,title, hash_tag, tagname, description, lat, lng, address, city, country, state
                                         ,link_direct, time , callback){
 
     var job = this;
@@ -233,6 +244,7 @@ jobSchema.methods.newInfor    = function(image, image_small, image_normal, user_
     job.user_id                = user_id;
     job.title                  = title;
     job.hash_tag               = hash_tag;
+    job.tagname                = tagname;
     job.description            = description;
     job.link_direct            = link_direct;
     job.time                   = time;
@@ -259,7 +271,7 @@ jobSchema.methods.distance      = function(lat, lng){
 }
 
 jobSchema.methods.editInfor    = function(image, image_small, image_normal, user_id, userName
-                                        ,title, hash_tag, description, lat, lng, address, city, country, state
+                                        ,title, hash_tag, tagname, description, lat, lng, address, city, country, state
                                         ,link_direct, time , callback){
 
     var job = this;
@@ -273,6 +285,7 @@ jobSchema.methods.editInfor    = function(image, image_small, image_normal, user
     job.user_id                = user_id;
     job.title                  = title;
     job.hash_tag               = hash_tag;
+    job.tagname                = tagname;
     job.description            = description;
     job.link_direct            = link_direct;
     job.time                   = time;

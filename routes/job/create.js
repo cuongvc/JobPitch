@@ -27,6 +27,9 @@ module.exports				=	function(req, res){
     var token    			= data['token'];
     var title  			  = data['title'];
     var hash_tag      = data['hash_tag'];
+
+    var tagname       = data['tagname'];
+
     var desc     			= data['desc'];
     var link_direct   = data['link_direct'];
 
@@ -117,7 +120,7 @@ module.exports				=	function(req, res){
         //   console.log('Make new job');
           var newJob = new Job();
           newJob.newInfor(image, image_small, image_normal, user_exist.id, user_exist.userName, title,
-              hash_tag, desc, lat, lng, address, city, country, state, link_direct, time,
+              hash_tag, tagname, desc, lat, lng, address, city, country, state, link_direct, time,
               function(job) {
 
 

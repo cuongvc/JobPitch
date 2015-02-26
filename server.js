@@ -249,8 +249,8 @@ app.get('/directive/home/left-sidebar',function(req,res){
 	Router_body.post('/share_apply',           routes.share.apply);
 
 	// GET HASHTAG AND TAGNAME FOR SUGGESTION
-	Router_body.get('/tagname',								 routes.suggest.tagname);
-	Router_body.get('/hashtag',								 routes.suggest.hashtag);
+	Router_body.get('/suggest/tagname',								 routes.suggest.tagname);
+	Router_body.get('/suggest/hashtag',								 routes.suggest.hashtag);
 
 // --------GET DATA FROM PERMALINK -------------------------------
 

@@ -6,17 +6,18 @@ var respon_object = require('./../../my_module/respon_object').application;
 module.exports = function(req, res) {
 
     try {
-        var data = req.body;
-
-        var token = data.token;
-        var user_id = data.user_id;
-        var app_id = data.app_id;
-
-        var title = data.title;
+        var data        = req.body;
+        
+        var token       = data.token;
+        var user_id     = data.user_id;
+        var app_id      = data.app_id;
+        
+        var title       = data.title;
         var description = data.description;
-        var hash_tag = data.hash_tag;
-        var time = new Date(new Date().toGMTString()).toJSON();
-        var file = data.file;
+        var hash_tag    = data.hash_tag;
+        var tagname     = data.tagname;
+        var time        = new Date(new Date().toGMTString()).toJSON();
+        var file        = data.file;
 
     } catch (err) {
         res.write(JSON.stringify({ error_code: 1, msg: err.toString() }));
@@ -44,7 +45,7 @@ module.exports = function(req, res) {
                     return 0;
                 }
 
-                app_exist.editInfor(title, description, hash_tag, time, file, function(newApp){
+                app_exist.editInfor(title, description, hash_tag, tagname, time, file, function(newApp){
                     res.write(JSON.stringify({ error_code: 0, app : newApp }));
                     res.status(200).end();
                     return 0;
