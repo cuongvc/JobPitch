@@ -1167,6 +1167,7 @@ Cache-Control: no-cache
 
 position = 1: search tag in jobs
 position = 2: search tag in applications
+position = 3: search tag in jobs and applications
 
 ```
 ##### Regex
