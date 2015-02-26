@@ -333,6 +333,11 @@ var userSchema = mongoose.Schema({
         type: String
     },
 
+    tagName : {
+        type: String,
+        index : true
+    },
+
     userFullname: {
         type: String,
         default: ''

@@ -40,6 +40,8 @@ module.exports								=	function(req, res){
 							notifys[i].status = 1;
 							notifys[i].save(function(err){})
 						}
+						user_exist.notifications.unread = 0;
+						user_exist.save(function(err){});
 					}
 
 				})
