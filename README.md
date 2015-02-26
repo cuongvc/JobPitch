@@ -187,111 +187,100 @@ create job
 ```
 {
     "error_code": 0,
-    "user": {
-        "__v": 0,
-        "_id": "54eef31ef87632e72c4db927",
-        "companyName": "",
-        "gender": "male",
-        "specialties": "specialties",
-        "summary": "summary",
-        "tagname": "cuongvu_123",
-        "userName": "Cường Vũ",
-        "_keywords": [
-            "c",
-            "ng",
-            "v",
-            "cuongvc93",
-            "gmail",
-            "com"
+    "job": {
+        "__v": 7,
+        "_id": "54ca75ac393d050028ce49d9",
+        "time": "2015-01-29T18:02:19.000Z",
+        "user_id": "54c9ee7a202b449e430cc43b",
+        "hires": 0,
+        "interviews": 0,
+        "applications": {
+            "list": [
+                "54ca76b969b8c7b729d50edc",
+                "54ca76cb69b8c7b729d50edd"
+            ],
+            "number": 2
+        },
+        "shares": {
+            "list": [],
+            "number": 0
+        },
+        "likes": {
+            "list": [],
+            "number": 0
+        },
+        "status": 1,
+        "link_direct": "http://campcoders.com",
+        "location": {
+            "address": "Ngõ 34 - Nguyên Hồng, Láng Hạ, Đống Đa, Hà Nội, Việt Nam",
+            "lng": 105.810339,
+            "lat": 21.016481
+        },
+        "description": "Quản lý toàn bộ công tác tuyển dụng nhân sự - Hỗ trợ thực hiện các hoạt động đào tạo và tái đào tạo- Quản lý giám sát hoạt động nhân sự trong Khách Sạn- Xây dựng, quản lý, tổ chức và thực hiện các chính sách nhân sự cho nhân viên theo quy định của Khách Sạn",
+        "hash_tag": [
+            "HR",
+            "Campcoders.com"
         ],
-        "contracts": {
-            "list": [],
-            "number": 0
-        },
-        "interests": {
-            "list": [],
-            "number": 0
-        },
-        "companyEmail": "thanhah@campcoders.com",
-        "phone": "0987654321",
-        "skype": "campcoder",
-        "verify": 0,
-        "email": "cuongvc93@gmail.com",
-        "year_of_birth": null,
-        "education": "",
-        "industry": "",
-        "userFullname": "",
-        "cover_normal": "http://job.dev/images/full_size/UserImages/default-cover.jpeg",
-        "cover_small": "http://job.dev/images/full_size/UserImages/default-cover.jpeg",
-        "cover": "http://job.dev/images/full_size/UserImages/default-cover.jpeg",
-        "avatar_normal": "https://lh5.googleusercontent.com/-IlI6TyJIlrs/AAAAAAAAAAI/AAAAAAAAAC8/AsmFVAZBIkw/photo.jpg",
-        "avatar_small": "https://lh5.googleusercontent.com/-IlI6TyJIlrs/AAAAAAAAAAI/AAAAAAAAAC8/AsmFVAZBIkw/photo.jpg",
-        "avatar": "https://lh5.googleusercontent.com/-IlI6TyJIlrs/AAAAAAAAAAI/AAAAAAAAAC8/AsmFVAZBIkw/photo.jpg",
-        "friends": [],
-        "myFollows": [],
-        "myApplications": [],
-        "myJobs": [],
-        "followMes": [],
-        "website": "",
-        "companyFullname": "",
-        "active": 1,
-        "permission": 0,
-        "score": 0,
-        "token": "$2a$08$cuGGBSy7CZOhCrnr5rrdhOwayH6Ka1rJdw91St8K/tvvVE2e/0kSy",
-        "messages": [],
-        "notifications": {
-            "default": {
-                "list": []
+        "title": "nhân sự",
+        "userName": "Coders Camp",
+        "image_normal": "http://job.dev/images/normal_size/JobImages/1422555163758.jpeg",
+        "image_small": "http://job.dev/images/small_size/JobImages/1422555163758.jpeg",
+        "image": "http://job.dev/images/full_size/JobImages/1422555163758.jpeg"
+    },
+    "app": [
+        {
+            "time": "2015-01-29T18:06:49.000Z",
+            "job_id": "54ca75ac393d050028ce49d9",
+            "user_avatar": "https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg",
+            "user_name": "eMenu Admin",
+            "user_id": "54c9ee8b202b449e430cc43c",
+            "_id": "54ca76b969b8c7b729d50edc",
+            "__v": 0,
+            "hires": 0,
+            "interviews": 0,
+            "shares": {
+                "list": [],
+                "number": 0
             },
-            "list": [],
-            "unread": 0
+            "likes": {
+                "list": [],
+                "number": 0
+            },
+            "description": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+            "hash_tag": [
+                "php",
+                "nodejs",
+                "android"
+            ],
+            "title": "I can do it"
         },
-        "contact": "",
-        "google_infor": {
-            "access_token": "ya29.JgFFk8o2kCVM2-Njtps2emsAym0ljglN_DorrGZrSeW8wVQCqyUDQlLJ6gDYLvp3LZRRfXcy7J-S2g",
-            "email": "cuongvc93@gmail.com",
-            "profileUrl": "https://plus.google.com/116647846410186673378",
-            "gender": "",
-            "username": "Cường Vũ",
-            "avatar": "https://lh5.googleusercontent.com/-IlI6TyJIlrs/AAAAAAAAAAI/AAAAAAAAAC8/AsmFVAZBIkw/photo.jpg",
-            "id": "116647846410186673378"
-        },
-        "linkedin_infor": {
-            "access_token": "",
-            "email": "",
-            "profileUrl": "",
-            "gender": "",
-            "username": "",
-            "avatar": "",
-            "id": ""
-        },
-        "twitter_infor": {
-            "token_secret": "",
-            "access_token": "",
-            "email": "",
-            "profileUrl": "",
-            "gender": "",
-            "username": "",
-            "avatar": "",
-            "id": ""
-        },
-        "fb_infor": {
-            "access_token": "",
-            "email": "",
-            "profileUrl": "",
-            "gender": "",
-            "username": "",
-            "avatar": "",
-            "id": ""
-        },
-        "local_infor": {
-            "email": "",
-            "password": ""
-        },
-        "type_account": 4,
-        "isUser": 1,
-        "address": "9 Nguyên Hồng, Thành Công, Ba Đình, Hà Nội, Việt Nam"
-    }
+        {
+            "time": "2015-01-29T18:07:07.000Z",
+            "job_id": "54ca75ac393d050028ce49d9",
+            "user_avatar": "https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg",
+            "user_name": "eMenu Admin",
+            "user_id": "54c9ee8b202b449e430cc43c",
+            "_id": "54ca76cb69b8c7b729d50edd",
+            "__v": 0,
+            "hires": 0,
+            "interviews": 0,
+            "shares": {
+                "list": [],
+                "number": 0
+            },
+            "likes": {
+                "list": [],
+                "number": 0
+            },
+            "description": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+            "hash_tag": [
+                "php",
+                "nodejs",
+                "android"
+            ],
+            "title": "I can do it"
+        }
+    ]
 }
 
 ```

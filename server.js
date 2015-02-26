@@ -248,6 +248,10 @@ app.get('/directive/home/left-sidebar',function(req,res){
 	Router_body.post('/share_job',             routes.share.job);
 	Router_body.post('/share_apply',           routes.share.apply);
 
+	// GET HASHTAG AND TAGNAME FOR SUGGESTION
+	Router_body.get('/tagname',								 routes.suggest.tagname);
+	Router_body.get('/hashtag',								 routes.suggest.hashtag);
+
 // --------GET DATA FROM PERMALINK -------------------------------
 
 app.get('/:permalink',											 routes.get.permalink);

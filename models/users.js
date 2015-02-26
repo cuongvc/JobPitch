@@ -415,8 +415,15 @@ var userSchema = mongoose.Schema({
         value : String
     }],
 
-    summary  : String,
-    specialties : String
+    summary  : {
+        type : String,
+        default : ""
+    },
+
+    specialties : {
+        type : String,
+        default : ""
+    }
 
 });
 
