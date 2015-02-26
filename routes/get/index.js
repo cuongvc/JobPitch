@@ -19,3 +19,5 @@ exports.job             = require('./job');
 exports.top_job         = require('./top_job');
 
 exports.top_company     = require('./top_company');
+
+exports.top_hashtag     = require('./top_hashtag');

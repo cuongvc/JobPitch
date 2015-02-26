@@ -16,6 +16,7 @@ module.exports					=	function(hash_tag, comment_id, callback){
 			if (hash_tag_exist){
 				
 				hash_tag_exist.comment_id.push(comment_id);
+				hash_tag_exist.number ++;
 				hash_tag_exist.save(function(err){
 					add_tag(hash_tag,  i + 1, comment_id);	
 				})

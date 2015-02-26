@@ -23,13 +23,20 @@ var tagSchema = mongoose.Schema({
     comment_id    : [{
         type         : ObjectId,
         ref          : 'comments'
-    }]
+    }],
+    
+    number        : {
+        type         : Number,
+        default      : 1
+    }
 
 });
 
 
 tagSchema.methods.addJob    = function(job_id){
     this.job_id.push(job_id);
+    this.number ++;
+    this.save(function(err){});
     return 0;
 }
 
@@ -37,11 +44,15 @@ tagSchema.methods.addJob    = function(job_id){
 
 tagSchema.methods.addApp    = function(app_id){
     this.app_id.push(app_id);
+    this.number ++;
+    this.save(function(err){});
     return 0;
 }
 
 tagSchema.methods.addComment= function(comment_id){
     this.comment_id.push(comment_id);
+    this.number ++;
+    this.save(function(err){});
     return 0;
 }
 
