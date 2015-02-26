@@ -20,7 +20,8 @@
 							<!-- DROPDOWN -->
 						</div>
 						<p class="margin-bottom-0"><span class="company-title bold-text normal-text cp-title left-sidebar-blue-text" ng-click="ViewCompanyProfile($event,1)" ng-bind="job.title"></span></p>
-						<p><a class="gray-color cursor" ng-href="/user/{{ job.user_id }}" ng-click="ViewUser(job.user_id,$event)"><span>@</span><span ng-bind="job.userName"></span></a></p>
+						<p class="margin-bottom-0"><a class="gray-color cursor" ng-href="/user/{{ job.user_id }}" ng-click="ViewUser(job.user_id,$event)"><span>@</span><span ng-bind="job.userName"></span></a></p>
+						<p class="small-text gray-color" ng-bind="job.location.address"></p>
 						<p class="job-sort-desc normal-text" ng-bind="job.description"></p>
 					</div>
 					<div class="like-share small-text">

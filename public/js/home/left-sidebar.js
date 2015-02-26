@@ -9,9 +9,9 @@ LeftSidebar.directive('leftSidebar',function(){
 	}
 })
 LeftSidebar.controller('LeftSidebarCtrl',function($scope,$http){
-	$http.get(STR_API_TAGS).success(function(response){
+	$http.get(STR_API_TOP_HASHTAG).success(function(response){
 		console.log('tags: ',response);
-		$scope.LeftSidebarTags = response.tags;
+		$scope.LeftSidebarTags = response.top_hashtag;
 	})
 	$scope.LeftSidebarCompanies = [
 		{name: '@Google'},

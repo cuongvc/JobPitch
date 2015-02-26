@@ -86,9 +86,9 @@
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="#" ng-click="ShowPage(page.setting)">Settings</a>
                                 </li>
-                                <li ng-if="user.account_type == 1"><a href="/user/{{ user._id }}">Profile</a>
+                                <li ng-if="user.type_account == 1"><a href="/user/{{ user._id }}">Profile</a>
                                 </li>
-                                <li ng-if="user.account_type != 1"><a href="/u/{{ user._id }}">Profile</a>
+                                <li ng-if="user.type_account != 1"><a href="/u/{{ user._id }}">Profile</a>
                                 </li>
                                 <li><a href="#">Something else here</a>
                                 </li>
