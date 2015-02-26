@@ -11,4 +11,7 @@ RouteService.service('ROUTE',function(){
 		var url = '/user/' + user_id;
 		this.RedirectTo(url,evt);
 	}
+	this.GoTo = function(url){
+		history.pushState({},'',url);
+	}
 })

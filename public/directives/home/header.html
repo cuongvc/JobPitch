@@ -1,4 +1,4 @@
-<div id="header" ng-controller="HeaderCtrl">
+<div id="header">
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="col-md-36 col-sm-36 col-xs-36">
@@ -68,7 +68,7 @@
                             <div class="form-group">
                                 <div class="inner-addon right-addon">
                                     <i class="glyphicon glyphicon-search" ng-click="btnSearch_click(HeaderSeachValue)"></i>
-                                    <input type="text" class="form-control" ng-model="HeaderSeachValue" ng-change="ChangeHeaderSearchValue(HeaderSearchValue,$event)">
+                                    <input type="text" class="form-control" ng-model="HeaderSeachValue" ng-keyup="ChangeHeaderSearchValue(HeaderSeachValue,$event)">
                                 </div>
                             </div>
                         </form>

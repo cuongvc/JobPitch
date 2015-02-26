@@ -18,6 +18,10 @@ TemplateApp.config(['$routeProvider', '$locationProvider', function($routeProvid
 			templateUrl: '../directives/home/view-job.html', 
 			controller: 'ViewJobCtrl'
 		}).
+		when('/search/:query', {
+			templateUrl: '../directives/home/search/search-result.html', 
+			controller: 'SearchResultCtrl'
+		}).
 		when('/forgot-password', {
 			templateUrl: '../directives/forgot-password.html', 
 			controller: 'ForgotPasswordCtrl'

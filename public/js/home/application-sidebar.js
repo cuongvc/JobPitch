@@ -78,6 +78,7 @@ ApplicationSideBar.controller('ApplicationSideBarCtrl',function($scope,$http,JOB
 	};
 	var PitchService = PITCH.getPitchSidebar(data);
 		PitchService.then(function(response){
+			console.log("p",response);
 			if(response.error_code == 0){
 				pitchs = PITCH.getPitchSidebarHandler(response.applications,$scope.user._id);
 				pitchs.forEach(function(v,k){

@@ -26,11 +26,13 @@ Jobs.controller('JobCtrl',function($scope,$http,USER,PITCH,JOB,HASHTAG,LIKE,INTE
 			limit: JobScroll.limit,
 		}
 	var JobService = JOB.getJob(data);
-	JobService.then(function(response){
-		console.log(response);
-		jobs = JOB.JobHandler(response.jobs,$scope.user._id);
-		$scope.jobs = jobs;
-	})
+	if(document.location.pathname == '/'){
+		JobService.then(function(response){
+			console.log(response);
+			jobs = JOB.JobHandler(response.jobs,$scope.user._id);
+			$scope.jobs = jobs;
+		})
+	}
 	/*************************************************************************************************************/
 											/*SOCKET*/
 	/*************************************************************************************************************/

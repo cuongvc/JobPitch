@@ -1,4 +1,4 @@
-var Header = angular.module('header',['socket.service','notification.service','route.service']);
+var Header = angular.module('header',['ngRoute','socket.service','notification.service','route.service','search.service']);
 Header.directive('header',function(){
 	return {
 		restrict: 'E',
@@ -24,9 +24,28 @@ Header.directive('header',function(){
 			    }
 			})
 		},
+		controller: 'HeaderCtrl',
 	}
 })
-Header.controller('HeaderCtrl',function($scope,$http,SOCKET,NOTIFICATION,ROUTE){
+Header.directive('searchResultJob',function(){
+	return {
+		restrict: 'E',
+		templateUrl: 'directives/home/search/search-result-job.html',
+		link: function(scope,element,attrs){
+
+		},
+	}
+})
+Header.directive('searchResultPitch',function(){
+	return {
+		restrict: 'E',
+		templateUrl: 'directives/home/search/search-result-pitch.html',
+		link: function(scope,element,attrs){
+
+		},
+	}
+})
+Header.controller('HeaderCtrl',function($scope,$http,$routeParams,SOCKET,NOTIFICATION,ROUTE,SEARCH){
 	function findBootstrapEnvironment() {
 	    var envs = ['xs', 'sm', 'md', 'lg'];
 
@@ -52,6 +71,8 @@ Header.controller('HeaderCtrl',function($scope,$http,SOCKET,NOTIFICATION,ROUTE){
 	};
 	$scope.notifications = notifications;
 	console.log(notifications);
+
+	if($routeParams != undefined && $routeParams.query != undefined) $scope.HeaderSeachValue = $routeParams.query;
 	/*************************************************************************************************************/
 											/*VIEW NOTIFICATION && USER*/
 	/*************************************************************************************************************/
@@ -181,7 +202,10 @@ Header.controller('HeaderCtrl',function($scope,$http,SOCKET,NOTIFICATION,ROUTE){
 
 
 	$scope.ChangeHeaderSearchValue = function(value,evt){
-		console.log(evt);
+		if(evt.keyCode == 13){
+			var url = '/search/' + value;
+			ROUTE.GoTo(url);
+		}
 	}
 	$scope.btnSearch_click  = function(value){
 		HeaderSearch(value);
