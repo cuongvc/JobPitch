@@ -14,6 +14,7 @@ PitchService.service('PITCH',function($http,$q){
 	* pitch handler
 	*/
 	function pitchHandlerFuction(pitch,user_id){
+		pitch.short_job_title = pitch.job_title.substring(0,18) + '...';
 		pitch.comments = {
 			numberOfComment: pitch.comment.length,
 		};
@@ -140,6 +141,7 @@ PitchService.service('PITCH',function($http,$q){
 	}
 	this.getPitchSidebarHandler = function(pitchs,user_id){
 		pitchs.forEach(function(v,k){
+			pitchs[k].short_job_title = pitchs[k].job_title.substring(0,18) + '...';
 			pitchs[k].comments = {
 				list: v.comment,
 				numberOfComment: v.comment.length,
@@ -158,5 +160,4 @@ PitchService.service('PITCH',function($http,$q){
 		})
 		return pitchs;
 	}
-	
 })

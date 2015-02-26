@@ -1,4 +1,4 @@
-var ApplicationSideBar = angular.module('application-sidebar',['pitch.service','job.service','hashtag.service','like.service','interest.service','user-service','route.service','socket.service']);
+var ApplicationSideBar = angular.module('application-sidebar',['pitch.service','job.service','hashtag.service','like.service','interest.service','user-service','route.service','socket.service','comment.service']);
 ApplicationSideBar.directive('applicationSidebar',function(){
 	return {
 		restrict: 'E',
@@ -13,7 +13,7 @@ ApplicationSideBar.filter('reverse', function() {
 		return items.slice().reverse();
 	};
 });
-ApplicationSideBar.controller('ApplicationSideBarCtrl',function($scope,$http,JOB,PITCH,LIKE,HASHTAG,INTEREST,USER,ROUTE, SOCKET){
+ApplicationSideBar.controller('ApplicationSideBarCtrl',function($scope,$http,JOB,PITCH,LIKE,HASHTAG,INTEREST,USER,ROUTE, SOCKET,COMMENT){
 	var InterestList = new Array();
 	$scope.InterestList = InterestList;
 	$scope.ApplicationSideBarComments = [
@@ -59,10 +59,21 @@ ApplicationSideBar.controller('ApplicationSideBarCtrl',function($scope,$http,JOB
 	})
 
 	IO.on(LIKE_PITCH_SOCKET_EVENT,function(data){
-
-		if(SOCKET.checkUserReciveNotification($scope.user._id, data.user_receive_notify) == false) return;
+		console.log('sidebar', LIKE_PITCH_SOCKET_EVENT,data);
+		if(data.id_user_make_notify != $scope.user._id){
+			if(SOCKET.checkUserReciveNotification($scope.user._id, data.user_receive_notify) == false) return;
+		}
 		
 		pitchs = LIKE.addLikePitchSidebar(pitchs,data.app_id,data.id_user_make_notify);
+		$scope.pitchs = pitchs;
+		$scope.$apply();
+	})
+	IO.on(COMMENT_PITCH_SOCKET_EVENT,function(data){
+		if(data.id_user_make_notify != $scope.user._id){
+			if(SOCKET.checkUserReciveNotification($scope.user._id, data.user_receive_notify) == false) return;
+		}
+		console.log('sidebar', COMMENT_PITCH_SOCKET_EVENT,data);
+		pitchs = COMMENT.addCommentSidebar(pitchs,data);
 		$scope.pitchs = pitchs;
 		$scope.$apply();
 	})
