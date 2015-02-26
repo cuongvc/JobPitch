@@ -126,9 +126,16 @@ var applicationSchema = mongoose.Schema({
 
 });
 
-applicationSchema.plugin(searchPlugin, {
-        fields : ['description', 'hash_tag']
-})
+var options = {
+    keywordsPath: '_keywords', // path for keywords, `_keywords` as default 
+    relevancePath: '_relevance', // path for relevance number, '_relevance' as default 
+    fields: ['description', 'hash_tag','userName'], // array of fields to use as keywords (can be String or [String] types), 
+    stemmer: 'PorterStemmer', // natural stemmer, PorterStemmer as default 
+    // distance: 'JaroWinklerDistance' // distance algorythm, JaroWinklerDistance as default 
+    distance: 'LevenshteinDistance' // distance algorythm, JaroWinklerDistance as default 
+};
+
+applicationSchema.plugin(searchPlugin, options);
 
 // check application is Own of account
 applicationSchema.methods.isOwn         = function(companyId){

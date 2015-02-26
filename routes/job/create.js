@@ -120,10 +120,13 @@ module.exports				=	function(req, res){
               hash_tag, desc, lat, lng, address, city, country, state, link_direct, time,
               function(job) {
 
+
+
                   job.save(function(err) {
                       user_exist.addJob(job._id);
                       respon_object(res, job);
 
+                     
                       for (var i = 0; i < user_exist.followMes.length; i++) {
                           var notification = new Notification();
                           notification.newInfor(user_exist.followMes[i], user_exist.userName,

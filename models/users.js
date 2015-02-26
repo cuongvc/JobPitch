@@ -1,13 +1,16 @@
 // load the things we need
-var mongoose = require('mongoose');
-var graph = require('fbgraph');
-var async = require('async');
-var ObjectId = mongoose.Schema.Types.ObjectId;
-var bcrypt = require('bcrypt-nodejs');
-var domain = require('./../config/default').domain_default;
+var mongoose       = require('mongoose');
+var searchPlugin   = require('mongoose-search-plugin');
+
+
+var graph          = require('fbgraph');
+var async          = require('async');
+var ObjectId       = mongoose.Schema.Types.ObjectId;
+var bcrypt         = require('bcrypt-nodejs');
+var domain         = require('./../config/default').domain_default;
 var avatar_default = require('./../config/default').avatar_default;
-var logo_default = require('./../config/default').logo_default;
-var cover_default = require('./../config/default').cover_default;
+var logo_default   = require('./../config/default').logo_default;
+var cover_default  = require('./../config/default').cover_default;
 
 if (process.env.USER == 'root')
     var Oauth = require('./../config/Oauth');
@@ -409,6 +412,19 @@ var userSchema = mongoose.Schema({
     }]
 
 });
+
+
+var options = {
+    keywordsPath: '_keywords', // path for keywords, `_keywords` as default 
+    relevancePath: '_relevance', // path for relevance number, '_relevance' as default 
+    fields: ['userName', 'email'], // array of fields to use as keywords (can be String or [String] types), 
+    stemmer: 'PorterStemmer', // natural stemmer, PorterStemmer as default 
+    // distance: 'JaroWinklerDistance' // distance algorythm, JaroWinklerDistance as default 
+    distance: 'LevenshteinDistance' // distance algorythm, JaroWinklerDistance as default 
+};
+
+userSchema.plugin(searchPlugin, options);
+
 
 // ======================== VERIFY =======================================
 

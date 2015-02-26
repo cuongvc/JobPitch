@@ -1,16 +1,16 @@
 // load the things we need
-var mongoose         = require('mongoose');
-var searchPlugin     = require('mongoose-search-plugin');
+var mongoose        = require('mongoose');
+var searchPlugin    = require('mongoose-search-plugin');
 
-var User             = require('./users');
-var ObjectId         = mongoose.Schema.Types.ObjectId;
-var bcrypt           = require('bcrypt-nodejs');
-var domain           = require('./../config/default').domain_default;
-var distanceLimit    = require('./../config/default').distanceLimit;
-var image_default    = require('./../config/default').jobImage_default;
-var distance         = require('./../my_module/map/distance');
-var add_hashTag_job  = require('./../my_module/add_hashTag').job;
-var Jobs             = require('./jobs');
+var User            = require('./users');
+var ObjectId        = mongoose.Schema.Types.ObjectId;
+var bcrypt          = require('bcrypt-nodejs');
+var domain          = require('./../config/default').domain_default;
+var distanceLimit   = require('./../config/default').distanceLimit;
+var image_default   = require('./../config/default').jobImage_default;
+var distance        = require('./../my_module/map/distance');
+var add_hashTag_job = require('./../my_module/add_hashTag').job;
+var Jobs            = require('./jobs');
 // var autoIncrement = require('mongoose-auto-increment');
 // autoIncrement.initialize(mongoose);
 
@@ -44,7 +44,8 @@ var jobSchema = mongoose.Schema({
     userName         : {
         type         : String,
         default      : '',
-        index: true
+        index: true,
+        autocomplete: true
     },
 
     title            : {
@@ -68,7 +69,8 @@ var jobSchema = mongoose.Schema({
 
     description      : {
         type         : String,
-        default      : ''
+        default      : '',
+        autocomplete: true
     },
 
     location         : {
@@ -188,10 +190,16 @@ var jobSchema = mongoose.Schema({
 
 });
 
-jobSchema.plugin(searchPlugin, {
-        fields : ['description', 'title', 'userName', 'hash_tag']
-})
+var options = {
+    keywordsPath: '_keywords', // path for keywords, `_keywords` as default 
+    relevancePath: '_relevance', // path for relevance number, '_relevance' as default 
+    fields: ['description', 'hash_tag','userName', 'title'], // array of fields to use as keywords (can be String or [String] types), 
+    stemmer: 'PorterStemmer', // natural stemmer, PorterStemmer as default 
+    // distance: 'JaroWinklerDistance' // distance algorythm, JaroWinklerDistance as default 
+    distance: 'LevenshteinDistance' // distance algorythm, JaroWinklerDistance as default 
+};
 
+jobSchema.plugin(searchPlugin, options);
 // check job is Own of account
 jobSchema.methods.isOwn         = function(user_id){
     return (user_id == this.user_id);

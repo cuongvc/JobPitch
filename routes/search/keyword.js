@@ -5,6 +5,7 @@ var async                       = require('async');
 var Job                         = require('./../../models/jobs');
 var Application                 = require('./../../models/applications');
 var Comment                     = require('./../../models/comments');
+var User                        = require('./../../models/users');
 
 
 module.exports									=	function(req, res){
@@ -18,6 +19,7 @@ module.exports									=	function(req, res){
 		var return_job        = data.return_job;
 		var return_app        = data.return_app;
 		var return_comment    = data.return_comment;
+		var return_user       = data.return_user;
 	}	
 
 	catch(err){
@@ -37,8 +39,8 @@ module.exports									=	function(req, res){
 				if (!return_job ){
 					next(null);
 				} else{
+
 					Job.search(keyword, {}, {
-						sort : {time : -1},
 						limit : limit,
 						skip  : skip
 					}, function(err, jobs){
@@ -76,10 +78,25 @@ module.exports									=	function(req, res){
 						next(null)
 					});
 				}
+			},
+
+			function(next){
+				if (!return_user){
+					next(null);
+				} else{
+					User.search(keyword, {}, {
+						limit : limit,
+						skip  : skip
+					}, function(err, users){
+						console.log(users);
+						user_array = users;
+						next(null)
+					});
+				}
 			}],
 
 			function(err){
-				results = {'jobs' : job_array, 'applications' : application_array, 'comments' : comment_array};
+				results = {'jobs' : job_array, 'applications' : application_array, 'comments' : comment_array, 'users' : user_array};
 				res.write(JSON.stringify({error_code : 0, results : results}));
 				res.status(200).end();
 			}
