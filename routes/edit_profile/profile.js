@@ -31,6 +31,10 @@ module.exports 								=	function(req, res){
 		var year_of_birth         = data.year_of_birth;
 
 		var moreInfor             = data.moreInfor;
+
+		var tagname               = data.tagname;
+		var summary               = data.summary;
+		var specialties           = data.specialties;
 	}
 
 	catch(err){
@@ -46,25 +50,38 @@ module.exports 								=	function(req, res){
 				return 1;
 			};
 
-			if (avatar != ''){
-				move_file(avatar, extension, 'UserImages', function(err_exist, error, avatar, avatar_small, avatar_normal){
-					if (!err_exist){
-						user_exist.editProfile(address, contact, website, avatar, avatar_small, avatar_normal,
-							                     companyName, skype, phone, companyEmail, userFullname, industry, education, 
-							                     year_of_birth, moreInfor, function(user){
+			User.findOne({tagname : tagname}, function(err, tagname_exist){
+
+				if (err || tagname_exist){
+					res.write(JSON.stringify({error_code : 1, msg : 'TagName is already exist'}));
+					res.status(200).end();
+					return 1;
+				}
+
+				if (avatar != ''){
+					move_file(avatar, extension, 'UserImages', function(err_exist, error, avatar, avatar_small, avatar_normal){
+						if (!err_exist){
+							user_exist.editProfile(address, contact, website, avatar, avatar_small, avatar_normal,
+								                     companyName, skype, phone, companyEmail, userFullname, industry, education, 
+								                     year_of_birth, moreInfor, tagname, summary, specialties, function(user){
+								respon_object(0, res, user);
+								return 1;
+							})
+						}
+					})
+				} else{
+					user_exist.editProfile(address, contact, website, '', '', '',
+									               companyName, skype, phone, companyEmail, userFullname, industry, education, 
+									               year_of_birth, moreInfor, tagname, summary, specialties, function(user){
 							respon_object(0, res, user);
 							return 1;
-						})
-					}
-				})
-			} else
+					})
+				}
 
-			user_exist.editProfile(address, contact, website, '', '', '',
-							               companyName, skype, phone, companyEmail, userFullname, industry, education, 
-							               year_of_birth, moreInfor, function(user){
-					respon_object(0, res, user);
-					return 1;
-			})
+
+
+			})			
+
 
 		})
 	}

@@ -333,9 +333,8 @@ var userSchema = mongoose.Schema({
         type: String
     },
 
-    tagName : {
-        type: String,
-        index : true
+    tagname : {
+        type: String
     },
 
     userFullname: {
@@ -414,7 +413,10 @@ var userSchema = mongoose.Schema({
     moreInfor : [{
         title : String,
         value : String
-    }]
+    }],
+
+    summary  : String,
+    specialties : String
 
 });
 
@@ -432,6 +434,42 @@ userSchema.plugin(searchPlugin, options);
 
 
 // ======================== VERIFY =======================================
+
+var makeTagName           = function(userName, callback){
+    userName    = userName.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ  |ặ|ẳ|ẵ/g,"a"); 
+    userName    = userName.replace(/è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ/g,"e"); 
+    userName    = userName.replace(/ì|í|ị|ỉ|ĩ/g,"i"); 
+    userName    = userName.replace(/ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ  |ợ|ở|ỡ/g,"o"); 
+    userName    = userName.replace(/ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ/g,"u"); 
+    userName    = userName.replace(/ỳ|ý|ỵ|ỷ|ỹ/g,"y"); 
+    userName    = userName.replace(/đ/g,"d"); 
+    userName    = userName.replace(/!|@|%|\^|\*|\(|\)|\+|\=|\<|\>|\?|\/|,|\:|\;|\'|\"|\&|\#|\[|\]|~|$|_/g,"");
+    userName    = userName.replace(/ /g,".");
+    var tagName = userName.toLowerCase(); 
+
+    var TagName = require('./tagnames');
+    TagName.findOne({name : tagName}, function(err, tagname_exist){
+
+        if (err){
+            console.log(err);
+            return callback('');
+        }
+
+        if (tagname_exist){
+            tagName = tagName + (tagname_exist.number + 1);
+            tagname_exist.number ++;
+            tagname_exist.save(function(err){});
+            return callback(tagName);
+        };
+
+        var newTagName = new TagName();
+        newTagName.name = tagName;
+        newTagName.save(function(err){});
+
+        return callback(tagName);
+    })
+
+}
 
 userSchema.methods.Verify = function(skype, phone, companyEmail, callback) {
     var user = this;
@@ -452,22 +490,30 @@ userSchema.methods.newInforLc = function(name, email, password, isUser, callback
     user.local_infor.email = email;
     user.local_infor.password = user.generateHash(password);
     user.isUser = isUser;
-    var newPermalink = new Permalink();
 
-    if (isUser) {
-        user.userName = name;
-        newPermalink.newInfor(user._id, '', 1, user.userName, function(){ 
-            user.permalink = newPermalink.permalink;
-            callback(user);
-        });  
-    } else {
-        user.companyName = name;
-        newPermalink.newInfor(user._id, '', 1, user.companyName, function(){ 
-            user.permalink = newPermalink.permalink;
-            callback(user);
-        });  
+    user.userName = name;
 
-    };
+    makeTagName(name, function(tagname){
+        user.tagname = tagname;
+        var newPermalink = new Permalink();
+
+        if (isUser) {
+            user.userName = name;
+            newPermalink.newInfor(user._id, '', 1, user.userName, function(){ 
+                user.permalink = newPermalink.permalink;
+                callback(user);
+            });  
+        } else {
+            user.companyName = name;
+            newPermalink.newInfor(user._id, '', 1, user.companyName, function(){ 
+                user.permalink = newPermalink.permalink;
+                callback(user);
+            });  
+
+        };
+
+    })
+
 }
 
 // generating a hash
@@ -574,8 +620,8 @@ userSchema.methods.getAvatarFb = function(access_token, callback) {
 
 // ======================== EDIT PROFILE ====================================
 userSchema.methods.editProfile = function(address, contact, website, avatar, avatar_small, 
-    avatar_normal, companyName, skype, phone, companyEmail,
-    userFullname, industry, education, year_of_birth, moreInfor, callback) {
+    avatar_normal, companyName, skype, phone, companyEmail, 
+    userFullname, industry, education, year_of_birth, moreInfor, tagname, summary, specialties, callback) {
 
     this.address = address;
     this.contact = contact;
@@ -589,6 +635,9 @@ userSchema.methods.editProfile = function(address, contact, website, avatar, ava
     this.phone = phone;
     this.companyEmail = companyEmail;
     this.moreInfor = moreInfor;
+    this.tagname = tagname;
+    this.summary = summary;
+    this.specialties = specialties;
 
     if (avatar != '') {
         this.avatar = avatar;
@@ -596,7 +645,6 @@ userSchema.methods.editProfile = function(address, contact, website, avatar, ava
         this.avatar_small = avatar_small;
     };
 
-    console.log('callback this');
     callback(this);
 }
 
@@ -605,24 +653,143 @@ userSchema.methods.editProfile = function(address, contact, website, avatar, ava
 
 // make new Infor
 userSchema.methods.newInforFb = function(access_token, profile, callback) {
-    user = this;
+    var user = this;
     this.getAvatarFb(access_token, function(avatar, avatar_normal, avatar_small) {
 
-        user.avatar = avatar;
-        user.avatar_small = avatar_small;
-        user.avatar_normal = avatar_normal;
-        user.type_account = 2;
+        makeTagName(profile.displayName, function(tagname){
+            user.tagname = tagname;
+            user.avatar = avatar;
+            user.avatar_small = avatar_small;
+            user.avatar_normal = avatar_normal;
+            user.type_account = 2;
+            user.userName = profile.displayName;
+            user.gender = profile.gender;
+            user.email = profile.emails[0].value;
+            user.fb_infor.avatar = avatar_normal;
+            user.fb_infor.id = profile.id;
+            user.fb_infor.gender = profile.gender;
+            user.fb_infor.profileUrl = profile.profileUrl;
+            user.fb_infor.access_token = access_token;
+            user.fb_infor.username = profile.displayName;
+            user.fb_infor.email = profile.emails[0].value;
+
+            var newPermalink = new Permalink();
+            newPermalink.newInfor(user._id, '', 1, user.userName, function(){
+                user.permalink = newPermalink;
+                user.makeToken();
+                user.save(function(err) {
+                    if (err)
+                        console.log(err);
+                    console.log("USER ****************** : ", user);
+                    callback(user);
+                });
+            });
+        })
+
+    });
+}
+
+
+// ======================== TWITTER INFOR ====================================
+
+userSchema.methods.newInforTw = function(access_token, token_secret, profile, callback) {
+    console.log('PROFILE :', profile, ' access_token : ', access_token, ' token_secret : ', token_secret);
+
+    var user = this;
+
+    makeTagName(profile.displayName, function(tagname){
+        user.tagname = tagname;
         user.userName = profile.displayName;
-        user.gender = profile.gender;
+        user.avatar = profile._json.profile_image_url;
+        user.avatar_small = profile._json.profile_image_url;
+        user.avatar_normal = profile._json.profile_image_url;
+        user.type_account = 3;
+
+        user.twitter_infor.id = profile.id;
+        user.twitter_infor.access_token = access_token;
+        user.twitter_infor.token_secret = token_secret;
+        user.twitter_infor.username = profile.displayName;
+
+        var newPermalink = new Permalink();
+        newPermalink.newInfor(user._id, '', 1, user.userName, function(){
+            user.permalink = newPermalink;
+            user.makeToken();
+            user.save(function(err) {
+                if (err)
+                    throw err;
+                console.log("USER ****************** : ", user);
+
+                callback(user);
+            });
+        });
+
+    })
+
+
+}
+
+// ======================== GOOGLE INFOR ====================================
+userSchema.methods.newInforGg = function(access_token, profile, callback) {
+    var user = this;
+
+    makeTagName(profile.displayName, function(tagname){
+        user.tagname = tagname;
+        user.userName = profile.displayName;
+        user.avatar = profile._json.picture;
+        user.avatar_small = profile._json.picture;
+        user.avatar_normal = profile._json.picture;
+        user.gender = profile._json.gender;
+        user.type_account = 4;
         user.email = profile.emails[0].value;
-        user.fb_infor.avatar = avatar_normal;
-        user.fb_infor.id = profile.id;
-        user.fb_infor.gender = profile.gender;
-        user.fb_infor.profileUrl = profile.profileUrl;
-        user.fb_infor.access_token = access_token;
-        user.fb_infor.username = profile.displayName;
-        user.fb_infor.email = profile.emails[0].value;
-        console.log("USER._ID : ", user._id)
+
+        user.google_infor.id = profile.id;
+        user.google_infor.access_token = access_token;
+        user.google_infor.username = profile.displayName;
+        user.google_infor.gender = profile.gender;
+        user.google_infor.avatar = profile._json.picture;
+        user.google_infor.email = profile.emails[0].value;
+        user.google_infor.profileUrl = profile._json.link;
+
+        var newPermalink = new Permalink();
+        newPermalink.newInfor(user._id, '', 1, user.userName, function(){
+            user.permalink = newPermalink;
+            user.makeToken();
+            user.save(function(err) {
+                if (err)
+                    throw err;
+                console.log("USER ****************** : ", user);
+
+                callback(user);
+            });
+        });    
+    })
+
+
+}
+
+
+// ======================== LINKEDIN INFOR ====================================
+userSchema.methods.newInforLk = function(access_token, profile, callback) {
+    var user = this;
+
+    makeTagName(profile.displayName, function(tagname){
+        user.tagname = tagname;
+        user.avatar = profile.photos[0];
+        user.avatar_small = profile.photos[0];
+        user.avatar_normal = profile.photos[0];
+        user.linkedin_infor.avatar = profile.photos[0];
+
+        user.userName = profile.displayName;
+        user.gender = profile._json.gender;
+        user.type_account = 5;
+        user.email = profile.emails[0].value;
+
+        user.linkedin_infor.id = profile.id;
+        user.linkedin_infor.access_token = access_token;
+        user.linkedin_infor.username = profile.displayName;
+        user.linkedin_infor.gender = profile.gender;
+        user.linkedin_infor.email = profile.emails[0].value;
+        user.linkedin_infor.profileUrl = profile._json.publicProfileUrl;
 
         var newPermalink = new Permalink();
         newPermalink.newInfor(user._id, '', 1, user.userName, function(){
@@ -635,107 +802,16 @@ userSchema.methods.newInforFb = function(access_token, profile, callback) {
             });
         });
 
-    });
+    })
+
 }
-
-
-// ======================== TWITTER INFOR ====================================
-
-userSchema.methods.newInforTw = function(access_token, token_secret, profile, callback) {
-    console.log('PROFILE :', profile, ' access_token : ', access_token, ' token_secret : ', token_secret);
-
-    var user = this;
-    user.userName = profile.displayName;
-    user.avatar = profile._json.profile_image_url;
-    user.avatar_small = profile._json.profile_image_url;
-    user.avatar_normal = profile._json.profile_image_url;
-    user.type_account = 3;
-
-    user.twitter_infor.id = profile.id;
-    user.twitter_infor.access_token = access_token;
-    user.twitter_infor.token_secret = token_secret;
-    user.twitter_infor.username = profile.displayName;
-
-    var newPermalink = new Permalink();
-    newPermalink.newInfor(user._id, '', 1, user.userName, function(){
-        user.permalink = newPermalink;
-        user.makeToken();
-        user.save(function(err) {
-            if (err)
-                throw err;
-            callback(user);
-        });
-    });
-}
-
-// ======================== GOOGLE INFOR ====================================
-userSchema.methods.newInforGg = function(access_token, profile, callback) {
-    var user = this;
-    user.userName = profile.displayName;
-    user.avatar = profile._json.picture;
-    user.avatar_small = profile._json.picture;
-    user.avatar_normal = profile._json.picture;
-    user.gender = profile._json.gender;
-    user.type_account = 4;
-    user.email = profile.emails[0].value;
-
-    user.google_infor.id = profile.id;
-    user.google_infor.access_token = access_token;
-    user.google_infor.username = profile.displayName;
-    user.google_infor.gender = profile.gender;
-    user.google_infor.avatar = profile._json.picture;
-    user.google_infor.email = profile.emails[0].value;
-    user.google_infor.profileUrl = profile._json.link;
-
-    var newPermalink = new Permalink();
-    newPermalink.newInfor(user._id, '', 1, user.userName, function(){
-        user.permalink = newPermalink;
-        user.makeToken();
-        user.save(function(err) {
-            if (err)
-                throw err;
-            callback(user);
-        });
-    });}
-
-
-// ======================== LINKEDIN INFOR ====================================
-userSchema.methods.newInforLk = function(access_token, profile, callback) {
-    var user = this;
-    user.avatar = profile.photos[0];
-    user.avatar_small = profile.photos[0];
-    user.avatar_normal = profile.photos[0];
-    user.linkedin_infor.avatar = profile.photos[0];
-
-    user.userName = profile.displayName;
-    user.gender = profile._json.gender;
-    user.type_account = 5;
-    user.email = profile.emails[0].value;
-
-    user.linkedin_infor.id = profile.id;
-    user.linkedin_infor.access_token = access_token;
-    user.linkedin_infor.username = profile.displayName;
-    user.linkedin_infor.gender = profile.gender;
-    user.linkedin_infor.email = profile.emails[0].value;
-    user.linkedin_infor.profileUrl = profile._json.publicProfileUrl;
-
-    var newPermalink = new Permalink();
-    newPermalink.newInfor(user._id, '', 1, user.userName, function(){
-        user.permalink = newPermalink;
-        user.makeToken();
-        user.save(function(err) {
-            if (err)
-                throw err;
-            callback(user);
-        });
-    });}
 
 
 // ======================== EDIT INFOR ====================================
 
 // edit Infor
 // { Avatar, Avatar_small, Avatar_normal, Fullname, YearOfBirth
-//   Address, Industry, Sex, Contact }
+//   Address, Industry, Sex, Contact, tagName}
 userSchema.methods.editInfor_user = function(user) {
     this.avatar = user.avatar;
     this.avatar_small = user.avatar_small;
@@ -746,6 +822,7 @@ userSchema.methods.editInfor_user = function(user) {
     this.industry = user.industry;
     this.sex = user.sex;
     this.contact = user.contact;
+    this.tagname = user.tagname;
 
     return this;
 }
