@@ -26,6 +26,7 @@
 	var STR_API_FORGOT_PASSWORD  = BASE_URL + '/api/forgot_password';
 	var STR_API_EDIT_JOB         = BASE_URL + '/api/edit_job';
 	var STR_API_SEARCH_KEY_WORD  = BASE_URL + '/api/search_keyword';
+	var STR_API_TOP_HASHTAG      = BASE_URL + '/api/top_hashtag';
 	/*
 	* SOCKET EVENT
 	*/
