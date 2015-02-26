@@ -65,8 +65,8 @@ module.exports = function(req, res) {
                         var newNotification = new Notification();
                         newNotification.newInfor(
                             application_exist.user_id, user_exist.userName, content_noti.interest_application,
-                            application_exist.description, application_exist.job_id, application_exist._id,
-                            '', '', '', user_exist.avatar_small, 21);
+                                application_exist.description, application_exist.job_id, application_exist._id,
+                                '', '', '', '', user_exist.avatar_small, 21);
 
                         var receive_notify = [];
                         receive_notify.push(application_exist.user_id);
