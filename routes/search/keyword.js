@@ -32,6 +32,7 @@ module.exports									=	function(req, res){
 		var comment_array = [];
 		var job_array = [];
 		var application_array = [];
+		var user_array = [];
 		var results = {};
 
 		async.waterfall([
