@@ -166,9 +166,6 @@ Cache-Control: no-cache
     "skype"             : "campcoder",
     "phone"             : "0987654321",
     "companyEmail"      : "thanhah@campcoders.com",
-    "tagname"           : "cuongvu_123",
-    "summary"           : "summary",
-    "specialties"       : "specialties"
 }
 
 Tat ca cac truong khong sua doi thi gui noi dung cu. Neu khong upload image 
@@ -595,9 +592,10 @@ POST http://jobpitch.campcoders.com/api/edit_profile
 Content-Type: application/json
 Cache-Control: no-cache
 
+
 {
-    "token"             : "$2a$08$RUmUJIm1SO7S/cb8/duN9O17HG7iTFyY45IMjUTWhdgAQPUJfaso.",
-    "user_id"           : "54d82a8e85dde2572bb70d2c",
+    "token"             : "$2a$08$cuGGBSy7CZOhCrnr5rrdhOwayH6Ka1rJdw91St8K/tvvVE2e/0kSy",
+    "user_id"           : "54eef31ef87632e72c4db927",
     "type_account"      : "1",
     "extension"         : "jpeg",
     "address"           : "9 Nguyên Hồng, Thành Công, Ba Đình, Hà Nội, Việt Nam",
@@ -609,11 +607,14 @@ Cache-Control: no-cache
     "industry"          : "",
     "education"         : "",
     "year_of_birth"     : "",
-    "skype"          : "campcoder",
-    "phone"          : "0987654321",
-    "companyEmail"   : "thanhah@campcoders.com",
-    "moreInfor"      : [{"title" : "", "value" : ""}]
+    "skype"             : "campcoder",
+    "phone"             : "0987654321",
+    "companyEmail"      : "thanhah@campcoders.com",
+    "tagname"           : "cuongvu_123",
+    "summary"           : "summary",
+    "specialties"       : "specialties"
 }
+
     token, user_id, type_account, address, contact is require
 
     companyName, website for company
@@ -630,10 +631,22 @@ Cache-Control: no-cache
 {
     "error_code": 0,
     "user": {
+        "__v": 0,
+        "_id": "54eef31ef87632e72c4db927",
         "companyName": "",
-        "__v": 11,
-        "_id": "54d82a8e85dde2572bb70d2c",
-        "userName": "Campcoders Account",
+        "gender": "male",
+        "specialties": "specialties",
+        "summary": "summary",
+        "tagname": "cuongvu_123",
+        "userName": "Cường Vũ",
+        "_keywords": [
+            "c",
+            "ng",
+            "v",
+            "cuongvc93",
+            "gmail",
+            "com"
+        ],
         "contracts": {
             "list": [],
             "number": 0
@@ -646,7 +659,7 @@ Cache-Control: no-cache
         "phone": "0987654321",
         "skype": "campcoder",
         "verify": 0,
-        "email": "campcoders@gmail.com",
+        "email": "cuongvc93@gmail.com",
         "year_of_birth": null,
         "education": "",
         "industry": "",
@@ -654,41 +667,39 @@ Cache-Control: no-cache
         "cover_normal": "http://job.dev/images/full_size/UserImages/default-cover.jpeg",
         "cover_small": "http://job.dev/images/full_size/UserImages/default-cover.jpeg",
         "cover": "http://job.dev/images/full_size/UserImages/default-cover.jpeg",
-        "avatar_normal": "https://media.licdn.com/mpr/mprx/0_k14DPHK2N-ddlTl0XtI-PwTfnrm4gTl0oB2tPwCKWzsdCLQxHzH3jI9YZYa6OQK15rV1y2r-Gmro",
-        "avatar_small": "https://media.licdn.com/mpr/mprx/0_k14DPHK2N-ddlTl0XtI-PwTfnrm4gTl0oB2tPwCKWzsdCLQxHzH3jI9YZYa6OQK15rV1y2r-Gmro",
-        "avatar": "https://media.licdn.com/mpr/mprx/0_k14DPHK2N-ddlTl0XtI-PwTfnrm4gTl0oB2tPwCKWzsdCLQxHzH3jI9YZYa6OQK15rV1y2r-Gmro",
+        "avatar_normal": "https://lh5.googleusercontent.com/-IlI6TyJIlrs/AAAAAAAAAAI/AAAAAAAAAC8/AsmFVAZBIkw/photo.jpg",
+        "avatar_small": "https://lh5.googleusercontent.com/-IlI6TyJIlrs/AAAAAAAAAAI/AAAAAAAAAC8/AsmFVAZBIkw/photo.jpg",
+        "avatar": "https://lh5.googleusercontent.com/-IlI6TyJIlrs/AAAAAAAAAAI/AAAAAAAAAC8/AsmFVAZBIkw/photo.jpg",
         "friends": [],
-        "myFollows": [
-            "54d82403918494ac248e24c9"
-        ],
-        "myApplications": [
-            "54d82a9285dde2572bb70d2e",
-            "54d82a9485dde2572bb70d2f",
-            "54d83570cd70876a37545958"
-        ],
+        "myFollows": [],
+        "myApplications": [],
         "myJobs": [],
         "followMes": [],
         "website": "",
         "companyFullname": "",
         "active": 1,
         "permission": 0,
-        "token": "$2a$08$RUmUJIm1SO7S/cb8/duN9O17HG7iTFyY45IMjUTWhdgAQPUJfaso.",
+        "score": 0,
+        "token": "$2a$08$cuGGBSy7CZOhCrnr5rrdhOwayH6Ka1rJdw91St8K/tvvVE2e/0kSy",
         "messages": [],
         "notifications": {
             "default": {
                 "list": []
             },
-            "list": [
-                "54d82a9485dde2572bb70d30",
-                "54d82e62124034e22f186e3a",
-                "54d82ec89c6695c730cf3de3",
-                "54d8356acd70876a37545957",
-                "54d83570cd70876a37545959"
-            ],
-            "unread": 5
+            "list": [],
+            "unread": 0
         },
         "contact": "",
         "google_infor": {
+            "access_token": "ya29.JgFFk8o2kCVM2-Njtps2emsAym0ljglN_DorrGZrSeW8wVQCqyUDQlLJ6gDYLvp3LZRRfXcy7J-S2g",
+            "email": "cuongvc93@gmail.com",
+            "profileUrl": "https://plus.google.com/116647846410186673378",
+            "gender": "",
+            "username": "Cường Vũ",
+            "avatar": "https://lh5.googleusercontent.com/-IlI6TyJIlrs/AAAAAAAAAAI/AAAAAAAAAC8/AsmFVAZBIkw/photo.jpg",
+            "id": "116647846410186673378"
+        },
+        "linkedin_infor": {
             "access_token": "",
             "email": "",
             "profileUrl": "",
@@ -696,15 +707,6 @@ Cache-Control: no-cache
             "username": "",
             "avatar": "",
             "id": ""
-        },
-        "linkedin_infor": {
-            "access_token": "AQWKO_gjNtramdlxu6URvHgDdIZ6_hLrqgBf13jJKULqgiKVpPcD7lHm36TRZ1hGmx2keyCRUC46LXyUc-nHmwIGykRss2gKd7nNmM0PPY6G495fXTyPVFy4d60jMI7LlPzVDT10Pc-2i5C2SkMwryFA5ww7Mdm9U-u27xq87em_s9ARvZA",
-            "email": "campcoders@gmail.com",
-            "profileUrl": "https://www.linkedin.com/pub/campcoders-account/b0/b45/746",
-            "gender": "",
-            "username": "Campcoders Account",
-            "avatar": "https://media.licdn.com/mpr/mprx/0_k14DPHK2N-ddlTl0XtI-PwTfnrm4gTl0oB2tPwCKWzsdCLQxHzH3jI9YZYa6OQK15rV1y2r-Gmro",
-            "id": "qJ5hdiop9g"
         },
         "twitter_infor": {
             "token_secret": "",
@@ -729,12 +731,7 @@ Cache-Control: no-cache
             "email": "",
             "password": ""
         },
-        "type_account": 5,
-        "location": {
-            "address": "9 Nguyên Hong, Thành Công, Ba Đình, Hà Nội, Việt Nam",
-            "lng": 105.812198,
-            "lat": 21.018549
-        },
+        "type_account": 4,
         "isUser": 1,
         "address": "9 Nguyên Hồng, Thành Công, Ba Đình, Hà Nội, Việt Nam"
     }
