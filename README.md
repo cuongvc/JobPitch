@@ -2798,3 +2798,40 @@ Cache-Control: no-cache
 
 ```
 
+### 35. Return top hashtag
+
+```
+GET     http://jobpitch.campcoders.com/api/top_hashtag
+Content-Type: application/json
+Cache-Control: no-cache
+
+```
+##### Regex
+```
+
+
+```
+##### Return
+```
+{
+    "error_code": 0,
+    "top_hashtag": [
+        {
+            "_id": "54eeda81e5195b671393c260",
+            "number": 3,
+            "name": "#php"
+        },
+        {
+            "_id": "54eeda6ce5195b671393c25d",
+            "number": 3,
+            "name": "#nodejs"
+        },
+        {
+            "_id": "54eedaddb4330bb714dd6692",
+            "number": 2,
+            "name": "#android"
+        }
+    ]
+}
+
+```

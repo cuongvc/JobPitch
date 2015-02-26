@@ -261,6 +261,8 @@ app.get('/:permalink',											 routes.get.permalink);
 
 	app.get('/api/top_job',						 				 routes.get.top_job);
 	app.get('/api/top_company',				 				 routes.get.top_company);
+	app.get('/api/top_hashtag',				 				 routes.get.top_hashtag);
+
 
 // =================================== LISTEN BY IP AND PORT ========================
 

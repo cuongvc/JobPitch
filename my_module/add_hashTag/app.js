@@ -16,6 +16,7 @@ module.exports					=	function(hash_tag, app_id, callback){
 			if (hash_tag_exist){
 				
 				hash_tag_exist.app_id.push(app_id);
+				hash_tag_exist.number ++;
 				hash_tag_exist.save(function(err){
 					add_tag(hash_tag,  i + 1, app_id);	
 				})
@@ -25,6 +26,9 @@ module.exports					=	function(hash_tag, app_id, callback){
 				newHashTag.name = hash_tag[i];
 				newHashTag.app_id.push(app_id);
 				newHashTag.save(function(err){
+					if (err){
+						console.log(err);
+					}
 					add_tag(hash_tag,  i + 1, app_id);
 				})
 			}
