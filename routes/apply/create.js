@@ -85,7 +85,8 @@ module.exports = function(req, res) {
                                 content: application.description,
                                 job_id: job_exist._id,
                                 app_id: application._id,
-                                app: application
+                                app: application,
+                                job_title : job_exist.title
                             });
 
                             job_exist.addApply(user_id, application._id, function() {
