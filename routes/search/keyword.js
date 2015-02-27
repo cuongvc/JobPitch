@@ -70,7 +70,7 @@ module.exports									=	function(req, res){
 						if (err){
 							console.log(err);
 						}
-						
+
 						for (var i = 0 ; i < apps.length ; i ++)
 							if (apps[i].description.indexOf(keyword) != -1){
 								application_array.push(apps[i]);
@@ -89,8 +89,7 @@ module.exports									=	function(req, res){
 			}],
 
 			function(err){
-				results = {'jobs' : job_array, 'applications' : application_array};
-				res.write(JSON.stringify({error_code : 0, results : results}));
+				res.write(JSON.stringify({error_code : 0, 'jobs' : job_array, 'applications' : application_array}));
 				res.status(200).end();
 			}
 		);
