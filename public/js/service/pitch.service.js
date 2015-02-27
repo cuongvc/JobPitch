@@ -129,6 +129,49 @@ PitchService.service('PITCH',function($http,$q){
 		jobs[index_job].applications.loadFromServer[index_pitch].comments.numberOfComment++;
 		return jobs;
 	}
+	this.postNewPitchSidebarCommentHandler = function(pitchs,pitch,comment){
+		pitchs.forEach(function(v,k){
+			if(v._id == pitch._id){
+				v.comments.numberOfComment++;
+				v.comment.push(comment._id);
+				if(v.comments.loaded != undefined && v.comments.loaded){
+					v.comments.list.push(comment);
+				}
+				pitchs.splice(k,1);
+				pitchs.unshift(v);
+			}
+		})
+		return pitchs;
+	}
+	this.postNewSidebarPitchCommentHandler = function(pitchs,pitch,comment){
+		var index = pitchs.indexOf(pitch);
+		if(pitch.comments.list == undefined) pitch.comments.list = new Array();
+		pitch.comment.push(comment._id);
+		pitch.comments.list.push(comment);
+		pitch.comments.numberOfComment++;
+		pitchs[index] = pitch;
+		return pitchs;
+	}
+	this.postNewSidebarPitchCommentHandlerAddRecentComment = function(jobs,pitch,comment){
+		jobs.forEach(function(v,k){
+			if(v._id == comment.job_parent){
+				if(v.applications.loadFromServer != undefined){
+					v.applications.loadFromServer.forEach(function(v2,k2){
+						v2.comment.push(comment._id);
+						v2.comments.numberOfComment++;
+						if(v2._id == comment.application_parent){
+							if(v2.comments.loaded != undefined && v2.comments.loaded){
+								v2.comments.list.push(comment);
+							}
+							v.applications.loadFromServer[k2] = v2;
+						}
+					})
+					jobs[k] = v;
+				}
+			}
+		})
+		return jobs;
+	}
 	/*
 	* get pitch sidebar
 	*/
@@ -141,22 +184,22 @@ PitchService.service('PITCH',function($http,$q){
 	}
 	this.getPitchSidebarHandler = function(pitchs,user_id){
 		pitchs.forEach(function(v,k){
-			pitchs[k].short_job_title = pitchs[k].job_title.substring(0,18) + '...';
-			pitchs[k].comments = {
+			v.short_job_title = v.job_title.substring(0,18) + '...';
+			v.comments = {
 				list: v.comment,
 				numberOfComment: v.comment.length,
 			};
 			if(v.likes.list.indexOf(user_id) > -1){
-				pitchs[k].likes.liked = true;
+				v.likes.liked = true;
 			}else{
-				pitchs[k].likes.liked = false;
+				v.likes.liked = false;
 			}
 			if(v.interests.list.indexOf(user_id) > -1){
-				pitchs[k].interests.interested = true;
+				v.interests.interested = true;
 			}else{
-				pitchs[k].interests.interested = false;
+				v.interests.interested = false;
 			}
-
+			pitchs[k] = v;
 		})
 		return pitchs;
 	}

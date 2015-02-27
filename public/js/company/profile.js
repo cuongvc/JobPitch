@@ -329,7 +329,7 @@ TemplateApp.controller('ProfileCtrl',function($scope,$http,$routeParams,PITCH,JO
 					jobs[index].likes.users.forEach(function(v,k){
 						if(v._id == $scope.user._id){
 							console.log('a');
-							jobs[index].likes.users.splice(k);
+							jobs[index].likes.users.splice(k,1);
 						}
 					})
 				}else{
