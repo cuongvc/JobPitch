@@ -1,11 +1,11 @@
 var content = {
     "create_job": "create new job",
 
-    "apply_job1": "pith your job",
+    "apply_job1": "pitched to your job post",
 
-    "apply_job2": "pith job",
+    "apply_job2": "pitched",
 
-    "like_job1": "like your job",
+    "like_job1": "like your job post",
 
     "like_job2": "like job",
 
@@ -19,7 +19,7 @@ var content = {
 
     "hire_for_job": "hire you for job",
 
-    "like_apply1": "like your pith",
+    "like_apply1": "liked your pitch",
 
     "like_apply2": "like pith",
 
