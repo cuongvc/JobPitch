@@ -2928,3 +2928,34 @@ Cache-Control: no-cache
 }
 
 ```
+
+### 38. Get location
+
+```
+Post     http://jobpitch.campcoders.com/api/location
+Content-Type: application/json
+Cache-Control: no-cache
+
+```
+##### Regex
+```
+{
+    "token"                 : "$2a$08$F01DvCHZbakHNW0rNqJOjeGamkwFVPFv/rSBshUYWQthVWNXUNNDe",
+    "user_id"               : "54f0422e26abff5065d17311"
+}
+
+
+```
+##### Return
+```
+{
+    "error_code": 0,
+    "location": {
+        "lng": 105.832586,
+        "lat": 21.029346,
+        "country": "Viet Nam",
+        "city": "Ha Noi"
+    }
+}
+
+```

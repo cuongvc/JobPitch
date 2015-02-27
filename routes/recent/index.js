@@ -34,6 +34,8 @@ module.exports					=	function(req, res){
 
 			var lat = user_exist.location.lat;
 			var lng = user_exist.location.lng;
+			var city;
+			var country;
 
 			if (typeof(user_exist.location.lat) == 'undefined'){
 				console.log('FIND LOCATION');
@@ -49,15 +51,18 @@ module.exports					=	function(req, res){
 					console.log('address default');
 					lat = 21.029346;
 					lng = 105.832586;
+					city='Ha Noi';
+					country = 'Viet Nam';
 				} else{
 					lat = geo.ll[0];
 					lng = geo.ll[1];
-					var city = geo.city;
-					var country = geo.country;
-					user_exist.location.country = country;
-					user_exist.location.city = city;
+					city = geo.city;
+					country = geo.country;
 				}
-				
+
+				user_exist.location.country = country;
+				user_exist.location.city = city;
+
 				user_exist.location.lat = lat;
 				user_exist.location.lng = lng;
 

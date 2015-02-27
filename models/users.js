@@ -451,9 +451,9 @@ var makeTagName           = function(userName, callback){
     userName    = userName.replace(/ỳ|ý|ỵ|ỷ|ỹ/g,"y"); 
     userName    = userName.replace(/đ/g,"d"); 
     userName    = userName.replace(/!|@|%|\^|\*|\(|\)|\+|\=|\<|\>|\?|\/|,|\:|\;|\'|\"|\&|\#|\[|\]|~|$|_/g,"");
-    userName    = userName.replace(/ /g,".");
-    var tagName = userName.toLowerCase(); 
-
+    userName    = userName.replace(/ /g,"");
+    // var tagName = userName.toLowerCase(); 
+    var tagName = userName;
     var TagName = require('./tagnames');
     TagName.findOne({name : tagName}, function(err, tagname_exist){
 

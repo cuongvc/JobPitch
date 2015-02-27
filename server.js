@@ -249,12 +249,17 @@ app.get('/directive/home/left-sidebar',function(req,res){
 	Router_body.post('/share_apply',           routes.share.apply);
 
 	// GET HASHTAG AND TAGNAME FOR SUGGESTION
-	Router_body.get('/suggest/tagname',								 routes.suggest.tagname);
-	Router_body.get('/suggest/hashtag',								 routes.suggest.hashtag);
+	Router_body.get('/suggest/tagname',				 routes.suggest.tagname);
+	Router_body.get('/suggest/hashtag',				 routes.suggest.hashtag);
+
+	// GET LOCATION USER
+	Router_body.post('/location',							 routes.get.location);
 
 // --------GET DATA FROM PERMALINK -------------------------------
 
 app.get('/:permalink',											 routes.get.permalink);
+
+
 
 // --------GET INFOR A USER(CONTACT) ---------------------------------------
 

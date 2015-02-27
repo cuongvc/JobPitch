@@ -44,6 +44,11 @@ var applicationSchema = mongoose.Schema({
 
     userTagName_own_job : String,
 
+    userId_own_job   : {
+        type         : ObjectId,
+        ref          : 'users'
+    },
+
     title  : {
         type         : String,
         default      : ''
@@ -167,24 +172,24 @@ applicationSchema.methods.newInfor    = function(user_id, userName, userTagName,
                                         title, hash_tag, tagname, description, time, 
                                         file, callback){
 
-    var app = this;
-    app.user_id        = user_id;
-
-    app.userName       = userName;
-    app.userTagName    = userTagName;
-
-    app.user_avatar    = user_avatar;
-
-    app.userName_own_job = userName_own_job;
+    var app                 = this;
+    app.user_id             = user_id;
+    
+    app.userName            = userName;
+    app.userTagName         = userTagName;
+    
+    app.user_avatar         = user_avatar;
+    app.userId_own_job      = userId_own_job;
+    app.userName_own_job    = userName_own_job;
     app.userTagName_own_job = userTagName_own_job;
-
-    app.job_id         = job_id;
-    app.job_title      = job_title;
-    app.title          = title;
-    app.hash_tag       = hash_tag;
-    app.tagname        = tagname;
-    app.description    = description;
-    app.time           = time;
+    
+    app.job_id              = job_id;
+    app.job_title           = job_title;
+    app.title               = title;
+    app.hash_tag            = hash_tag;
+    app.tagname             = tagname;
+    app.description         = description;
+    app.time                = time;
 
     
     if (file != ''){
