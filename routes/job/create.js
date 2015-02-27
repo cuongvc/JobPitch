@@ -119,9 +119,10 @@ module.exports				=	function(req, res){
         // for (var i = 0 ; i < 1000 ; i ++){
         //   console.log('Make new job');
           var newJob = new Job();
-          newJob.newInfor(image, image_small, image_normal, user_exist.id, user_exist.userName, title,
-              hash_tag, tagname, desc, lat, lng, address, city, country, state, link_direct, time,
-              function(job) {
+          newJob.newInfor(image, image_small, image_normal, user_exist.id, user_exist.userName, 
+                  user_exist.tagname, title, hash_tag, tagname, desc,
+                  lat, lng, address, city, country, state, link_direct, time,
+                  function(job) {
 
 
 
@@ -146,7 +147,9 @@ module.exports				=	function(req, res){
                           id_user_make_notify: user_exist._id,
                           content: job.title,
                           job_id: job._id,
-                          job: job
+                          job: job,
+                          userName_own_job : job_exist.userName,
+                          userTagName : job_exist.tagname
                       });
 
                   })
