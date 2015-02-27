@@ -12,7 +12,7 @@ var limit = 10;
 
 module.exports = function(req, res) {
     memoryCache.get('top_hashtag', function(err, result) {
-        console.log(result);
+        console.log('result : ', result);
         if (err || !result || typeof(result) == 'undefined') {
             HashTag.find({}, 'name number',  function(err, hashtags) {
                 

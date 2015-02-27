@@ -9,7 +9,7 @@ module.exports									=	function(req, res){
 	try{
 		var data  				=	req.body;
 
-		var tag       		= data.tag;
+		var tag       		= '#' + data.tag;
 		var position			=	data.position;
 	}	
 
@@ -29,7 +29,7 @@ module.exports									=	function(req, res){
 			};
 
 			if (!tag_exist){
-				res.write(JSON.stringify({error_code : 0, msg : 'No result'}));
+				res.write(JSON.stringify({error_code : 0, applications : [], jobs : []}));
 				res.status(200).end();
 				return 0;
 			}
