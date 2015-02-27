@@ -35,9 +35,6 @@
 	text-shadow: none;
 	cursor: pointer;
 }
-.application-sidebar-name:hover{
-	text-decoration: underline;
-}
 .application-sidebar-company-name{
 	cursor: pointer;
 }
