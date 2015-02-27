@@ -62,7 +62,7 @@ module.exports										=	function(req, res){
 
                   var notification = new Notification();
                   console.log('Make notify');
-                  notification.newInfor(app_exist.user_id, user_exist.userName,
+                  notification.newInfor(app_exist.user_id, user_exist.userName, user_exist.tagname,
                                 	content_noti.comment_apply1, comment.content, 
                                 	comment.job_parent, '', comment._id,
                                 	'', '', comment.permalink,

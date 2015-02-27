@@ -61,9 +61,10 @@ module.exports = function(req, res) {
                 } else {
 
                     var application = new Application();
-                    application.newInfor(user_id, user_exist.userName, user_exist.avatar_small, 
+                    application.newInfor(user_id, user_exist.userName, user_exist.tagname, job_exist.user_id,
+                        job_exist.userName, job_exist.userTagName, user_exist.avatar_small, 
                         job_id, job_exist.title, title, hash_tag, tagname,
-                        description, time, file, job_exist.userName, job_exist.user_id,
+                        description, time, file, 
                         function(application) {
 
                             // add own of job receive notify
@@ -87,7 +88,9 @@ module.exports = function(req, res) {
                                 job_id: job_exist._id,
                                 app_id: application._id,
                                 app: application,
-                                job_title : job_exist.title
+                                job_title : job_exist.title,
+                                userName_own_job : job_exist.userName,
+                                userTagName : job_exist.tagname
                             });
 
                             job_exist.addApply(user_id, application._id, function() {

@@ -48,6 +48,11 @@ var jobSchema = mongoose.Schema({
         autocomplete: true
     },
 
+    userTagName      : {
+        type         : String,
+        default      : ''
+    },
+
     title            : {
         type         : String,
         default      : ''
@@ -229,9 +234,9 @@ jobSchema.methods.containTag    = function(tag){
     return 0;
 }
 
-jobSchema.methods.newInfor    = function(image, image_small, image_normal, user_id, userName
-                                        ,title, hash_tag, tagname, description, lat, lng, address, city, country, state
-                                        ,link_direct, time , callback){
+jobSchema.methods.newInfor    = function(image, image_small, image_normal, user_id, userName, userTagName,
+                                        title, hash_tag, tagname, description, lat, lng, address, 
+                                        city, country, state ,link_direct, time , callback){
 
     var job = this;
     if (image != '')
@@ -241,6 +246,7 @@ jobSchema.methods.newInfor    = function(image, image_small, image_normal, user_
     if (image_normal != '')
         job.image_normal       = image_normal;
     job.userName               = userName;
+    job.userTagName            = userTagName;
     job.user_id                = user_id;
     job.title                  = title;
     job.hash_tag               = hash_tag;

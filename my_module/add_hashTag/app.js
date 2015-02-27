@@ -3,10 +3,10 @@ var async               = require('async');
 
 module.exports					=	function(hash_tag, app_id, callback){
 
-	add_tag                 = function(hash_tag, i, app_id){
-		if (i == hash_tag.length)
+	var add_tag                 = function(hash_tag_, i, app_id){
+		if (i == hash_tag_.length)
 			return 0;
-		HashTag.findOne({name : hash_tag[i]}, function(err, hash_tag_exist){
+		HashTag.findOne({name : hash_tag_[i]}, function(err, hash_tag_exist){
 
 			if (err){
 				console.log(err);
@@ -18,24 +18,25 @@ module.exports					=	function(hash_tag, app_id, callback){
 				hash_tag_exist.app_id.push(app_id);
 				hash_tag_exist.number ++;
 				hash_tag_exist.save(function(err){
-					add_tag(hash_tag,  i + 1, app_id);	
+					add_tag(hash_tag_,  i + 1, app_id);	
 				})
 				
 			} else{
 				var newHashTag = new HashTag();
-				newHashTag.name = hash_tag[i];
+				newHashTag.name = hash_tag_[i];
 				newHashTag.app_id.push(app_id);
 				newHashTag.save(function(err){
 					if (err){
 						console.log(err);
 					}
-					add_tag(hash_tag,  i + 1, app_id);
+					add_tag(hash_tag_,  i + 1, app_id);
 				})
 			}
 		})
 
 	}
 
+	console.log(hash_tag);
 	if (hash_tag.length > 0){
 		async.waterfall([
 			function(next){
