@@ -148,8 +148,8 @@ module.exports				=	function(req, res){
                           content: job.title,
                           job_id: job._id,
                           job: job,
-                          userName_own_job : job_exist.userName,
-                          userTagName : job_exist.tagname
+                          userName_own_job : user_exist.userName,
+                          userTagName : user_exist.tagname
                       });
 
                   })

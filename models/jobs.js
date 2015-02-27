@@ -1,7 +1,5 @@
 // load the things we need
 var mongoose        = require('mongoose');
-var searchPlugin    = require('mongoose-search-plugin');
-
 var User            = require('./users');
 var ObjectId        = mongoose.Schema.Types.ObjectId;
 var bcrypt          = require('bcrypt-nodejs');
@@ -19,7 +17,7 @@ var Permalink        = require('./permalinks');
 
 
 // define the schema for our job model
-var jobSchema = mongoose.Schema({
+var jobSchema = new mongoose.Schema({
 
     image             : {
         type         : String,
@@ -44,8 +42,7 @@ var jobSchema = mongoose.Schema({
     userName         : {
         type         : String,
         default      : '',
-        index: true,
-        autocomplete: true
+        autocomplete : true
     },
 
     userTagName      : {
@@ -86,7 +83,7 @@ var jobSchema = mongoose.Schema({
     description      : {
         type         : String,
         default      : '',
-        autocomplete: true
+        autocomplete : true
     },
 
     location         : {
@@ -206,16 +203,16 @@ var jobSchema = mongoose.Schema({
 
 });
 
-var options = {
-    keywordsPath: '_keywords', // path for keywords, `_keywords` as default 
-    relevancePath: '_relevance', // path for relevance number, '_relevance' as default 
-    fields: ['description', 'hash_tag','userName', 'title'], // array of fields to use as keywords (can be String or [String] types), 
-    stemmer: 'PorterStemmer', // natural stemmer, PorterStemmer as default 
-    // distance: 'JaroWinklerDistance' // distance algorythm, JaroWinklerDistance as default 
-    distance: 'LevenshteinDistance' // distance algorythm, JaroWinklerDistance as default 
-};
+// var options = {
+//     keywordsPath: '_keywords', // path for keywords, `_keywords` as default 
+//     relevancePath: '_relevance', // path for relevance number, '_relevance' as default 
+//     fields: ['description', 'hash_tag','userName', 'title'], // array of fields to use as keywords (can be String or [String] types), 
+//     stemmer: 'PorterStemmer', // natural stemmer, PorterStemmer as default 
+//     // distance: 'JaroWinklerDistance' // distance algorythm, JaroWinklerDistance as default 
+//     distance: 'LevenshteinDistance' // distance algorythm, JaroWinklerDistance as default 
+// };
 
-jobSchema.plugin(searchPlugin, options);
+// jobSchema.plugin(searchPlugin, options);
 
 // check job is Own of account
 jobSchema.methods.isOwn         = function(user_id){
