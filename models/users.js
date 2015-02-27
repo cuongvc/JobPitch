@@ -463,7 +463,7 @@ var makeTagName           = function(userName, callback){
         }
 
         if (tagname_exist){
-            tagName = tagName + (tagname_exist.number + 1);
+            tagName = tagName + '.' + (tagname_exist.number + 1);
             tagname_exist.number ++;
             tagname_exist.save(function(err){});
             return callback(tagName);
