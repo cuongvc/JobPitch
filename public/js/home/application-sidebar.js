@@ -6,6 +6,7 @@ ApplicationSideBar.directive('applicationSidebar',function(){
 		link: function(scope,element,attrs){
 
 		},
+		controller: 'ApplicationSideBarCtrl',
 	}
 })
 ApplicationSideBar.filter('reverse', function() {
@@ -34,80 +35,6 @@ ApplicationSideBar.controller('ApplicationSideBarCtrl',function($scope,$http,JOB
 		var url = '/u/' + user_id;
 		ROUTE.RedirectTo(url,evt);
 	}
-	/******************************************************************************************/
-									/*SOCKET*/
-	/******************************************************************************************/
-	IO.on(APPLY_JOB_SOCKET_EVENT,function(data){
-		if(SOCKET.checkUserReciveNotification($scope.user._id, data.user_receive_notify) == false) return;
-		
-		var pitch = data.app;
-			pitch = PITCH.pitchHandler(pitch);
-
-		var UserService = USER.get(pitch.interests.list,$scope.user._id,$scope.user.token);
-			UserService.then(function(response){
-				if(response.error_code == 0){
-					pitch.interests.loadFromServer = response.users;
-				}else{
-					alert(response.msg);
-				}
-			})
-		pitchs.unshift(pitch);
-		
-		$scope.pitchs = pitchs;
-		
-		$scope.$apply();
-	})
-
-	IO.on(LIKE_PITCH_SOCKET_EVENT,function(data){
-		console.log('sidebar', LIKE_PITCH_SOCKET_EVENT,data);
-		if(data.id_user_make_notify != $scope.user._id){
-			if(SOCKET.checkUserReciveNotification($scope.user._id, data.user_receive_notify) == false) return;
-		}
-		
-		pitchs = LIKE.addLikePitchSidebar(pitchs,data.app_id,data.id_user_make_notify);
-		$scope.pitchs = pitchs;
-		$scope.$apply();
-	})
-	IO.on(COMMENT_PITCH_SOCKET_EVENT,function(data){
-		if(data.id_user_make_notify != $scope.user._id){
-			if(SOCKET.checkUserReciveNotification($scope.user._id, data.user_receive_notify) == false) return;
-		}
-		console.log('sidebar', COMMENT_PITCH_SOCKET_EVENT,data);
-		pitchs = COMMENT.addCommentSidebar(pitchs,data);
-		$scope.pitchs = pitchs;
-		$scope.$apply();
-	})
-	/******************************************************************************************/
-									/*GET PITCH*/
-	/******************************************************************************************/
-	PitchScroll.start = 0;
-	var data = {
-		user_id : $scope.user._id,
-		token   : $scope.user.token,
-		skip: PitchScroll.start,
-		limit: PitchScroll.limit,
-	};
-	var PitchService = PITCH.getPitchSidebar(data);
-		PitchService.then(function(response){
-			console.log("p",response);
-			if(response.error_code == 0){
-				pitchs = PITCH.getPitchSidebarHandler(response.applications,$scope.user._id);
-				pitchs.forEach(function(v,k){
-					var UserService = USER.get(v.interests.list,$scope.user._id,$scope.user.token);
-						UserService.then(function(response){
-							if(response.error_code == 0){
-								pitchs[k].interests.loadFromServer = response.users;
-							}else{
-								alert(response.msg);
-							}
-						})
-				})
-				console.log('Pitchs Sidebar:',pitchs);
-				$scope.pitchs = pitchs;
-			}else{
-				alert(response.msg);
-			}
-		})
 
 	$scope.ViewMorePitchComment = function(numberCmt,pitch){
 		var index = pitchs.indexOf(pitch);
@@ -136,62 +63,8 @@ ApplicationSideBar.controller('ApplicationSideBarCtrl',function($scope,$http,JOB
 			}
 		})
 	}
-	/*
-	* like pitch
-	*/
-	$scope.LikePitch = function(pitch){
-		var data = {
-			user_id        : $scope.user._id,
-			token          : $scope.user.token,
-			type_like      : 2,
-			job_id         : '',
-			application_id :  pitch._id,
-			comment_id     :  '',
-		};
-		var LikeService = LIKE.LikePitch(data);
-			LikeService.then(function(response){
-				if(response.error_code == 0){
-					var index = pitchs.indexOf(pitch);
-					if(pitch.likes.liked){
-						pitch.likes.number--;
-						pitch.likes.liked = false;
-					}else{
-						pitch.likes.number++;
-						pitch.likes.liked = true;
-					}
-					pitchs[index] = pitch;
-				}
-			})
-	}
-	/*
-	* post pitch reply
-	*/
-	$scope.PostReply = function(PitchReply,pitch,evt){
-		if(evt.keyCode == 13){
-			var data = {
-				user_id : $scope.user._id,
-				token : $scope.user.token,
-				content : PitchReply,
-				hash_tag : HASHTAG.findHashTag(PitchReply),
-				application_parent : pitch._id,
-				job_parent: pitch.job_id,
-				comment_parent : "",
-			}
-			console.log('Pitch Reply:',data);
-			var PitchService = PITCH.postNewPitchComment(data);
-			PitchService.then(function(response){
-				if(response.error_code == 0){
-					$('.sidebar-comment-body textarea').val('');
-					var index = pitchs.indexOf(pitch);
-					var comment = response.comment;
-					if(pitch.comments.list == undefined) pitch.comments.list = new Array();
-					pitch.comments.list.push(comment);
-					pitch.comments.numberOfComment++;
-					pitchs[index] = pitch;
-				}
-			})
-		}
-	}
+
+	
 	/*************************************************************************************************************/
 											/*PITCH COMMENT*/
 	/*************************************************************************************************************/

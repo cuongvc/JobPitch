@@ -11,14 +11,16 @@ LeftSidebar.directive('leftSidebar',function(){
 LeftSidebar.controller('LeftSidebarCtrl',function($scope,$http,SEARCH,ROUTE,COMPANY,ROUTE){
 	$http.get(STR_API_TOP_HASHTAG).success(function(response){
 		console.log('tags: ',response);
+		response.top_hashtag.forEach(function(v,k){
+			v.name = v.name.substring(1);
+			response.top_hashtag[k] = v;
+		})
 		$scope.LeftSidebarTags = response.top_hashtag;
 	})
-	$scope.SearchByTag = function(tag){
-		tag = tag.substring(1);
-		var SearchService = SEARCH.find(tag);
-			SearchService.then(function(data){
-				ROUTE.GoTo('tag/'+tag);
-			})
+	$scope.SearchByTag = function(tag,evt){
+		var url = 'tag/'+tag;
+		ROUTE.RedirectTo(url,evt);
+
 	}
 
 	var LeftSidebarCompanies = new Array();

@@ -169,7 +169,7 @@ TemplateApp.controller('ViewJobCtrl',function($scope,$http,$routeParams,USER,PIT
 					jobs[index].likes.number--;
 					jobs[index].likes.users.forEach(function(v,k){
 						if(v._id == $scope.user._id){
-							jobs[index].likes.users.splice(k);
+							jobs[index].likes.users.splice(k,1);
 						}
 					})
 				}else{

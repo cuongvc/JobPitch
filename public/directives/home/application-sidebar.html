@@ -1,5 +1,3 @@
-
-
 <div id="sidebar" class="col-md-12 col-sm-12 hidden-xs transition_500ms" ng-controller="ApplicationSideBarCtrl">
 	<div ng-repeat="pitch in pitchs track by $index" class="sidebar-element transition_500ms">
 		<div class="pitch-sidebar-content gray-border animated fadeIn">
@@ -22,7 +20,7 @@
 					<ul>
 						<li class="pull-left"><span ng-bind="pitch.interests.number"></span><span ng-click="InterestPitch(pitch)"> interest</span></li>
 						<li class="pull-right"><span ng-bind="pitch.shares.number"></span><span> share</span></li>
-						<li class="pull-right" ng-click="LikePitch(pitch)"><span ng-bind="pitch.likes.number"></span><span> like</span></li>
+						<li class="pull-right" ng-click="LikePitch(pitch,undefined)"><span ng-bind="pitch.likes.number"></span><span> like</span></li>
 						<li class="pull-right" ng-click="ViewPitchcomment(pitch)"><span ng-bind="pitch.comments.numberOfComment"></span> <span> comment</span></li>
 					</ul>
 				</div>

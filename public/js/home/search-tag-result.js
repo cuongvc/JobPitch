@@ -16,13 +16,13 @@ TemplateApp.controller('SearchTagResultCtrl',function($scope,$http,$routeParams,
 		console.log(response);
 		if(response.error_code == 0){
 			try{
-				SearchResultJobs = JOB.JobHandler(response.results.jobs.results,$scope.user._id);
+				SearchResultJobs = JOB.JobHandler(response.jobs,$scope.user._id);
 				$scope.SearchResultJobs = SearchResultJobs;
 			}catch(e){
 				console.log("Search tag error: ",e);
 			}
 			try{
-				SearchResultPitch = PITCH.getPitchSidebarHandler(response.results.applications.results,$scope.user._id);
+				SearchResultPitch = PITCH.getPitchSidebarHandler(response.applications,$scope.user._id);
 				$scope.SearchResultPitch = SearchResultPitch;
 			}catch(e){
 				console.log("Search tag error: ",e);
