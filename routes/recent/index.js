@@ -44,7 +44,7 @@ module.exports					=	function(req, res){
 
 
 				var geo = geoip.lookup(ip);
-				if (ip == '127.0.0.1'){
+				if (geo == null){
 					lat = 21.029346;
 					lng = 105.832586;
 				} else{
