@@ -29,6 +29,7 @@
 	var STR_API_TOP_HASHTAG      = BASE_URL + '/api/top_hashtag';
 	var STR_API_TOP_COMPANY      = BASE_URL + '/api/top_company';
 	var STR_API_SEARCH_HASHTAG   = BASE_URL + '/api/search_tag';
+	var STR_API_CHANGE_LOCATION  = BASE_URL + '/api/swing_current';
 	/*
 	* SOCKET EVENT
 	*/

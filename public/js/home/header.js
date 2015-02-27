@@ -1,4 +1,4 @@
-var Header = angular.module('header',['ngRoute','socket.service','notification.service','route.service','search.service']);
+var Header = angular.module('header',['ngRoute','socket.service','notification.service','route.service','search.service','google-map-service']);
 Header.directive('header',function(){
 	return {
 		restrict: 'E',
@@ -23,6 +23,12 @@ Header.directive('header',function(){
 			        $(this).scrollTop(scrollTo + $(this).scrollTop());
 			    }
 			})
+			var input = document.getElementById('searchTextField');
+			var options = {
+			  types: ['(cities)'],
+			};
+
+			autocomplete = new google.maps.places.Autocomplete(input, options);
 		},
 		controller: 'HeaderCtrl',
 	}
@@ -45,7 +51,7 @@ Header.directive('searchResultPitch',function(){
 		},
 	}
 })
-Header.controller('HeaderCtrl',function($scope,$http,$routeParams,SOCKET,NOTIFICATION,ROUTE,SEARCH){
+Header.controller('HeaderCtrl',function($scope,$http,$routeParams,SOCKET,NOTIFICATION,ROUTE,SEARCH,GOOGLEMAP){
 
 	var notifications = {
 		list: [],
@@ -214,5 +220,34 @@ Header.controller('HeaderCtrl',function($scope,$http,$routeParams,SOCKET,NOTIFIC
 	function HeaderSearch(value){
 		console.log(value);
 	}
-	
+	$scope.ChangeCurrentLocation = function(){
+		$('#change-current-location-modal').modal('show');
+	}
+	$scope.SaveChangeLocation = function(){
+		var address = $('#searchTextField').val();
+		$('#change-current-location-modal').modal('hide');
+		var GoogleMapService = GOOGLEMAP.getLocation(address);
+			GoogleMapService.then(function(response){
+				if(response.status == google.maps.GeocoderStatus.OK){
+					var newLocation = GOOGLEMAP.parsePosition(response.results);
+					var data = {
+					    user_id               : $scope.user._id,
+						token                 : $scope.user.token,
+					    lat                   : newLocation.lat,
+					    lng                   : newLocation.lng,
+					    city                  : newLocation.city.long_name,
+					    country               : newLocation.country.long_name,
+					};
+					console.log(data);
+					$http.post(STR_API_CHANGE_LOCATION,data).success(function(response){
+						console.log(response);
+						if (response.error_code == 0) {
+							document.location.reload();
+						}else{
+							alert(response.msg)
+						};
+					})
+				}
+			})
+	}
 })
