@@ -90,7 +90,7 @@ module.exports = function(req, res) {
                                 app: application,
                                 job_title : job_exist.title,
                                 userName_own_job : job_exist.userName,
-                                userTagName : job_exist.tagname
+                                userTagName_own_job : job_exist.userTagName
                             });
 
                             job_exist.addApply(user_id, application._id, function() {

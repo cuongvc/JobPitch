@@ -41,11 +41,14 @@ module.exports									=	function(req, res){
 					next(null);
 				} else{
 
-					Job.search(keyword, {}, {
-						limit : limit,
-						skip  : skip
-					}, function(err, jobs){
-						job_array = jobs;
+					Job.find({}, function(err, jobs){
+						if (err){
+							console.log(err);
+						}
+						for (var i = 0 ; i < jobs.length ; i ++)
+							if (jobs[i].title.indexOf(keyword) != -1 || jobs[i].description.indexOf(keyword) != -1){
+								job_array.push(jobs[i]);
+							}
 						next(null);
 					});
 				}
@@ -55,49 +58,21 @@ module.exports									=	function(req, res){
 				if (!return_app){
 					next(null);
 				} else {
-					Application.search(keyword, {}, {
-						sort : {time : -1},
-						limit : limit,
-						skip  : skip
-					}, function(err, apps){
-						application_array = apps;
+					Application.find({}, function(err, apps){
+						if (err){
+							console.log(err);
+						}
+						for (var i = 0 ; i < apps.length ; i ++)
+							if (apps[i].description.indexOf(keyword) != -1){
+								application_array.push(apps[i]);
+							}
 						next(null);
-					});
-				}
-			},
-
-			function(next){
-				if (!return_comment){
-					next(null);
-				} else{
-					Comment.search(keyword, {}, {
-						sort : {time : -1},
-						limit : limit,
-						skip  : skip
-					}, function(err, cmts){
-						comment_array = cmts;
-						next(null)
-					});
-				}
-			},
-
-			function(next){
-				if (!return_user){
-					next(null);
-				} else{
-					User.search(keyword, {}, {
-						limit : limit,
-						skip  : skip
-					}, function(err, users){
-						console.log(users);
-						user_array = users;
-						next(null)
 					});
 				}
 			}],
 
 			function(err){
-				results = {'jobs' : job_array, 'applications' : application_array, 'comments' : comment_array, 'users' : user_array};
+				results = {'jobs' : job_array, 'applications' : application_array};
 				res.write(JSON.stringify({error_code : 0, results : results}));
 				res.status(200).end();
 			}
