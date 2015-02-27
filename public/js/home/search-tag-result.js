@@ -18,12 +18,14 @@ TemplateApp.controller('SearchTagResultCtrl',function($scope,$http,$routeParams,
 			try{
 				SearchResultJobs = JOB.JobHandler(response.results.jobs.results,$scope.user._id);
 				$scope.SearchResultJobs = SearchResultJobs;
-
+			}catch(e){
+				console.log("Search tag error: ",e);
+			}
+			try{
 				SearchResultPitch = PITCH.getPitchSidebarHandler(response.results.applications.results,$scope.user._id);
 				$scope.SearchResultPitch = SearchResultPitch;
 			}catch(e){
 				console.log("Search tag error: ",e);
-				alert('No result found');
 			}
 		}else{
 			alert(response.msg);
