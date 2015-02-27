@@ -44,7 +44,9 @@ module.exports					=	function(req, res){
 
 
 				var geo = geoip.lookup(ip);
-				if (geo == null){
+				console.log('GEO : ',geo);
+				if (!geo){
+					console.log('address default');
 					lat = 21.029346;
 					lng = 105.832586;
 				} else{
@@ -52,14 +54,18 @@ module.exports					=	function(req, res){
 					lng = geo.ll[1];
 					var city = geo.city;
 					var country = geo.country;
-
-					user_exist.location.lat = lat;
-					user_exist.location.lng = lng;
 					user_exist.location.country = country;
 					user_exist.location.city = city;
-
-					user_exist.save(function(err){ });
 				}
+				
+				user_exist.location.lat = lat;
+				user_exist.location.lng = lng;
+
+				user_exist.save(function(err){ 
+					if (err){
+						console.log(err);
+					}
+				});
 
 			} 	
 
