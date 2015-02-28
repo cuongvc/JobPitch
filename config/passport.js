@@ -4,8 +4,6 @@ var FacebookStrategy    = require('passport-facebook').Strategy;
 var TwitterStrategy     = require('passport-twitter').Strategy;
 var GoogleStrategy      = require('passport-google-oauth').OAuth2Strategy;
 var LinkedInStrategy    = require('passport-linkedin-oauth2').Strategy;
-var YahooStrategy       = require('passport-yahoo-oauth').Strategy;
-var WindowsLiveStrategy = require('passport-windowslive').Strategy;
 
 
 
@@ -333,113 +331,7 @@ module.exports = function(User_env, passport) {
       });
     }));
 
-    // =========================================================================
-    // YAHOO ==================================================================
-    // =========================================================================
 
-    passport.use(new YahooStrategy({
-
-          consumerKey      : configAuth.yahooAuth.consumerKey,
-          consumerSecret   : configAuth.yahooAuth.consumerSecret,
-          callbackURL      : configAuth.yahooAuth.callbackURL,
-
-    }, function(token, tokenSecret, profile, done) {
-
-      console.log('PROFILE : ', profile);
-
-      process.nextTick(function () {
-
-        User.findOne({ 'yahoo.id' : profile.id }, function(err, user) {
-            if (err)
-                return done(err);
-
-            if (user) {
-
-                // if there is a user id already but no token (user was linked at one point and then removed)
-                if (!user.yahoo.token) {
-                    user.yahoo.token = accessToken;
-                    user.yahoo.name  = profile.displayName;
-                    user.yahoo.email = profile.emails[0].value; // pull the first email
-
-                    user.save(function(err) {
-                        if (err)
-                            throw err;
-                        return done(null, user);
-                    });
-                }
-
-                return done(null, user);
-            } else {
-                var newUser          = new User();
-
-                newUser.yahoo.id    = profile.id;
-                newUser.yahoo.token = accessToken;
-                newUser.yahoo.name  = profile.displayName;
-                newUser.yahoo.email = profile.emails[0].value; // pull the first email
-
-                newUser.save(function(err) {
-                    if (err)
-                        throw err;
-                    return done(null, newUser);
-                });
-            }
-        });
-      });
-    }));
-
-    // =========================================================================
-    // MICROSOFT ===============================================================
-    // =========================================================================
-
-    passport.use(new WindowsLiveStrategy({
-
-          clientID       : configAuth.microsoftAuth.clientID,
-          clientSecret   : configAuth.microsoftAuth.clientSecret,
-          callbackURL    : configAuth.microsoftAuth.callbackURL,
-
-    }, function(token, tokenSecret, profile, done) {
-
-      console.log(profile);
-
-      process.nextTick(function () {
-
-        User.findOne({ 'microsoft.id' : profile.id }, function(err, user) {
-            if (err)
-                return done(err);
-
-            if (user) {
-
-
-                if (!user.microsoft.token) {
-                    user.microsoft.token = token;
-                    user.microsoft.name  = profile.displayName;
-                    // user.microsoft.email = profile.emails[0].value; // pull the first email
-
-                    user.save(function(err) {
-                        if (err)
-                            throw err;
-                        return done(null, user);
-                    });
-                }
-
-                return done(null, user);
-            } else {
-                var newUser          = new User();
-
-                newUser.microsoft.id    = profile.id;
-                newUser.microsoft.token = token;
-                newUser.microsoft.name  = profile.displayName;
-                // newUser.microsoft.email = profile.emails[0].value; // pull the first email
-
-                newUser.save(function(err) {
-                    if (err)
-                        throw err;
-                    return done(null, newUser);
-                });
-            }
-        });
-      });
-    }));
 };
 
 
