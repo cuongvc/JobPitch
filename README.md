@@ -3073,3 +3073,48 @@ Cache-Control: no-cache
 }
 
 ```
+
+### 41. Set current
+
+```
+Post     http://jobpitch.campcoders.com/api/set_current
+Content-Type: application/json
+Cache-Control: no-cache
+
+```
+##### Regex
+```
+{
+    "token"                 : "$2a$08$aC2ZDCTABPQH19gdmHcGQuRQDgpWaxiP2VjAU09a9IoyVEF005mkK",
+    "user_id"               : "54f03d6e0478e86624d0d112"
+}
+
+
+```
+##### Return
+```
+{
+    "error_code": 0,
+    "new_current": {
+        "city": {
+            "types": [],
+            "short_name": "Hanoi",
+            "long_name": "Hanoi"
+        },
+        "country": {
+            "types": [],
+            "short_name": "VN",
+            "long_name": "VN"
+        },
+        "state": {
+            "types": [],
+            "short_name": "44",
+            "long_name": "44"
+        },
+        "formatted_address": "Ha Noi, Viet Nam",
+        "lng": 105.85,
+        "lat": 21.0333
+    }
+}
+
+```
