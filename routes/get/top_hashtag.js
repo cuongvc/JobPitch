@@ -4,7 +4,7 @@ var cacheManager = require('cache-manager');
 var memoryCache = cacheManager.caching({
     store: 'memory',
     max: 100,
-    ttl: 10000 /*seconds*/
+    ttl: 5 /*seconds*/
 });
 var ttl = 5;
 
