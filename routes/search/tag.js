@@ -28,12 +28,18 @@ module.exports									=	function(req, res){
 				res.status(200).end();
 				return 0;
 			};
-
 			if (!tag_exist){
 				res.write(JSON.stringify({error_code : 0, applications : [], jobs : []}));
 				res.status(200).end();
 				return 0;
 			}
+
+			if (typeof(tag_exist.country[country_short_name]) == 'undefined'){
+				res.write(JSON.stringify({error_code : 0, applications : [], jobs : []}));
+				res.status(200).end();
+				return 0;
+			}
+
 
 			if (position == 1){
 
@@ -43,10 +49,12 @@ module.exports									=	function(req, res){
 						console.log(err);
 						res.write(JSON.stringify({error_code : 1, msg : err.toString()}));
 						res.status(200).end();
+						return 1;
 					};
 
 					res.write(JSON.stringify({error_code : 0, jobs : jobs}));
 					res.status(200).end();
+					return 1;
 				})
 			} else if (position == 2) {
 
@@ -56,10 +64,12 @@ module.exports									=	function(req, res){
 						console.log(err);
 						res.write(JSON.stringify({error_code : 1, msg : err.toString()}));
 						res.status(200).end();
+						return 1;
 					};
 
 					res.write(JSON.stringify({error_code : 0, applications : applications}));
 					res.status(200).end();
+					return 1;
 					
 				})
 
@@ -71,6 +81,7 @@ module.exports									=	function(req, res){
 						console.log(err);
 						res.write(JSON.stringify({error_code : 1, msg : err.toString()}));
 						res.status(200).end();
+						return 1;
 					};
 
 					Application.find({_id : {$in : tag_exist.country[country_short_name].app_id}}, function(err, applications){
@@ -79,10 +90,12 @@ module.exports									=	function(req, res){
 							console.log(err);
 							res.write(JSON.stringify({error_code : 1, msg : err.toString()}));
 							res.status(200).end();
+							return 1;
 						};
 
 						res.write(JSON.stringify({error_code : 0, applications : applications, jobs : jobs}));
 						res.status(200).end();
+						return 1;
 						
 				})
 
