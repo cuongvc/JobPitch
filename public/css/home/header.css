@@ -122,3 +122,29 @@
 .pac-container::after{
 	display: none!important;
 }
+.change-location-input{
+	border: none;
+	background: transparent;
+}
+.change-location-input:focus{
+	outline: none;
+}
+.change-location-input::-webkit-input-placeholder { /* WebKit browsers */
+    color: #fafafa;
+    opacity: 0.8;
+}
+.change-location-input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   color: #fafafa;
+   opacity:  0.8;
+}
+.change-location-input::-moz-placeholder { /* Mozilla Firefox 19+ */
+   color: #fafafa;
+   opacity:  0.8;
+}
+.change-location-input:-ms-input-placeholder { /* Internet Explorer 10+ */
+   color: #fafafa;
+   opacity: 0.8;
+}
+.current_location{
+	max-height: 50px!important;
+}

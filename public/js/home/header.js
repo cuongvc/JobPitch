@@ -220,27 +220,29 @@ Header.controller('HeaderCtrl',function($scope,$http,$routeParams,SOCKET,NOTIFIC
 	function HeaderSearch(value){
 		console.log(value);
 	}
-	$scope.ChangeCurrentLocation = function(){
-		$('#change-current-location-modal').modal('show');
+	$scope.showLocation = true;
+	$scope.ChangeCurrentLocation = function(evt){
+		var target = $(evt.target);
+		while(!target.is('a')){
+			target = target.parent();
+		}
+		$scope.showLocation = false;
+		var input = $('#searchTextField');
+			input.removeClass('hidden');
+			input.focus();
+			google.maps.event.addListener(autocomplete, 'place_changed', onPlaceChanged);
 	}
-	$scope.SaveChangeLocation = function(){
+	function onPlaceChanged(){
 		var address = $('#searchTextField').val();
-		$('#change-current-location-modal').modal('hide');
 		var GoogleMapService = GOOGLEMAP.getLocation(address);
 			GoogleMapService.then(function(response){
 				if(response.status == google.maps.GeocoderStatus.OK){
-					var newLocation = GOOGLEMAP.parsePosition(response.results);
-					var data = {
-					    user_id               : $scope.user._id,
-						token                 : $scope.user.token,
-					    lat                   : newLocation.lat,
-					    lng                   : newLocation.lng,
-					    city                  : newLocation.city.long_name,
-					    country               : newLocation.country.long_name,
-					};
-					console.log(data);
+					var data = GOOGLEMAP.parsePosition(response.results);
+						data.user_id = $scope.user._id;
+						data.token   = $scope.user.token;
+					console.log("Change location data",data);
 					$http.post(STR_API_CHANGE_LOCATION,data).success(function(response){
-						console.log(response);
+						console.log("Change location response",response);
 						if (response.error_code == 0) {
 							document.location.reload();
 						}else{
