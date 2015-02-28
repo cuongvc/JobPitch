@@ -11,10 +11,13 @@ var limit = 10;
 
 
 module.exports = function(req, res) {
-    memoryCache.get('top_company', function(err, result) {
-        console.log(result);
+
+    var country_short_name = req.body.country_short_name;
+
+    memoryCache.get('top_company' + country_short_name, function(err, result) {
         if (err || !result || typeof(result) == 'undefined') {
-            User.find({isUser : 2}, 'userName followMes',  function(err, companys) {
+            User.find({$and : [{isUser : 2}, {'position.country.short_name' : country_short_name}]}, 
+                      'userName followMes',  function(err, companys) {
                 
                 companys.sort(function(company_1, company_2) {
                    return company_1.score < company_2.score;
@@ -28,7 +31,7 @@ module.exports = function(req, res) {
                 }));
                 res.status(200).end();
 
-                memoryCache.set('top_company', companys, ttl, function(err) {
+                memoryCache.set('top_company' + country_short_name, companys, ttl, function(err) {
                     if (err) {
                         console.log(err);
                     }

@@ -1,12 +1,12 @@
-var HashTag             = require('./../../models/tags');
+var HashTag             = require('./../../models/hashtags');
 var async               = require('async');
 
-module.exports					=	function(hash_tag, app_id, callback){
+module.exports					=	function(country_short_name, hash_tag, app_id, callback){
 
-	var add_tag                 = function(hash_tag_, i, app_id){
-		if (i == hash_tag_.length)
+	add_tag                 = function(hash_tag, i, app_id){
+		if (i == hash_tag.length)
 			return 0;
-		HashTag.findOne({name : hash_tag_[i]}, function(err, hash_tag_exist){
+		HashTag.findOne({name : hash_tag[i]}, function(err, hash_tag_exist){
 
 			if (err){
 				console.log(err);
@@ -14,33 +14,41 @@ module.exports					=	function(hash_tag, app_id, callback){
 			};
 
 			if (hash_tag_exist){
-				
-				hash_tag_exist.app_id.push(app_id);
-				hash_tag_exist.number ++;
-				hash_tag_exist.save(function(err){
-					add_tag(hash_tag_,  i + 1, app_id);	
-				})
-				
+				var index = hash_tag_exist.country.indexOf(country_short_name);
+				if (index != -1){
+					hash_tag_exist.country[index].app_id.push(app_id);
+					hash_tag_exist.country[index].number ++;
+					hash_tag_exist.save(function(err){
+						add_tag(hash_tag,  i + 1, app_id);	
+					})
+				} else{
+					hash_tag_exist.country.push({country_short_name : country_short_name, app_id : [app_id]});
+					hash_tag_exist.save(function(err){
+						add_tag(hash_tag,  i + 1, app_id);	
+					})
+				}
+					
 			} else{
 				var newHashTag = new HashTag();
-				newHashTag.name = hash_tag_[i];
-				newHashTag.app_id.push(app_id);
+				newHashTag.name = hash_tag[i];
+				newHashTag.country.push({country_short_name : country_short_name, app_id : [app_id]});
+
 				newHashTag.save(function(err){
 					if (err){
 						console.log(err);
 					}
-					add_tag(hash_tag_,  i + 1, app_id);
+					add_tag(hash_tag,  i + 1, app_id);
 				})
 			}
 		})
 
 	}
 
-	console.log(hash_tag);
 	if (hash_tag.length > 0){
+
 		async.waterfall([
 			function(next){
-				add_tag(hash_tag, 0, app_id);		
+				add_tag(hash_tag, 0, app_id);
 				next(null);
 			}], function(err){
 				callback();

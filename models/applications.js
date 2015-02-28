@@ -9,6 +9,8 @@ var add_hashTag_app = require('./../my_module/add_hashTag').app;
 var check_user      = require('./../my_module/check_exist').user;  
 var User            = require('./users');
 
+var distanceLimit   = require('./../config/default').distanceLimit;
+var distance        = require('./../my_module/map/distance');
 
 // define the schema for our application model
 var applicationSchema = mongoose.Schema({
@@ -65,7 +67,10 @@ var applicationSchema = mongoose.Schema({
             short_name : {
                 type : String,
                 default : 'HN'
-            }
+            },
+            types : [{
+                type : String
+            }]
         },
 
         country : {
@@ -76,7 +81,11 @@ var applicationSchema = mongoose.Schema({
             short_name : {
                 type : String,
                 default : 'VN'
-            }
+            },
+            types : [{
+                type : String
+            }]
+
         },
 
         city : {
@@ -87,10 +96,13 @@ var applicationSchema = mongoose.Schema({
             short_name : {
                 type : String,
                 default : 'HN'
-            }
+            },
+            types : [{
+                type : String
+            }]
+
         },
     },
-
 
     userName_own_job : String,
 

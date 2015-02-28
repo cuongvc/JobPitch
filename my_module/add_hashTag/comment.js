@@ -1,7 +1,7 @@
-var HashTag             = require('./../../models/tags');
+var HashTag             = require('./../../models/hashtags');
 var async               = require('async');
 
-module.exports					=	function(hash_tag, comment_id, callback){
+module.exports					=	function(country_short_name, hash_tag, comment_id, callback){
 
 	add_tag                 = function(hash_tag, i, comment_id){
 		if (i == hash_tag.length)
@@ -14,18 +14,29 @@ module.exports					=	function(hash_tag, comment_id, callback){
 			};
 
 			if (hash_tag_exist){
-				
-				hash_tag_exist.comment_id.push(comment_id);
-				hash_tag_exist.number ++;
-				hash_tag_exist.save(function(err){
-					add_tag(hash_tag,  i + 1, comment_id);	
-				})
-				
+				var index = hash_tag_exist.country.indexOf(country_short_name);
+				if (index != -1){
+					hash_tag_exist.country[index].comment_id.push(comment_id);
+					hash_tag_exist.country[index].number ++;
+					hash_tag_exist.save(function(err){
+						add_tag(hash_tag,  i + 1, comment_id);	
+					})
+				} else{
+					hash_tag_exist.country.push({country_short_name : country_short_name, comment_id : [comment_id]});
+					hash_tag_exist.save(function(err){
+						add_tag(hash_tag,  i + 1, comment_id);	
+					})
+				}
+					
 			} else{
 				var newHashTag = new HashTag();
 				newHashTag.name = hash_tag[i];
-				newHashTag.comment_id.push(comment_id);
+				newHashTag.country.push({country_short_name : country_short_name, comment_id : [comment_id]});
+
 				newHashTag.save(function(err){
+					if (err){
+						console.log(err);
+					}
 					add_tag(hash_tag,  i + 1, comment_id);
 				})
 			}
@@ -34,6 +45,7 @@ module.exports					=	function(hash_tag, comment_id, callback){
 	}
 
 	if (hash_tag.length > 0){
+
 		async.waterfall([
 			function(next){
 				add_tag(hash_tag, 0, comment_id);

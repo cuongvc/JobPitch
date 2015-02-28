@@ -2751,10 +2751,26 @@ Cache-Control: no-cache
 {
     "token"                 : "$2a$08$YVdz7YmQhuVcY55Zc7tnXeReCXXnBv6O8IHPc1wra89Kn/X1J2Wm2",
     "user_id"               : "54deb68032f4c1f223bc6e72",
-    "lat"                   : "21.023730",
-    "lng"                   : "105.800764",
-    "city"                  : "Ha Noi",
-    "country"               : "Viet Nam"
+    "position" :  
+        { 
+          lat: 16.0544068,
+          lng: 108.20216670000002,
+          formatted_address: 'Đà Nẵng, Đà Nẵng, Việt Nam',
+          city: 
+           { long_name: 'Đà Nẵng',
+             short_name: 'Đà Nẵng',
+             types: [ 'locality', 'political' ] },
+          state: 
+           { long_name: 'Đà Nẵng',
+             short_name: 'Đà Nẵng',
+             types: [ 'administrative_area_level_1', 'political' ] },
+          country: 
+           { long_name: 'Việt Nam',
+             short_name: 'VN',
+             types: [ 'country', 'political' ] },
+          user_id: '54f125b604522fc56903a3ec',
+          token: '$2a$08$GbKlfdWcB6SVkyQJN7EzruJ1OLd63dq1LHPUgf4Fcbdyji7Dn9vQ6' 
+        }
 
 }
 

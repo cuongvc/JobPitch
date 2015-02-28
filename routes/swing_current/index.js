@@ -25,7 +25,9 @@ module.exports			=	function(req, res){
 				return 0;
 			};
 
-			user_exist.position = data.position;
+			console.log(position);
+			console.log(user_exist.position);
+			user_exist.position = position;
 			user_exist.save(function(err){
 				if (err){
 					console.log(err);

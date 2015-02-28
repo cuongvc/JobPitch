@@ -110,7 +110,10 @@ var jobSchema = new mongoose.Schema({
             short_name : {
                 type : String,
                 default : 'HN'
-            }
+            },
+            types : [{
+                type : String
+            }]
         },
 
         country : {
@@ -121,7 +124,11 @@ var jobSchema = new mongoose.Schema({
             short_name : {
                 type : String,
                 default : 'VN'
-            }
+            },
+            types : [{
+                type : String
+            }]
+
         },
 
         city : {
@@ -132,9 +139,14 @@ var jobSchema = new mongoose.Schema({
             short_name : {
                 type : String,
                 default : 'HN'
-            }
+            },
+            types : [{
+                type : String
+            }]
+
         },
     },
+    
     link_direct      : {
         type         : String,
         default      : ''
@@ -251,7 +263,7 @@ jobSchema.methods.containTag    = function(tag){
 
 jobSchema.methods.newInfor    = function(image, image_small, image_normal, user_id, userName, userTagName,
                                         title, hash_tag, tagname, description, position ,link_direct, 
-                                        time , callback){
+                                        time , country_short_name, callback){
 
     var job = this;
     if (image != '')
@@ -274,7 +286,7 @@ jobSchema.methods.newInfor    = function(image, image_small, image_normal, user_
     var newPermalink = new Permalink();
     newPermalink.newInfor('', job._id, 2, title, function(){
         job.permalink =  newPermalink.permalink;
-        add_hashTag_job(hash_tag, job._id, function(){
+        add_hashTag_job(country_short_name, hash_tag, job._id, function(){
             callback(job);
         })    
     });    

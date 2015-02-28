@@ -1,4 +1,4 @@
-var HashTag = require('./../../models/tags');
+var HashTag = require('./../../models/hashtags');
 
 var cacheManager = require('cache-manager');
 var memoryCache = cacheManager.caching({
@@ -11,6 +11,9 @@ var limit = 10;
 
 
 module.exports = function(req, res) {
+
+    var country_short_name = req.body.country_short_name;
+
     memoryCache.get('top_hashtag', function(err, result) {
         console.log('result : ', result);
         if (err || !result || typeof(result) == 'undefined') {

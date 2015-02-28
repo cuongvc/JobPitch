@@ -59,7 +59,10 @@ var userSchema = mongoose.Schema({
             short_name : {
                 type : String,
                 default : 'HN'
-            }
+            },
+            types : [{
+                type : String
+            }]
         },
 
         country : {
@@ -70,7 +73,11 @@ var userSchema = mongoose.Schema({
             short_name : {
                 type : String,
                 default : 'VN'
-            }
+            },
+            types : [{
+                type : String
+            }]
+
         },
 
         city : {
@@ -81,7 +88,11 @@ var userSchema = mongoose.Schema({
             short_name : {
                 type : String,
                 default : 'HN'
-            }
+            },
+            types : [{
+                type : String
+            }]
+
         },
     },
 

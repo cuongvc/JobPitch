@@ -1,4 +1,4 @@
-var Tags                = require('./../../models/tags');
+var Tags                = require('./../../models/hashtags');
 
 module.exports					=	function(req, res){
 	Tags.find({}, function(err, tags){

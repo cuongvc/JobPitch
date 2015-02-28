@@ -1,5 +1,5 @@
 // position   : = 1 when search in jobs, 2 when search in applications
-var Tag                         = require('./../../models/tags');
+var Tag                         = require('./../../models/hashtags');
 var Job                         = require('./../../models/jobs');
 var Application                 = require('./../../models/applications');
 

@@ -1,5 +1,7 @@
-var Application       = require('./../../models/applications');
-var check_token       = require('./../../my_module/check_exist').token;
+var async       = require('async');
+
+var Application = require('./../../models/applications');
+var check_token = require('./../../my_module/check_exist').token;
 
 module.exports				=	function(req, res){
 
@@ -36,16 +38,18 @@ module.exports				=	function(req, res){
 
 				q.exec(function(err, applications){
 					var results = [];
-					
-					for (var i = 0 ; i < applications.length ; i ++){
-						if (applications[i].distance(user_exist.position.lat, user_exist.position.lng)){
-							results.push(applications[i]);
-						}
-					}
-					
-					res.write(JSON.stringify({error_code : 0, applications : results}));
-					res.status(200).end();
-
+					async.waterfall([
+						function(next){
+							for (var i = 0 ; i < applications.length ; i ++){
+								if (applications[i].distance(user_exist.position.lat, user_exist.position.lng)){
+									results.push(applications[i]);
+								}
+							}
+							next(null);
+						}], function(err){
+							res.write(JSON.stringify({error_code : 0, applications : results}));
+							res.status(200).end();
+						})
 				})
 			}
 		})
