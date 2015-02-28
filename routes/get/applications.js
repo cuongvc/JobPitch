@@ -35,7 +35,15 @@ module.exports				=	function(req, res){
 				}
 
 				q.exec(function(err, applications){
-					res.write(JSON.stringify({error_code : 0, applications : applications}));
+					var results = [];
+					
+					for (var i = 0 ; i < applications.length ; i ++){
+						if (applications[i].distance(user_exist.position.lat, user_exist.position.lng)){
+							results.push(applications[i]);
+						}
+					}
+					
+					res.write(JSON.stringify({error_code : 0, applications : results}));
 					res.status(200).end();
 
 				})
