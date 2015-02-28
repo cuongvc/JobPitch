@@ -1162,8 +1162,10 @@ Cache-Control: no-cache
 
 {
   "tag" : "Nodejs",
-  "position" : 2
+  "position" : 2,
+  "country_short_name" : "VN
 }
+
 
 position = 1: search tag in jobs
 position = 2: search tag in applications
