@@ -1,10 +1,11 @@
-var check_job = require('./../../my_module/check_exist').job;
-var check_token = require('./../../my_module/check_exist').token;
-var Application = require('./../../models/applications');
+var check_job     = require('./../../my_module/check_exist').job;
+var check_token   = require('./../../my_module/check_exist').token;
+var Application   = require('./../../models/applications');
 var respon_object = require('./../../my_module/respon_object').application;
 
-var io_notify = require('./../../my_module/socket');
-var Notification = require('./../../models/notifications');
+var io_notify     = require('./../../my_module/socket');
+var Notification  = require('./../../models/notifications');
+var content_noti  = require('./../../config/content_noti');
 
 
 module.exports = function(req, res) {
@@ -72,7 +73,7 @@ module.exports = function(req, res) {
                             for (var i = 0; i < receive_notify.length; i++) {
                                 var notification = new Notification();
                                 notification.newInfor(receive_notify[i], user_exist.userName,
-                                    ' apply job', application.description, job_exist._id,
+                                    content_noti.apply_job1, application.description, job_exist._id,
                                     application._id, '', job_exist.user_id,
                                     job_exist.userName, job_exist.permalink,
                                     user_exist.avatar_small, 12);
