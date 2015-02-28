@@ -7,10 +7,7 @@ module.exports			=	function(req, res){
 		var user_id = data.user_id;
 		var token   = data.token;
 		
-		var lat     = data.lat;
-		var lng     = data.lng;
-		var city    = data.city;
-		var country = data.country;
+		var position = data.position;
 	}
 
 	catch(err){
@@ -28,10 +25,7 @@ module.exports			=	function(req, res){
 				return 0;
 			};
 
-			user_exist.location.lat     = lat;
-			user_exist.location.lng     = lng;
-			user_exist.location.city    = city;
-			user_exist.location.country = country;
+			user_exist.position = data.position;
 			user_exist.save(function(err){
 				if (err){
 					console.log(err);

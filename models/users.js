@@ -35,22 +35,54 @@ var userSchema = mongoose.Schema({
         default: 1
     },
 
-    location: {
+    position: {
         lat: {
-            type: Number
+            type: Number,
+            default : 21.029346
         },
 
         lng: {
-            type: Number
+            type: Number,
+            default : 105.832586
         },
 
-        city: {
-            type: String
+        formatted_address: {
+            type: String,
+            default : 'Ha Noi, Viet Nam'
+        },
+
+        state : {
+            long_name : {
+                type : String, 
+                default : 'Ha Noi'
+            },
+            short_name : {
+                type : String,
+                default : 'HN'
+            }
         },
 
         country : {
-            type : String
-        }
+            long_name : {
+                type : String, 
+                default : 'Viet Nam'
+            },
+            short_name : {
+                type : String,
+                default : 'VN'
+            }
+        },
+
+        city : {
+            long_name : {
+                type : String, 
+                default : 'Ha Noi'
+            },
+            short_name : {
+                type : String,
+                default : 'HN'
+            }
+        },
     },
 
     type_account: {

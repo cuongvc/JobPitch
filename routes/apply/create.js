@@ -64,7 +64,7 @@ module.exports = function(req, res) {
                     application.newInfor(user_id, user_exist.userName, user_exist.tagname, job_exist.user_id,
                         job_exist.userName, job_exist.userTagName, user_exist.avatar_small, 
                         job_id, job_exist.title, title, hash_tag, tagname,
-                        description, time, file, 
+                        description, time, file, job.position, 
                         function(application) {
 
                             // add own of job receive notify

@@ -86,37 +86,55 @@ var jobSchema = new mongoose.Schema({
         autocomplete : true
     },
 
-    location         : {
-        lat          : {
-            type         : Number
+    position: {
+        lat: {
+            type: Number,
+            default : 21.029346
         },
 
-        lng          : {
-            type         : Number
+        lng: {
+            type: Number,
+            default : 105.832586
         },
 
-        address      : {
-            type         : String,
-            default      : ''
+        formatted_address: {
+            type: String,
+            default : 'Ha Noi, Viet Nam'
         },
 
-        city         : {
-            type         : String,
-            default      : ''
+        state : {
+            long_name : {
+                type : String, 
+                default : 'Ha Noi'
+            },
+            short_name : {
+                type : String,
+                default : 'HN'
+            }
         },
 
-        country      : {
-            type         : String,
-            default      : ''
+        country : {
+            long_name : {
+                type : String, 
+                default : 'Viet Nam'
+            },
+            short_name : {
+                type : String,
+                default : 'VN'
+            }
         },
 
-        state      : {
-            type         : String,
-            default      : ''
+        city : {
+            long_name : {
+                type : String, 
+                default : 'Ha Noi'
+            },
+            short_name : {
+                type : String,
+                default : 'HN'
+            }
         },
-
     },
-
     link_direct      : {
         type         : String,
         default      : ''
@@ -232,8 +250,8 @@ jobSchema.methods.containTag    = function(tag){
 }
 
 jobSchema.methods.newInfor    = function(image, image_small, image_normal, user_id, userName, userTagName,
-                                        title, hash_tag, tagname, description, lat, lng, address, 
-                                        city, country, state ,link_direct, time , callback){
+                                        title, hash_tag, tagname, description, position ,link_direct, 
+                                        time , callback){
 
     var job = this;
     if (image != '')
@@ -251,12 +269,7 @@ jobSchema.methods.newInfor    = function(image, image_small, image_normal, user_
     job.description            = description;
     job.link_direct            = link_direct;
     job.time                   = time;
-    job.location.lat           = lat;
-    job.location.lng           = lng;
-    job.location.address       = address;
-    job.location.city          = city;
-    job.location.country       = country;
-    job.location.state         = state;
+    job.position               = position;
     
     var newPermalink = new Permalink();
     newPermalink.newInfor('', job._id, 2, title, function(){
@@ -269,12 +282,12 @@ jobSchema.methods.newInfor    = function(image, image_small, image_normal, user_
 
 jobSchema.methods.distance      = function(lat, lng){
     var location1 = {lat : lat, lng : lng};
-    var location2 = {lat : this.location.lat, lng : this.location.lng};
+    var location2 = {lat : this.position.lat, lng : this.position.lng};
     return distance(location1, location2) < distanceLimit;
 }
 
 jobSchema.methods.editInfor    = function(image, image_small, image_normal, user_id, userName
-                                        ,title, hash_tag, tagname, description, lat, lng, address, city, country, state
+                                        ,title, hash_tag, tagname, description, position
                                         ,link_direct, time , callback){
 
     var job = this;
@@ -292,12 +305,7 @@ jobSchema.methods.editInfor    = function(image, image_small, image_normal, user
     job.description            = description;
     job.link_direct            = link_direct;
     job.time                   = time;
-    job.location.lat           = lat;
-    job.location.lng           = lng;
-    job.location.address       = address;
-    job.location.city          = city;
-    job.location.country       = country;
-    job.location.state         = state;
+    job.position               = position;
 
     var newPermalink = new Permalink();
     newPermalink.newInfor('', job._id, 2, title, function(){

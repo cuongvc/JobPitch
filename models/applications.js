@@ -40,6 +40,58 @@ var applicationSchema = mongoose.Schema({
         type         : String
     },
 
+
+    position: {
+        lat: {
+            type: Number,
+            default : 21.029346
+        },
+
+        lng: {
+            type: Number,
+            default : 105.832586
+        },
+
+        formatted_address: {
+            type: String,
+            default : 'Ha Noi, Viet Nam'
+        },
+
+        state : {
+            long_name : {
+                type : String, 
+                default : 'Ha Noi'
+            },
+            short_name : {
+                type : String,
+                default : 'HN'
+            }
+        },
+
+        country : {
+            long_name : {
+                type : String, 
+                default : 'Viet Nam'
+            },
+            short_name : {
+                type : String,
+                default : 'VN'
+            }
+        },
+
+        city : {
+            long_name : {
+                type : String, 
+                default : 'Ha Noi'
+            },
+            short_name : {
+                type : String,
+                default : 'HN'
+            }
+        },
+    },
+
+
     userName_own_job : String,
 
     userTagName_own_job : String,
@@ -170,7 +222,7 @@ applicationSchema.methods.isOwn         = function(companyId){
 applicationSchema.methods.newInfor    = function(user_id, userName, userTagName, userId_own_job, userName_own_job, 
                                         userTagName_own_job,  user_avatar, job_id, job_title, 
                                         title, hash_tag, tagname, description, time, 
-                                        file, callback){
+                                        file, position, callback){
 
     var app                 = this;
     app.user_id             = user_id;
@@ -190,7 +242,7 @@ applicationSchema.methods.newInfor    = function(user_id, userName, userTagName,
     app.tagname             = tagname;
     app.description         = description;
     app.time                = time;
-
+    app.position            = position;
     
     if (file != ''){
         app.file           = file;
@@ -353,6 +405,12 @@ applicationSchema.methods.addHire       = function(){
 
     this.save(function(err){
     });
+}
+
+applicationSchema.methods.distance      = function(lat, lng){
+    var location1 = {lat : lat, lng : lng};
+    var location2 = {lat : this.position.lat, lng : this.position.lng};
+    return distance(location1, location2) < distanceLimit;
 }
 
 

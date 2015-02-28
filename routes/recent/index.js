@@ -32,13 +32,9 @@ module.exports					=	function(req, res){
 				return 0;
 			};
 
-			var lat = user_exist.location.lat;
-			var lng = user_exist.location.lng;
-			var city;
-			var country;
+			var position = user_exist.position;
 
-			if (typeof(user_exist.location.lat) == 'undefined'){
-				console.log('FIND LOCATION');
+			if (user_exist.position.lat == 21.029346){
 				var ip = req.headers['x-forwarded-for'] || 
 						     req.connection.remoteAddress || 
 						     req.socket.remoteAddress ||
@@ -46,31 +42,25 @@ module.exports					=	function(req, res){
 
 
 				var geo = geoip.lookup(ip);
-				console.log('GEO : ',geo);
-				if (!geo){
-					console.log('address default');
-					lat = 21.029346;
-					lng = 105.832586;
-					city='Ha Noi';
-					country = 'Viet Nam';
-				} else{
-					lat = geo.ll[0];
-					lng = geo.ll[1];
-					city = geo.city;
-					country = geo.country;
+				if (geo){
+					position.lat = geo.ll[0];
+					position.lng = geo.ll[1];
+
+					position.city.short_name = geo.city;
+					position.city.long_name = geo.city;
+					position.country.short_name = geo.country;
+					position.country.long_name = geo.country;
+					position.state.short_name = geo.region;
+					position.state.long_name = geo.region;
+
+					user_exist.position = position;
+					user_exist.save(function(err){ 
+						if (err){
+							console.log(err);
+						}
+					});
 				}
 
-				user_exist.location.country = country;
-				user_exist.location.city = city;
-
-				user_exist.location.lat = lat;
-				user_exist.location.lng = lng;
-
-				user_exist.save(function(err){ 
-					if (err){
-						console.log(err);
-					}
-				});
 
 			} 	
 
@@ -84,7 +74,7 @@ module.exports					=	function(req, res){
 						// console.log('PASS FIND : ', jobs);		
 
 						for (var i = 0 ; i < jobs.length; i ++){
-							if (jobs[i].containTag(tag) && jobs[i].distance(lat, lng) ){
+							if (jobs[i].containTag(tag) && jobs[i].distance(user_exist.position.lat, user_exist.position.lng) ){
 								result.push(jobs[i]);
 							}
 						};				

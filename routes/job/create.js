@@ -33,12 +33,7 @@ module.exports				=	function(req, res){
     var desc     			= data['desc'];
     var link_direct   = data['link_direct'];
 
-    var lat           = data.position['lat'];
-    var lng           = data.position['lng']
-    var address       = data.position['formatted_address'];
-    var city          = data.position['city'].long_name;
-    var country       = data.position['country'].long_name;
-    var state         = data.position['state'].long_name;
+    var position      = data.position;
 
     var time          = new Date(new Date().toGMTString()).toJSON();
     var temp_path     = data['temp_path'];
@@ -121,7 +116,7 @@ module.exports				=	function(req, res){
           var newJob = new Job();
           newJob.newInfor(image, image_small, image_normal, user_exist.id, user_exist.userName, 
                   user_exist.tagname, title, hash_tag, tagname, desc,
-                  lat, lng, address, city, country, state, link_direct, time,
+                  position, link_direct, time,
                   function(job) {
 
 
