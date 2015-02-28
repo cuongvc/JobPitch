@@ -70,14 +70,21 @@ module.exports = function(req, res) {
 
                             // add own of job receive notify
                             var receive_notify = job_exist.receive_notify.concat(job_exist.user_id);
-                            for (var i = 0; i < receive_notify.length; i++) {
+                            for (var i = 0; i < job_exist.receive_notify.length; i++) {
                                 var notification = new Notification();
-                                notification.newInfor(receive_notify[i], user_exist.userName,
-                                    content_noti.apply_job1, application.description, job_exist._id,
+                                notification.newInfor(job_exist.receive_notify[i], user_exist.userName,
+                                    content_noti.apply_job2, application.description, job_exist._id,
                                     application._id, '', job_exist.user_id,
                                     job_exist.userName, job_exist.permalink,
                                     user_exist.avatar_small, 12);
                             }
+
+                             var notification = new Notification();
+                            notification.newInfor(job_exist.user_id, user_exist.userName,
+                                content_noti.apply_job1, application.description, job_exist._id,
+                                application._id, '', job_exist.user_id,
+                                job_exist.userName, job_exist.permalink,
+                                user_exist.avatar_small, 12);
 
 
                             io_notify.emit('apply_job', {
