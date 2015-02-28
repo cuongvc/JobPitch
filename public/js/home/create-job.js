@@ -32,12 +32,14 @@ CreateJob.controller('CreateJobCtrl',function($scope,$http,GOOGLEMAP,HASHTAG){
 	$scope.ShowForm = function(stt){
 		ShowCreateJobForm = stt;
 		$scope.ShowCreateJobForm = ShowCreateJobForm;
-		if(stt){
+	}
+	$scope.$watch('ShowCreateJobForm',function(){
+		if(ShowCreateJobForm){
 			$('#create-job-form').removeClass('hidden');
 		}else{
 			$('#create-job-form').addClass('hidden');
 		}
-	}
+	})
 	/**********************************************************************************/
 									/*CROP*/
 	/**********************************************************************************/
@@ -65,6 +67,13 @@ CreateJob.controller('CreateJobCtrl',function($scope,$http,GOOGLEMAP,HASHTAG){
 		}
 		$scope.PreviewImageStyle = PreviewImageStyle;
 		console.log(PreviewImageStyle);
+	}
+	$scope.SelectFile = function(){
+		var input = document.getElementById('create-job-file-input');
+		input.type = 'text';
+		input.value = '';
+		input.type = 'file';
+		input.click();
 	}
 	$scope.ReSelectFile = function(){
 		$scope.hiddenCrop();

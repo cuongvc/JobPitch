@@ -24,23 +24,23 @@
 				</ul>
 			</div>
 	    	<div class="form">
-		    	<input class="semibold" id="new-job-title" type="text" ng-model="JobTitle" placeholder="Job title" maxlength="160">
+		    	<input class="semibold padding-left-10" id="new-job-title" type="text" ng-model="JobTitle" placeholder="Job title" maxlength="160">
 				<div class="form-group">
-			    	<textarea placeholder="Job description" ng-model="JobDesc" maxlength="255"></textarea>
+			    	<textarea class="padding-left-10" placeholder="Job description" ng-model="JobDesc" maxlength="255"></textarea>
 			    </div>		    	
 				<div class="create-job-file">
 			    	<input class="hidden" id="create-job-file-input" type="file" ng-model="Image" nightfury-onchange-upload="CreateJobImage">
 			    	<div class="pull-left">
-			    		<i class="fa fa-camera" onclick="document.getElementById('create-job-file-input').click();"></i>
+			    		<i class="fa fa-camera" ng-click="SelectFile()"></i>
 			    	</div>
 			    	<div class="overflowhidden">
 						<div id="create-job-image-preview" ng-style="PreviewImageStyle"></div>
 			    	</div>
 			    </div>		    	
 			    <div class="form-group">
-			    	<input type="text" id="create-job-location">
+			    	<input class="padding-left-10" type="text" id="create-job-location">
 			    </div>
-			    <div class="create-job-button pull-left" ng-click="CreateJob(JobTitle,JobDesc)">Create</div>
+			    <div class="create-job-button pull-left margin-left-10" ng-click="CreateJob(JobTitle,JobDesc)">Create</div>
 	    	</div>
 		</div>
 	</div>
