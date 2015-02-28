@@ -37,8 +37,8 @@ module.exports									=	function(req, res){
 
 			if (position == 1){
 
-				Job.find({_id : {$in : tag_exist[country_short_name].job_id}}, function(err, jobs){
-
+				Job.find({_id : {$in : tag_exist.country[country_short_name].job_id}}, function(err, jobs){
+					console.log(tag_exist.country[country_short_name].job_id);
 					if (err){
 						console.log(err);
 						res.write(JSON.stringify({error_code : 1, msg : err.toString()}));
@@ -50,7 +50,7 @@ module.exports									=	function(req, res){
 				})
 			} else if (position == 2) {
 
-				Application.find({_id : {$in : tag_exist[country_short_name].app_id}}, function(err, applications){
+				Application.find({_id : {$in : tag_exist.country[country_short_name].app_id}}, function(err, applications){
 
 					if (err){
 						console.log(err);
@@ -65,7 +65,7 @@ module.exports									=	function(req, res){
 
 			} else {
 
-				Job.find({_id : {$in : tag_exist[country_short_name].job_id}}, function(err, jobs){
+				Job.find({_id : {$in : tag_exist.country[country_short_name].job_id}}, function(err, jobs){
 
 					if (err){
 						console.log(err);
@@ -73,7 +73,7 @@ module.exports									=	function(req, res){
 						res.status(200).end();
 					};
 
-					Application.find({_id : {$in : tag_exist[country_short_name].app_id}}, function(err, applications){
+					Application.find({_id : {$in : tag_exist.country[country_short_name].app_id}}, function(err, applications){
 
 						if (err){
 							console.log(err);
