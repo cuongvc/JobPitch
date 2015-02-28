@@ -73,8 +73,9 @@
                             </div>
                         </form>
                         <li>
-                            <a href="" class="current_location" ng-click="ChangeCurrentLocation()">
-                                <span ng-bind="user.location.city"></span>, <span ng-bind="user.location.country"></span>
+                            <a href="" class="current_location" ng-click="ChangeCurrentLocation($event)">
+                                <span ng-if="showLocation == true"><span ng-bind="user.position.city.long_name"></span>, <span ng-bind="user.position.country.long_name"></span></span>
+                                <input type="text" class="change-location-input hidden" id="searchTextField">
                             </a>
                         </li>
                         <!-- search form -->
