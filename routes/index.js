@@ -41,3 +41,5 @@ exports.swing_current   = require('./swing_current');
 exports.share           = require('./share');
 
 exports.suggest         = require('./suggest');
+
+exports.set_current     = require('./set_current');

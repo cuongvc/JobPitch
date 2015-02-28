@@ -116,7 +116,7 @@ module.exports				=	function(req, res){
           var newJob = new Job();
           newJob.newInfor(image, image_small, image_normal, user_exist.id, user_exist.userName, 
                   user_exist.tagname, title, hash_tag, tagname, desc,
-                  position, link_direct, time, user_exist.position.country.short_name, 
+                  position, link_direct, time, position.country.short_name, 
                   function(job) {
 
 

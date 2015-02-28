@@ -2975,3 +2975,101 @@ Cache-Control: no-cache
 }
 
 ```
+
+### 39. Return top hashtag
+
+```
+Post     http://jobpitch.campcoders.com/api/top_hashtag
+Content-Type: application/json
+Cache-Control: no-cache
+
+```
+##### Regex
+```
+{
+  "country_short_name" : "VN",
+  "skip"               : 0,
+  "limit"              : 10
+
+
+
+```
+##### Return
+```
+{
+    "error_code": 0,
+    "top_hashtag": [
+        {
+            "_id": "54f1605c92c220b31d492226",
+            "country": {
+                "VN": {
+                    "number": 4
+                }
+            },
+            "name": "#nodejs"
+        },
+        {
+            "_id": "54f1605c92c220b31d492227",
+            "country": {
+                "VN": {
+                    "number": 4
+                }
+            },
+            "name": "#php"
+        },
+        {
+            "_id": "54f152d7289899d518f8542a",
+            "country": {
+                "VN": {
+                    "number": 3
+                }
+            },
+            "name": "#PHP"
+        },
+        {
+            "_id": "54f152d7289899d518f8542b",
+            "country": {
+                "VN": {
+                    "number": 3
+                }
+            },
+            "name": "#Developer"
+        }
+    ]
+}
+
+```
+
+### 40. Return top company
+
+```
+Post     http://jobpitch.campcoders.com/api/top_hashtag
+Content-Type: application/json
+Cache-Control: no-cache
+
+```
+##### Regex
+```
+{
+  "country_short_name" : "VN",
+  "skip"               : 0,
+  "limit"              : 10
+}
+
+
+
+```
+##### Return
+```
+{
+    "error_code": 0,
+    "top_company": [
+        {
+            "_id": "54f131a218fe23d37421a084",
+            "userName": "cuongvu",
+            "followMes": []
+        }
+    ]
+}
+
+```

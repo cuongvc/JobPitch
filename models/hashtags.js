@@ -11,9 +11,9 @@ var hashtagSchema = mongoose.Schema({
         index        : true
     },
 
-    country : [mongoose.Schema.Types.Mixed]
+    country : mongoose.Schema.Types.Mixed
 
-});
+}, { strict: false });
 
 // create the model for hashtags and expose it to our app
 module.exports = mongoose.model('hashtags', hashtagSchema);

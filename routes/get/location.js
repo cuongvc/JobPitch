@@ -1,3 +1,4 @@
+
 var check_token = require('./../../my_module/check_exist').token;
 
 module.exports = function(req, res) {
@@ -23,7 +24,7 @@ module.exports = function(req, res) {
                 res.status(200).end();
                 return 0;
             } else{
-                res.write(JSON.stringify({error_code : 0, location : user_exist.location}));
+                res.write(JSON.stringify({error_code : 0, position : user_exist.position}));
                 res.status(200).end();
             }
 

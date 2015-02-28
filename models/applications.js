@@ -260,7 +260,7 @@ applicationSchema.methods.newInfor    = function(user_id, userName, userTagName,
         app.file           = file;
     }
     console.log('add hastag');
-    add_hashTag_app(hash_tag, app._id, function(){
+    add_hashTag_app(position.country.short_name, hash_tag, app._id, function(){
         console.log('callback');
         app.save(function(err){
             callback(app);    

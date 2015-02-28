@@ -14,16 +14,29 @@ module.exports					=	function(country_short_name, hash_tag, comment_id, callback
 			};
 
 			if (hash_tag_exist){
-				var index = hash_tag_exist.country.indexOf(country_short_name);
-				if (index != -1){
-					hash_tag_exist.country[index].comment_id.push(comment_id);
-					hash_tag_exist.country[index].number ++;
+				console.log('hash_tag_exist', hash_tag_exist);
+				console.log(country_short_name);
+				if (hash_tag_exist.country[country_short_name]){
+					hash_tag_exist.country[country_short_name].comment_id.push(comment_id);
+					hash_tag_exist.country[country_short_name].number ++;
+					hash_tag_exist.markModified('country');
+
 					hash_tag_exist.save(function(err){
+						if (err){
+							console.log(err);
+						}
+						console.log('Save success', hash_tag_exist);
 						add_tag(hash_tag,  i + 1, comment_id);	
 					})
 				} else{
-					hash_tag_exist.country.push({country_short_name : country_short_name, comment_id : [comment_id]});
+					hash_tag_exist.country[country_short_name] = {comment_id : [comment_id], number : 1};
+					hash_tag_exist.markModified('country');
+
 					hash_tag_exist.save(function(err){
+						if (err){
+							console.log(err);
+						}
+						console.log('Save success', hash_tag_exist);
 						add_tag(hash_tag,  i + 1, comment_id);	
 					})
 				}
@@ -31,8 +44,9 @@ module.exports					=	function(country_short_name, hash_tag, comment_id, callback
 			} else{
 				var newHashTag = new HashTag();
 				newHashTag.name = hash_tag[i];
-				newHashTag.country.push({country_short_name : country_short_name, comment_id : [comment_id]});
-
+				newHashTag.country = {};
+				newHashTag.country[country_short_name]  = {comment_id : [comment_id], number : 1};
+				
 				newHashTag.save(function(err){
 					if (err){
 						console.log(err);

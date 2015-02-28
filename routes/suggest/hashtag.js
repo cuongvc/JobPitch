@@ -1,7 +1,7 @@
 var HashTag = require('./../../models/hashtags');
 
 module.exports				=	function(req, res){
-	HashTag.find({}, 'name number', function(err, tags){
+	HashTag.find({}, 'name', function(err, tags){
 
 		if (err){
 			res.write(JSON.stringify({error_code : 1, msg : err.toString()}));

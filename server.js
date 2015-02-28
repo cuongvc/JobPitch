@@ -255,6 +255,15 @@ app.get('/directive/home/left-sidebar',function(req,res){
 	// GET LOCATION USER
 	Router_body.post('/location',							 routes.get.location);
 
+// -------- RETURN TOP JOB, COMPANY -------------------------------------------------
+
+	Router_body.post('/top_job',						 	 routes.get.top_job);
+	Router_body.post('/top_company',				   routes.get.top_company);
+	Router_body.post('/top_hashtag',				 	 routes.get.top_hashtag);
+
+// -------- SET CURRENT USER-------------------------------------------------
+	Router_body.post('/set_current',           routes.set_current);
+
 // --------GET DATA FROM PERMALINK -------------------------------
 
 app.get('/:permalink',											 routes.get.permalink);
@@ -266,11 +275,6 @@ app.get('/:permalink',											 routes.get.permalink);
 	app.get('/api/user/:user_id',							 routes.get.user);
 	app.get('/api/job/:job_id',								 routes.get.job);
 
-// -------- RETURN TOP JOB, COMPANY -------------------------------------------------
-
-	app.get('/api/top_job',						 				 routes.get.top_job);
-	app.get('/api/top_company',				 				 routes.get.top_company);
-	app.get('/api/top_hashtag',				 				 routes.get.top_hashtag);
 
 
 // =================================== LISTEN BY IP AND PORT ========================

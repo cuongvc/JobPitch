@@ -4,26 +4,27 @@ var cacheManager = require('cache-manager');
 var memoryCache = cacheManager.caching({
     store: 'memory',
     max: 100,
-    ttl: 10000 /*seconds*/
+    ttl: 1000 /*seconds*/
 });
 var ttl = 5;
-var limit = 10;
 
 
 module.exports = function(req, res) {
 
     var country_short_name = req.body.country_short_name;
+    var skip               = req.body.skip;
+    var limit              = req.body.limit;
 
     memoryCache.get('top_company' + country_short_name, function(err, result) {
         if (err || !result || typeof(result) == 'undefined') {
             User.find({$and : [{isUser : 2}, {'position.country.short_name' : country_short_name}]}, 
-                      'userName followMes',  function(err, companys) {
+                      'userName score',  function(err, companys) {
                 
                 companys.sort(function(company_1, company_2) {
                    return company_1.score < company_2.score;
                 });
 
-                companys = companys.slice(0, 10);
+                companys = companys.slice(skip, limit);
 
                 res.write(JSON.stringify({
                     error_code: 0,
