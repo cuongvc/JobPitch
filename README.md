@@ -2238,139 +2238,146 @@ return_comment = 1: return ca comment tim duoc. return_comment = 0 : khong retur
 ```
 {
     "error_code": 0,
-    "results": {
-        "jobs": {
-            "results": [
-                {
-                    "_relevance": 1,
-                    "__v": 2,
-                    "_id": "54deb69d32f4c1f223bc6e74",
-                    "_keywords": [
-                        "nodej",
-                        "cuongvu"
-                    ],
-                    "description": "nodejs 2",
-                    "hash_tag": [],
-                    "hires": 0,
-                    "image": "http://job.dev/images/full_size/JobImages/1423882833073.jpeg",
-                    "image_normal": "http://job.dev/images/normal_size/JobImages/1423882833073.jpeg",
-                    "image_small": "http://job.dev/images/small_size/JobImages/1423882833073.jpeg",
-                    "interviews": 0,
-                    "link_direct": "",
-                    "permalink": "nodejs",
-                    "receive_notify": [
-                        "54deb7c4767662cf2473e666"
-                    ],
-                    "status": 1,
-                    "time": "2015-02-14T02:44:45.000Z",
-                    "title": "nodejs",
-                    "userName": "cuongvu",
-                    "user_id": "54deb68032f4c1f223bc6e72",
-                    "contracts": {
-                        "list": [],
-                        "number": 0
-                    },
-                    "applications": {
-                        "list": [
-                            "54deb7d1767662cf2473e668",
-                            "54deb7e5767662cf2473e66c"
-                        ],
-                        "number": 2
-                    },
-                    "shares": {
-                        "list": [],
-                        "number": 0
-                    },
-                    "likes": {
-                        "list": [],
-                        "number": 0
-                    },
-                    "location": {
-                        "address": "ha noi, nguyen hong",
-                        "lng": 105.810339,
-                        "lat": 21.016481
-                    }
-                }
+    "jobs": [
+        {
+            "_id": "54eefd78950cd24a68b6a476",
+            "time": "2015-02-26T11:03:19.000Z",
+            "user_id": "54eefd4c950cd24a68b6a470",
+            "_keywords": [
+                "thu",
+                "th",
+                "ph",
+                "ch",
+                "gi",
+                "nh",
+                "tranh",
+                "c",
+                "ho",
+                "ng",
+                "doanh",
+                "market",
+                "ty",
+                "maket",
+                "thanchet",
+                "chui",
+                "vi"
             ],
-            "totalCount": 1
-        },
-        "applications": {
-            "results": [
-                {
-                    "_relevance": 1,
-                    "__v": 2,
-                    "_id": "54deb7e5767662cf2473e66c",
-                    "_keywords": [
-                        "nodej",
-                        "pitch"
-                    ],
-                    "comment": [
-                        "54deb7eb767662cf2473e66f",
-                        "54deb93b3f4ac39026a70347"
-                    ],
-                    "companyId": "54deb68032f4c1f223bc6e72",
-                    "companyName": "cuongvu",
-                    "description": "nodejs pitch",
-                    "file": "",
-                    "hash_tag": [],
-                    "interviews": 0,
-                    "job_id": "54deb69d32f4c1f223bc6e74",
-                    "time": "2015-02-14T02:50:13.000Z",
-                    "title": "",
-                    "userName": "Cường Vũ",
-                    "user_avatar": "https://lh5.googleusercontent.com/-IlI6TyJIlrs/AAAAAAAAAAI/AAAAAAAAAC8/AsmFVAZBIkw/photo.jpg",
-                    "user_id": "54deb7c4767662cf2473e666",
-                    "hires": {
-                        "status": 0
-                    },
-                    "interests": {
-                        "list": [],
-                        "number": 0
-                    },
-                    "shares": {
-                        "list": [],
-                        "number": 0
-                    },
-                    "likes": {
-                        "list": [],
-                        "number": 0
-                    }
-                }
+            "__v": 9,
+            "receive_notify": [
+                "54eea194292a7c2349743d64",
+                "54eec074bbd33ec655a01828",
+                "54eefd55950cd24a68b6a473"
             ],
-            "totalCount": 1
-        },
-        "comments": {
-            "results": [
-                {
-                    "_relevance": 1.561904761904762,
-                    "time": "Sat Feb 14 2015 09:55:55 GMT+0700 (ICT)",
-                    "job_parent": "54deb69d32f4c1f223bc6e74",
-                    "application_parent": "54deb7e5767662cf2473e66c",
-                    "user_avatar": "https://lh5.googleusercontent.com/-IlI6TyJIlrs/AAAAAAAAAAI/AAAAAAAAAC8/AsmFVAZBIkw/photo.jpg",
-                    "userName": "Cường Vũ",
-                    "user_id": "54deb7c4767662cf2473e666",
-                    "_keywords": [
-                        "nodej",
-                        "comment"
-                    ],
-                    "_id": "54deb93b3f4ac39026a70347",
-                    "comments": [],
-                    "content": "nodejs comment",
-                    "hash_tag": [],
-                    "__v": 0,
-                    "shares": {
-                        "list": [],
-                        "number": 0
-                    },
-                    "likes": {
-                        "list": [],
-                        "number": 0
-                    }
-                }
+            "contracts": {
+                "list": [],
+                "number": 0
+            },
+            "hires": 0,
+            "interviews": 0,
+            "applications": {
+                "list": [
+                    "54eefd87950cd24a68b6a479",
+                    "54eefe00950cd24a68b6a47d",
+                    "54ef049f4af476d46bcc0cf9",
+                    "54ef04a04af476d46bcc0cfd",
+                    "54ef04b34af476d46bcc0d02",
+                    "54ef04b84af476d46bcc0d07",
+                    "54ef04c94af476d46bcc0d0c",
+                    "54efd970c0602456108d81ef"
+                ],
+                "number": 8
+            },
+            "score": 9,
+            "shares": {
+                "list": [],
+                "number": 0
+            },
+            "likes": {
+                "list": [
+                    "54eea194292a7c2349743d64"
+                ],
+                "number": 1
+            },
+            "status": 1,
+            "link_direct": "",
+            "location": {
+                "lng": 105.79058250000003,
+                "lat": 21.0362368,
+                "state": "Hanoi",
+                "country": "Vietnam",
+                "city": "",
+                "address": "Cầu Giấy, Hanoi, Vietnam"
+            },
+            "description": "- Thu thập và phân tích về giá cả, sản phẩm của các đối thủ cạnh tranh.\n- Cập nhật và phân tích các hoạt động của đối thủ cạnh tranh có ảnh hưởng đến doanh số bán hàng và các hoạt động marketing của Công ty.",
+            "tagname": [],
+            "hash_tag": [
+                "#Maketing"
             ],
-            "totalCount": 1
+            "permalink": "Chuy-n-Vi-n-Maketing",
+            "title": "Chuyên Viên #Maketing",
+            "userTagName": "",
+            "userName": "Thanchet",
+            "image_normal": "http://jobpitch.campcoders.com/images/normal_size/JobImages/1424949462225.jpeg",
+            "image_small": "http://jobpitch.campcoders.com/images/small_size/JobImages/1424949462225.jpeg",
+            "image": "http://jobpitch.campcoders.com/images/full_size/JobImages/1424949462225.jpeg"
         }
-    }
+    ],
+    "applications": [
+        {
+            "_id": "54f02f9d22234ca01d63166e",
+            "time": "2015-02-27T08:49:33.000Z",
+            "job_id": "54f02ea622234ca01d631660",
+            "userTagName_own_job": "thuank4cg",
+            "userName_own_job": "thuank4cg",
+            "user_avatar": "https://media.licdn.com/mpr/mprx/0_LPiHRotx8QgZ-0jSFqPRRW3YCCEUrJySFAcBReC7gbYEfgwDWv1XvH9Tu2o5POgTXK39qfrZr_jo",
+            "userName": "Pham Tat Thanh",
+            "user_id": "54eec61f31ad06c959a17174",
+            "__v": 5,
+            "_keywords": [
+                "year",
+                "android",
+                "dev",
+                "smartosc",
+                "embded",
+                "softwar",
+                "fsoft",
+                "japan",
+                "readi",
+                "challeng",
+                "pham",
+                "tat",
+                "thanh"
+            ],
+            "comment": [],
+            "hires": {
+                "status": 0
+            },
+            "interests": {
+                "list": [
+                    "54f02d9722234ca01d63165d",
+                    "54eec436eb60f996583b3e5c"
+                ],
+                "number": 2
+            },
+            "interviews": 0,
+            "shares": {
+                "list": [],
+                "number": 0
+            },
+            "likes": {
+                "list": [
+                    "54f02ee222234ca01d631663"
+                ],
+                "number": 1
+            },
+            "file": "",
+            "description": "5 years Android dev for SmartOSC, 2 years Embedded software for FSoft Japan. Ready for any challenge!",
+            "tagname": [],
+            "hash_tag": [],
+            "title": "",
+            "job_title": "Embedded SW Engineer, Mobile Application Engineer"
+        }
+    ]
 }
 
 

@@ -45,10 +45,18 @@ module.exports									=	function(req, res){
 						if (err){
 							console.log(err);
 						}
+
 						for (var i = 0 ; i < jobs.length ; i ++)
 							if (jobs[i].title.indexOf(keyword) != -1 || jobs[i].description.indexOf(keyword) != -1){
 								job_array.push(jobs[i]);
 							}
+
+						job_array.sort(function(job_1, job_2){
+							return job_1.score < job_2.score
+						})
+
+						job_array = job_array.slice(skip, limit);
+
 						next(null);
 					});
 				}
@@ -62,18 +70,26 @@ module.exports									=	function(req, res){
 						if (err){
 							console.log(err);
 						}
+
 						for (var i = 0 ; i < apps.length ; i ++)
 							if (apps[i].description.indexOf(keyword) != -1){
 								application_array.push(apps[i]);
 							}
+
+						application_array.sort(function(app_1, app_2){
+							return app_1.score < app_2.score
+						})
+
+						application_array = application_array.slice(skip, limit);
+
+
 						next(null);
 					});
 				}
 			}],
 
 			function(err){
-				results = {'jobs' : job_array, 'applications' : application_array};
-				res.write(JSON.stringify({error_code : 0, results : results}));
+				res.write(JSON.stringify({error_code : 0, 'jobs' : job_array, 'applications' : application_array}));
 				res.status(200).end();
 			}
 		);
