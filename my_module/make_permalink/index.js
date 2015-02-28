@@ -1,5 +1,4 @@
 
-
 module.exports					=	function(title){
 	var pattern = /[^a-zA-Z0-9]/g;
 	var permalink = title.replace(pattern,'-');

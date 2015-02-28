@@ -69,6 +69,16 @@
                                 <div class="inner-addon right-addon">
                                     <i class="glyphicon glyphicon-search" ng-click="btnSearch_click(HeaderSeachValue)"></i>
                                     <input type="text" class="form-control" ng-model="HeaderSeachValue" ng-keyup="ChangeHeaderSearchValue(HeaderSeachValue,$event)">
+                                    <div id="search-suggest">
+                                        <ul>
+                                            <li class="suggest-title">
+                                                <p>HASHTAG</p>
+                                            </li>
+                                            <li class="suggest-data" ng-repeat="hashtag in suggest_hashtag">
+                                                <p ng-bind="hashtag.name"></p>
+                                            </li>
+                                        </ul>
+                                    </div> <!-- search-suggest -->
                                 </div>
                             </div>
                         </form>

@@ -19,7 +19,7 @@ module.exports = function(req, res) {
         console.log('result : ', result);
         if (err || !result || typeof(result) == 'undefined') {
             HashTag.find({}, 'name country.'+country_short_name+'.number',  function(err, hashtags) {
-
+                console.log(hashtags);
                 hashtags.sort(function(hashtags_1, hashtags_2) {
                    return hashtags_1.country[country_short_name].number < hashtags_2.country[country_short_name].number;
                 });

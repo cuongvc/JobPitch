@@ -1,4 +1,4 @@
-var Header = angular.module('header',['ngRoute','socket.service','notification.service','route.service','search.service','google-map-service']);
+var Header = angular.module('header',['ngRoute','socket.service','notification.service','route.service','search.service','google-map-service','hashtag.service']);
 Header.directive('header',function(){
 	return {
 		restrict: 'E',
@@ -51,7 +51,7 @@ Header.directive('searchResultPitch',function(){
 		},
 	}
 })
-Header.controller('HeaderCtrl',function($scope,$http,$routeParams,SOCKET,NOTIFICATION,ROUTE,SEARCH,GOOGLEMAP){
+Header.controller('HeaderCtrl',function($scope,$http,$routeParams,SOCKET,NOTIFICATION,ROUTE,SEARCH,GOOGLEMAP,HASHTAG){
 
 	var notifications = {
 		list: [],
@@ -67,6 +67,9 @@ Header.controller('HeaderCtrl',function($scope,$http,$routeParams,SOCKET,NOTIFIC
 	/*************************************************************************************************************/
 	$scope.ViewNotification = function(url,evt){
 		ROUTE.RedirectTo(url,evt);
+	}
+	$scope.goHome = function(){
+		history.pushState({},'','/');
 	}
 	/*************************************************************************************************************/
 											/*SOCKET*/
@@ -198,10 +201,6 @@ Header.controller('HeaderCtrl',function($scope,$http,$routeParams,SOCKET,NOTIFIC
 		}
 	}
 	
-	$scope.goHome = function(){
-		history.pushState({},'','/');
-	}
-
 
 	$scope.ChangeHeaderSearchValue = function(value,evt){
 		if(evt.keyCode == 13){
@@ -250,7 +249,7 @@ Header.controller('HeaderCtrl',function($scope,$http,$routeParams,SOCKET,NOTIFIC
 						$http.post(STR_API_CHANGE_LOCATION,data).success(function(response){
 							console.log("Change location response",response);
 							if (response.error_code == 0) {
-								$scope.$broadcast(RELOAD_INDEX);
+								$scope.$broadcast(RELOAD_INDEX,data.position);
 								$scope.user.position = data.position;
 								$scope.showLocation = true;
 								$('#searchTextField').addClass('hidden');
@@ -262,4 +261,20 @@ Header.controller('HeaderCtrl',function($scope,$http,$routeParams,SOCKET,NOTIFIC
 				})
 		});
 	}
+	/*************************************************************************************************************/
+											/*SUGGESTION*/
+	/*************************************************************************************************************/
+	var suggest_hashtag;
+	function getSuggestHashTag(){
+		var HashTagService = HASHTAG.getSuggestHashTag();
+			HashTagService.then(function(response){
+				if(response.error_code == 0){
+					suggest_hashtag        = HASHTAG.getHashTagHandler(response.hashtag);
+					$scope.suggest_hashtag = suggest_hashtag;
+					console.log(suggest_hashtag);
+				}
+			})
+	}
+	getSuggestHashTag();
+
 })

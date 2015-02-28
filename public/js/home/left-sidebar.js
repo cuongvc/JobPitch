@@ -1,4 +1,4 @@
-var LeftSidebar = angular.module('left-sidebar',['search.service','route.service','company.service','route.service']);
+var LeftSidebar = angular.module('left-sidebar',['search.service','route.service','company.service','route.service','hashtag.service']);
 LeftSidebar.directive('leftSidebar',function(){
 	return {
 		restrict: 'E',
@@ -8,33 +8,42 @@ LeftSidebar.directive('leftSidebar',function(){
 		},
 	}
 })
-LeftSidebar.controller('LeftSidebarCtrl',function($scope,$http,SEARCH,ROUTE,COMPANY,ROUTE){
-	$http.get(STR_API_TOP_HASHTAG).success(function(response){
-		console.log('tags: ',response);
-		response.top_hashtag.forEach(function(v,k){
-			v.name = v.name.substring(1);
-			response.top_hashtag[k] = v;
-		})
-		$scope.LeftSidebarTags = response.top_hashtag;
-	})
-	$scope.SearchByTag = function(tag,evt){
-		var url = 'tag/'+tag;
-		ROUTE.RedirectTo(url,evt);
-
+LeftSidebar.controller('LeftSidebarCtrl',function($scope,$http,SEARCH,ROUTE,COMPANY,ROUTE,HASHTAG){
+	var LeftSidebarTags;
+	function getTopHashTag() {
+		var HashTagService = HASHTAG.getTopHashTag('VN',0,10);
+			HashTagService.then(function(response){
+				if(response.error_code == 0){
+					LeftSidebarTags = HASHTAG.getHashTagHandler(response.top_hashtag);
+					$scope.LeftSidebarTags = LeftSidebarTags;
+					console.log(response);
+				}
+			})
 	}
-
+	getTopHashTag();
+	
 	var LeftSidebarCompanies = new Array();
 
-	var CompanyService = COMPANY.getTop();
-		CompanyService.then(function(response){
-			if(response.error_code == 0){
-				LeftSidebarCompanies = response.top_company;
-				$scope.LeftSidebarCompanies = LeftSidebarCompanies;
-			}else{
-				alert(response.msg);
-			}
-		})
+	function getTopCompany(){
+		var CompanyService = COMPANY.getTop('VN',0,10);
+			CompanyService.then(function(response){
+				console.log("Top Company",response);
+				if(response.error_code == 0){
+					LeftSidebarCompanies = response.top_company;
+					$scope.LeftSidebarCompanies = LeftSidebarCompanies;
+				}else{
+					alert(response.msg);
+				}
+			})
+	}
+	getTopCompany();
+	
 	$scope.ViewLeftSidebarCompany = function(user_id,evt){
 		ROUTE.ViewUserProfile(user_id,evt);
 	}
+	$scope.SearchByTag = function(tag,evt){
+		var url = 'tag/'+tag;
+		ROUTE.RedirectTo(url,evt);
+	}
+
 })
