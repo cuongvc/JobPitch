@@ -20,13 +20,13 @@
 							<!-- DROPDOWN -->
 						</div>
 						<p class="margin-bottom-0"><span class="company-title bold-text normal-text cp-title left-sidebar-blue-text" ng-click="ViewCompanyProfile($event,1)" ng-bind="job.title"></span></p>
-												<p class="margin-bottom-0">
-													<span class="blue-text" ng-bind="job.userName"></span> <a class="gray-color cursor" ng-href="/user/{{ job.user_id }}" ng-click="ViewUser(job.user_id,$event)"><span>@</span><span ng-bind="job.tagname"></span></a>
-													<span class="small-text gray-color cursor margin-left-10"><i class="fa fa-map-marker"></i></span>
-													<span class="small-text gray-color cursor" ng-if="job.location.city != ''" ng-bind="job.location.city"></span>
-													<span class="small-text gray-color cursor" ng-if="job.location.city == '' && job.location.state != ''" ng-bind="job.location.state"></span>
-													<span class="small-text gray-color cursor" ng-if="job.location.city == '' && job.location.state == '' && job.location.country != ''" ng-bind="job.location.country"></span>
-													</p>
+						<p>
+							<span class="small-text gray-color cursor"><i class="fa fa-map-marker"></i></span>
+							<span class="margin-right-10 small-text gray-color cursor" ng-if="job.location.city != ''" ng-bind="job.location.city"></span>
+							<span class="margin-right-10 small-text gray-color cursor" ng-if="job.location.city == '' && job.location.state != ''" ng-bind="job.location.state"></span>
+							<span class="margin-right-10 small-text gray-color cursor" ng-if="job.location.city == '' && job.location.state == '' && job.location.country != ''" ng-bind="job.location.country"></span>
+							<span class="gray-color" ng-bind="job.userName"></span> <a class="gray-color cursor" ng-href="/user/{{ job.user_id }}" ng-click="ViewUser(job.user_id,$event)"><span>@</span><span ng-bind="job.userTagName"></span></a>
+							</p>
 						<p class="job-sort-desc normal-text" ng-bind="job.description"></p>
 					</div>
 					<div class="like-share small-text">
