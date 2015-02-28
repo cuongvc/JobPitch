@@ -110,3 +110,12 @@
 .notification-box a span, .notification-box-body a strong{
 	color: #333;
 }
+.current_location{
+	font-size: 13px;
+	color: #fafafa;
+	margin-left: 15px;
+	cursor: pointer;
+}
+.pac-container{
+	z-index: 99999;
+}

@@ -72,6 +72,11 @@
                                 </div>
                             </div>
                         </form>
+                        <li>
+                            <a href="" class="current_location" ng-click="ChangeCurrentLocation()">
+                                <span ng-bind="user.location.city"></span>, <span ng-bind="user.location.country"></span>
+                            </a>
+                        </li>
                         <!-- search form -->
                     </ul>
                 </div>
@@ -104,4 +109,24 @@
         </div>
         <!-- /.container -->
     </nav>
+    <!-- Modal -->
+    <div class="modal fade" id="change-current-location-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Enter your city</h4>
+                </div>
+                <div class="modal-body">
+                    <input type="text" class="form-control" id="searchTextField">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" ng-click="SaveChangeLocation()">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
