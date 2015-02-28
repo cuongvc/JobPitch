@@ -9,7 +9,7 @@
 				</div>
 				<div class="application-sidebar-header">
 					<p class="application-sidebar-name"><strong class="blue-color" ng-bind="pitch.userName"></strong> <a href="/u/{{ pitch.user_id }}" ng-click="ViewNormalUser(pitch.user_id,$event)"><span class="small-text">@<span ng-bind="pitch.userTagName"></span></span></a></p>
-					<p class=" pull-left"><span class="application-sidebar-company-name small-text gray-color"><span>pitch to</span> <strong ng-bind="pitch.short_job_title"></strong> <span>by</span> <span class="gray-color">@</span><span class="gray-color" ng-click="ViewUser(pitch.user_id,$event)" ng-bind="pitch.userTagName_own_job"></span></span></p>
+					<p class=" pull-left"><span class="application-sidebar-company-name small-text gray-color"><span>pitch to</span> <strong ng-bind="pitch.short_job_title"></strong> <span>by</span> <span class="gray-color">@</span><span class="gray-color" ng-click="ViewUser(pitch.userId_own_job,$event)" ng-bind="pitch.userTagName_own_job"></span></span></p>
 				</div>
 			</div>
 			<div class="application-sidebar-body">

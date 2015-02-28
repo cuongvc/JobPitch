@@ -119,3 +119,6 @@
 .pac-container{
 	z-index: 99999;
 }
+.pac-container::after{
+	display: none!important;
+}
