@@ -199,5 +199,6 @@ tags-input .tags{
 #create-job-image-preview{
 	height: 40px;
 	margin-top: 4px;
+	width: 100px;
 	margin-left: 10px;
 }

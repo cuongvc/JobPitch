@@ -59,7 +59,6 @@ CreateJob.controller('CreateJobCtrl',function($scope,$http,GOOGLEMAP,HASHTAG){
 
 		var previewElement = $('#create-job-image-preview');
 		var previewSrc = $scope.CreateJobImage.preview;
-		// var width 
 		var PreviewImageStyle = {
 			background: 'url("' + previewSrc + '")',
 			backgroundSize: 'cover',
