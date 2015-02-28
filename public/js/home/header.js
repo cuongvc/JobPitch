@@ -223,36 +223,43 @@ Header.controller('HeaderCtrl',function($scope,$http,$routeParams,SOCKET,NOTIFIC
 	$scope.showLocation = true;
 	$scope.ChangeCurrentLocation = function(evt){
 		var target = $(evt.target);
+		var loaded = false;
 		while(!target.is('a')){
 			target = target.parent();
 		}
 		$scope.showLocation = false;
 		var input = $('#searchTextField');
+			input.val('');
 			input.removeClass('hidden');
 			input.focus();
-			google.maps.event.addListener(autocomplete, 'place_changed', onPlaceChanged);
-	}
-	function onPlaceChanged(){
-		var address = $('#searchTextField').val();
-		var GoogleMapService = GOOGLEMAP.getLocation(address);
-			GoogleMapService.then(function(response){
-				if(response.status == google.maps.GeocoderStatus.OK){
-					var position = GOOGLEMAP.parsePosition(response.results);
-					var data = {
-						position: position,
-						user_id : $scope.user._id,
-						token   : $scope.user.token,
-					};
-					console.log("Change location data",data);
-					$http.post(STR_API_CHANGE_LOCATION,data).success(function(response){
-						console.log("Change location response",response);
-						if (response.error_code == 0) {
-							document.location.reload();
-						}else{
-							alert(response.msg)
+		google.maps.event.addListener(autocomplete, 'place_changed', function(event){
+			if(loaded) return;
+			loaded = true;
+			var address = $('#searchTextField').val();
+			var GoogleMapService = GOOGLEMAP.getLocation(address);
+				GoogleMapService.then(function(response){
+					if(response.status == google.maps.GeocoderStatus.OK){
+						var position = GOOGLEMAP.parsePosition(response.results);
+						var data = {
+							position: position,
+							user_id : $scope.user._id,
+							token   : $scope.user.token,
 						};
-					})
-				}
-			})
+						console.log("Change location data",data);
+						
+						$http.post(STR_API_CHANGE_LOCATION,data).success(function(response){
+							console.log("Change location response",response);
+							if (response.error_code == 0) {
+								$scope.$broadcast(RELOAD_INDEX);
+								$scope.user.position = data.position;
+								$scope.showLocation = true;
+								$('#searchTextField').addClass('hidden');
+								}else{
+								alert(response.msg)
+							};
+						})
+					}
+				})
+		});
 	}
 })

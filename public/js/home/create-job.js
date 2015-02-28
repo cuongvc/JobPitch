@@ -16,7 +16,14 @@ CreateJob.directive('createJob',function(){
 				btnPlus.removeClass('create-job-button-transition');
 				btnEdit.addClass('hidden');
 			});
+			var input = document.getElementById('create-job-location');
+			var options = {
+			  types: ['(cities)'],
+			};
+
+			autocomplete = new google.maps.places.Autocomplete(input, options);
 		},
+		controller: 'CreateJobCtrl',
 	}
 })
 CreateJob.controller('CreateJobCtrl',function($scope,$http,GOOGLEMAP,HASHTAG){
@@ -25,6 +32,11 @@ CreateJob.controller('CreateJobCtrl',function($scope,$http,GOOGLEMAP,HASHTAG){
 	$scope.ShowForm = function(stt){
 		ShowCreateJobForm = stt;
 		$scope.ShowCreateJobForm = ShowCreateJobForm;
+		if(stt){
+			$('#create-job-form').removeClass('hidden');
+		}else{
+			$('#create-job-form').addClass('hidden');
+		}
 	}
 	/**********************************************************************************/
 									/*CROP*/
@@ -44,6 +56,16 @@ CreateJob.controller('CreateJobCtrl',function($scope,$http,GOOGLEMAP,HASHTAG){
 		showCrop = false;
 		$scope.showCrop = showCrop;
 		$scope.CreateJobImage.startUpload = true;
+
+		var previewElement = $('#create-job-image-preview');
+		var previewSrc = $scope.CreateJobImage.preview;
+		// var width 
+		var PreviewImageStyle = {
+			background: 'url("' + previewSrc + '")',
+			backgroundSize: 'cover',
+		}
+		$scope.PreviewImageStyle = PreviewImageStyle;
+		console.log(PreviewImageStyle);
 	}
 	$scope.ReSelectFile = function(){
 		$scope.hiddenCrop();
@@ -90,7 +112,7 @@ CreateJob.controller('CreateJobCtrl',function($scope,$http,GOOGLEMAP,HASHTAG){
 		crop: true,
 	}
 	$scope.CreateJobCropCoverOpts = {
-		aspectRatio: 2.7,
+		// aspectRatio: 2.7,
 	};
 	$scope.$watch(function(){return $scope.CreateJobImage.preview;},function(){
 		if($scope.CreateJobImage.preview != undefined && $scope.CreateJobImage.preview != ''){
@@ -98,7 +120,9 @@ CreateJob.controller('CreateJobCtrl',function($scope,$http,GOOGLEMAP,HASHTAG){
 			$scope.showCrop = showCrop;
 		}
 	})
-	$scope.CreateJob = function(JobTitle,JobDesc,Address){
+
+	$scope.CreateJob = function(JobTitle,JobDesc){
+		var Address = $('#create-job-location').val();
 		if($scope.CreateJobImage.path == undefined || $scope.CreateJobImage.path == '') {
 			alert('Please wait until upload complete');
 			return;

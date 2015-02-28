@@ -30,7 +30,7 @@ NightFuryUpload.directive('nightfuryOnchangeUpload',function(){
             var opts = scope.nightfuryOnchangeUpload;
               $(element).change(function(){
                   var file = element[0].files[0];
-
+                  console.log(file);
                   var reader = new FileReader();
                   reader.readAsDataURL(file);
                   reader.onload = function(e){

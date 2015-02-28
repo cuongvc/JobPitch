@@ -1,12 +1,12 @@
 
-<div id="create-job" ng-controller="CreateJobCtrl" ng-if="user.type_account == 1">
+<div id="create-job">
 	<div id="create-job-btn">
 		<button ng-click="ShowForm(true)" ng-if="ShowCreateJobForm == false">	
 			<img class="center-block" id="create-job-plus" src="../images/plus.png" alt="">
 			<img class="center-block hidden" id="create-job-edit" src="../images/edit.png" alt="">
 		</button>
 	</div>
-	<div id="create-job-form" ng-if="ShowCreateJobForm == true">
+	<div id="create-job-form" class="hidden">
 		<div id="create-job-crop-image" ng-if="showCrop == true">
 			<div class="center-block">
 				<div>
@@ -23,19 +23,25 @@
 					<li><span class="gmail-icon job-form-fullscreen"></span></li>
 				</ul>
 			</div>
-		    <form>
+	    	<div class="form">
 		    	<input class="semibold" id="new-job-title" type="text" ng-model="JobTitle" placeholder="Job title" maxlength="160">
 				<div class="form-group">
 			    	<textarea placeholder="Job description" ng-model="JobDesc" maxlength="255"></textarea>
 			    </div>		    	
-				<div class="form-group">
-			    	<input type="file" ng-model="Image" nightfury-onchange-upload="CreateJobImage">
+				<div class="create-job-file">
+			    	<input class="hidden" id="create-job-file-input" type="file" ng-model="Image" nightfury-onchange-upload="CreateJobImage">
+			    	<div class="pull-left">
+			    		<i class="fa fa-camera" onclick="document.getElementById('create-job-file-input').click();"></i>
+			    	</div>
+			    	<div class="overflowhidden">
+						<div id="create-job-image-preview" ng-style="PreviewImageStyle"></div>
+			    	</div>
 			    </div>		    	
 			    <div class="form-group">
-			    	<input type="text" ng-change="LocationSuggestion(Address)" ng-model="Address" placeholder="Address for work" typeahead-focus-first="true" typeahead-min-length="1" typeahead-edidable="true" typeahead-on-select='onSelect($item, $model, $label)' typeahead="location.formatted_address for location in locations | limitTo:2" typeahead-wait-ms="1000"> <!--  -->
+			    	<input type="text" id="create-job-location">
 			    </div>
-			    <button class="btn btn-success" ng-click="CreateJob(JobTitle,JobDesc,Address)">CREATE</button>
-		    </form>
+			    <div class="create-job-button pull-left" ng-click="CreateJob(JobTitle,JobDesc)">Create</div>
+	    	</div>
 		</div>
 	</div>
 </div>

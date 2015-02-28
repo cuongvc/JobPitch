@@ -2,11 +2,8 @@ TemplateApp.controller('IndexCtrl',function($scope,$http,JOB,PITCH,USER,SOCKET,L
 	$scope.user    = user;
 	$scope.logedin = logedin;
 	$scope.BASE_URL = BASE_URL;
-	
-	if(document.location.pathname == '/'){
-	/******************************************************************************************/
-											/*LOAD JOB*/
-	/******************************************************************************************/
+
+	function LoadJob(){
 		var data = {
 				user_id: $scope.user._id,
 				token: $scope.user.token,
@@ -19,35 +16,47 @@ TemplateApp.controller('IndexCtrl',function($scope,$http,JOB,PITCH,USER,SOCKET,L
 			jobs = JOB.JobHandler(response.jobs,$scope.user._id);
 			$scope.jobs = jobs;
 		})
+	}
+	function LoadPitch(){
+		var data = {
+			user_id : $scope.user._id,
+			token   : $scope.user.token,
+			skip: 0,
+			limit: 100,
+		};
+		var PitchService = PITCH.getPitchSidebar(data);
+			PitchService.then(function(response){
+				console.log("Pitch",response);
+				if(response.error_code == 0){
+					pitchs = PITCH.getPitchSidebarHandler(response.applications,$scope.user._id);
+					pitchs.forEach(function(v,k){
+						var UserService = USER.get(v.interests.list,$scope.user._id,$scope.user.token);
+							UserService.then(function(response){
+								if(response.error_code == 0){
+									pitchs[k].interests.loadFromServer = response.users;
+								}else{
+									alert(response.msg);
+								}
+							})
+					})
+					$scope.pitchs = pitchs;
+				}else{
+					alert(response.msg);
+				}
+			})
+	}
+	
 	/******************************************************************************************/
-									/*GET PITCH*/
+											/*LOAD JOB & PITCH*/
 	/******************************************************************************************/
-	var data = {
-		user_id : $scope.user._id,
-		token   : $scope.user.token,
-		skip: 0,
-		limit: 100,
-	};
-	var PitchService = PITCH.getPitchSidebar(data);
-		PitchService.then(function(response){
-			console.log("Pitch",response);
-			if(response.error_code == 0){
-				pitchs = PITCH.getPitchSidebarHandler(response.applications,$scope.user._id);
-				pitchs.forEach(function(v,k){
-					var UserService = USER.get(v.interests.list,$scope.user._id,$scope.user.token);
-						UserService.then(function(response){
-							if(response.error_code == 0){
-								pitchs[k].interests.loadFromServer = response.users;
-							}else{
-								alert(response.msg);
-							}
-						})
-				})
-				$scope.pitchs = pitchs;
-			}else{
-				alert(response.msg);
-			}
-		})
+	if(document.location.pathname == '/'){
+		LoadJob();
+		LoadPitch();
+		$scope.$on(RELOAD_INDEX,function(){
+			LoadJob();
+			LoadPitch();
+		});
+	
 	} //endif INDEX
 	/*************************************************************************************************************/
 											/*SOCKET*/

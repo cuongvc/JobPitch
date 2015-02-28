@@ -72,4 +72,8 @@
 		NOTIFY_TYPE.LIKE_COMMENT      = 31;
 		NOTIFY_TYPE.SHARE_COMMENT     = 32;
 		NOTIFY_TYPE.COMMENT_COMMENT   = 33;
+	/*
+	* Broadcast event
+	*/
+	var RELOAD_INDEX = 'reload_index';
 

@@ -88,8 +88,31 @@
 #job-form input[type="text"]:focus{
 	outline: none;
 }
-#job-form form{
-	padding: 7px;
+#job-form .form{
+	font-size: 14px;
+}
+#job-form .create-job-file{
+	background: #f6f7f8;
+	height: 50px;
+}
+#job-form .create-job-button{
+	float: right;
+	padding: 3px 15px;
+	background-color: #0084B4;
+	border-color: #435a8b #3c5488 #334c83;
+	color: #fff;
+	border-radius: 1px;
+	margin-bottom: 10px;
+	cursor: pointer;
+}
+#job-form .fa-camera{
+	color: #b3b7bd;
+	font-size: 16px;
+	line-height: 50px;
+	margin-left: 10px;
+}
+#job-form .fa-camera:hover{
+	color: #5679C8;
 }
 #job-form textarea:focus{
 	outline: none;
@@ -172,4 +195,9 @@ tags-input .tags{
 .job-comment-body{
 	color: #8899a6;
 	font-size: 13px;
+}
+#create-job-image-preview{
+	height: 40px;
+	margin-top: 4px;
+	margin-left: 10px;
 }
