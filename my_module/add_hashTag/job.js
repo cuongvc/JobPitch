@@ -45,7 +45,7 @@ module.exports					=	function(country_short_name, hash_tag, job_id, callback){
 				var newHashTag = new HashTag();
 				newHashTag.name = hash_tag[i];
 				newHashTag.country = {};
-				newHashTag.country[country_short_name]  = {job_id : [job_id], number : 1};
+				newHashTag.country[country_short_name]  = {job_id : [job_id], number : 1, app_id : []};
 				
 				newHashTag.save(function(err){
 					if (err){

@@ -22,7 +22,6 @@ module.exports									=	function(req, res){
 	finally{
 
 		Tag.findOne({name : tag}, function(err, tag_exist){
-
 			if (err){
 				res.write(JSON.stringify({error_code : 1, msg : err.toString()}));
 				res.status(200).end();
@@ -74,7 +73,7 @@ module.exports									=	function(req, res){
 				})
 
 			} else {
-
+				
 				Job.find({_id : {$in : tag_exist.country[country_short_name].job_id}}, function(err, jobs){
 
 					if (err){
