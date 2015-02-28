@@ -237,9 +237,12 @@ Header.controller('HeaderCtrl',function($scope,$http,$routeParams,SOCKET,NOTIFIC
 		var GoogleMapService = GOOGLEMAP.getLocation(address);
 			GoogleMapService.then(function(response){
 				if(response.status == google.maps.GeocoderStatus.OK){
-					var data = GOOGLEMAP.parsePosition(response.results);
-						data.user_id = $scope.user._id;
-						data.token   = $scope.user.token;
+					var position = GOOGLEMAP.parsePosition(response.results);
+					var data = {
+						position: position,
+						user_id : $scope.user._id,
+						token   : $scope.user.token,
+					};
 					console.log("Change location data",data);
 					$http.post(STR_API_CHANGE_LOCATION,data).success(function(response){
 						console.log("Change location response",response);

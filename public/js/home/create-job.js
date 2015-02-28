@@ -112,16 +112,18 @@ CreateJob.controller('CreateJobCtrl',function($scope,$http,GOOGLEMAP,HASHTAG){
 					var position = GOOGLEMAP.parsePosition(response.results);
 					var HashTags = HASHTAG.findHashTag(JobTitle).concat(HASHTAG.findHashTag(JobDesc));
 					var newJob = new Object();
-						newJob.user_id = $scope.user._id;
-						newJob.token = $scope.user.token;
-						newJob.title = JobTitle;
-						newJob.desc = JobDesc;
-						newJob.hash_tag = HashTags;
+
+						newJob.user_id   = $scope.user._id;
+						newJob.token     = $scope.user.token;
+						newJob.title     = JobTitle;
+						newJob.desc      = JobDesc;
+						newJob.hash_tag  = HashTags;
 						newJob.temp_path = $scope.CreateJobImage.path;
 						newJob.extension = $scope.CreateJobImage.extension
-						newJob.address = Address;
-						newJob.position = position;
-						console.log(newJob);
+						newJob.address   = Address;
+						newJob.position  = position;
+
+						console.log("Create New Job Data",newJob);
 					$http.post(STR_API_CREATE_JOB,newJob).success(function(response){
 						console.log(response);
 						if(response.error_code == 0){
