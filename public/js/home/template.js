@@ -38,6 +38,7 @@ TemplateApp.config(['$routeProvider', '$locationProvider', function($routeProvid
 		});
 
 }]);
+TemplateApp.filter('unsafe', function($sce) { return $sce.trustAsHtml; });
 // TemplateApp.directive('scroll',function($window,JOB){	
 // 	return {
 // 		restrict: 'AE',

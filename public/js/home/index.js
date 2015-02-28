@@ -52,9 +52,11 @@ TemplateApp.controller('IndexCtrl',function($scope,$http,JOB,PITCH,USER,SOCKET,L
 	if(document.location.pathname == '/'){
 		LoadJob();
 		LoadPitch();
-		$scope.$on(RELOAD_INDEX,function(){
+		$scope.$on(RELOAD_INDEX,function(event,position){
 			LoadJob();
 			LoadPitch();
+			user.position = position;
+			$scope.user = user;
 		});
 	
 	} //endif INDEX
