@@ -115,6 +115,14 @@
 	color: #fafafa;
 	margin-left: 15px;
 	cursor: pointer;
+	margin-right: 0px;
+}
+.switch-to-current-location{
+	font-size: 13px;
+	color: #fafafa;
+	margin-left: 0px!important;
+	padding-left: 0px!important;
+	cursor: pointer;
 }
 .pac-container{
 	z-index: 99999;
@@ -131,19 +139,19 @@
 }
 .change-location-input::-webkit-input-placeholder { /* WebKit browsers */
     color: #fafafa;
-    opacity: 0.8;
+    opacity: 0.5;
 }
 .change-location-input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
    color: #fafafa;
-   opacity:  0.8;
+   opacity: 0.5;
 }
 .change-location-input::-moz-placeholder { /* Mozilla Firefox 19+ */
    color: #fafafa;
-   opacity:  0.8;
+   opacity: 0.5;
 }
 .change-location-input:-ms-input-placeholder { /* Internet Explorer 10+ */
    color: #fafafa;
-   opacity: 0.8;
+   opacity: 0.5;
 }
 .current_location{
 	max-height: 50px!important;

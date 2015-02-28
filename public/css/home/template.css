@@ -241,6 +241,12 @@ div > .gray-border:last-child{
 .margin-right-10{
 	margin-right: 10px;
 }
+.margin-right-20{
+	margin-right: 20px;
+}
+.padding-left-10{
+	padding-left: 10px;
+}
 .notification-box ul li .notification-box-image img, .application-sidebar-avatar img, .job-comment-avatar img, .job-reply-pitch-image img{
 	border-radius: 2px;
 }
