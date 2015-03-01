@@ -10,10 +10,15 @@ TemplateApp.controller('SearchTagResultCtrl',function($scope,$http,$routeParams,
 
 	var SearchQuery  = $routeParams.tag;
 
-	var SearchService = SEARCH.findTag(SearchQuery);
+	var data = {
+		tag : SearchQuery,
+		position : 3,
+		country_short_name: 'VN',
+	};
+	var SearchService = SEARCH.findTag(data);
 
 	SearchService.then(function(response){
-		console.log(response);
+		console.log("Search tag response", response);
 		if(response.error_code == 0){
 			try{
 				SearchResultJobs = JOB.JobHandler(response.jobs,$scope.user._id);
