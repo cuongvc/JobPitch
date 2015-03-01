@@ -250,7 +250,7 @@ Header.controller('HeaderCtrl',function($scope,$http,$routeParams,SOCKET,NOTIFIC
 						$http.post(STR_API_CHANGE_LOCATION,data).success(function(response){
 							console.log("Change location response",response);
 							if (response.error_code == 0) {
-								$scope.$$broadcast(RELOAD_INDEX,data.position);
+								$scope.$broadcast(RELOAD_INDEX,data.position);
 								$scope.user.position = data.position;
 								$scope.showLocation = true;
 								$('#searchTextField').addClass('hidden');
