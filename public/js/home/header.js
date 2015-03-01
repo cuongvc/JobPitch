@@ -214,6 +214,9 @@ Header.controller('HeaderCtrl',function($scope,$http,$routeParams,SOCKET,NOTIFIC
 		$http.post(STR_API_SWITH_TO_CURRENT,data).success(function(response){
 			console.log("Swith To Current",response);
 			if(response.error_code == 0){
+
+				user.position = response.new_current;
+				$scope.user = user;
 				$scope.$broadcast(SWITH_TO_CURRENT,response.new_current);
 			}
 		})
