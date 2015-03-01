@@ -92,7 +92,7 @@
                         </li>
                         <li>
                             <a href="" class="switch-to-current-location">
-                                <span ng-click="SwithToCurrent()" ng-if="user.position != user.current">Current</span>
+                                <span ng-click="SwithToCurrent()" ng-if="user.position.city.long_name != user.current.city.long_name || user.position.country.long_name != user.current.country.long_name">Current</span>
                             </a>
                         </li>
                         <!-- search form -->
