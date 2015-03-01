@@ -206,6 +206,18 @@ Header.controller('HeaderCtrl',function($scope,$http,$routeParams,SOCKET,NOTIFIC
 	
 
 	$scope.showLocation = true;
+	$scope.SwithToCurrent = function(){
+		var data = {
+			user_id: $scope.user._id,
+			token: $scope.user.token,
+		}
+		$http.post(STR_API_SWITH_TO_CURRENT,data).success(function(response){
+			console.log("Swith To Current",response);
+			if(response.error_code == 0){
+				$scope.$broadcast(SWITH_TO_CURRENT,response.new_current);
+			}
+		})
+	}
 	$scope.ChangeCurrentLocation = function(evt){
 		var target = $(evt.target);
 		var loaded = false;
@@ -235,7 +247,7 @@ Header.controller('HeaderCtrl',function($scope,$http,$routeParams,SOCKET,NOTIFIC
 						$http.post(STR_API_CHANGE_LOCATION,data).success(function(response){
 							console.log("Change location response",response);
 							if (response.error_code == 0) {
-								$scope.$broadcast(RELOAD_INDEX,data.position);
+								$scope.$$broadcast(RELOAD_INDEX,data.position);
 								$scope.user.position = data.position;
 								$scope.showLocation = true;
 								$('#searchTextField').addClass('hidden');

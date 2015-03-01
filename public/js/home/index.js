@@ -58,6 +58,12 @@ TemplateApp.controller('IndexCtrl',function($scope,$http,JOB,PITCH,USER,SOCKET,L
 			user.position = position;
 			$scope.user = user;
 		});
+		$scope.$on(SWITH_TO_CURRENT,function(event,position){
+			LoadJob();
+			LoadPitch();
+			user.position = position;
+			$scope.user = user;
+		});
 	
 	} //endif INDEX
 	/*************************************************************************************************************/
