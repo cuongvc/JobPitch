@@ -3,9 +3,9 @@ var content = {
 
     "apply_job1": "pitched to your job post",
 
-    "apply_job2": "pitched",
+    "apply_job2": "pitched to job post",
 
-    "like_job1": "like your job post",
+    "like_job1": "liked your job post",
 
     "like_job2": "like job",
 
