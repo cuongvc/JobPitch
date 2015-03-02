@@ -9,7 +9,7 @@ Jobs.directive('jobs',function(){
 		controller: 'JobCtrl',
 	}
 })
-Jobs.controller('JobCtrl',function($scope,$http,USER,PITCH,JOB,HASHTAG,LIKE,INTEREST,ROUTE,SOCKET){
+Jobs.controller('JobCtrl',function($rootScope,$scope,$http,USER,PITCH,JOB,HASHTAG,LIKE,INTEREST,ROUTE,SOCKET){
 	/*
 	* View user
 	*/
@@ -23,14 +23,14 @@ Jobs.controller('JobCtrl',function($scope,$http,USER,PITCH,JOB,HASHTAG,LIKE,INTE
 	/*************************************************************************************************************/
 	$scope.ViewPitch = function(job){
 		var data = {
-		    user_id: $scope.user._id,
-		    token: $scope.user.token,
+		    user_id: $rootScope.user._id,
+		    token: $rootScope.user.token,
 		    job_id: job._id,
 		}
 		var PitchService = PITCH.getPitch(data);
 		PitchService.then(function(response){
 			if(response.error_code == 0){
-				jobs = PITCH.getPitchHandler(jobs,job,$scope.user._id,response.app);
+				jobs = PITCH.getPitchHandler(jobs,job,$rootScope.user._id,response.app);
 				console.log(jobs);
 				$scope.jobs = jobs;
 			}else{
@@ -49,8 +49,8 @@ Jobs.controller('JobCtrl',function($scope,$http,USER,PITCH,JOB,HASHTAG,LIKE,INTE
 		if(pitch.loaded == true) return;
 		
 		var data = {
-			user_id: $scope.user._id,
-			token: $scope.user.token,
+			user_id: $rootScope.user._id,
+			token: $rootScope.user.token,
 			comments: pitch.comment,
 		}
 		var JobService = PITCH.getPitchComment(data);
@@ -85,8 +85,8 @@ Jobs.controller('JobCtrl',function($scope,$http,USER,PITCH,JOB,HASHTAG,LIKE,INTE
 	}
 	$scope.Apply = function(job, ApplyDesc){
 		var data = {
-			user_id: $scope.user._id,
-			token: $scope.user.token,
+			user_id: $rootScope.user._id,
+			token: $rootScope.user.token,
 			job_id: job._id,
 			title: "",
 			description: ApplyDesc,
@@ -128,8 +128,8 @@ Jobs.controller('JobCtrl',function($scope,$http,USER,PITCH,JOB,HASHTAG,LIKE,INTE
 	/*************************************************************************************************************/
 	$scope.LikeJob = function(job){
 		var data = {
-			user_id        : $scope.user._id,
-			token          : $scope.user.token,
+			user_id        : $rootScope.user._id,
+			token          : $rootScope.user.token,
 			type_like      : 1,
 			job_id         : job._id,
 			application_id :  '',
@@ -153,7 +153,7 @@ Jobs.controller('JobCtrl',function($scope,$http,USER,PITCH,JOB,HASHTAG,LIKE,INTE
 		var popover = $('#'+ job._id +' .list-like-job');
 		var index = jobs.indexOf(job);
 		if(job.likes.loaded != true){
-			var users = USER.get(users,$scope.user._id,$scope.user.token);
+			var users = USER.get(users,$rootScope.user._id,$rootScope.user.token);
 			users.then(function(response){
 				console.log(response);
 				if(response.error_code == 0){
@@ -181,8 +181,8 @@ Jobs.controller('JobCtrl',function($scope,$http,USER,PITCH,JOB,HASHTAG,LIKE,INTE
 	/*************************************************************************************************************/
 	$scope.InterestPitch = function(pitch,job){
 		var data = {
-			user_id : $scope.user._id,
-			token   : $scope.user.token,
+			user_id : $rootScope.user._id,
+			token   : $rootScope.user.token,
 			app_id  : pitch._id,
 		};
 		var InterestService = INTEREST.postInterest(data);
@@ -255,8 +255,8 @@ Jobs.controller('JobCtrl',function($scope,$http,USER,PITCH,JOB,HASHTAG,LIKE,INTE
 		}
 		var HashTags = HASHTAG.findHashTag(title).concat(HASHTAG.findHashTag(desc));
 		var data = {
-			user_id: $scope.user._id,
-			token: $scope.user.token,
+			user_id: $rootScope.user._id,
+			token: $rootScope.user.token,
 			job_id: job._id,
 			title: title,
 			desc: desc,

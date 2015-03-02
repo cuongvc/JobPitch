@@ -31,6 +31,7 @@
 	var STR_API_SEARCH_HASHTAG   = BASE_URL + '/api/search_tag';
 	var STR_API_CHANGE_LOCATION  = BASE_URL + '/api/swing_current';
 	var STR_API_SUGGEST_HASHTAG  = BASE_URL + '/api/suggest/hashtag';
+	var STR_API_SWITH_TO_CURRENT = BASE_URL + '/api/set_current';
 	/*
 	* SOCKET EVENT
 	*/
@@ -76,5 +77,6 @@
 	/*
 	* Broadcast event
 	*/
-	var RELOAD_INDEX = 'reload_index';
+	var RELOAD_INDEX     = 'reload_index';
+	var SWITH_TO_CURRENT = 'swith_to_current';
 

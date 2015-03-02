@@ -8,7 +8,7 @@ LeftSidebar.directive('leftSidebar',function(){
 		},
 	}
 })
-LeftSidebar.controller('LeftSidebarCtrl',function($scope,$http,SEARCH,ROUTE,COMPANY,ROUTE,HASHTAG){
+LeftSidebar.controller('LeftSidebarCtrl',function($rootScope,$scope,$http,SEARCH,ROUTE,COMPANY,ROUTE,HASHTAG){
 	var LeftSidebarTags;
 	function getTopHashTag() {
 		var HashTagService = HASHTAG.getTopHashTag('VN',0,10);

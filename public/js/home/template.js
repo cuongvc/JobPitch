@@ -39,33 +39,9 @@ TemplateApp.config(['$routeProvider', '$locationProvider', function($routeProvid
 
 }]);
 TemplateApp.filter('unsafe', function($sce) { return $sce.trustAsHtml; });
-// TemplateApp.directive('scroll',function($window,JOB){	
-// 	return {
-// 		restrict: 'AE',
-// 		link: function(scope,element,attrs){
-// 	        angular.element($window).bind("scroll", function() {
-// 	        	if(window.location.pathname != '/') return;
-// 	            var height = {
-// 	            	jobs: $('#jobs').height(),
-// 	            	sidebar: $('#sidebar').height(),
-// 	            };
-// 	            if(height.jobs < height.sidebar){
-// 	            	height.short = {
-// 	            		value: height.jobs,
-// 	            		element: 'jobs',
-// 	            	};
-// 	            }else{
-// 	            	height.short = {
-// 	            		value: height.sidebar,
-// 	            		element: 'sidebar'
-// 	            	};
-// 	            }
-// 	            var scrollTop = $(window).scrollTop() + screen.height;
-// 	            if(scrollTop >= height.short.value - 100){
-// 	            	scope.LoadMore(height.short.element);
-// 	            }
-// 	        });
-// 		}
-// 	}
-// })
 
+TemplateApp.run(function($templateCache,$rootScope){
+	$rootScope.user     = user;
+	$rootScope.logedin  = logedin;
+	$rootScope.BASE_URL = BASE_URL;
+})

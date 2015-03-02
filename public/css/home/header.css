@@ -176,6 +176,7 @@
 }
 #search-suggest ul li{
 	padding: 0px 5px;
+	cursor: pointer;
 }
 #search-suggest .suggest-title{
 	background: #F6F7F8;
@@ -189,11 +190,14 @@
 	line-height: 23px;
 	color: #9197a3;
 }
-#search-suggest .suggest-data:hover{
-	background: #F6F7F8;
-}
 #search-suggest .suggest-data p{
 	font-size: 14px;
 	color: #333;
 	line-height: 30px;
+}
+#search-suggest .suggestion_active{
+	background: #F6F7F8;
+}
+#search-suggest .suggest-data a:hover{
+	text-decoration: none;
 }

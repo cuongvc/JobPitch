@@ -26,9 +26,14 @@ CreateJob.directive('createJob',function(){
 		controller: 'CreateJobCtrl',
 	}
 })
-CreateJob.controller('CreateJobCtrl',function($scope,$http,GOOGLEMAP,HASHTAG){
+CreateJob.controller('CreateJobCtrl',function($rootScope,$scope,$http,GOOGLEMAP,HASHTAG){
 	var ShowCreateJobForm = false;
 	$scope.ShowCreateJobForm = ShowCreateJobForm;
+	
+	if($rootScope.user.type_account != 1){
+		$('#create-job-btn').addClass('hidden');
+	}
+
 	$scope.ShowForm = function(stt){
 		ShowCreateJobForm = stt;
 		$scope.ShowCreateJobForm = ShowCreateJobForm;
@@ -145,8 +150,8 @@ CreateJob.controller('CreateJobCtrl',function($scope,$http,GOOGLEMAP,HASHTAG){
 					var HashTags = HASHTAG.findHashTag(JobTitle).concat(HASHTAG.findHashTag(JobDesc));
 					var newJob = new Object();
 
-						newJob.user_id   = $scope.user._id;
-						newJob.token     = $scope.user.token;
+						newJob.user_id   = $rootScope.user._id;
+						newJob.token     = $rootScope.user.token;
 						newJob.title     = JobTitle;
 						newJob.desc      = JobDesc;
 						newJob.hash_tag  = HashTags;

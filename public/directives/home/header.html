@@ -68,14 +68,16 @@
                             <div class="form-group">
                                 <div class="inner-addon right-addon">
                                     <i class="glyphicon glyphicon-search" ng-click="btnSearch_click(HeaderSeachValue)"></i>
-                                    <input type="text" class="form-control" ng-model="HeaderSeachValue" ng-keyup="ChangeHeaderSearchValue(HeaderSeachValue,$event)">
+                                    <input type="text" id="search-input" class="form-control" ng-model="HeaderSeachValue" ng-keydown="StopMoveCursor($event)" ng-keyup="ChangeHeaderSearchValue(HeaderSeachValue,$event)">
                                     <div id="search-suggest">
-                                        <ul>
+                                        <ul id="suggest-hashtag" class="hidden">
                                             <li class="suggest-title">
                                                 <p>HASHTAG</p>
                                             </li>
-                                            <li class="suggest-data" ng-repeat="hashtag in suggest_hashtag">
-                                                <p ng-bind="hashtag.name"></p>
+                                            <li class="suggest-data hashtag_{{ key }}" ng-repeat="(key,hashtag) in suggest_matches_hashtag" ng-mouseover=SuggestHashTagHover(key)>
+                                                <a href="/tag/{{ hashtag.name }}" ng-click="SearchSuggestHashTag(hashtag.name,$event)">
+                                                    <p><span>#</span><span ng-bind="hashtag.name"></span></p>
+                                                </a>
                                             </li>
                                         </ul>
                                     </div> <!-- search-suggest -->
@@ -84,13 +86,13 @@
                         </form>
                         <li>
                             <a href="" class="current_location" ng-click="ChangeCurrentLocation($event)">
-                                <span ng-if="showLocation == true"><span ng-bind="user.position.city.long_name"></span>, <span ng-bind="user.position.country.long_name"></span></span>
+                                <span id="current-location-str"><span ng-bind="user.position.city.long_name"></span>, <span ng-bind="user.position.country.long_name"></span></span>
                                 <input type="text" class="change-location-input hidden" id="searchTextField">
                             </a>
                         </li>
                         <li>
                             <a href="" class="switch-to-current-location">
-                                <span>Current</span>
+                                <span ng-click="SwitchToCurrent()" ng-if="user.position.city.long_name != user.current.city.long_name || user.position.country.long_name != user.current.country.long_name">Current</span>
                             </a>
                         </li>
                         <!-- search form -->
