@@ -211,6 +211,11 @@ var applicationSchema = mongoose.Schema({
     companyId     : {
         type           : ObjectId,
         ref            : 'users'
+    },
+
+    score         : {
+        type           : Number,
+        default        : 0
     }
 
 });
@@ -296,6 +301,7 @@ applicationSchema.methods.editInfor    = function(title, description, hash_tag, 
 
 applicationSchema.methods.addComment = function(comment_id, callback){
 	this.comment.push(comment_id);
+    this.score ++;
 	this.save(function(err){
 		callback();
 	})
@@ -307,6 +313,7 @@ applicationSchema.methods.addLike       = function(user_id, callback){
     if (app.likes.list.indexOf(user_id) != -1){
         app.likes.list.splice(app.likes.list.indexOf(user_id), 1);
         app.likes.number --;
+        app.score ++;
 
         User.findOne({
             _id: app.user_id
@@ -323,13 +330,10 @@ applicationSchema.methods.addLike       = function(user_id, callback){
             callback(0);
         })
 
-
-
-
     } else{
         app.likes.list.push(user_id);
         app.likes.number ++;
-
+        app.score ++;
         User.findOne({
             _id: app.user_id
         }, function(err, user_own_app) {
@@ -351,7 +355,7 @@ applicationSchema.methods.addShare       = function(user_id){
     var app = this;
     app.shares.list.push(user_id);
     app.shares.number ++;
-
+    app.score ++;
     User.findOne({
         _id: app.user_id
     }, function(err, user_own_job) {
@@ -372,7 +376,7 @@ applicationSchema.methods.addInterest       = function(user_id, callback){
     if (app.interests.list.indexOf(user_id) != -1){
         app.interests.list.splice(app.interests.list.indexOf(user_id), 1);
         app.interests.number --;
-
+        app.score --;
         User.findOne({
             _id: app.user_id
         }, function(err, user_own_job) {
@@ -391,7 +395,7 @@ applicationSchema.methods.addInterest       = function(user_id, callback){
     } else{
         app.interests.list.push(user_id);
         app.interests.number ++;
-
+        app.score ++;
         User.findOne({_id : app.user_id}, function(err, user_exist){
             if (!err && user_exist){
 
@@ -414,7 +418,7 @@ applicationSchema.methods.addInterest       = function(user_id, callback){
 applicationSchema.methods.addHire       = function(){
     this.hires.status = 1;
     this.hires.time         = new Date(new Date().toGMTString()).toJSON();
-
+    this.score ++;
     this.save(function(err){
     });
 }
