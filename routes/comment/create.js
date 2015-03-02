@@ -61,11 +61,13 @@ module.exports										=	function(req, res){
 								res.status(200).end();
 
                 var notification = new Notification();
-                notification.newInfor(app_exist.user_id, user_exist.userName, user_exist.tagname,
+
+                notification.newInfor(app_exist.user_id, user_exist.userName, 
                                 		content_noti.comment_apply1, comment.content, 
-                                		comment.job_parent, '', comment._id,
-                                		'', '', comment.permalink,
+                                		app_exist.job_id, app_exist.id, comment._id, 
+                                		app_exist.userId_own_job, app_exist.userName_own_job, comment.permalink,
                                 		user_exist.avatar_small, 25);
+                
                 var user_receive_notify = [];
                 user_receive_notify.push(app_exist.user_id);
                 io_notify.emit('comment_apply', {
