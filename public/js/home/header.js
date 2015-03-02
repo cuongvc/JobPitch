@@ -51,11 +51,11 @@ Header.directive('searchResultPitch',function(){
 		},
 	}
 })
-Header.controller('HeaderCtrl',function($scope,$http,$routeParams,SOCKET,NOTIFICATION,ROUTE,SEARCH,GOOGLEMAP,HASHTAG){
+Header.controller('HeaderCtrl',function($rootScope,$scope,$http,$routeParams,SOCKET,NOTIFICATION,ROUTE,SEARCH,GOOGLEMAP,HASHTAG){
 
 	var notifications = {
 		list: [],
-		unread: $scope.user.notifications.unread,
+		unread: $rootScope.user.notifications.unread,
 		loaded: false,
 	};
 	$scope.notifications = notifications;
@@ -82,7 +82,7 @@ Header.controller('HeaderCtrl',function($scope,$http,$routeParams,SOCKET,NOTIFIC
 	IO.on(CREATE_JOB_SOCKET_EVENT,function(data){
 		console.log('create_job:',data);
 		
-		if(SOCKET.checkUserReciveNotification($scope.user._id, data.user_receive_notify) == false) return;
+		if(SOCKET.checkUserReciveNotification($rootScope.user._id, data.user_receive_notify) == false) return;
 
 		var more_data = {
 			    type: CREATE_JOB_SOCKET_EVENT,
@@ -96,7 +96,7 @@ Header.controller('HeaderCtrl',function($scope,$http,$routeParams,SOCKET,NOTIFIC
 	IO.on(APPLY_JOB_SOCKET_EVENT,function(data){
 		console.log(APPLY_JOB_SOCKET_EVENT,data);
 		
-		if(SOCKET.checkUserReciveNotification($scope.user._id, data.user_receive_notify) == false) return;
+		if(SOCKET.checkUserReciveNotification($rootScope.user._id, data.user_receive_notify) == false) return;
 		
 		var more_data = {
 					type: APPLY_JOB_SOCKET_EVENT, 
@@ -111,7 +111,7 @@ Header.controller('HeaderCtrl',function($scope,$http,$routeParams,SOCKET,NOTIFIC
 	IO.on(INTEREST_SOCKET_EVENT,function(data){
 		console.log(INTEREST_SOCKET_EVENT,data);
 		
-		if(SOCKET.checkUserReciveNotification($scope.user._id, data.user_receive_notify) == false) return;
+		if(SOCKET.checkUserReciveNotification($rootScope.user._id, data.user_receive_notify) == false) return;
 
 		var more_data = {
 				type: INTEREST_SOCKET_EVENT, 
@@ -126,7 +126,7 @@ Header.controller('HeaderCtrl',function($scope,$http,$routeParams,SOCKET,NOTIFIC
 	IO.on(LIKE_PITCH_SOCKET_EVENT,function(data){
 		console.log(LIKE_PITCH_SOCKET_EVENT,data);
 
-		if(SOCKET.checkUserReciveNotification($scope.user._id, data.user_receive_notify) == false) return;
+		if(SOCKET.checkUserReciveNotification($rootScope.user._id, data.user_receive_notify) == false) return;
 		
 		var more_data = {
 				type: LIKE_PITCH_SOCKET_EVENT, 
@@ -141,7 +141,7 @@ Header.controller('HeaderCtrl',function($scope,$http,$routeParams,SOCKET,NOTIFIC
 	IO.on(LIKE_JOB_SOCKET_EVENT,function(data){
 		console.log(LIKE_JOB_SOCKET_EVENT,data);
 
-		if(SOCKET.checkUserReciveNotification($scope.user._id, data.user_receive_notify) == false) return;
+		if(SOCKET.checkUserReciveNotification($rootScope.user._id, data.user_receive_notify) == false) return;
 
 		var more_data = {
 				type: LIKE_JOB_SOCKET_EVENT, 
@@ -155,7 +155,7 @@ Header.controller('HeaderCtrl',function($scope,$http,$routeParams,SOCKET,NOTIFIC
 	IO.on(COMMENT_PITCH_SOCKET_EVENT,function(data){
 		console.log(COMMENT_PITCH_SOCKET_EVENT,data);
 
-		if(SOCKET.checkUserReciveNotification($scope.user._id, data.user_receive_notify) == false) return;
+		if(SOCKET.checkUserReciveNotification($rootScope.user._id, data.user_receive_notify) == false) return;
 
 		var more_data = {
 				type: COMMENT_PITCH_SOCKET_EVENT, 
@@ -189,8 +189,8 @@ Header.controller('HeaderCtrl',function($scope,$http,$routeParams,SOCKET,NOTIFIC
 		notifications.unread = 0;
 		$scope.notifications = notifications;
 		var data = {
-			user_id: $scope.user._id,
-			token: $scope.user.token,
+			user_id: $rootScope.user._id,
+			token: $rootScope.user.token,
 			start: 0, 
 			limit: 10,
 		};
@@ -208,15 +208,15 @@ Header.controller('HeaderCtrl',function($scope,$http,$routeParams,SOCKET,NOTIFIC
 	$scope.showLocation = true;
 	$scope.SwithToCurrent = function(){
 		var data = {
-			user_id: $scope.user._id,
-			token: $scope.user.token,
+			user_id: $rootScope.user._id,
+			token: $rootScope.user.token,
 		}
 		$http.post(STR_API_SWITH_TO_CURRENT,data).success(function(response){
 			console.log("Swith To Current",response);
 			if(response.error_code == 0){
 
 				user.position = response.new_current;
-				$scope.user = user;
+				$rootScope.user = user;
 				$scope.$broadcast(SWITH_TO_CURRENT,response.new_current);
 			}
 		})
@@ -242,19 +242,19 @@ Header.controller('HeaderCtrl',function($scope,$http,$routeParams,SOCKET,NOTIFIC
 						var position = GOOGLEMAP.parsePosition(response.results);
 						var data = {
 							position: position,
-							user_id : $scope.user._id,
-							token   : $scope.user.token,
+							user_id : $rootScope.user._id,
+							token   : $rootScope.user.token,
 						};
 						console.log("Change location data",data);
 						
 						$http.post(STR_API_CHANGE_LOCATION,data).success(function(response){
 							console.log("Change location response",response);
 							if (response.error_code == 0) {
-								$scope.$broadcast(RELOAD_INDEX,data.position);
-								$scope.user.position = data.position;
+								$rootScope.user.position = data.position;
+								$scope.$broadcast(RELOAD_INDEX);
 								$scope.showLocation = true;
 								$('#searchTextField').addClass('hidden');
-								}else{
+							}else{
 								alert(response.msg)
 							};
 						})

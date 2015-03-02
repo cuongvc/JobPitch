@@ -1,21 +1,19 @@
-TemplateApp.controller('ViewJobCtrl',function($scope,$http,$routeParams,USER,PITCH,JOB,HASHTAG,LIKE,INTEREST,ROUTE,SOCKET){
-	$scope.user = user;
-	$scope.logedin = logedin;
+TemplateApp.controller('ViewJobCtrl',function($rootScope,$scope,$http,$routeParams,USER,PITCH,JOB,HASHTAG,LIKE,INTEREST,ROUTE,SOCKET){
 
 	var jobs = new Array();
 	/*
 	* get Job & Pitch
 	*/
 	var data = {
-	    user_id: $scope.user._id,
-	    token: $scope.user.token,
+	    user_id: $rootScope.user._id,
+	    token: $rootScope.user.token,
 	    job_id: $routeParams.job_id,
 	};
 	var PitchService = PITCH.getPitch(data);
 	PitchService.then(function(response){
 		if(response.error_code == 0){
 			jobs = [response.job];
-			jobs = PITCH.getPitchHandler(jobs,response.job,$scope.user._id,response.app);
+			jobs = PITCH.getPitchHandler(jobs,response.job,$rootScope.user._id,response.app);
 			$scope.jobs = jobs;
 		}else{
 			alert(response.msg);
@@ -26,14 +24,14 @@ TemplateApp.controller('ViewJobCtrl',function($scope,$http,$routeParams,USER,PIT
 	/*************************************************************************************************************/
 	$scope.ViewPitch = function(job){
 		var data = {
-		    user_id: $scope.user._id,
-		    token: $scope.user.token,
+		    user_id: $rootScope.user._id,
+		    token: $rootScope.user.token,
 		    job_id: job._id,
 		}
 		var PitchService = PITCH.getPitch(data);
 		PitchService.then(function(response){
 			if(response.error_code == 0){
-				jobs = PITCH.getPitchHandler(jobs,job,$scope.user._id,response.app);
+				jobs = PITCH.getPitchHandler(jobs,job,$rootScope.user._id,response.app);
 				console.log(jobs);
 				$scope.jobs = jobs;
 			}else{
@@ -52,8 +50,8 @@ TemplateApp.controller('ViewJobCtrl',function($scope,$http,$routeParams,USER,PIT
 		if(pitch.loaded == true) return;
 		
 		var data = {
-			user_id: $scope.user._id,
-			token: $scope.user.token,
+			user_id: $rootScope.user._id,
+			token: $rootScope.user.token,
 			comments: pitch.comment,
 		}
 		var JobService = PITCH.getPitchComment(data);
@@ -88,8 +86,8 @@ TemplateApp.controller('ViewJobCtrl',function($scope,$http,$routeParams,USER,PIT
 	}
 	$scope.Apply = function(job, ApplyDesc){
 		var data = {
-			user_id: $scope.user._id,
-			token: $scope.user.token,
+			user_id: $rootScope.user._id,
+			token: $rootScope.user.token,
 			job_id: job._id,
 			title: "",
 			description: ApplyDesc,
@@ -129,8 +127,8 @@ TemplateApp.controller('ViewJobCtrl',function($scope,$http,$routeParams,USER,PIT
 	$scope.PostPitchReply = function(PitchReply,job,pitch,evt){
 		if(evt.keyCode == 13){
 			var data = {
-				user_id : $scope.user._id,
-				token : $scope.user.token,
+				user_id : $rootScope.user._id,
+				token : $rootScope.user.token,
 				content : PitchReply,
 				hash_tag : HASHTAG.findHashTag(PitchReply),
 				application_parent : pitch._id,
@@ -153,8 +151,8 @@ TemplateApp.controller('ViewJobCtrl',function($scope,$http,$routeParams,USER,PIT
 	/*************************************************************************************************************/
 	$scope.LikeJob = function(job){
 		var data = {
-			user_id        : $scope.user._id,
-			token          : $scope.user.token,
+			user_id        : $rootScope.user._id,
+			token          : $rootScope.user.token,
 			type_like      : 1,
 			job_id         : job._id,
 			application_id :  '',
@@ -168,7 +166,7 @@ TemplateApp.controller('ViewJobCtrl',function($scope,$http,$routeParams,USER,PIT
 					jobs[index].likes.liked = false;
 					jobs[index].likes.number--;
 					jobs[index].likes.users.forEach(function(v,k){
-						if(v._id == $scope.user._id){
+						if(v._id == $rootScope.user._id){
 							jobs[index].likes.users.splice(k,1);
 						}
 					})
@@ -176,11 +174,11 @@ TemplateApp.controller('ViewJobCtrl',function($scope,$http,$routeParams,USER,PIT
 					jobs[index].likes.liked = true;
 					jobs[index].likes.number++;
 					var me = {
-								_id: $scope.user._id,
-								avatar: $scope.user.avatar.origin,
-								avatar_small: $scope.user.avatar.small,
-								avatar_normal: $scope.user.avatar.normal,
-								userName: $scope.user.username,
+								_id: $rootScope.user._id,
+								avatar: $rootScope.user.avatar.origin,
+								avatar_small: $rootScope.user.avatar.small,
+								avatar_normal: $rootScope.user.avatar.normal,
+								userName: $rootScope.user.username,
 							};
 					jobs[index].likes.users.push(me);
 				}
@@ -192,8 +190,8 @@ TemplateApp.controller('ViewJobCtrl',function($scope,$http,$routeParams,USER,PIT
 	}
 	$scope.LikePitch = function(pitch,job){
 		var data = {
-			user_id        : $scope.user._id,
-			token          : $scope.user.token,
+			user_id        : $rootScope.user._id,
+			token          : $rootScope.user.token,
 			type_like      : 2,
 			job_id         : '',
 			application_id :  pitch._id,
@@ -211,7 +209,7 @@ TemplateApp.controller('ViewJobCtrl',function($scope,$http,$routeParams,USER,PIT
 		var popover = $('#'+ job._id +' .list-like-job');
 		var index = jobs.indexOf(job);
 		if(job.likes.loaded != true){
-			var users = USER.get(users,$scope.user._id,$scope.user.token);
+			var users = USER.get(users,$rootScope.user._id,$rootScope.user.token);
 			users.then(function(response){
 				console.log(response);
 				if(response.error_code == 0){
@@ -239,8 +237,8 @@ TemplateApp.controller('ViewJobCtrl',function($scope,$http,$routeParams,USER,PIT
 	/*************************************************************************************************************/
 	$scope.InterestPitch = function(pitch,job){
 		var data = {
-			user_id : $scope.user._id,
-			token   : $scope.user.token,
+			user_id : $rootScope.user._id,
+			token   : $rootScope.user.token,
 			app_id  : pitch._id,
 		};
 		var InterestService = INTEREST.postInterest(data);

@@ -1,11 +1,9 @@
-TemplateApp.controller('UserProfileCtrl',function($scope,$http,$routeParams,PITCH,USER,ROUTE,HASHTAG){
-	$scope.user = user;
-	$scope.logedin = logedin;
+TemplateApp.controller('UserProfileCtrl',function($rootScope,$scope,$http,$routeParams,PITCH,USER,ROUTE,HASHTAG){
 	var profile;
 	var UserService = USER.getProfile($routeParams.user_id);
 		UserService.then(function(response){
 			if(response.error_code == 0){
-				profile = USER.getProfileHandler(response.user,$scope.user._id);
+				profile = USER.getProfileHandler(response.user,$rootScope.user._id);
 				$scope.profile = profile;
 			}else{
 				alert(response.msg);
@@ -28,8 +26,8 @@ TemplateApp.controller('UserProfileCtrl',function($scope,$http,$routeParams,PITC
 	*/
 	var pitchs = new Array();
 	var data = {
-		user_id : $scope.user._id,
-		token   : $scope.user.token,
+		user_id : $rootScope.user._id,
+		token   : $rootScope.user.token,
 		own_of_app_id: $routeParams.user_id,
 		skip: 0,
 		limit: 100,
@@ -37,9 +35,9 @@ TemplateApp.controller('UserProfileCtrl',function($scope,$http,$routeParams,PITC
 	var PitchService = PITCH.getPitchSidebar(data);
 		PitchService.then(function(response){
 			if(response.error_code == 0){
-				pitchs = PITCH.getPitchSidebarHandler(response.applications,$scope.user._id);
+				pitchs = PITCH.getPitchSidebarHandler(response.applications,$rootScope.user._id);
 				pitchs.forEach(function(v,k){
-					var UserService = USER.get(v.interests.list,$scope.user._id,$scope.user.token);
+					var UserService = USER.get(v.interests.list,$rootScope.user._id,$rootScope.user.token);
 						UserService.then(function(response){
 							if(response.error_code == 0){
 								pitchs[k].interests.loadFromServer = response.users;
@@ -69,8 +67,8 @@ TemplateApp.controller('UserProfileCtrl',function($scope,$http,$routeParams,PITC
 		if(pitch.loaded == true) return;
 		
 		var data = {
-			user_id: $scope.user._id,
-			token: $scope.user.token,
+			user_id: $rootScope.user._id,
+			token: $rootScope.user.token,
 			comments: pitch.comment,
 		}
 		var PitchService = PITCH.getPitchComment(data);
@@ -90,8 +88,8 @@ TemplateApp.controller('UserProfileCtrl',function($scope,$http,$routeParams,PITC
 	$scope.PostReply = function(PitchReply,pitch,evt){
 		if(evt.keyCode == 13){
 			var data = {
-				user_id : $scope.user._id,
-				token : $scope.user.token,
+				user_id : $rootScope.user._id,
+				token : $rootScope.user.token,
 				content : PitchReply,
 				hash_tag : HASHTAG.findHashTag(PitchReply),
 				application_parent : pitch._id,

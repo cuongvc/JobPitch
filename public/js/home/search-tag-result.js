@@ -1,6 +1,4 @@
-TemplateApp.controller('SearchTagResultCtrl',function($scope,$http,$routeParams,SEARCH,JOB,PITCH){
-	$scope.user = user;
-	$scope.logedin = logedin;
+TemplateApp.controller('SearchTagResultCtrl',function($rootScope,$scope,$http,$routeParams,SEARCH,JOB,PITCH){
 
 	var SearchResultJobs = new Array();
 		$scope.SearchResultJobs = SearchResultJobs;
@@ -21,13 +19,13 @@ TemplateApp.controller('SearchTagResultCtrl',function($scope,$http,$routeParams,
 		console.log("Search tag response", response);
 		if(response.error_code == 0){
 			try{
-				SearchResultJobs = JOB.JobHandler(response.jobs,$scope.user._id);
+				SearchResultJobs = JOB.JobHandler(response.jobs,$rootScope.user._id);
 				$scope.SearchResultJobs = SearchResultJobs;
 			}catch(e){
 				console.log("Search tag error: ",e);
 			}
 			try{
-				SearchResultPitch = PITCH.getPitchSidebarHandler(response.applications,$scope.user._id);
+				SearchResultPitch = PITCH.getPitchSidebarHandler(response.applications,$rootScope.user._id);
 				$scope.SearchResultPitch = SearchResultPitch;
 			}catch(e){
 				console.log("Search tag error: ",e);

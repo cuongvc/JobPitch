@@ -1,26 +1,25 @@
-TemplateApp.controller('IndexCtrl',function($scope,$http,JOB,PITCH,USER,SOCKET,LIKE,HASHTAG,COMMENT){
-	$scope.user    = user;
-	$scope.logedin = logedin;
+TemplateApp.controller('IndexCtrl',function($rootScope,$scope,$http,JOB,PITCH,USER,SOCKET,LIKE,HASHTAG,COMMENT){
+
 	$scope.BASE_URL = BASE_URL;
 
 	function LoadJob(){
 		var data = {
-				user_id: $scope.user._id,
-				token: $scope.user.token,
+				user_id: $rootScope.user._id,
+				token: $rootScope.user.token,
 				skip: 0,
 				limit: 100,
 			}
 		var JobService = JOB.getJob(data);
 			JobService.then(function(response){
 			console.log("JOB",response);
-			jobs = JOB.JobHandler(response.jobs,$scope.user._id);
+			jobs = JOB.JobHandler(response.jobs,$rootScope.user._id);
 			$scope.jobs = jobs;
 		})
 	}
 	function LoadPitch(){
 		var data = {
-			user_id : $scope.user._id,
-			token   : $scope.user.token,
+			user_id : $rootScope.user._id,
+			token   : $rootScope.user.token,
 			skip: 0,
 			limit: 100,
 		};
@@ -28,9 +27,9 @@ TemplateApp.controller('IndexCtrl',function($scope,$http,JOB,PITCH,USER,SOCKET,L
 			PitchService.then(function(response){
 				console.log("Pitch",response);
 				if(response.error_code == 0){
-					pitchs = PITCH.getPitchSidebarHandler(response.applications,$scope.user._id);
+					pitchs = PITCH.getPitchSidebarHandler(response.applications,$rootScope.user._id);
 					pitchs.forEach(function(v,k){
-						var UserService = USER.get(v.interests.list,$scope.user._id,$scope.user.token);
+						var UserService = USER.get(v.interests.list,$rootScope.user._id,$rootScope.user.token);
 							UserService.then(function(response){
 								if(response.error_code == 0){
 									pitchs[k].interests.loadFromServer = response.users;
@@ -52,17 +51,15 @@ TemplateApp.controller('IndexCtrl',function($scope,$http,JOB,PITCH,USER,SOCKET,L
 	if(document.location.pathname == '/'){
 		LoadJob();
 		LoadPitch();
-		$scope.$on(RELOAD_INDEX,function(event,position){
+		$scope.$on(RELOAD_INDEX,function(){
 			LoadJob();
 			LoadPitch();
-			user.position = position;
-			$scope.user = user;
 		});
 		$scope.$on(SWITH_TO_CURRENT,function(event,position){
 			LoadJob();
 			LoadPitch();
 			user.position = position;
-			$scope.user = user;
+			$rootScope.user = user;
 		});
 	
 	} //endif INDEX
@@ -79,16 +76,16 @@ TemplateApp.controller('IndexCtrl',function($scope,$http,JOB,PITCH,USER,SOCKET,L
 
 		if(data.id_user_make_notify == user._id) return;
 
-		if(data.id_user_make_notify == $scope.user._id) return;
+		if(data.id_user_make_notify == $rootScope.user._id) return;
 		var pitch = data.app;
-			pitch = PITCH.pitchHandler(pitch,$scope.user._id);
+			pitch = PITCH.pitchHandler(pitch,$rootScope.user._id);
 
 		jobs = SOCKET.pushPitchToRecentJob(jobs,pitch);
 
 		var pitch = data.app;
 			pitch = PITCH.pitchHandler(pitch);
 
-		var UserService = USER.get(pitch.interests.list,$scope.user._id,$scope.user.token);
+		var UserService = USER.get(pitch.interests.list,$rootScope.user._id,$rootScope.user.token);
 			UserService.then(function(response){
 				if(response.error_code == 0){
 					pitch.interests.loadFromServer = response.users;
@@ -146,8 +143,8 @@ TemplateApp.controller('IndexCtrl',function($scope,$http,JOB,PITCH,USER,SOCKET,L
 	/******************************************************************************************/
 	$scope.LikePitch = function(pitch,job){
 		var data = {
-			user_id        : $scope.user._id,
-			token          : $scope.user.token,
+			user_id        : $rootScope.user._id,
+			token          : $rootScope.user.token,
 			type_like      : 2,
 			job_id         : '',
 			application_id :  pitch._id,
@@ -172,8 +169,8 @@ TemplateApp.controller('IndexCtrl',function($scope,$http,JOB,PITCH,USER,SOCKET,L
 	$scope.PostPitchReply = function(PitchReply,job,pitch,evt){
 		if(evt.keyCode == 13){
 			var data = {
-				user_id : $scope.user._id,
-				token : $scope.user.token,
+				user_id : $rootScope.user._id,
+				token : $rootScope.user.token,
 				content : PitchReply,
 				hash_tag : HASHTAG.findHashTag(PitchReply),
 				application_parent : pitch._id,
@@ -202,8 +199,8 @@ TemplateApp.controller('IndexCtrl',function($scope,$http,JOB,PITCH,USER,SOCKET,L
 	$scope.PostReply = function(PitchReply,pitch,evt){
 		if(evt.keyCode == 13){
 			var data = {
-				user_id : $scope.user._id,
-				token : $scope.user.token,
+				user_id : $rootScope.user._id,
+				token : $rootScope.user.token,
 				content : PitchReply,
 				hash_tag : HASHTAG.findHashTag(PitchReply),
 				application_parent : pitch._id,

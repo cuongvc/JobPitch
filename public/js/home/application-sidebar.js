@@ -14,7 +14,7 @@ ApplicationSideBar.filter('reverse', function() {
 		return items.slice().reverse();
 	};
 });
-ApplicationSideBar.controller('ApplicationSideBarCtrl',function($scope,$http,JOB,PITCH,LIKE,HASHTAG,INTEREST,USER,ROUTE, SOCKET,COMMENT){
+ApplicationSideBar.controller('ApplicationSideBarCtrl',function($rootScope,$scope,$http,JOB,PITCH,LIKE,HASHTAG,INTEREST,USER,ROUTE, SOCKET,COMMENT){
 	var InterestList = new Array();
 	$scope.InterestList = InterestList;
 
@@ -48,8 +48,8 @@ ApplicationSideBar.controller('ApplicationSideBarCtrl',function($scope,$http,JOB
 		if(pitch.comments.loaded == true) return;
 		
 		var data = {
-			user_id: $scope.user._id,
-			token: $scope.user.token,
+			user_id: $rootScope.user._id,
+			token: $rootScope.user.token,
 			comments: pitch.comment,
 		}
 		var PitchService = PITCH.getPitchComment(data);
@@ -70,8 +70,8 @@ ApplicationSideBar.controller('ApplicationSideBarCtrl',function($scope,$http,JOB
 	/*************************************************************************************************************/
 	$scope.InterestPitch = function(pitch){
 		var data = {
-			user_id : $scope.user._id,
-			token   : $scope.user.token,
+			user_id : $rootScope.user._id,
+			token   : $rootScope.user.token,
 			app_id  : pitch._id,
 		};
 		var InterestService = INTEREST.postInterest(data);

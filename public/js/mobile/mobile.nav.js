@@ -12,7 +12,6 @@ MobileNav.directive('mobileNav',function(){
 	}
 })
 MobileNav.controller('MobileNavCtrl',function($scope,$http,ROUTE){
-	$scope.user = user;
 	$scope.LoadTab = function(tab_id,evt){
 		switch(tab_id){
 			case 1: 

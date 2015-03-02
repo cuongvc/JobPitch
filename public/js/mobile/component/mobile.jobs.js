@@ -9,7 +9,7 @@ MobileJob.directive('mobileJob',function(){
 		controller: 'MobileJobCtrl',
 	}
 })
-MobileJob.controller('MobileJobCtrl',function($scope,$http,USER,PITCH,JOB,HASHTAG,LIKE,INTEREST,ROUTE,SOCKET){
+MobileJob.controller('MobileJobCtrl',function($rootScope,$scope,$http,USER,PITCH,JOB,HASHTAG,LIKE,INTEREST,ROUTE,SOCKET){
 	/*
 	* View user
 	*/
@@ -21,8 +21,8 @@ MobileJob.controller('MobileJobCtrl',function($scope,$http,USER,PITCH,JOB,HASHTA
 	*/
 	JobScroll.start = 0;
 	var data = {
-			user_id: $scope.user._id,
-			token: $scope.user.token,
+			user_id: $rootScope.user._id,
+			token: $rootScope.user.token,
 			skip: JobScroll.start,
 			limit: JobScroll.limit,
 			lat: 21.018549,
@@ -32,7 +32,7 @@ MobileJob.controller('MobileJobCtrl',function($scope,$http,USER,PITCH,JOB,HASHTA
 	var JobService = JOB.getJob(data);
 	JobService.then(function(response){
 		console.log(response);
-		jobs = JOB.JobHandler(response.jobs,$scope.user._id);
+		jobs = JOB.JobHandler(response.jobs,$rootScope.user._id);
 		$scope.jobs = jobs;
 	})
 	/*************************************************************************************************************/
@@ -45,16 +45,16 @@ MobileJob.controller('MobileJobCtrl',function($scope,$http,USER,PITCH,JOB,HASHTA
 		$scope.$apply();
 	})
 	IO.on(APPLY_JOB_SOCKET_EVENT,function(data){
-		if(SOCKET.checkUserReciveNotification($scope.user._id, data.user_receive_notify) == false) return;
+		if(SOCKET.checkUserReciveNotification($rootScope.user._id, data.user_receive_notify) == false) return;
 
 		var pitch = data.app;
-			pitch = PITCH.pitchHandler(pitch,$scope.user._id);
+			pitch = PITCH.pitchHandler(pitch,$rootScope.user._id);
 
 		SOCKET.pushPitchToRecentJob(jobs,pitch);
 	});
 	IO.on(LIKE_PITCH_SOCKET_EVENT,function(data){
 
-		if(SOCKET.checkUserReciveNotification($scope.user._id, data.user_receive_notify) == false) return;
+		if(SOCKET.checkUserReciveNotification($rootScope.user._id, data.user_receive_notify) == false) return;
 		
 		jobs = LIKE.addLikePitch(jobs,data.job_id,data.app_id,data.id_user_make_notify);
 		$scope.jobs = jobs;
@@ -62,7 +62,7 @@ MobileJob.controller('MobileJobCtrl',function($scope,$http,USER,PITCH,JOB,HASHTA
 	})
 	IO.on(LIKE_JOB_SOCKET_EVENT,function(data){
 
-		if(SOCKET.checkUserReciveNotification($scope.user._id, data.user_receive_notify) == false) return;
+		if(SOCKET.checkUserReciveNotification($rootScope.user._id, data.user_receive_notify) == false) return;
 
 		jobs = LIKE.addLikeJob(jobs,data.job_id,data.id_user_make_notify);
 		
@@ -75,14 +75,14 @@ MobileJob.controller('MobileJobCtrl',function($scope,$http,USER,PITCH,JOB,HASHTA
 	/*************************************************************************************************************/
 	$scope.ViewPitch = function(job){
 		var data = {
-		    user_id: $scope.user._id,
-		    token: $scope.user.token,
+		    user_id: $rootScope.user._id,
+		    token: $rootScope.user.token,
 		    job_id: job._id,
 		}
 		var PitchService = PITCH.getPitch(data);
 		PitchService.then(function(response){
 			if(response.error_code == 0){
-				jobs = PITCH.getPitchHandler(jobs,job,$scope.user._id,response.app);
+				jobs = PITCH.getPitchHandler(jobs,job,$rootScope.user._id,response.app);
 				console.log(jobs);
 				$scope.jobs = jobs;
 			}else{
@@ -101,8 +101,8 @@ MobileJob.controller('MobileJobCtrl',function($scope,$http,USER,PITCH,JOB,HASHTA
 		if(pitch.loaded == true) return;
 		
 		var data = {
-			user_id: $scope.user._id,
-			token: $scope.user.token,
+			user_id: $rootScope.user._id,
+			token: $rootScope.user.token,
 			comments: pitch.comment,
 		}
 		var JobService = PITCH.getPitchComment(data);
@@ -137,8 +137,8 @@ MobileJob.controller('MobileJobCtrl',function($scope,$http,USER,PITCH,JOB,HASHTA
 	}
 	$scope.Apply = function(job, ApplyDesc){
 		var data = {
-			user_id: $scope.user._id,
-			token: $scope.user.token,
+			user_id: $rootScope.user._id,
+			token: $rootScope.user.token,
 			job_id: job._id,
 			title: "",
 			description: ApplyDesc,
@@ -178,8 +178,8 @@ MobileJob.controller('MobileJobCtrl',function($scope,$http,USER,PITCH,JOB,HASHTA
 	$scope.PostPitchReply = function(PitchReply,job,pitch,evt){
 		if(evt.keyCode == 13){
 			var data = {
-				user_id : $scope.user._id,
-				token : $scope.user.token,
+				user_id : $rootScope.user._id,
+				token : $rootScope.user.token,
 				content : PitchReply,
 				hash_tag : HASHTAG.findHashTag(PitchReply),
 				application_parent : pitch._id,
@@ -202,8 +202,8 @@ MobileJob.controller('MobileJobCtrl',function($scope,$http,USER,PITCH,JOB,HASHTA
 	/*************************************************************************************************************/
 	$scope.LikeJob = function(job){
 		var data = {
-			user_id        : $scope.user._id,
-			token          : $scope.user.token,
+			user_id        : $rootScope.user._id,
+			token          : $rootScope.user.token,
 			type_like      : 1,
 			job_id         : job._id,
 			application_id :  '',
@@ -217,7 +217,7 @@ MobileJob.controller('MobileJobCtrl',function($scope,$http,USER,PITCH,JOB,HASHTA
 					jobs[index].likes.liked = false;
 					jobs[index].likes.number--;
 					jobs[index].likes.users.forEach(function(v,k){
-						if(v._id == $scope.user._id){
+						if(v._id == $rootScope.user._id){
 							jobs[index].likes.users.splice(k,1);
 						}
 					})
@@ -225,11 +225,11 @@ MobileJob.controller('MobileJobCtrl',function($scope,$http,USER,PITCH,JOB,HASHTA
 					jobs[index].likes.liked = true;
 					jobs[index].likes.number++;
 					var me = {
-								_id: $scope.user._id,
-								avatar: $scope.user.avatar.origin,
-								avatar_small: $scope.user.avatar.small,
-								avatar_normal: $scope.user.avatar.normal,
-								userName: $scope.user.username,
+								_id: $rootScope.user._id,
+								avatar: $rootScope.user.avatar.origin,
+								avatar_small: $rootScope.user.avatar.small,
+								avatar_normal: $rootScope.user.avatar.normal,
+								userName: $rootScope.user.username,
 							};
 					jobs[index].likes.users.push(me);
 				}
@@ -241,8 +241,8 @@ MobileJob.controller('MobileJobCtrl',function($scope,$http,USER,PITCH,JOB,HASHTA
 	}
 	$scope.LikePitch = function(pitch,job){
 		var data = {
-			user_id        : $scope.user._id,
-			token          : $scope.user.token,
+			user_id        : $rootScope.user._id,
+			token          : $rootScope.user.token,
 			type_like      : 2,
 			job_id         : '',
 			application_id :  pitch._id,
@@ -260,7 +260,7 @@ MobileJob.controller('MobileJobCtrl',function($scope,$http,USER,PITCH,JOB,HASHTA
 		var popover = $('#'+ job._id +' .list-like-job');
 		var index = jobs.indexOf(job);
 		if(job.likes.loaded != true){
-			var users = USER.get(users,$scope.user._id,$scope.user.token);
+			var users = USER.get(users,$rootScope.user._id,$rootScope.user.token);
 			users.then(function(response){
 				console.log(response);
 				if(response.error_code == 0){
@@ -288,8 +288,8 @@ MobileJob.controller('MobileJobCtrl',function($scope,$http,USER,PITCH,JOB,HASHTA
 	/*************************************************************************************************************/
 	$scope.InterestPitch = function(pitch,job){
 		var data = {
-			user_id : $scope.user._id,
-			token   : $scope.user.token,
+			user_id : $rootScope.user._id,
+			token   : $rootScope.user.token,
 			app_id  : pitch._id,
 		};
 		var InterestService = INTEREST.postInterest(data);

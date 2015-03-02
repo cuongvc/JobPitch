@@ -1,6 +1,5 @@
 MobileApp.controller('MobilePitchCtrl',function($scope,$http,JOB,PITCH,LIKE,HASHTAG,INTEREST,USER,ROUTE, SOCKET){
-	$scope.user = user;
-	$scope.logedin = logedin;
+	
 
 	var InterestList = new Array();
 	$scope.InterestList = InterestList;
@@ -26,12 +25,12 @@ MobileApp.controller('MobilePitchCtrl',function($scope,$http,JOB,PITCH,LIKE,HASH
 									/*SOCKET*/
 	/******************************************************************************************/
 	IO.on(APPLY_JOB_SOCKET_EVENT,function(data){
-		if(SOCKET.checkUserReciveNotification($scope.user._id, data.user_receive_notify) == false) return;
+		if(SOCKET.checkUserReciveNotification($rootScope.user._id, data.user_receive_notify) == false) return;
 		
 		var pitch = data.app;
 			pitch = PITCH.pitchHandler(pitch);
 
-		var UserService = USER.get(pitch.interests.list,$scope.user._id,$scope.user.token);
+		var UserService = USER.get(pitch.interests.list,$rootScope.user._id,$rootScope.user.token);
 			UserService.then(function(response){
 				if(response.error_code == 0){
 					pitch.interests.loadFromServer = response.users;
@@ -48,7 +47,7 @@ MobileApp.controller('MobilePitchCtrl',function($scope,$http,JOB,PITCH,LIKE,HASH
 
 	IO.on(LIKE_PITCH_SOCKET_EVENT,function(data){
 
-		if(SOCKET.checkUserReciveNotification($scope.user._id, data.user_receive_notify) == false) return;
+		if(SOCKET.checkUserReciveNotification($rootScope.user._id, data.user_receive_notify) == false) return;
 		
 		pitchs = LIKE.addLikePitchSidebar(pitchs,data.app_id,data.id_user_make_notify);
 		$scope.pitchs = pitchs;
@@ -59,17 +58,17 @@ MobileApp.controller('MobilePitchCtrl',function($scope,$http,JOB,PITCH,LIKE,HASH
 	/******************************************************************************************/
 	PitchScroll.start = 0;
 	var data = {
-		user_id : $scope.user._id,
-		token   : $scope.user.token,
+		user_id : $rootScope.user._id,
+		token   : $rootScope.user.token,
 		skip: PitchScroll.start,
 		limit: PitchScroll.limit,
 	};
 	var PitchService = PITCH.getPitchSidebar(data);
 		PitchService.then(function(response){
 			if(response.error_code == 0){
-				pitchs = PITCH.getPitchSidebarHandler(response.applications,$scope.user._id);
+				pitchs = PITCH.getPitchSidebarHandler(response.applications,$rootScope.user._id);
 				pitchs.forEach(function(v,k){
-					var UserService = USER.get(v.interests.list,$scope.user._id,$scope.user.token);
+					var UserService = USER.get(v.interests.list,$rootScope.user._id,$rootScope.user.token);
 						UserService.then(function(response){
 							if(response.error_code == 0){
 								pitchs[k].interests.loadFromServer = response.users;
@@ -97,8 +96,8 @@ MobileApp.controller('MobilePitchCtrl',function($scope,$http,JOB,PITCH,LIKE,HASH
 		if(pitch.comments.loaded == true) return;
 		
 		var data = {
-			user_id: $scope.user._id,
-			token: $scope.user.token,
+			user_id: $rootScope.user._id,
+			token: $rootScope.user.token,
 			comments: pitch.comment,
 		}
 		var PitchService = PITCH.getPitchComment(data);
@@ -117,8 +116,8 @@ MobileApp.controller('MobilePitchCtrl',function($scope,$http,JOB,PITCH,LIKE,HASH
 	*/
 	$scope.LikePitch = function(pitch){
 		var data = {
-			user_id        : $scope.user._id,
-			token          : $scope.user.token,
+			user_id        : $rootScope.user._id,
+			token          : $rootScope.user.token,
 			type_like      : 2,
 			job_id         : '',
 			application_id :  pitch._id,
@@ -145,8 +144,8 @@ MobileApp.controller('MobilePitchCtrl',function($scope,$http,JOB,PITCH,LIKE,HASH
 	$scope.PostReply = function(PitchReply,pitch,evt){
 		if(evt.keyCode == 13){
 			var data = {
-				user_id : $scope.user._id,
-				token : $scope.user.token,
+				user_id : $rootScope.user._id,
+				token : $rootScope.user.token,
 				content : PitchReply,
 				hash_tag : HASHTAG.findHashTag(PitchReply),
 				application_parent : pitch._id,
@@ -173,8 +172,8 @@ MobileApp.controller('MobilePitchCtrl',function($scope,$http,JOB,PITCH,LIKE,HASH
 	/*************************************************************************************************************/
 	$scope.InterestPitch = function(pitch){
 		var data = {
-			user_id : $scope.user._id,
-			token   : $scope.user.token,
+			user_id : $rootScope.user._id,
+			token   : $rootScope.user.token,
 			app_id  : pitch._id,
 		};
 		var InterestService = INTEREST.postInterest(data);
