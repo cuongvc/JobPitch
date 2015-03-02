@@ -77,6 +77,10 @@
 	/*
 	* Broadcast event
 	*/
-	var RELOAD_INDEX     = 'reload_index';
-	var SWITH_TO_CURRENT = 'swith_to_current';
+	var RELOAD_INDEX             = 'RELOAD_INDEX';
+	var SWITH_TO_CURRENT         = 'SWITH_TO_CURRENT';
+	var LOAD_JOB_POPUP           = 'LOAD_JOB_POPUP';
+	var SHOW_JOB_POPUP           = 'SHOW_JOB_POPUP';
+	var LIKE_PITCH_BROADCAST     = 'LIKE_PITCH_BROADCAST';
+	var INTEREST_PITCH_BROADCAST = 'INTEREST_PITCH_BROADCAST';
 

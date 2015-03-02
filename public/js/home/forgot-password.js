@@ -8,7 +8,7 @@ ForgotPasswordApp.controller('ForgotPasswordCtrl',function($scope,$http){
 			if(response.error_code == 0){
 				alert('An email was sent to your email');
 			}else{
-				alert('response.msg');
+				alert(response.msg);
 			}
 		})
 	}

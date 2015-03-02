@@ -68,8 +68,11 @@ Header.controller('HeaderCtrl',function($rootScope,$scope,$http,$routeParams,SOC
 	/*************************************************************************************************************/
 											/*VIEW NOTIFICATION && USER*/
 	/*************************************************************************************************************/
-	$scope.ViewNotification = function(url,evt){
-		ROUTE.RedirectTo(url,evt);
+	$scope.ViewNotification = function(notification,evt){
+		if(evt.which === 1){
+			$scope.$broadcast(LOAD_JOB_POPUP,notification.data.job_id);
+			evt.preventDefault();
+		}
 	}
 	$scope.goHome = function(){
 		history.pushState({},'','/');
@@ -199,9 +202,9 @@ Header.controller('HeaderCtrl',function($rootScope,$scope,$http,$routeParams,SOC
 		var NotificationService = NOTIFICATION.getNotification(data);
 			NotificationService.then(function(response){
 				if(response.error_code == 0){
-					notifications = NOTIFICATION.getNotificationHandler(notifications,response.notifys);
+					console.log("NOTIFICATIONS LOAD FROM SERVER",response);
+					NOTIFICATION.getNotificationHandler(notifications,response.notifys);
 					console.log(notifications);
-					$scope.notifications = notifications;
 				}
 			})
 	}
@@ -313,7 +316,6 @@ Header.controller('HeaderCtrl',function($rootScope,$scope,$http,$routeParams,SOC
 
 	var suggest_matches_hashtag = new Array();
 	$scope.$watch('showSuggestHashtag',function(){
-		console.log(showSuggestHashtag);
 		if(showSuggestHashtag){
 			$('#suggest-hashtag').removeClass('hidden');
 		}else{

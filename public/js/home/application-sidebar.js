@@ -52,7 +52,7 @@ ApplicationSideBar.controller('ApplicationSideBarCtrl',function($rootScope,$scop
 			token: $rootScope.user.token,
 			comments: pitch.comment,
 		}
-		var PitchService = PITCH.getPitchComment(data);
+		var PitchService = COMMENT.getPitchComment(data);
 		PitchService.then(function(response){
 			if(response.error_code == 0){
 				if(response.comment.length > 0){
@@ -65,33 +65,30 @@ ApplicationSideBar.controller('ApplicationSideBarCtrl',function($rootScope,$scop
 	}
 
 	
-	/*************************************************************************************************************/
-											/*PITCH COMMENT*/
-	/*************************************************************************************************************/
-	$scope.InterestPitch = function(pitch){
-		var data = {
-			user_id : $rootScope.user._id,
-			token   : $rootScope.user.token,
-			app_id  : pitch._id,
-		};
-		var InterestService = INTEREST.postInterest(data);
-		InterestService.then(function(response){
-			console.log(response);
-			if(response.error_code == 0){
-				var index_pitch = pitchs.indexOf(pitch);
-				if(pitch.interests.interested){
-					pitch.interests.interested = false;
-					pitch.interests.number--;
-				}else{
-					pitch.interests.interested = true;
-					pitch.interests.number++;
-				}
-				pitchs[index_pitch] = pitch;
-			}else{
-				alert(response.msg);
-			}
-		})
-	}
+	// $scope.InterestPitch = function(pitch){
+	// 	var data = {
+	// 		user_id : $rootScope.user._id,
+	// 		token   : $rootScope.user.token,
+	// 		app_id  : pitch._id,
+	// 	};
+	// 	var InterestService = INTEREST.postInterest(data);
+	// 	InterestService.then(function(response){
+	// 		console.log(response);
+	// 		if(response.error_code == 0){
+	// 			var index_pitch = pitchs.indexOf(pitch);
+	// 			if(pitch.interests.interested){
+	// 				pitch.interests.interested = false;
+	// 				pitch.interests.number--;
+	// 			}else{
+	// 				pitch.interests.interested = true;
+	// 				pitch.interests.number++;
+	// 			}
+	// 			pitchs[index_pitch] = pitch;
+	// 		}else{
+	// 			alert(response.msg);
+	// 		}
+	// 	})
+	// }
 
 	
 })

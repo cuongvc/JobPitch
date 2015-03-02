@@ -105,7 +105,7 @@ MobileJob.controller('MobileJobCtrl',function($rootScope,$scope,$http,USER,PITCH
 			token: $rootScope.user.token,
 			comments: pitch.comment,
 		}
-		var JobService = PITCH.getPitchComment(data);
+		var JobService = COMMENT.getPitchComment(data);
 			JobService.then(function(response){
 				if(response.error_code == 0){
 					jobs = PITCH.getPitchCommentHandler(jobs,job,pitch,response.comment);

@@ -1,0 +1,15 @@
+#job-popup{
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	z-index: 9999;
+	background: rgba(0,0,0,0.9);
+	top: 0px;
+	left: 0px;
+	padding-top: 60px;
+	padding-bottom: 30px;
+	overflow-y: scroll;
+}
+.job{
+	padding: 0px!important;
+}
