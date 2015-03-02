@@ -730,32 +730,31 @@ userSchema.methods.getAvatarFb = function(access_token, callback) {
 }
 
 // ======================== EDIT PROFILE ====================================
-userSchema.methods.editProfile = function(address, contact, website, avatar, avatar_small, 
-    avatar_normal, companyName, skype, phone, companyEmail, 
-    userFullname, industry, education, year_of_birth, moreInfor, tagname, summary, specialties, callback) {
-
-    this.address = address;
-    this.contact = contact;
-    this.website = website;
-    this.companyName = companyName;
-    this.userFullname = userFullname;
-    this.industry = industry;
-    this.education = education;
-    this.year_of_birth = year_of_birth;
-    this.skype = skype;
-    this.phone = phone;
-    this.companyEmail = companyEmail;
-    this.moreInfor = moreInfor;
-    this.tagname = tagname;
-    this.summary = summary;
-    this.specialties = specialties;
+userSchema.methods.editProfile = function(avatar, avatar_small, avatar_normal, address, tagname, 
+                                          email, skype, phone, moreInfor, summary, specialties, contact, website,
+                                          industry, education, year_of_birth, callback) {
 
     if (avatar != '') {
         this.avatar = avatar;
         this.avatar_normal = avatar_normal;
         this.avatar_small = avatar_small;
     };
+    this.address = address;
+    this.tagname = tagname;
+    this.email = email;
+    this.skype = skype;
+    this.phone = phone;
+    this.moreInfor = moreInfor;
+    this.summary = summary;
+    this.specialties = specialties;
 
+    this.contact = contact;
+    this.website = website;
+
+    this.industry = industry;
+    this.education = education;
+    this.year_of_birth = year_of_birth;
+    
     callback(this);
 }
 

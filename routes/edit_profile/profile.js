@@ -15,15 +15,18 @@ module.exports 								=	function(req, res){
 
 		var avatar                = data.avatar;
 		var extension             = data.extension;
-
 		var address               = data.address;
-		var contact               = data.contact;
-
-		var website               = data.website;
-		var companyName						= data.companyName;
+		var tagname               = data.tagname;
+		var summary               = data.summary;
+		var specialties           = data.specialties;
+		var email           			= data.email;
 		var skype                 = data.skype;
 		var phone                 = data.phone;
-		var companyEmail          = data.companyEmail;
+		var moreInfor             = data.moreInfor;
+
+
+		var contact               = data.contact;
+		var website               = data.website;
 
 
 		var userFullname          = data.userFullname;
@@ -31,11 +34,6 @@ module.exports 								=	function(req, res){
 		var education             = data.education;
 		var year_of_birth         = data.year_of_birth;
 
-		var moreInfor             = data.moreInfor;
-
-		var tagname               = data.tagname;
-		var summary               = data.summary;
-		var specialties           = data.specialties;
 	}
 
 	catch(err){
@@ -62,28 +60,25 @@ module.exports 								=	function(req, res){
 				if (avatar != ''){
 					move_file(avatar, extension, 'UserImages', function(err_exist, error, avatar, avatar_small, avatar_normal){
 						if (!err_exist){
-							user_exist.editProfile(address, contact, website, avatar, avatar_small, avatar_normal,
-								                     companyName, skype, phone, companyEmail, userFullname, industry, education, 
-								                     year_of_birth, moreInfor, tagname, summary, specialties, function(user){
-								respon_object(0, res, user);
-								return 1;
-							})
+							user_exist.editProfile(avatar, avatar_small, avatar_normal, address, tagname,
+							    email, skype, phone, moreInfor, summary, specialties, contact, website,
+							    industry, education, year_of_birth,
+							    function(user) {
+							        respon_object(0, res, user);
+							        return 1;
+							    })
 						}
 					})
 				} else{
-					user_exist.editProfile(address, contact, website, '', '', '',
-									               companyName, skype, phone, companyEmail, userFullname, industry, education, 
-									               year_of_birth, moreInfor, tagname, summary, specialties, function(user){
-							respon_object(0, res, user);
-							return 1;
-					})
+					user_exist.editProfile('', '', '', address, tagname,
+					    email, skype, phone, moreInfor, summary, specialties, contact, website,
+					    industry, education, year_of_birth,
+					    function(user) {
+					        respon_object(0, res, user);
+					        return 1;
+					    })
 				}
-
-
-
 			})			
-
-
 		})
 	}
 

@@ -25,24 +25,16 @@ module.exports				=	function(req, res){
 
     var user_id  			= data['user_id'];
     var token    			= data['token'];
+
     var title  			  = data['title'];
     var hash_tag      = data['hash_tag'];
-
     var tagname       = data['tagname'];
-
     var desc     			= data['desc'];
-    var link_direct   = data['link_direct'];
-
     var position      = data.position;
 
     var time          = new Date(new Date().toGMTString()).toJSON();
     var temp_path     = data['temp_path'];
     var extension     = data['extension'];
-
-    var skype         = data.skype;
-    var phone         = data.phone;
-    var companyEmail  = data.companyEmail;
-
 
     var image, image_small, image_normal;
 
@@ -60,15 +52,6 @@ module.exports				=	function(req, res){
         res.status(200).end();
         return 0;
       } else
-
-      //  VERIFY
-          
-      // if (!user_exist.verify && (skype == '' || phone == '' || companyEmail == '' ||
-      //     typeof(skype) == 'undefined' || typeof(phone) == 'undefined' || typeof(companyEmail) == 'undefined')){
-      //   console.log('Account need verify');
-      //   res.write(JSON.stringify({error_code : 1, msg : 'Account need verify'}));
-      //   res.status(200).end();
-      // } else
 
       async.waterfall([
                 

@@ -26,14 +26,8 @@ module.exports				=	function(req, res){
     var hash_tag      = data['hash_tag'];
     var tagname       = data['tagname'];
     var desc          = data['desc'];
-    var link_direct   = data['link_direct'];
 
-    var lat           = data.position['lat'];
-    var lng           = data.position['lng']
-    var address       = data.position['formatted_address'];
-    var city          = data.position['city'].long_name;
-    var country       = data.position['country'].long_name;
-    var state         = data.position['state'].long_name;
+    var position      = data.position;
 
     var time          = new Date(new Date().toGMTString()).toJSON();
     var temp_path     = data['temp_path'];
@@ -92,8 +86,8 @@ module.exports				=	function(req, res){
           }
         ], function(err){
 
-          job_exist.editInfor(image, image_small, image_normal, user_exist.id, user_exist.userName,
-                            title, hash_tag, tagname, desc, lat, lng, address, city, country, state, link_direct, time,
+          job_exist.editInfor(image, image_small, image_normal, user_exist.id, user_exist.userName, tagname,
+                            title, hash_tag, desc, position, time,
                             function(job){
                               job.save(function(err){
                                 if (err)

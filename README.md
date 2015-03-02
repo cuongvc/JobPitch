@@ -56,34 +56,26 @@ x, y,height, width la optional
 POST http://jobpitch.campcoders.com/api/create_job
 Content-Type: application/json
 Cache-Control: no-cache
-{
-    "token"         : "$2a$08$X0jvCjP..Sa",
-    "user_id"       : "54c8580e86d5ce565ceb3168",
-    "desc"          : "Qu....................n",
-    "title"         : "nhân sự",
-    "hash_tag"      : ["HR", "Campcoders.com"],
-    "link_direct"   : "this is link_direct",
 
-    "address"       : 'Khu Đô Thị Nam Thăng Long, Phú Thượng, Tây Hồ, Hà Nội, Việt Nam',
+{
+    "token"         : "$2a$08$cvbSzcj2VYQOxiqLL/3P6eory06f1M7SPlhnjd9/Yt9KdJz03nUeC",
+    "user_id"       : "54f1702d7140be532aa025e0",
+    "job_id"        : "54f170967140be532aa025e3",
+    "desc"          : "Quản lý toàn bộ công tác tuyển dụng nhân sự - Hỗ trợ thực hiện các hoạt động đào tạo và tái đào tạo- Quản lý giám sát hoạt động nhân sự trong Khách Sạn- Xây dựng, quản lý, tổ chức và thực hiện các chính sách nhân sự cho nhân viên theo quy định của Khách Sạn",
+    "hash_tag"      : ["#manage", "#HR"],
+    "title"         : "TUYEN NHAN SU",
+    "tagLine"       : "nhân sự",
     "position"      : 
        { "lat": 21.0721265,
          "lng": 105.81098910000003,
-         "formatted_address": 'Khu Đô Thị Nam Thăng Long, Phú Thượng, Tây Hồ, Hà Nội, Việt Nam',
-         "state": { long_name: 'Hà Nội', short_name: 'Hà Nội', types: [Object] },
-         "country": { long_name: 'Việt Nam', short_name: 'VN', types: [Object] },
-         "city": '' 
-        },
-
-    "temp_path"     : "/tmp/upload_fcfb4234b9a58ed1052b53a8e30dca92",
-    "extension"     : "jpeg",
-
-    "phone"         : "01674251748",
-    "skype"         : "cuongvc93",
-    "companyEmail"  : "campcoders@campcoders.com"
+         "formatted_address": "Khu Đô Thị Nam Thăng Long, Phú Thượng, Tây Hồ, Hà Nội, Việt Nam",
+         "state":   { "long_name": "Hà Nội", "short_name": "Hà Nội"},
+         "country": { "long_name": "Việt Nam", "short_name": "VN"},
+         "city": "" 
+        },    
+    "temp_path"     : "public/upload/upload_cd9310299aaf6fe3b556df4293ce3add",
+    "extension"     : "jpeg" 
 }
-
-    temp_path va extension la tu api upload_photo
-    phone, skype, companyEmail la optional
 
 ```
 
@@ -103,40 +95,65 @@ Cache-Control: no-cache
 {
     "error_code": 0,
     "job": {
-        "__v": 0,
-        "time": "Wed Jan 28 2015 13:44:16 GMT-0500 (EST)",
-        "user_id": "54c8580e86d5ce565ceb3168",
-        "_id": "54c92e026145bc0a616cefb1",
-        "hires": 0,
-        "interviews": 0,
-        "applications": {
+        "__v": 6,
+        "_id": "54f170967140be532aa025e3",
+        "time": "2015-03-02T09:05:45.000Z",
+        "user_id": "54f1702d7140be532aa025e0",
+        "receive_notify": [
+            "54f1702d7140be532aa025e0",
+            "54f17263a52151232deb1002"
+        ],
+        "contracts": {
             "list": [],
             "number": 0
         },
+        "hires": 0,
+        "interviews": 0,
+        "applications": {
+            "list": [
+                "54f170b87140be532aa025e8",
+                "54f171c4a52151232deb0fff",
+                "54f17280a52151232deb1006"
+            ],
+            "number": 3
+        },
+        "score": 5,
         "shares": {
             "list": [],
             "number": 0
         },
         "likes": {
-            "list": [],
-            "number": 0
+            "list": [
+                "54f1702d7140be532aa025e0",
+                "54f17263a52151232deb1002"
+            ],
+            "number": 2
         },
         "status": 1,
-        "link_direct": "http://campcoders.com",
-        "location": {
-            "address": "Ha Noi, Viet Nam",
-            "lng": 100,
-            "lat": 100
+        "position": {
+            "lat": 21.0721265,
+            "lng": 105.81098910000003,
+            "formatted_address": "Khu Đô Thị Nam Thăng Long, Phú Thượng, Tây Hồ, Hà Nội, Việt Nam",
+            "state": {
+                "long_name": "Hà Nội",
+                "short_name": "Hà Nội"
+            },
+            "country": {
+                "long_name": "Việt Nam",
+                "short_name": "VN"
+            }
         },
-        "description": "..........................n",
+        "description": "Quản lý toàn bộ công tác tuyển dụng nhân sự - Hỗ trợ thực hiện các hoạt động đào tạo và tái đào tạo- Quản lý giám sát hoạt động nhân sự trong Khách Sạn- Xây dựng, quản lý, tổ chức và thực hiện các chính sách nhân sự cho nhân viên theo quy định của Khách Sạn",
         "hash_tag": [
-            "HR",
-            "Campcoders.com"
+            "#manage",
+            "#HR"
         ],
-        "title": "nhân sự",
-        "image_normal": "http://jobpitch.campcoders.c....2470922792.jpeg",
-        "image_small": "http://jobpitch.campcoder....422470922792.jpeg",
-        "image": "http://jobpitch.campcoders.co.............22792.jpeg"
+        "title": "TUYEN NHAN SU",
+        "userTagName": "cuongvu.2",
+        "userName": "campcoders@gmail.com",
+        "image_normal": "http://job.dev/images/normal_size/JobImages/1425287903743.jpeg",
+        "image_small": "http://job.dev/images/small_size/JobImages/1425287903743.jpeg",
+        "image": "http://job.dev/images/full_size/JobImages/1425287903743.jpeg"
     }
 }
 
@@ -583,32 +600,34 @@ Cache-Control: no-cache
 
 
 {
-    "token"             : "$2a$08$cuGGBSy7CZOhCrnr5rrdhOwayH6Ka1rJdw91St8K/tvvVE2e/0kSy",
-    "user_id"           : "54eef31ef87632e72c4db927",
-    "type_account"      : "1",
+    "user_id"           : "54f170167140be532aa025de",
+    "token"             : "$2a$08$kkRu2rMUYoNC356KPM6mou77tZpVBDc8k4FNvNSZklxQIdRMxdEq2",
+
+    "avatar"            : "public/upload/upload_9d07e008bfdb9219d56dd34b26924ed2",
     "extension"         : "jpeg",
     "address"           : "9 Nguyên Hồng, Thành Công, Ba Đình, Hà Nội, Việt Nam",
-    "contact"           : "",
-    "website"           : "",
-    "companyName"       : "",
-    "avatar"            : "",
-    "userFullname"      : "",
-    "industry"          : "",
-    "education"         : "",
-    "year_of_birth"     : "",
+    "tagname"           : "cuongvu_123",
+    "email"             : "vcc.bka@gmail.com",
     "skype"             : "campcoder",
     "phone"             : "0987654321",
-    "companyEmail"      : "thanhah@campcoders.com",
-    "tagname"           : "cuongvu_123",
+    "moreInfor"         : {"a" : 1, "b": 2},
     "summary"           : "summary",
-    "specialties"       : "specialties"
+    "specialties"       : "specialties",
+
+    "contact"           : "CAMPCODERS",  
+    "website"           : "http://campcoders.com",
+  
+    "industry"          : "",
+    "education"         : "",
+    "year_of_birth"     : ""
 }
 
-    token, user_id, type_account, address, contact is require
+     Tat ca cac user deucho sua cac thong tin : avatar, address, tagname, email, skype, phone, moreInfor, summary, specialties
+     Kiem tra, neu user la company(isUser == 2) thi cho sua contact, website
+     Neu user la user thi cho sua industry, education, year_of_birth
 
-    companyName, website for company
-    fullname, year_of_birth, job for user
-
+     avatar neu khong doi thi gui len ""
+     cac thong tin khac neu khong doi thi cung cu gui thong tin cu de luu lai.
 ```
 ##### Regex
 ```
@@ -620,21 +639,23 @@ Cache-Control: no-cache
 {
     "error_code": 0,
     "user": {
-        "__v": 0,
-        "_id": "54eef31ef87632e72c4db927",
-        "companyName": "",
-        "gender": "male",
-        "specialties": "specialties",
-        "summary": "summary",
+        "__v": 10,
+        "_id": "54f170167140be532aa025de",
         "tagname": "cuongvu_123",
-        "userName": "Cường Vũ",
+        "userName": "cuongvu",
         "_keywords": [
-            "c",
-            "ng",
-            "v",
-            "cuongvc93",
+            "cuongvu",
+            "vcc",
+            "bka",
             "gmail",
             "com"
+        ],
+        "specialties": "specialties",
+        "summary": "summary",
+        "moreInfor": [
+            {
+                "_id": "54f42441b6c682a61c407100"
+            }
         ],
         "contracts": {
             "list": [],
@@ -644,11 +665,11 @@ Cache-Control: no-cache
             "list": [],
             "number": 0
         },
-        "companyEmail": "thanhah@campcoders.com",
+        "companyEmail": "",
         "phone": "0987654321",
         "skype": "campcoder",
         "verify": 0,
-        "email": "cuongvc93@gmail.com",
+        "email": "vcc.bka@gmail.com",
         "year_of_birth": null,
         "education": "",
         "industry": "",
@@ -656,37 +677,48 @@ Cache-Control: no-cache
         "cover_normal": "http://job.dev/images/full_size/UserImages/default-cover.jpeg",
         "cover_small": "http://job.dev/images/full_size/UserImages/default-cover.jpeg",
         "cover": "http://job.dev/images/full_size/UserImages/default-cover.jpeg",
-        "avatar_normal": "https://lh5.googleusercontent.com/-IlI6TyJIlrs/AAAAAAAAAAI/AAAAAAAAAC8/AsmFVAZBIkw/photo.jpg",
-        "avatar_small": "https://lh5.googleusercontent.com/-IlI6TyJIlrs/AAAAAAAAAAI/AAAAAAAAAC8/AsmFVAZBIkw/photo.jpg",
-        "avatar": "https://lh5.googleusercontent.com/-IlI6TyJIlrs/AAAAAAAAAAI/AAAAAAAAAC8/AsmFVAZBIkw/photo.jpg",
+        "avatar_normal": "http://job.dev/images/normal_size/UserImages/1425287021423.jpeg",
+        "avatar_small": "http://job.dev/images/small_size/UserImages/1425287021423.jpeg",
+        "avatar": "http://job.dev/images/full_size/UserImages/1425287021423.jpeg",
         "friends": [],
         "myFollows": [],
         "myApplications": [],
-        "myJobs": [],
+        "myJobs": [
+            "54f170967140be532aa025e3",
+            "54f183615f4cce5f38a1e0de"
+        ],
         "followMes": [],
-        "website": "",
+        "website": "http://campcoders.com",
         "companyFullname": "",
         "active": 1,
         "permission": 0,
-        "score": 0,
-        "token": "$2a$08$cuGGBSy7CZOhCrnr5rrdhOwayH6Ka1rJdw91St8K/tvvVE2e/0kSy",
+        "score": 9,
+        "token": "$2a$08$kkRu2rMUYoNC356KPM6mou77tZpVBDc8k4FNvNSZklxQIdRMxdEq2",
         "messages": [],
         "notifications": {
             "default": {
                 "list": []
             },
-            "list": [],
+            "list": [
+                "54f170a47140be532aa025e7",
+                "54f170b87140be532aa025e9",
+                "54f171c4a52151232deb1001",
+                "54f17275a52151232deb1005",
+                "54f17280a52151232deb1008",
+                "54f19751b72e475a4354d6b7",
+                "54f19781b72e475a4354d6ba"
+            ],
             "unread": 0
         },
-        "contact": "",
+        "contact": "CAMPCODERS",
         "google_infor": {
-            "access_token": "ya29.JgFFk8o2kCVM2-Njtps2emsAym0ljglN_DorrGZrSeW8wVQCqyUDQlLJ6gDYLvp3LZRRfXcy7J-S2g",
-            "email": "cuongvc93@gmail.com",
-            "profileUrl": "https://plus.google.com/116647846410186673378",
+            "access_token": "",
+            "email": "",
+            "profileUrl": "",
             "gender": "",
-            "username": "Cường Vũ",
-            "avatar": "https://lh5.googleusercontent.com/-IlI6TyJIlrs/AAAAAAAAAAI/AAAAAAAAAC8/AsmFVAZBIkw/photo.jpg",
-            "id": "116647846410186673378"
+            "username": "",
+            "avatar": "",
+            "id": ""
         },
         "linkedin_infor": {
             "access_token": "",
@@ -717,11 +749,51 @@ Cache-Control: no-cache
             "id": ""
         },
         "local_infor": {
-            "email": "",
-            "password": ""
+            "email": "vcc.bka@gmail.com",
+            "password": "$2a$08$MOQFnoIW9EfwCcdG89fPHOd79Tqm/eT5abt/O9kSQC3JClNvso0.6"
         },
-        "type_account": 4,
-        "isUser": 1,
+        "type_account": 1,
+        "current": {
+            "city": {
+                "types": [],
+                "short_name": "HN",
+                "long_name": "Ha Noi"
+            },
+            "country": {
+                "types": [],
+                "short_name": "VN",
+                "long_name": "Viet Nam"
+            },
+            "state": {
+                "types": [],
+                "short_name": "HN",
+                "long_name": "Ha Noi"
+            },
+            "formatted_address": "Ha Noi, Viet Nam",
+            "lng": 105.832586,
+            "lat": 21.029346
+        },
+        "position": {
+            "city": {
+                "types": [],
+                "short_name": "HN",
+                "long_name": "Ha Noi"
+            },
+            "country": {
+                "types": [],
+                "short_name": "VN",
+                "long_name": "Viet Nam"
+            },
+            "state": {
+                "types": [],
+                "short_name": "HN",
+                "long_name": "Ha Noi"
+            },
+            "formatted_address": "Ha Noi, Viet Nam",
+            "lng": 105.832586,
+            "lat": 21.029346
+        },
+        "isUser": 2,
         "address": "9 Nguyên Hồng, Thành Công, Ba Đình, Hà Nội, Việt Nam"
     }
 }
@@ -2497,13 +2569,13 @@ Content-Type: application/json
 Cache-Control: no-cache
 
 {
-    "token"                 : "$2a$08$f69u5BJvllnlcgqCrYBVT.15OJHEt88iToOwyCbZ0LVEUb/ATfbmO",
-    "user_id"               : "54deb7c4767662cf2473e666",
+    "token"                 : "$2a$08$cvbSzcj2VYQOxiqLL/3P6eory06f1M7SPlhnjd9/Yt9KdJz03nUeC",
+    "user_id"               : "54f1702d7140be532aa025e0",
     "title"                 : "I can do it",
-    "app_id"                : "54ec0b97d5e8c0b512f3f27e",
+    "app_id"                : "54f170b87140be532aa025e8",
     "description"           : "APPLY CHANGE",
     "hash_tag"              : ["Php", "Nodejs", "Android", "Campcoders.com", "1", "2", "3", "4", "5", "6"],
-    "file"                  : ""
+    "file"                  : "http://job.dev/files/1425287786741.pdf"
 }
 
 
@@ -2515,18 +2587,21 @@ Cache-Control: no-cache
 ```
 ##### Return
 ```
+
 {
     "error_code": 0,
     "app": {
-        "__v": 15,
-        "_id": "54ec0b97d5e8c0b512f3f27e",
-        "companyId": "54deb68032f4c1f223bc6e72",
-        "companyName": "cuongvu",
-        "job_id": "54ebee4da14809601ab0f81a",
-        "time": "2015-02-24T10:29:56.000Z",
-        "userName": "Cường Vũ",
-        "user_avatar": "https://lh5.googleusercontent.com/-IlI6TyJIlrs/AAAAAAAAAAI/AAAAAAAAAC8/AsmFVAZBIkw/photo.jpg",
-        "user_id": "54deb7c4767662cf2473e666",
+        "time": "2015-03-02T09:11:40.000Z",
+        "job_id": "54f170967140be532aa025e3",
+        "userTagName_own_job": "cuongvu.2",
+        "userName_own_job": "cuongvu",
+        "userId_own_job": "54f170167140be532aa025de",
+        "user_avatar": "http://pbs.twimg.com/profile_images/558873020874235904/c9Yj6iBJ_normal.jpeg",
+        "userTagName": "campcodersgmail.com",
+        "userName": "campcoders@gmail.com",
+        "user_id": "54f1702d7140be532aa025e0",
+        "_id": "54f170b87140be532aa025e8",
+        "__v": 1,
         "_keywords": [
             "appli",
             "chang",
@@ -2534,15 +2609,10 @@ Cache-Control: no-cache
             "nodej",
             "android",
             "campcod",
-            "com"
+            "com",
+            "gmail"
         ],
-        "comment": [
-            "54ec1c69dcc477911f240059",
-            "54ec1c72dcc477911f24005b",
-            "54ec1c72dcc477911f24005d",
-            "54ec1c72dcc477911f24005f",
-            "54ec1c9ddcc477911f240062"
-        ],
+        "comment": [],
         "hires": {
             "status": 0
         },
@@ -2559,7 +2629,7 @@ Cache-Control: no-cache
             "list": [],
             "number": 0
         },
-        "file": "",
+        "file": "http://job.dev/files/1425287786741.pdf",
         "description": "APPLY CHANGE",
         "hash_tag": [
             "Php",
@@ -2573,9 +2643,40 @@ Cache-Control: no-cache
             "5",
             "6"
         ],
-        "title": "I can do it"
+        "title": "I can do it",
+        "position": {
+            "city": {
+                "types": [
+                    "locality",
+                    "political"
+                ],
+                "short_name": "Hà Noi",
+                "long_name": "Hà Noi"
+            },
+            "country": {
+                "types": [
+                    "country",
+                    "political"
+                ],
+                "short_name": "VN",
+                "long_name": "Việt Nam"
+            },
+            "state": {
+                "types": [
+                    "administrative_area_level_1",
+                    "political"
+                ],
+                "short_name": "Hà Nội",
+                "long_name": "Hà Nội"
+            },
+            "formatted_address": "Hà Noi, Hoàn Kiếm, Hà Nội, Việt Nam",
+            "lng": 105.8341598,
+            "lat": 21.0277644
+        },
+        "job_title": "#software #iOs Developer"
     }
 }
+
 ```
 
 

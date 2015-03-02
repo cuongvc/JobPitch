@@ -146,11 +146,6 @@ var jobSchema = new mongoose.Schema({
 
         },
     },
-    
-    link_direct      : {
-        type         : String,
-        default      : ''
-    },
 
     time             : {
         type         : String
@@ -298,9 +293,9 @@ jobSchema.methods.distance      = function(lat, lng){
     return distance(location1, location2) < distanceLimit;
 }
 
-jobSchema.methods.editInfor    = function(image, image_small, image_normal, user_id, userName
-                                        ,title, hash_tag, tagname, description, position
-                                        ,link_direct, time , callback){
+jobSchema.methods.editInfor    = function(image, image_small, image_normal, user_id, userName, tagname
+                                        ,title, hash_tag, description, position
+                                        ,time , callback){
 
     var job = this;
     if (image != '')
@@ -315,14 +310,13 @@ jobSchema.methods.editInfor    = function(image, image_small, image_normal, user
     job.hash_tag               = hash_tag;
     job.tagname                = tagname;
     job.description            = description;
-    job.link_direct            = link_direct;
     job.time                   = time;
     job.position               = position;
 
     var newPermalink = new Permalink();
     newPermalink.newInfor('', job._id, 2, title, function(){
         job.permalink =  newPermalink.permalink;
-        add_hashTag_job(hash_tag, job._id, function(){
+        add_hashTag_job(position.country.short_name, hash_tag, job._id, function(){
             callback(job);
         })    
     });    

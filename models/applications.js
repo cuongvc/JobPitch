@@ -284,7 +284,7 @@ applicationSchema.methods.editInfor    = function(title, description, hash_tag, 
         app.file           = file;
     }
 
-    add_hashTag_app(hash_tag, app._id, function(){
+    add_hashTag_app(app.position.country.short_name, hash_tag, app._id, function(){
         app.save(function(err){
             callback(app);    
         });

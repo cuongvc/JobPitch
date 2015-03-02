@@ -30,10 +30,10 @@ module.exports				=	function(req, res){
 				res.status(200).end();
 			} else {
 				if ( typeof(own_of_app_id) == 'undefined' || own_of_app_id == ''){
-				  var q = Application.find({}).skip(skip).limit(limit).sort({'time' : -1});
+				  var q = Application.find({}).skip(skip).limit(limit).sort({'score' : -1});
 				}
 				else{
-					var q = Application.find({user_id : own_of_app_id}).skip(skip).limit(limit).sort({'time' : -1});
+					var q = Application.find({user_id : own_of_app_id}).skip(skip).limit(limit).sort({'score' : -1});
 				}
 
 				q.exec(function(err, applications){
