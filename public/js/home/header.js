@@ -7,6 +7,8 @@ Header.directive('header',function(){
 			$('body').click(function(){
 				$('.notification-box').addClass('hidden');
 				$('#suggest-hashtag').addClass('hidden');
+				$('#current-location-str').removeClass('hidden');
+				$('.change-location-input').addClass('hidden');
 			})
 			$('.notification-box').bind('mousewheel DOMMouseScroll', function(e) {
 			    var scrollTo = null;
@@ -205,7 +207,6 @@ Header.controller('HeaderCtrl',function($rootScope,$scope,$http,$routeParams,SOC
 	}
 	
 
-	$scope.showLocation = true;
 	$scope.SwitchToCurrent = function(){
 		var data = {
 			user_id: $rootScope.user._id,
@@ -217,7 +218,6 @@ Header.controller('HeaderCtrl',function($rootScope,$scope,$http,$routeParams,SOC
 
 				user.position = response.new_current;
 				$rootScope.user = user;
-				console.log(user);
 				$scope.$broadcast(SWITH_TO_CURRENT,response.new_current);
 			}
 		})
@@ -228,7 +228,7 @@ Header.controller('HeaderCtrl',function($rootScope,$scope,$http,$routeParams,SOC
 		while(!target.is('a')){
 			target = target.parent();
 		}
-		$scope.showLocation = false;
+		$('#current-location-str').addClass('hidden');
 		var input = $('#searchTextField');
 			input.val('');
 			input.removeClass('hidden');
@@ -253,7 +253,7 @@ Header.controller('HeaderCtrl',function($rootScope,$scope,$http,$routeParams,SOC
 							if (response.error_code == 0) {
 								$rootScope.user.position = data.position;
 								$scope.$broadcast(RELOAD_INDEX);
-								$scope.showLocation = true;
+								$('#current-location-str').removeClass('hidden');
 								$('#searchTextField').addClass('hidden');
 							}else{
 								alert(response.msg)
@@ -262,6 +262,7 @@ Header.controller('HeaderCtrl',function($rootScope,$scope,$http,$routeParams,SOC
 					}
 				})
 		});
+		evt.stopPropagation();
 	}
 	/*************************************************************************************************************/
 											/*SUGGESTION*/
