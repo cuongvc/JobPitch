@@ -83,6 +83,7 @@ module.exports				=	function(req, res){
             )  
           }
 <<<<<<< HEAD
+<<<<<<< HEAD
         },
 
         function(next){
@@ -94,6 +95,8 @@ module.exports				=	function(req, res){
               next(null);
 =======
 >>>>>>> b604691a3d9b158401d818acac2790782976184e
+=======
+>>>>>>> ff7df4f7ab7b7d8669b78051a6455260b521fa0c
         }
 
       ], function(err){
