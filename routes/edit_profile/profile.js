@@ -12,7 +12,10 @@ module.exports 								=	function(req, res){
 
 		var user_id               = data.user_id;
 		var token                 = data.token;
-		var type_account          = data.type_account;
+
+		var avatar                = data.avatar;
+		var extension             = data.extension;
+
 		var address               = data.address;
 		var contact               = data.contact;
 
@@ -22,9 +25,7 @@ module.exports 								=	function(req, res){
 		var phone                 = data.phone;
 		var companyEmail          = data.companyEmail;
 
-		var extension             = data.extension;
 
-		var avatar                = data.avatar;
 		var userFullname          = data.userFullname;
 		var industry              = data.industry;
 		var education             = data.education;

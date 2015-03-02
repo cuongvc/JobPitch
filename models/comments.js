@@ -78,8 +78,68 @@ var commentSchema = mongoose.Schema({
     job_parent: {
         type: ObjectId,
         ref : 'jobs'
-    }
+    },
 
+    position: {
+        lat: {
+            type: Number,
+            default : 21.029346
+        },
+
+        lng: {
+            type: Number,
+            default : 105.832586
+        },
+
+        formatted_address: {
+            type: String,
+            default : 'Ha Noi, Viet Nam'
+        },
+
+        state : {
+            long_name : {
+                type : String, 
+                default : 'Ha Noi'
+            },
+            short_name : {
+                type : String,
+                default : 'HN'
+            },
+            types : [{
+                type : String
+            }]
+        },
+
+        country : {
+            long_name : {
+                type : String, 
+                default : 'Viet Nam'
+            },
+            short_name : {
+                type : String,
+                default : 'VN'
+            },
+            types : [{
+                type : String
+            }]
+
+        },
+
+        city : {
+            long_name : {
+                type : String, 
+                default : 'Ha Noi'
+            },
+            short_name : {
+                type : String,
+                default : 'HN'
+            },
+            types : [{
+                type : String
+            }]
+
+        },
+    }
 
 });
 
@@ -100,26 +160,25 @@ commentSchema.methods.isOwn         = function(companyId){
 }
 
 commentSchema.methods.newInfor    = function(user_id, userName, user_avatar, 
-                                        application_parent, comment_parent, job_parent, content, 
-                                        hash_tag, callback){
-    var comment = this;
-    comment.user_id            = user_id;
-    comment.userName          = userName;
-    comment.user_avatar        = user_avatar;
-    
+                                        application_parent, job_parent, content, 
+                                        hash_tag, position, callback){
+    var comment         = this;
+    comment.user_id     = user_id;
+    comment.userName    = userName;
+    comment.user_avatar = user_avatar;
+    comment.position    = position;
+
     if (application_parent != ''){
         comment.application_parent = application_parent;
 
     }
-    if (comment_parent != '')
-        comment.comment_parent     = comment_parent;
 
     comment.job_parent = job_parent;
 
     comment.content            = content;
     comment.hash_tag           = hash_tag;
     comment.time               = new Date();
-    add_hashTag_comment(hash_tag, comment._id, function(){
+    add_hashTag_comment(position.country.short_name, hash_tag, comment._id, function(){
         comment.save(function(err){
             if (err){
                 console.log('ERR : ', err);
