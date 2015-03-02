@@ -3,15 +3,15 @@ var Tag                         = require('./../../models/hashtags');
 var Job                         = require('./../../models/jobs');
 var Application                 = require('./../../models/applications');
 
+var async                       = require('async');
 
 module.exports									=	function(req, res){
 
 	try{
-		var data  				=	req.body;
-
-		var tag       		= '#' + data.tag;
+		var data               =	req.body;
+		
+		var tag                = '#' + data.tag;
 		var country_short_name = data.country_short_name;
-		var position			=	data.position;
 	}	
 
 	catch(err){
@@ -20,6 +20,9 @@ module.exports									=	function(req, res){
 	}
 
 	finally{
+
+		var job_array = [];
+		var application_array = [];
 
 		Tag.findOne({name : tag}, function(err, tag_exist){
 			if (err){
@@ -39,70 +42,43 @@ module.exports									=	function(req, res){
 				return 0;
 			}
 
+			Job.find({_id : {$in : tag_exist.country[country_short_name].job_id}}, function(err, jobs){
 
-			if (position == 1){
-
-				Job.find({_id : {$in : tag_exist.country[country_short_name].job_id}}, function(err, jobs){
-					console.log(tag_exist.country[country_short_name].job_id);
-					if (err){
-						console.log(err);
-						res.write(JSON.stringify({error_code : 1, msg : err.toString()}));
-						res.status(200).end();
-						return 1;
-					};
-
-					res.write(JSON.stringify({error_code : 0, jobs : jobs}));
+				if (err){
+					console.log(err);
+					res.write(JSON.stringify({error_code : 1, msg : err.toString()}));
 					res.status(200).end();
 					return 1;
-				})
-			} else if (position == 2) {
+				};
 
-				Application.find({_id : {$in : tag_exist.country[country_short_name].app_id}}, function(err, applications){
+				job_array = jobs;
+				var index = 0;
+				async.waterfall([
+					function(next){
+						jobs.forEach(function(job){
+							index ++;
 
-					if (err){
-						console.log(err);
-						res.write(JSON.stringify({error_code : 1, msg : err.toString()}));
-						res.status(200).end();
-						return 1;
-					};
-
-					res.write(JSON.stringify({error_code : 0, applications : applications}));
-					res.status(200).end();
-					return 1;
-					
-				})
-
-			} else {
-				
-				Job.find({_id : {$in : tag_exist.country[country_short_name].job_id}}, function(err, jobs){
-
-					if (err){
-						console.log(err);
-						res.write(JSON.stringify({error_code : 1, msg : err.toString()}));
-						res.status(200).end();
-						return 1;
-					};
-
-					Application.find({_id : {$in : tag_exist.country[country_short_name].app_id}}, function(err, applications){
-
-						if (err){
-							console.log(err);
-							res.write(JSON.stringify({error_code : 1, msg : err.toString()}));
-							res.status(200).end();
-							return 1;
-						};
-
-						res.write(JSON.stringify({error_code : 0, applications : applications, jobs : jobs}));
-						res.status(200).end();
-						return 1;
+							Application.find({_id : {$in : job.applications.list}}, function(err, applications){
+								if (err){
+									console.log(err);
+									res.write(JSON.stringify({error_code : 1, msg : err.toString()}));
+									res.status(200).end();
+									return 1;
+								};
+								console.log('xxx');
+								application_array = application_array.concat(applications);
+								if (index == jobs.length){
+									next(null);
+								}
+							})
+						});		
 						
-				})
-
-				})
-			}
-
-		})	
-
+					}], function(err){
+						res.write(JSON.stringify({error_code : 0, applications : application_array, jobs : job_array}));
+						res.status(200).end();
+						return 1;
+					})
+			});
+		})
 	}
-
 }
