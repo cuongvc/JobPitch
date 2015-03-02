@@ -1251,8 +1251,7 @@ Cache-Control: no-cache
     "user_id"               : "54cf8e29a2d2bf0f2c849c35",
     "content"               : "Ban tung lam voi chuc vu gi?",
     "hash_tag"              : ["Php", "Nodejs", "Android", "Campcoders.com"],
-    "application_parent"    : "",
-    "comment_parent"        : "54d104892b6d292c1e71cb96",
+    "application_parent"    : "54d104892b6d292c12331f12",
     "job_parent"            : "54d104892b6d292c1e71cb96"
 }
 
@@ -1273,7 +1272,6 @@ job_parent la require
     "comment": {
         "__v": 0,
         "time": "Wed Feb 04 2015 00:38:29 GMT+0700 (ICT)",
-        "comment_parent": "54d104892b6d292c1e71cb96",
         "job_parent" : "54d104892b6d292c1e71cb96",
         "user_avatar": "Cường Vũ",
         "user_name": "https://lh5.googleusercontent.com/-IlI6TyJIlrs/AAAAAAAAAAI/AAAAAAAAAC8/AsmFVAZBIkw/photo.jpg",

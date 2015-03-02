@@ -60,16 +60,6 @@ var commentSchema = mongoose.Schema({
         }]
     },
 
-    comments: [{
-        type: ObjectId,
-        ref: 'comments'
-    }],
-
-    comment_parent: {
-        type: ObjectId,
-        ref: 'comments'
-    },
-
     application_parent: {
         type: ObjectId,
         ref: 'applications'
@@ -187,13 +177,6 @@ commentSchema.methods.newInfor    = function(user_id, userName, user_avatar,
         })
     });
 }   
-
-commentSchema.methods.addComment = function(comment_id, callback){
-    this.comments.push(comment_id);
-    this.save(function(err){
-        callback();
-    })
-}
 
 
 commentSchema.methods.addLike       = function(user_id, callback){
