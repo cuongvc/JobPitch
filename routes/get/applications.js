@@ -33,7 +33,7 @@ module.exports				=	function(req, res){
 				  var q = Application.find({}).skip(skip).limit(limit).sort({'score' : -1});
 				}
 				else{
-					var q = Application.find({user_id : own_of_app_id}).skip(skip).limit(limit).sort({'score' : -1});
+					var q = Application.find({user_id : own_of_app_id}).skip(skip).limit(limit);
 				}
 
 				q.exec(function(err, applications){

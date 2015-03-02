@@ -18,7 +18,7 @@ module.exports = function(req, res) {
     memoryCache.get('top_company' + country_short_name, function(err, result) {
         if (err || !result || typeof(result) == 'undefined') {
             User.find({$and : [{isUser : 2}, {'position.country.short_name' : country_short_name}]}, 
-                      'userName score',  function(err, companys) {
+                      'userName score tagname',  function(err, companys) {
                 
                 companys.sort(function(company_1, company_2) {
                    return company_1.score < company_2.score;

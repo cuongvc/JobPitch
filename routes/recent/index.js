@@ -65,7 +65,7 @@ module.exports					=	function(req, res){
 			} 	
 
 			var result = [];
-			var q = Job.find({}).sort({'score' : -1}); 
+			var q = Job.find({}); 
 
 			q.exec(function(err, jobs){
 

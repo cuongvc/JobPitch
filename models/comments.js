@@ -29,6 +29,17 @@ var commentSchema = mongoose.Schema({
         type: String
     }],
 
+    tagname          : {
+        type         : [{
+            name     : String,
+            user_id  : {
+                type : ObjectId,
+                ref  : 'users'
+            }
+        }],
+        default      : []
+    },
+
     content: {
         type: String,
         default: ''
@@ -151,7 +162,7 @@ commentSchema.methods.isOwn         = function(companyId){
 
 commentSchema.methods.newInfor    = function(user_id, userName, user_avatar, 
                                         application_parent, job_parent, content, 
-                                        hash_tag, position, callback){
+                                        hash_tag, tagname, position, callback){
     var comment         = this;
     comment.user_id     = user_id;
     comment.userName    = userName;
@@ -167,7 +178,9 @@ commentSchema.methods.newInfor    = function(user_id, userName, user_avatar,
 
     comment.content            = content;
     comment.hash_tag           = hash_tag;
+    comment.tagname            = tagname;
     comment.time               = new Date();
+
     add_hashTag_comment(position.country.short_name, hash_tag, comment._id, function(){
         comment.save(function(err){
             if (err){
@@ -195,12 +208,13 @@ commentSchema.methods.addLike       = function(user_id, callback){
     }
 }
 
-commentSchema.methods.editInfor     = function(content, hash_tag, time, callback){
+commentSchema.methods.editInfor     = function(content, hash_tag, tagname, time, callback){
     var comment = this;
     comment.content = content;
     comment.hash_tag = hash_tag;
+    comment.tagname  = tagname;
     comment.time     = time;
-    add_hashTag_comment(hash_tag, comment._id, function(){
+    add_hashTag_comment(comment.position.country.short_name, hash_tag, comment._id, function(){
         comment.save(function(err){
             if (err){
                 console.log('ERR : ', err);

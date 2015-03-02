@@ -14,6 +14,7 @@ module.exports										=	function(req, res){
 
 		var content            = data.content;
 		var hash_tag           = data.hash_tag;
+		var tagname            = data.tagname;
     var time 							 = new Date(new Date().toGMTString()).toJSON();
 	}
 
@@ -44,7 +45,7 @@ module.exports										=	function(req, res){
           return 0;
 				}
 
-				cmt_exist.editInfor(content, hash_tag, time, function(newComment){
+				cmt_exist.editInfor(content, hash_tag, tagname, time, function(newComment){
           res.write(JSON.stringify({ error_code: 0, comment : newComment }));
           res.status(200).end();
 				})

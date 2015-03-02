@@ -16,6 +16,7 @@ module.exports										=	function(req, res){
 		var token              = data.token;
 		var content            = data.content;
 		var hash_tag           = data.hash_tag;
+		var tagname            = data.tagname;
 		var application_parent = data.application_parent;
 		var job_parent         = data.job_parent;
 	}
@@ -49,7 +50,7 @@ module.exports										=	function(req, res){
 
 						var newComment   = new Comment();
 						newComment.newInfor(user_exist._id, user_exist.userName, user_exist.avatar_normal, application_parent, 
-															  job_parent, content, hash_tag, app_exist.position,
+															  job_parent, content, hash_tag, tagname, app_exist.position,
 																function(comment){
 							comment.save(function(err){
 								console.log(err);
