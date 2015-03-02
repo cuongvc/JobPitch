@@ -6,7 +6,7 @@ Header.directive('header',function(){
 		link: function(scope,element,attrs){
 			$('body').click(function(){
 				$('.notification-box').addClass('hidden');
-				
+				$('#suggest-hashtag').addClass('hidden');
 			})
 			$('.notification-box').bind('mousewheel DOMMouseScroll', function(e) {
 			    var scrollTo = null;
@@ -206,7 +206,7 @@ Header.controller('HeaderCtrl',function($rootScope,$scope,$http,$routeParams,SOC
 	
 
 	$scope.showLocation = true;
-	$scope.SwithToCurrent = function(){
+	$scope.SwitchToCurrent = function(){
 		var data = {
 			user_id: $rootScope.user._id,
 			token: $rootScope.user.token,
@@ -217,6 +217,7 @@ Header.controller('HeaderCtrl',function($rootScope,$scope,$http,$routeParams,SOC
 
 				user.position = response.new_current;
 				$rootScope.user = user;
+				console.log(user);
 				$scope.$broadcast(SWITH_TO_CURRENT,response.new_current);
 			}
 		})
