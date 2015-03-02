@@ -1,0 +1,20 @@
+<div class="container animated fadeIn" id="company-about">
+	<div class="col-md-24 col-md-offset-6 col-sm-24 col-sm-offset-6 col-xs-36">
+		<div class="white-bg cp-about col-md-36 col-sm-36 col-xs-36">
+			<div class="cp-summary">
+				<p class="normal-text" ng-bind="profile.summary"></p>
+				<p class="normal-text" ng-if="showEditProfileButton == true"><i class="fa fa-edit pull-right"></i></p>
+			</div>
+			<div class="cp-cpecialties">
+				<p class="nomal-text" ng-if="profile.specialties != ''"><strong>Specialties</strong></p>
+				<p class="gray-color" ng-bind="profile.specialties"></p>
+			</div>
+			<div class="cp-info">
+				<div class="col-md-12 col-sm-18 col-xs-36" ng-repeat="info in moreInfor">
+					<p><strong ng-bind="info.title"></strong></p>
+					<p class="gray-color" ng-bind="info.value"></p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

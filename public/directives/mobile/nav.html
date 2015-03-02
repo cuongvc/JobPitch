@@ -1,0 +1,40 @@
+<nav>
+    <ul id="slide-out" class="side-nav">
+        <div class="user-nav">
+            <div class="user-nav-avatar">
+                <img src="{{ user.avatar.normal }}" alt="">
+            </div>
+            <p><strong ng-bind="user.username"></strong>
+            </p>
+            <p><span ng-bind="user.email"></span>
+            </p>
+        </div>
+        <!-- user-nav -->
+        <li>
+            <a href="">Home</a>
+        </li>
+        <li>
+            <a href="">Settings</a>
+        </li>
+        <li>
+            <a href="">Profile</a>
+        </li>
+    </ul>
+
+    <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+
+</nav>
+<div class="row">
+    <div>
+        <ul class="tabs">
+            <li class="tab col s3"><a class="active" ng-click="LoadTab(1,$event)"><i class="fa fa-credit-card"></i></a>
+            </li>
+            <li class="tab col s3"><a ng-click="LoadTab(2,$event)"><i class="fa fa-quote-left"></i></a>
+            </li>
+            <li class="tab col s3"><a ng-click="LoadTab(3,$event)"><i class="fa fa-bell-o"></i></a>
+            </li>
+            <li class="tab col s3"><a ng-click="LoadTab(4,$event)"><i class="fa fa-comments"></i></a>
+            </li>
+        </ul>
+    </div>
+</div>

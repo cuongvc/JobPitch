@@ -1,0 +1,252 @@
+@font-face{
+	font-family: 'Proxima Nova';
+	src: url('../../fonts/VNF-ProximaNovaCond-Regular.ttf');
+}
+@font-face{
+	font-family: 'Proxima Nova Semi Bold';
+	src: url('../../fonts/Mark Simonson - Proxima Nova Semibold.otf');
+}
+@font-face{
+	font-family: 'Proxima Nova Bold';
+	src: url('../../fonts/Mark Simonson - Proxima Nova Bold.otf');
+}
+body{
+	/*font-family: 'Proxima Nova';*/
+	font-family: arial!important;
+	background: #EEEEEE!important;
+	overflow-y: scroll;
+}
+@media(min-width:1500px){
+	.container{
+		width: 1300px;
+	}
+}
+@media(min-width:1400px){
+	.container{
+		width: 1200px;
+	}
+}
+.fa{
+	cursor: pointer;
+}
+.fa-facebook{
+	color: #133783;
+}
+.fa-google-plus{
+	color: #DD4B39;
+}
+.fa-twitter{
+	color: #6CADDF;
+}
+.fa-linkedin{
+	color: #2C8CC0;
+}
+.bold{
+	/*font-family: 'Proxima Nova Bold';*/
+	font-family: arial;
+	font-weight: bold;
+}
+.semibold{
+	/*font-family: 'Proxima Nova Semi Bold';*/
+	font-family: arial;
+}
+ul{
+	list-style: none;
+	display: inline-block;
+	padding: 0px;
+}
+ul li{
+	display: inline-block;
+}
+.dropdown-menu li{
+	width: 100%;
+}
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:hover, .navbar-default .navbar-nav>.open>a:focus {
+	background: none;
+}
+.cursor{
+	cursor: pointer;
+}
+.max-height-0{
+	max-height: 0px;
+	overflow: hidden;
+}
+/**************************************************************************************/
+.scrollbar_none::scrollbar{
+	display: none;
+}
+.scrollbar_none::-webkit-scrollbar{
+	display: none;
+}
+.height_0{
+	max-height: 0px;
+	overflow: hidden;
+}
+
+.height_auto{
+	overflow: auto;
+	max-height: 10000px;
+}
+.transition_500ms{
+	transition: all 0.5s linear;
+	-webkit-transition: all 0.5s;
+	-ms-transition: all 0.5s;
+	-o-transition: all 0.5s;
+	-moz-transition: all 0.5s;
+}
+
+.overflowhidden{
+	overflow: hidden;
+}
+
+.three-dot{
+	cursor: pointer;
+}
+.three-dot:hover span{
+	color: #333;
+}
+.three-dot span{
+	display: inline-block;
+	width: 3px;
+	height: 3px;
+	border-radius: 100%;
+	background: #8899a6;
+	box-shadow:  0 0 1px #ddd;
+	
+}
+/* enable absolute positioning */
+.inner-addon { 
+    position: relative; 
+}
+
+/* style icon */
+.inner-addon .glyphicon {
+  position: absolute;
+  padding: 10px;
+  pointer-events: none;
+}
+
+/* align icon */
+.left-addon .glyphicon  { left:  0px;}
+.right-addon .glyphicon { right: 0px;}
+
+/* add padding  */
+.left-addon input  { padding-left:  30px; }
+.right-addon input { padding-right: 30px; }
+.glyphicon{
+	cursor: pointer;
+}
+/*******************************************************************************************/
+										/*POPOVER*/
+/*******************************************************************************************/
+.pvh-popover{
+	position: absolute;
+	background: #333;
+	border-radius: 6px;
+	box-shadow:  0 0 3px #000;
+	box-shadow: 0 0 3px #ddd;
+	padding: 3px 7px;
+	z-index: 99999;
+}
+.pvh-popover ul{
+	width: auto!important;
+	margin: 0px!important;
+	padding: 0px!important;
+}
+.pvh-popover ul li{
+	color: #fff!important;
+	font-size: 12px!important;
+	margin: 0px!important;
+	white-space: nowrap;
+}
+.pvh-popover-top::after{
+	display: block;
+	content: '';
+	width:6px;
+	height: 6px;
+	border: 6px solid transparent;
+	border-top: 6px solid #333;
+	margin-bottom: -12px;
+	margin-left: 10px;
+
+}
+div > .gray-border:last-child{
+	border-bottom: none;
+}
+.gray-border{
+	border-bottom: 1px solid #eee;
+	/*border-radius: 6px;*/
+	overflow: auto;
+}
+/****************************************************************************************/
+										/*TEXT*/
+/****************************************************************************************/
+.bold-text{
+	font-weight: bold;
+}
+.small-text,.small-text *{
+	font-size: 12px;
+	color: #8899a6;
+}
+.gray-color, .gray-color *{
+	color: #8899a6;
+}
+.normal-text, normal-text *{
+	font-size: 14px;
+	color: #333;
+}
+.blue-text, .blue-text *{
+	color: #3b5998;
+}
+.blue-color{
+	color: #3b5998;
+}
+.left-sidebar-blue-text, .left-sidebar-blue-text *{
+	color: #0084B4!important;
+}
+/****************************************************************************************/
+										/*BACKGROUND*/
+/****************************************************************************************/
+.white-bg{
+	background: #fff;
+}
+/****************************************************************************************/
+										/*FB ICON*/
+/****************************************************************************************/
+.fb-icon{
+	display: block;
+	width: 20px;
+	height: 20px;
+	background: url('../../images/fb_icon.png');
+	background-repeat: no-repeat;
+	background-size: auto;
+	cursor: pointer;
+}
+.fb-dropdown-setting{
+	background-position: -91px -147px;
+}
+
+.margin-top-40{
+	margin-top: 40px;
+}
+.margin-top-80{
+	margin-top: 80px;
+}
+.margin-bottom-0{
+	margin-bottom: 0px;
+}
+.margin-left-10{
+	margin-left: 10px;
+}
+.margin-right-10{
+	margin-right: 10px;
+}
+.margin-right-20{
+	margin-right: 20px;
+}
+.padding-left-10{
+	padding-left: 10px;
+}
+.notification-box ul li .notification-box-image img, .application-sidebar-avatar img, .job-comment-avatar img, .job-reply-pitch-image img{
+	border-radius: 2px;
+}

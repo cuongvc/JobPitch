@@ -1,0 +1,42 @@
+nav{
+	background: #2dbea1;
+}
+.user-nav{
+	padding: 20px;
+	background: url('../../images/mobile/mobile-cover.jpg');
+	background-size: cover;
+}
+.user-nav .user-nav-avatar img{
+	width: 60px;
+	height: 60px;
+	border-radius: 100%;
+	box-shadow: 0 0 5px #ddd;
+}
+.user-nav p{
+	margin: 0px;
+	padding: 0px;
+	line-height: 30px;
+}
+.tabs{
+	height: 40px;
+}
+.tabs li.tab{
+	line-height: 40px;
+	height: 40px;
+}
+.tabs li.tab .fa{
+	font-size: 16px;
+	line-height: 40px;
+}
+.tabs li.tab .fa{
+	color: #ddd;
+}
+.tabs li.tab .active .fa,.tabs li.tab a:hover .fa{
+	color: #2dbea1;
+}
+.tabs .indicator{
+	background-color: #2dbea1;
+}
+ul.side-nav li{
+	width: 100%;
+}

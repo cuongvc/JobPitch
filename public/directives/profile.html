@@ -1,0 +1,49 @@
+<header></header>
+<div class="container" id="company-profile">
+	<div class="col-md-24 col-md-offset-6 col-sm-24 col-sm-offset-6 col-xs-36">
+		<div class="cover">
+			<div class="cover-image">
+				<img ng-src="{{ profile.cover }}" alt="">
+				<div class="edit-cover">
+					<img ng-if="profile._id == user._id" ng-click="changeCover()" src="../images/edit.png" alt="">
+				</div>
+			</div>
+			<div class="cover-menu">
+				<ul>
+					<li ng-click="CompanyProfilePage = 1"><a href="" class="semibold">Jobs<span>({{ profile.jobs_number }})</span></a></li>
+					<li ng-click="follow()"><a href="" class="semibold"><span><i class="fa fa-star followed-{{ profile.followed }}"></i></span> Following<span>({{ profile.follow_number }})</span></a></li>
+					<li ng-click="CompanyProfilePage = 2"><a href="" class="semibold">Info</a></li>
+				</ul>
+				<div id="create-job-crop-image" ng-if="changeCoverImage.showCrop == true">
+					<div class="center-block">
+						<div>
+							<img ng-src="{{ changeCoverImage.preview }}" data-on-change="changeCoverCropChange" angular-crop="ChangeCoverOpts">
+							<button class="fa fa-crop pull-left" ng-click="Crop()"> Crop</button>
+							<button class="fa fa-file pull-left" ng-click="ReSelectFile()"> Select file</button>
+						</div>
+					</div>
+				</div>
+				<input type="file" class="hidden" id="change-cover-input" nightfury-onchange-upload="changeCoverImage" ng-model="CoverImage">
+			</div>
+			<div class="company-avatar">
+				<img ng-src="{{ profile.avatar_normal }}">
+				<div class="edit-cover">
+					<img ng-if="profile._id == user._id" ng-click="changeAvatar()" src="../images/edit.png" alt="">
+				</div>
+				<input type="file" class="hidden" id="change-avatar-input" nightfury-onchange-upload="changeAvatarImage" ng-model="AvatarImage">
+			</div>
+			<div id="create-job-crop-image" ng-if="changeAvatarImage.showCrop == true">
+				<div class="center-block">
+					<div>
+						<img ng-src="{{ changeAvatarImage.preview }}" data-on-change="changeAvatarCropChange" angular-crop="ChangeAvatarOpts">
+						<button class="fa fa-crop pull-left" ng-click="CropAvatar()"> Crop</button>
+						<button class="fa fa-file pull-left" ng-click="ReSelectFile()"> Select file</button>
+					</div>
+				</div>
+			</div>
+		</div> <!-- cover -->
+	</div>
+</div>
+<company-job ng-if="CompanyProfilePage == 1"></company-job>
+<company-about ng-if="CompanyProfilePage == 2"></company-about>
+<company-contact ng-if="CompanyProfilePage == 3"></company-contact>

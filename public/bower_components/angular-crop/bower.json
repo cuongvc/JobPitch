@@ -1,0 +1,33 @@
+{
+  "name": "angular-crop",
+  "main": "src/angular-crop.js",
+  "version": "1.0.4",
+  "homepage": "https://github.com/grabbou/angular-crop",
+  "authors": [
+    "Mike Grabowski <grabbou@gmail.com>"
+  ],
+  "description": "Angular wrapper for jCrop directive",
+  "keywords": [
+    "angular",
+    "directive",
+    "jcrop",
+    "jquery",
+    "jquery-jcrop"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "*",
+    "angular": "*",
+    "jcrop": "~0.9.12"
+  },
+  "devDependencies": {
+    "angular-mocks": "*"
+  }
+}

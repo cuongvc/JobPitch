@@ -1,0 +1,246 @@
+
+#jobs{
+	margin-top: 40px;
+}
+.job{
+	background: #fff;
+	border-radius: 4px;
+	box-shadow: 0 0 1px #ddd;
+	margin-bottom: 20px;
+	border-radius: 4px;
+}
+#jobs {
+	padding: 0px;
+}
+.job .job-content p:first-child{
+	margin-bottom: 0px!important;
+}
+.job .job-content{
+	padding: 10px 15px 10px 15px;
+	overflow: auto;
+}
+.job .job-content .job-setting{
+	position: absolute;
+	right: 10px;
+	margin-top: -5px;
+}
+.job .job-content .dropdown-menu{
+	position: absolute;
+	width: 40px!important;
+	padding: 0px;
+}
+.job .job-content .dropdown-menu li{
+	box-shadow: none;
+}
+.job .job-content .dropdown-menu>li>a{
+	color: #8899a6!important;
+}
+.job .job-content a{
+	text-decoration: none!important;
+}
+.job .image{
+	width: 100%;
+	overflow: auto;
+}
+.job .image img{
+	width: 100%;
+	height: auto;
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+}
+.like-share ul, .job-social ul{
+	list-style: none;
+	display: inline-block;
+	padding: 0px;
+}
+.like-share ul{
+	width: 100%;
+	padding: 0px 15px;
+	margin-top: 0px;
+}
+.like-share ul li , .job-social ul li{
+	display: inline-block;
+	margin-left: 10px;
+	cursor: pointer;
+}
+.like-share ul li .fa{
+	margin-top: 1px;
+}
+.like-share ul li:first-child{
+	margin-left: 0px;
+}
+.job-comment{
+	width: auto;
+	padding: 5px 15px;
+	margin: 0px;
+}
+.job-comment-body{
+	overflow: hidden;
+}
+.job-comment-body ul{
+	width: 100%;
+}
+.job-comment-body ul li{
+	margin-left: 5px;
+}
+.apply-box-avatar{
+	margin-top: 2px;
+}
+.job-comment-avatar{
+	margin-right: 5px;
+	margin-top: 6px;
+}
+.job-comment-avatar img{
+	width: 40px;
+}
+.job-comment-desc{
+	margin-bottom: 5px;
+}
+.job-comment-desc span strong{
+	cursor: pointer;
+}
+.job-comment-desc span strong:hover{
+	text-decoration: underline;
+}
+.cp-title{
+	margin-bottom: 0px!important;
+}
+.cp-title:hover{
+	cursor: pointer;
+	color: blue;
+}
+textarea{
+	border: none!important;
+}
+.apply-box{
+	background-color: #F5F8FA;
+	border-top: 1px solid #eee;
+}
+.job-comment-body textarea{
+	width: 100%;
+	height: 60px;
+	resize: none;
+	border-radius: 6px;
+	padding: 5px;
+}
+#ApplyDesc{
+	margin-top: 5px;
+}
+.apply-box .job-comment-body textarea::scrollbar{
+	display: none;
+}
+.apply-box .job-comment-body textarea::-webkit-scrollbar{
+	display: none;
+}
+.apply-box .job-comment-body textarea:focus{
+	outline: none;
+}
+
+.apply-button-group{
+	margin-top: 5px;
+}
+.apply-button-group .btn-apply{
+	float: right;
+	padding: 3px 15px;
+	background-color: #0084B4;
+	border-color: #435a8b #3c5488 #334c83;
+	color: #fff;
+	cursor: pointer;
+}
+.apply-button-group > div{
+	line-height: 25px;
+	border-radius: 2px;
+}
+.apply-social-button ul{
+	text-align: right;
+	padding: 0px;
+}
+
+.job-reply-pitch-textarea{
+	overflow: hidden;
+}
+.job-reply-pitch-textarea textarea{
+	width: 100%;
+	height: auto;
+	resize: none;
+	padding: 3px;
+	border-radius: 4px;
+	border: 1px solid #eee;
+}
+.job-reply-pitch-textarea textarea:focus{
+	outline: none;
+}
+.job-reply-pitch-image img{
+	width: 26px;
+	height: 26px;
+	margin-right: 5px;
+}
+.clearfix{
+	zoom: 1;
+}
+.clearfix:after {
+	clear: both;
+	content: ".";
+	display: block;
+	font-size: 0;
+	height: 0;
+	line-height: 0;
+	visibility: hidden;
+}
+.tickerStoryContent{
+	overflow: hidden;
+	padding: 0px 5px;
+}
+
+
+.job-comment-body-textarea-group{
+	padding:1px;
+	overflow: auto;
+}
+.apply-box-info{
+	width: auto!important;
+}
+.apply-box-info li{
+	cursor: pointer;
+}
+.application-sidebar-company-view-more{
+	display: inline-block;
+}
+/*
+* liked
+*/
+.liked-true, .liked-true > *{
+	color: blue!important;
+}
+.pitch-comment{
+	overflow: auto;
+}
+.pitch-comment > div{
+	margin-bottom: 15px;
+}
+/*
+* edit
+*/
+.job-edit-title{
+	width: 100%;
+	padding: 5px 7px;
+	font-weight: bold;
+	border: none;
+}
+.job-edit-description{
+	width: 100%;
+	resize: none;
+	height: 120px;
+	padding: 5px 7px;
+}
+.job-edit-title:focus, .job-edit-description:focus, .job-edit-address:focus{
+	outline: none;
+}
+#job-edit-file{
+	margin-left: 7px;
+}
+.job-edit-address{
+	width: 100%;
+	padding: 5px 7px;
+	border: none;
+}

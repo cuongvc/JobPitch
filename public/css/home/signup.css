@@ -1,0 +1,14 @@
+#signup-forgot ul{
+	float: right!important;
+}
+#signup-forgot ul li:hover{
+	color: #cfcfcf;
+}
+#login-form > div{
+	overflow: hidden;
+}
+.form-transition{
+	overflow: hidden;
+	max-height: 0px; 
+}
+

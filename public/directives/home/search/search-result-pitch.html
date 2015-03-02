@@ -1,0 +1,69 @@
+<div id="sidebar" class="col-md-12 col-sm-12 hidden-xs transition_500ms">
+	<div ng-repeat="pitch in SearchResultPitch" class="sidebar-element transition_500ms">
+		<div class="pitch-sidebar-content gray-border">
+			<div class="application-sidebar-applicant">
+				<div class="application pull-left">
+					<div class="application-sidebar-avatar">
+						<img ng-src="{{ pitch.user_avatar }}">
+					</div>	
+				</div>
+				<div class="application-sidebar-header">
+					<p class="application-sidebar-name"><strong ng-bind="pitch.userName"></strong> <a href="/u/{{ pitch.user_id }}" ng-click="ViewNormalUser(pitch.user_id,$event)"><span class="small-text">@<span ng-bind="pitch.userTagName"></span></span></a></p>
+					<p class=" pull-left"><span class="application-sidebar-company-name small-text gray-color"><span>pitch to</span> <strong ng-bind="pitch.short_job_title"></strong> <span>by</span> <span class="gray-color">@</span><span class="gray-color" ng-click="ViewUser(pitch.userId_own_job,$event)" ng-bind="pitch.userTagName_own_job"></span></span></p>
+				</div>
+			</div>
+			<div class="application-sidebar-body">
+				<div class="application-sidebar-apply-content">
+					<p class="pull-left"><strong ng-bind="pitch.description"></strong></p>
+				</div>
+				<div class="application-sidebar-like-share small-text">
+					<ul>
+						<li class="pull-left"><span ng-bind="pitch.interests.number"></span><span ng-click="InterestPitch(pitch)"> interest</span></li>
+						<li class="pull-right"><span ng-bind="pitch.shares.number"></span><span> share</span></li>
+						<li class="pull-right" ng-click="LikePitch(pitch)"><span ng-bind="pitch.likes.number"></span><span> like</span></li>
+						<li class="pull-right" ng-click="ViewPitchcomment(pitch)"><span ng-bind="pitch.comments.numberOfComment"></span> <span> comment</span></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="application-sidebar-company-logo gray-border">
+			<ul class="col-md-36 col-sm-36 col-xs-36">
+				<li ng-repeat="interest in pitch.interests.loadFromServer" class="col-md-12 col-sm-12 col-xs-12">
+					<a href="/user/{{ interest._id }}" ng-click="ViewCompany(interest._id,$event)">
+						<img class="animated fadeIn center-block" ng-src="{{ interest.avatar_small }}" alt="">
+					</a>
+				</li>
+			</ul>
+			<p class="pull-right application-sidebar-company-view-more three-dot" ng-click="LoadMoreInterestLogo()" title="View All">
+				<span></span>
+				<span></span>
+				<span></span>
+			</p>
+		</div>
+		<div class="gray-border application-sidebar-comment animated fadeIn col-md-36 col-sm-36" ng-if="pitch.showComment == true">
+			<div class="application-sidebar-number-comment">
+				<p class="text-right three-dot" ng-click="ViewMorePitchComment(5,pitch)">
+					<span></span>
+					<span></span>
+					<span></span>
+				</p>
+			</div>
+			<div class="sidebar-cmt" ng-repeat="PitchCmt in pitch.comments.list">
+				<div class="sidebar-comment-image pull-left">
+					<img src="{{ PitchCmt.user_avatar }}" alt="">
+				</div>
+				<div class="sidebar-comment-body">
+					<p><strong class="blue-text" ng-bind="PitchCmt.userName"></strong> <span class="normal-text" ng-bind="PitchCmt.content"></span></p>
+				</div>
+			</div>
+			<div class="application-sidebar-comment-box sidebar-cmt">
+				<div class="sidebar-comment-image pull-left">
+					<img src="{{ user.avatar.normal }}" alt="">
+				</div>
+				<div class="sidebar-comment-body">
+					<textarea id="PitchReply" ng-keyup="PostReply(PitchReply,pitch,$event)" ng-model="PitchReply" placeholder="Write a reply"></textarea>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

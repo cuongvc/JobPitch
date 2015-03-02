@@ -1,0 +1,160 @@
+<link rel="stylesheet" type="text/css" href="../css/home/jobs.css">
+<div id="jobs" ng-controller="JobCtrl">
+	<div class="container">
+		<div class="col-md-18 col-sm-18 col-xs-36" id="jobs">
+			<div class="col-md-36 col-sm-36 col-xs-18" ng-repeat="job in SearchResultJobs" id="{{ job._id }}">
+				<div class="job">
+					<div class="image">
+						<img ng-src="{{ job.image }}">
+					</div>
+					<div class="job-content">
+						<div class="job-setting dropdown-toggle"><span class="fb-icon fb-dropdown-setting" id="dropdownMenu-{{ job._id }}" data-toggle="dropdown" aria-expanded="true"></span>
+							<!-- DROPDOWN -->
+							<ul class="dropdown-menu pull-right" role="menu" aria-labelledby="dropdownMenu-{{ job._id }}">
+							    <li role="presentation"><a role="menuitem" tabindex="-1" href="" ng-click="EditJob(job)">Edit</a></li>
+							    <li role="presentation"><a role="menuitem" tabindex="-1" href="">Turn off notification</a></li>
+							    <li class="divider"></li>
+							    <li role="presentation"><a role="menuitem" tabindex="-1" href="">Hide</a></li>
+							    <li role="presentation"><a role="menuitem" tabindex="-1" href="">Delete</a></li>
+							</ul>
+							<!-- DROPDOWN -->
+						</div>
+						<p class="margin-bottom-0"><span class="company-title bold-text normal-text cp-title left-sidebar-blue-text" ng-click="ViewCompanyProfile($event,1)" ng-bind="job.title"></span></p>
+						<p>
+							<span class="small-text gray-color cursor"><i class="fa fa-map-marker"></i></span>
+							<span class="margin-right-10 small-text gray-color cursor" ng-if="job.position.city.long_name != ''" ng-bind="job.position.city.long_name"></span>
+							<span class="margin-right-10 small-text gray-color cursor" ng-if="job.position.city.long_name == '' && job.position.state.long_name != ''" ng-bind="job.position.state.long_name"></span>
+							<span class="margin-right-10 small-text gray-color cursor" ng-if="job.position.city.long_name == '' && job.position.state.long_name == '' && job.position.country.long_name != ''" ng-bind="job.position.country.long_name"></span>
+							<span class="gray-color" ng-bind="job.userName"></span> <a class="gray-color cursor" ng-href="/user/{{ job.user_id }}" ng-click="ViewUser(job.user_id,$event)"><span>@</span><span ng-bind="job.userTagName"></span></a>
+							</p>
+						<p class="job-sort-desc normal-text" ng-bind="job.description"></p>
+					</div>
+					<div class="like-share small-text">
+						<ul>
+							<li class="pull-left" ng-click="ViewPitch(job)"><span ng-bind="job.applications.number"></span> <span>pitch<span ng-if="job.applications.number > 1">s</span></span></li>
+							
+							<li class="pull-right"><span ng-bind="job.shares.number"></span> <span>share</span></li>
+							<li class="pull-right transition_500ms" 
+								ng-mouseover="ViewListLikeJob(job)"
+								ng-mouseout="HiddenListLike(job)">
+								<span ng-bind="job.likes.number"></span> <span ng-click="LikeJob(job)">like</span>
+								<div class="pvh-popover list-like-job pvh-popover-top hidden" ng-if="job.likes.number > 0">
+									<ul>
+										<li ng-repeat="user in job.likes.users" ng-bind="user.userName"></li>
+									</ul>
+								</div>
+							</li>
+							<li class="pull-right"><a href="http://www.facebook.com/share.php?u={{ BASE_URL }}/job/{{ job._id }}&title=[TITLE]"><i class="fa fa-facebook"></i></a></li>
+							<li class="pull-right"><a target="_blank" href="https://plus.google.com/share?url=campcoders.com"><i class="fa fa-google-plus"></i></a></li>
+							<li class="pull-right"><a target="_blank" href="http://twitter.com/home?status={{ job.title }}+{{ BASE_URL }}/post/{{ job._id }}"><i class="fa fa-twitter"></i></a></li>
+							<li class="pull-right"><a target="_blank" href="http://www.linkedin.com/shareArticle?mini=true&url=campcoders.com&title={{ job.title }}&source=campcoders.com"><i class="fa fa-linkedin"></i></a></li>
+						</ul>
+					</div>
+					<!-- APPLY BOX -->
+					<div class="job-comment gray-border apply-box" ng-if="job.showApplyBox == true && user.account_type != 1">
+						<div class="job-comment-avatar apply-box-avatar pull-left">
+							<img ng-src="{{ user.avatar.normal }}" alt="">
+						</div>
+						<div class="job-comment-body">
+							<div class="job-comment-body-textarea-group normal-text">
+								<textarea maxlength="144" ng-model="ApplyDesc" id="ApplyDesc" ng-keyup="ChangeApplyTextAreaHeight($event)" ng-change="ApplyTextAreaChange(ApplyDesc)" placeholder="Your pitch"></textarea>
+							</div>
+							<ul class="apply-box-info pull-left">
+								<li>
+									<span class="pull-right attack-file"  onclick="document.getElementById('attack-input').click();return;"></span>
+								</li>
+								<li>
+									<span class="pull-left"> {{ ApplyDescWordCount }}/144</span>
+								</li>
+							</ul>
+							<input id="attack-input" type="file" class="hidden">
+							<div class="apply-button-group">
+								<div class="btn-apply" ng-click="Apply(job,ApplyDesc)"><i class="fa fa-edit"></i> Pitch</div>
+							</div>
+						</div>
+					</div>
+					<!-- APPLY BOX -->
+					<!-- APPLICANT -->
+					<div class="job-comment gray-border animated fadeIn" ng-repeat="pitch in job.applications.loadFromServer">
+						<div class="job-comment-avatar pull-left">
+							<img class="animated fadeIn" ng-src="{{ pitch.user_avatar }}" alt="">
+						</div>
+						<div class="job-comment-body normal-text">
+							<p class="job-comment-desc"><span><strong class="blue-text" ng-bind="pitch.userName"></strong></span> <span ng-bind="pitch.description" class="normal-text"></span></p>
+							<ul class="small-text pitch-like-share">
+								<li class="cursor pull-right" ng-click="getPitchComment(job,pitch)"><span ng-bind="pitch.comments.numberOfComment"></span> <span>comment</span></li>
+								<li class="cursor pull-right"><span ng-bind="pitch.shares.number"></span> <span>share</span></li>
+								<li class="cursor pull-right"><span ng-bind="pitch.likes.number"></span> <span ng-click="LikePitch(pitch,job)">like</span></li>
+								<li class="cursor pull-right"><span ng-bind="pitch.interests.number"></span> <span ng-click="InterestPitch(pitch,job)">interest</span></li>
+							</ul>
+							<div class="pitch-comment">
+								<div class="animated fadeIn" ng-repeat="cmt in pitch.comments.list">
+									<div class="job-reply-pitch-image pull-left">
+										<img ng-src="{{ cmt.user_avatar }}">
+									</div>
+									<div class="job-reply-pitch-textarea">
+										<span class="blue-text"><strong ng-bind="cmt.userName"></strong></span>
+										<span class="normal-text" ng-bind="cmt.content"></span>
+									</div>
+								</div>
+							</div> <!-- pitch-comment -->
+							<div class="job-reply-pitch animated fadeIn" ng-if="pitch.showReplyForm == true">
+								<div class="job-reply-pitch-image pull-left">
+									<img ng-src="{{user.avatar.normal }}">
+								</div>
+								<div class="job-reply-pitch-textarea">
+									<textarea class="normal-text" placeholder="Write a reply" ng-model="PitchReply" ng-keyup="PostPitchReply(PitchReply,job,pitch,$event)"></textarea>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- APPLICANT -->
+				</div><!-- job -->
+			</div> <!-- col-28 -->
+		</div>
+		<search-result-pitch></search-result-pitch>
+		<left-sidebar></left-sidebar>
+		
+		<!-- Modal -->
+		<div class="modal fade" id="EditModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        <h4 class="modal-title" id="myModalLabel">Edit Job</h4>
+		      </div>
+		      <div class="modal-body">
+		        <div class="form-group">
+			        <input type="text" class="job-edit-title" ng-model="EditJob.title" placeholder="Title">
+			    </div>
+			    <div class="form-group">
+			    	<input type="file" id="job-edit-file" nightfury-onchange-upload="JobEditImage" ng-model="EditImage">
+			    </div>
+			    <div class="form-group">
+			    	<input type="text" class="job-edit-address" ng-model="EditJob.location.address" placeholder="Address">
+			    </div>
+			    <div class="form-group">
+			    	<textarea ng-model="EditJob.description" class="job-edit-description" placeholder="Description"></textarea>
+			    </div>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-primary" ng-click="SaveEdit(EditJob,EditJob.title,EditJob.location.address,EditJob.description)">Save changes</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>	
+		<div id="create-job-crop-image" ng-if="showEditCrop == true">
+			<div class="center-block">
+				<div>
+					<img ng-src="{{ JobEditImage.preview }}" data-on-change="EditJobCropChange" angular-crop="EditJobCropCoverOpts">
+					<button class="fa fa-crop pull-left" ng-click="EditCrop()"> Crop</button>
+					<button class="fa fa-file pull-left" ng-click="ReSelectFile()"> Select file</button>
+				</div>
+			</div>
+		</div>
+
+
+
+
+	</div>
+</div>

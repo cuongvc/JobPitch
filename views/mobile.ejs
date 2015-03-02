@@ -1,0 +1,106 @@
+<html ng-app="MobileApp">
+	<head>
+		<title>JobPitch Mobile Version</title>
+		<base href="http://jobpitch.campcoders.com">
+		<!-- <base href="http://job.dev"> -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+		<script type="text/javascript" src="/bower_components/jquery/dist/jquery.min.js"></script>
+		<script type="text/javascript" src="/bower_components/angular/angular.min.js"></script>
+		
+		<script type="text/javascript" src="/js/global.js"></script>
+		
+		<script type="text/javascript">
+			var STR_API_RECENT = BASE_URL + '/api/recent';
+			<% if(user != undefined){ %>
+				var logedin = true;
+				var avatar_normal = "<%= user.avatar_normal %>"; 
+					avatar_normal = avatar_normal.replace(/&amp;/g, "&").replace(/&gt;/g, ">").replace(/&lt;/g, "<").replace(/&quot;/g, '"');
+				var avatar_small = "<%= user.avatar_small %>"; 
+					avatar_small = avatar_small.replace(/&amp;/g, "&").replace(/&gt;/g, ">").replace(/&lt;/g, "<").replace(/&quot;/g, '"');
+				var avatar_origin = "<%= user.avatar %>"; 
+					avatar_origin = avatar_origin.replace(/&amp;/g, "&").replace(/&gt;/g, ">").replace(/&lt;/g, "<").replace(/&quot;/g, '"');
+				var user = {
+						_id: "<%= user._id %>",
+						token: "<%= user.token %>",
+						account_type: "<%= user.type_account %>",
+						avatar: {
+							normal: avatar_normal,
+							small: avatar_small,
+							origin: avatar_origin,
+						},
+						username: "<%= user.userName %>",
+						notifications: "<% JSON.stringify(user.notifications) %>",
+					}
+				console.log(user);
+			<% }else{ %>
+				document.location.href = "/login";
+			<% } %>
+			// Load jobs
+			var JobScroll = {
+				start: 0,
+				limit: 4,
+				loading: false,
+				stop: false,
+			};
+			var PitchScroll = {
+				start: 0,
+				limit: 5,
+				loading: false,
+				stop: false,
+			};
+			var jobs = new Array();
+				if(jobs.length == 0) JobScroll.start = 0;
+			var pitchs = new Array();
+				if(pitchs.length == 0) PitchScroll.start = 0;
+			var loading = false;
+		</script>
+		<!-- materialize -->
+		<script type="text/javascript" src="/bower_components/materialize/dist/js/materialize.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="/bower_components/materialize/dist/css/materialize.min.css">
+	
+		<!-- ngRoute -->
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-route.min.js"></script>
+
+		<!-- ANIMATED -->
+		<link rel="stylesheet" type="text/css" href="/bower_components/animate.css/animate.min.css">
+
+		<!-- SOCKET IO -->
+		<script type="text/javascript" src="http://jobpitch.campcoders.com:6970/socket.io/socket.io.js"></script>
+		
+		<script type="text/javascript">
+			var IO = BASE_URL + ":6970/notify?user_id=" + user._id +'&token='+user.token;
+			IO = io.connect(IO);
+		</script>
+		
+		<!-- Mobile Component -->
+		<script type="text/javascript" src="/js/mobile/mobile.nav.js"></script>
+		<script type="text/javascript" src="/js/mobile/component/mobile.jobs.js"></script>
+		<!-- Mobile Component -->
+		<!-- service -->
+		<script type="text/javascript" src="/js/service/route.service.js"></script>
+		<script type="text/javascript" src="/js/service/user.js"></script>
+		<script type="text/javascript" src="/js/service/pitch.service.js"></script>
+		<script type="text/javascript" src="/js/service/job.service.js"></script>
+		<script type="text/javascript" src="/js/service/hashtag.service.js"></script>
+		<script type="text/javascript" src="/js/service/like.service.js"></script>
+		<script type="text/javascript" src="/js/service/interest.service.js"></script>
+		<script type="text/javascript" src="/js/service/socket.service.js"></script>
+
+
+		<script type="text/javascript" src="/js/mobile/mobile.template.js"></script>	
+		<script type="text/javascript" src="/js/mobile/mobile.index.js"></script>	
+		<script type="text/javascript" src="/js/mobile/mobile.pitch.js"></script>	
+		<script type="text/javascript" src="/js/mobile/mobile.notification.js"></script>	
+		<script type="text/javascript" src="/js/mobile/mobile.message.js"></script>	
+
+		<!-- css -->
+		<link rel="stylesheet" type="text/css" href="/css/home/template.css">
+		<link rel="stylesheet" type="text/css" href="/bower_components/fontawesome/css/font-awesome.min.css">
+		<link rel="stylesheet" type="text/css" href="/css/mobile/nav.css">
+
+	</head>
+	<body>
+		<mobile-nav></mobile-nav>
+		<div ng-view></div>
+	</body>
+</html>

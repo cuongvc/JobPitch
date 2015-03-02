@@ -1,0 +1,47 @@
+
+<div id="create-job">
+	<div id="create-job-btn">
+		<button ng-click="ShowForm(true)" ng-if="ShowCreateJobForm == false">	
+			<img class="center-block" id="create-job-plus" src="../images/plus.png" alt="">
+			<img class="center-block hidden" id="create-job-edit" src="../images/edit.png" alt="">
+		</button>
+	</div>
+	<div id="create-job-form" class="hidden">
+		<div id="create-job-crop-image" ng-if="showCrop == true">
+			<div class="center-block">
+				<div>
+					<img ng-src="{{ CreateJobImage.preview }}" data-on-change="CreateJobCropChange" angular-crop="CreateJobCropCoverOpts">
+					<button class="fa fa-crop pull-left" ng-click="Crop()"> Crop</button>
+					<button class="fa fa-file pull-left" ng-click="ReSelectFile()"> Select file</button>
+				</div>
+			</div>
+		</div>
+		<div id="job-form">
+			<div class="job-form-nav">
+				<ul>
+					<li ng-click="ShowForm(false)"><span class="gmail-icon job-form-close"></span></li>
+					<li><span class="gmail-icon job-form-fullscreen"></span></li>
+				</ul>
+			</div>
+	    	<div class="form">
+		    	<input class="semibold padding-left-10" id="new-job-title" type="text" ng-model="JobTitle" placeholder="Job title" maxlength="160">
+				<div class="form-group">
+			    	<textarea class="padding-left-10" placeholder="Job description" ng-model="JobDesc" maxlength="255"></textarea>
+			    </div>		    	
+				<div class="create-job-file">
+			    	<input class="hidden" id="create-job-file-input" type="file" ng-model="Image" nightfury-onchange-upload="CreateJobImage">
+			    	<div class="pull-left">
+			    		<i class="fa fa-camera" ng-click="SelectFile()"></i>
+			    	</div>
+			    	<div class="overflowhidden">
+						<div id="create-job-image-preview" ng-style="PreviewImageStyle"></div>
+			    	</div>
+			    </div>		    	
+			    <div class="form-group">
+			    	<input class="padding-left-10" type="text" id="create-job-location">
+			    </div>
+			    <div class="create-job-button pull-left margin-left-10" ng-click="CreateJob(JobTitle,JobDesc)">Create</div>
+	    	</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,125 @@
+<html>
+<head>
+	<title>JobPitch</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<base href="http://jobpitch.campcoders.com">
+	<!-- <base href="http://job.dev">	  -->
+
+	<script type="text/javascript" src="/bower_components/jquery/dist/jquery.min.js"></script>
+	<script type="text/javascript" src="/bower_components/angular/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-route.min.js"></script>
+
+
+
+	<script type="text/javascript" src="/bower_components/nightfury_bootstrap_36grid/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/js/global.js"></script>
+	<link rel="stylesheet" type="text/css" href="/bower_components/nightfury_bootstrap_36grid/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/bower_components/nightfury_bootstrap_36grid/css/bootstrap-theme.min.css">
+	<script type="text/javascript">
+		var STR_API_RECENT = BASE_URL + '/api/recent';
+		<% if(user != undefined){ %>
+			var user = <%-JSON.stringify(user)%>;
+			var logedin = true;
+			
+		<% }else{ %>
+			document.location.href = "/login";
+		<% } %>
+		var avatar_normal = user.avatar_normal; 
+			avatar_normal = avatar_normal.replace(/&amp;/g, "&").replace(/&gt;/g, ">").replace(/&lt;/g, "<").replace(/&quot;/g, '"');
+		var avatar_small = user.avatar_small; 
+			avatar_small = avatar_small.replace(/&amp;/g, "&").replace(/&gt;/g, ">").replace(/&lt;/g, "<").replace(/&quot;/g, '"');
+		var avatar_origin = user.avatar; 
+			avatar_origin = avatar_origin.replace(/&amp;/g, "&").replace(/&gt;/g, ">").replace(/&lt;/g, "<").replace(/&quot;/g, '"');
+		user.avatar = {
+				normal: avatar_normal,
+				small: avatar_small,
+				origin: avatar_origin,
+			},
+		user.username = user.userName;
+		console.log(user);
+
+	</script>
+	<!-- ANIMATED -->
+	<link rel="stylesheet" type="text/css" href="/bower_components/animate.css/animate.min.css">
+	<!-- ANIMATED -->
+	<!-- SOCKET IO -->
+	<script type="text/javascript" src="http://jobpitch.campcoders.com:6970/socket.io/socket.io.js"></script>
+	
+	<script type="text/javascript">
+		var IO = BASE_URL + ":6970/notify?user_id=" + user._id +'&token='+user.token;
+		IO = io.connect(IO);
+	</script>
+	<!-- SOCKET IO -->
+	<!-- Angular Crop -->
+	<script type="text/javascript" src="/bower_components/angular-crop/src/angular-crop.js"></script>
+	<script type="text/javascript" src="/bower_components/jcrop/js/jquery.Jcrop.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="/bower_components/jcrop/css/jquery.Jcrop.css">
+	<!-- USER SERVICE -->
+	<script type="text/javascript" src="js/service/user.js"></script>
+	<!-- USER SERVICE -->
+	<!-- ANGULAR BOOTSTRAP -->
+	<script type="text/javascript" src="bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
+	<!-- ANGULAR BOOTSTRAP -->
+	<script type="text/javascript" src="/bower_components/nightfury/src/database.js"></script>
+	<script type="text/javascript" src="/bower_components/nightfury/src/upload.js"></script>
+
+	<!-- GOOGLE MAP -->
+	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDtiKSl4UI6eEFMwgIo-klAeGFEzzppTPk"></script>
+	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
+	<!-- ANGULAR BOOTSTRAP -->
+	<script type="text/javascript" src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+
+	<script type="text/javascript" src="/js/home/header.js"></script>
+	<script type="text/javascript" src="/js/home/setting.js"></script>
+	<script type="text/javascript" src="/js/home/create-job.js"></script>
+	<script type="text/javascript" src="/js/home/jobs.js"></script>
+	<script type="text/javascript" src="/js/company/company-jobs.js"></script>
+	<script type="text/javascript" src="/js/company/company-about.js"></script>
+	<script type="text/javascript" src="/js/company/company-contact.js"></script>
+	<script type="text/javascript" src="/js/home/left-sidebar.js"></script>
+	<script type="text/javascript" src="/js/home/application-sidebar.js"></script>
+	<script type="text/javascript" src="/js/home/job-popup.js"></script>
+
+	<!-- SERVICE -->
+	<script type="text/javascript" src="/js/service/notification.service.js"></script>
+	<script type="text/javascript" src="/js/service/pitch.service.js"></script>
+	<script type="text/javascript" src="/js/service/job.service.js"></script>
+	<script type="text/javascript" src="/js/service/hashtag.service.js"></script>
+	<script type="text/javascript" src="/js/service/like.service.js"></script>
+	<script type="text/javascript" src="/js/service/interest.service.js"></script>
+	<script type="text/javascript" src="/js/service/route.service.js"></script>
+	<script type="text/javascript" src="/js/service/socket.service.js"></script>
+	<script type="text/javascript" src="/js/service/search.service.js"></script>
+	<script type="text/javascript" src="/js/service/comment.service.js"></script>
+	<script type="text/javascript" src="/js/service/company.service.js"></script>
+	<script type="text/javascript" src="/js/service/google.map.js"></script>
+	<!-- SERVICE -->
+
+	<script type="text/javascript" src="/js/home/template.js"></script>
+	<script type="text/javascript" src="/js/home/index.js"></script>
+	<script type="text/javascript" src="/js/company/profile.js"></script>
+	<script type="text/javascript" src="/js/user/user-profile.js"></script>
+	<script type="text/javascript" src="/js/home/forgot-password.js"></script>
+	<script type="text/javascript" src="/js/home/view-job.js"></script>
+	<script type="text/javascript" src="/js/home/search-result.js"></script>
+	<script type="text/javascript" src="/js/home/search-tag-result.js"></script>
+
+	<!-- css -->
+	<link rel="stylesheet" type="text/css" href="/bower_components/fontawesome/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="/css/home/template.css">
+	<link rel="stylesheet" type="text/css" href="css/home/header.css">
+	<link rel="stylesheet" type="text/css" href="css/home/create-job.css">
+	<link rel="stylesheet" type="text/css" href="css/home/jobs.css">
+	<link rel="stylesheet" type="text/css" href="css/home/application-sidebar.css">
+	<link rel="stylesheet" type="text/css" href="css/home/left-sidebar.css">
+	<link rel="stylesheet" type="text/css" href="css/home/company-profile.css">
+	<link rel="stylesheet" type="text/css" href="css/home/job-popup.css">
+	<!-- css -->
+
+
+
+</head>
+<body ng-app="TemplateApp" ng-view>
+	
+</body>
+</html>

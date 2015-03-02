@@ -1,0 +1,24 @@
+
+
+.profile-image img{
+	width: 50px;
+	height: 50px;
+	border: 1px solid #eee;
+	border-radius: 100%;
+}
+.edit-profile{
+	background: #fff;
+	padding: 15px 0px;
+}
+.edit-profile h1{
+	margin: 0px;
+}
+.edit-profile .glyphicon-edit{
+	margin-top: 15px;
+	margin-left: 10px;
+	color: green;
+	cursor: pointer;
+}
+.editable p{
+	border: 1px solid #fff;
+}

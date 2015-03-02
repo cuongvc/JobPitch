@@ -1,0 +1,117 @@
+#sidebar{
+	margin-top: 40px;
+	line-height: 18px;
+	border-radius: 4px;
+	overflow: auto;
+}
+#sidebar::scrollbar{
+	width: 2px;
+}
+#sidebar::-webkit-scrollbar{
+	width: 2px;
+}
+.sidebar-element{
+	overflow: auto;
+	margin-bottom: 15px;
+	background: #fff;
+	padding: 0px;
+	border-radius: 4px;
+}
+.application-sidebar-avatar img{
+	width: 48px;
+	height: 48px;
+	margin-right: 5px;
+}
+.application-sidebar-applicant{
+	overflow: auto;
+	padding: 0px 5px;
+}
+.application-sidebar-body{
+	overflow: hidden;
+	width: 100%;
+	padding: 5px;
+}
+.application-sidebar-name{
+	text-shadow: none;
+	cursor: pointer;
+}
+.application-sidebar-company-name{
+	cursor: pointer;
+}
+.application-sidebar-header > p:first-child{
+	margin-top: 5px; 
+	margin-bottom: 0px;
+}
+.application-sidebar-apply-content strong{
+	color: #0084B4;
+}
+.application-sidebar-like-share ul{
+	padding: 0px;
+	text-align: right;
+	width: 100%;
+}
+.application-sidebar-like-share ul li{
+	cursor: pointer;
+	margin-left: 10px;
+}
+.application-sidebar-like-share ul li:first-child{
+	margin-left: 0px;
+}
+.borderBottom{
+	border-bottom: 1px solid #eee;
+	margin-bottom: 15px;
+}
+.application-sidebar-like-share ul li:hover{
+	text-decoration: underline;
+}
+.application-sidebar-comment{
+	margin-top: 10px;
+	padding: 5px;
+	width: 100%;
+}
+.application-sidebar-number-comment{
+}
+.application-sidebar-number-comment p{
+	margin-top: 5px;
+}
+.application-sidebar-number-comment p:hover{
+	text-decoration: underline;
+	cursor: pointer;
+}
+.sidebar-cmt{
+	overflow: auto;
+	margin-bottom: 5px;
+	transition: all 0.5s;
+	-webkit-transition: all 0.5s;
+}
+.sidebar-comment-image img{
+	width: 40px;
+	height: 40px;
+	margin-right: 5px;
+}
+.sidebar-comment-body{
+	overflow: auto;
+}
+.application-sidebar-company-logo{
+	padding: 0px 5px;
+}
+.application-sidebar-company-logo li{
+	margin-top: 10px;
+}
+.application-sidebar-company-logo li img{
+	width: 60%;
+	border-radius: 100%;
+	cursor: pointer;
+	/*border-radius: 100%;*/
+}
+.pitch-sidebar-content{
+	margin-bottom: 10px;
+	padding: 5px;
+}
+.application-sidebar-comment-box textarea{
+	width: 100%;
+	height: auto;
+	resize: none;
+	padding: 3px;
+	border-radius: 4px;
+}

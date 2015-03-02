@@ -1,0 +1,150 @@
+<div id="header">
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="col-md-36 col-sm-36 col-xs-36">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" ng-click="goHome()"><i class="fa fa-home"></i></a>
+                </div>
+                <div id="navbar-left">
+                    <ul class="nav navbar-nav navbar-left">
+                        <li>
+                            <a ng-click="LoadNotifications($event)"><i class="fa fa-bell"></i></a>
+                            <span class="notification-icon" ng-bind="notifications.unread" ng-if="notifications.unread > 0"></span>
+                            <div class="notification-box hidden">
+                                <ul>
+                                    <li ng-repeat="notification in notifications.list" class="cursor">
+                                        <a href="{{ notification.data.url }}" ng-click="ViewNotification(notification,$event)">
+                                          <div class="notification-box-image pull-left">
+                                              <img ng-src="{{ notification.image }}" alt="">
+                                          </div>
+                                          <div class="notification-box-body overflowhidden">
+                                              <span><strong ng-bind="notification.user"></strong></span> <span>
+                                              <strong ng-bind="notification.action"></strong></span> <span ng-bind="notification.content"></span>
+                                          </div>
+                                        </a>
+                                    </li>
+                                    <li class="three-dot">
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- notification-box -->
+                        </li>
+                        <li>
+                            <a><i class="fa fa-comments"></i></a>
+                            <span class="notification-icon">69</span>
+                            <div class="notification-box hidden">
+                                <ul>
+                                    <li ng-repeat="notification in notifications.list" class="cursor">
+                                        <div class="notification-box-image pull-left">
+                                            <img ng-src="{{ notification.image }}" alt="">
+                                        </div>
+                                        <div class="notification-box-body chat-notification overflowhidden">
+                                            <p><strong ng-bind="notification.user"></strong>
+                                            </p>
+                                            <p class="chat-sort-text">Lorem ipsum dolor sit amet, consectetur ...</p>
+                                        </div>
+                                    </li>
+                                    <li class="three-dot">
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- notification-box -->
+                        </li>
+                        <!-- search form -->
+                        <form class="navbar-form navbar-left" role="search">
+                            <div class="form-group">
+                                <div class="inner-addon right-addon">
+                                    <i class="glyphicon glyphicon-search" ng-click="btnSearch_click(HeaderSeachValue)"></i>
+                                    <input type="text" id="search-input" class="form-control" ng-model="HeaderSeachValue" ng-keydown="StopMoveCursor($event)" ng-keyup="ChangeHeaderSearchValue(HeaderSeachValue,$event)">
+                                    <div id="search-suggest">
+                                        <ul id="suggest-hashtag" class="hidden">
+                                            <li class="suggest-title">
+                                                <p>HASHTAG</p>
+                                            </li>
+                                            <li class="suggest-data hashtag_{{ key }}" ng-repeat="(key,hashtag) in suggest_matches_hashtag" ng-mouseover=SuggestHashTagHover(key)>
+                                                <a href="/tag/{{ hashtag.name }}" ng-click="SearchSuggestHashTag(hashtag.name,$event)">
+                                                    <p><span>#</span><span ng-bind="hashtag.name"></span></p>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div> <!-- search-suggest -->
+                                </div>
+                            </div>
+                        </form>
+                        <li>
+                            <a href="" class="current_location" ng-click="ChangeCurrentLocation($event)">
+                                <span id="current-location-str"><span ng-bind="user.position.city.long_name"></span>, <span ng-bind="user.position.country.long_name"></span></span>
+                                <input type="text" class="change-location-input hidden" id="searchTextField">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="" class="switch-to-current-location">
+                                <span ng-click="SwitchToCurrent()" ng-if="user.position.city.long_name != user.current.city.long_name || user.position.country.long_name != user.current.country.long_name">Current</span>
+                            </a>
+                        </li>
+                        <!-- search form -->
+                    </ul>
+                </div>
+                <!-- navbar-left -->
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right" ng-if="logedin == true">
+                        <li><img ng-src="{{ user.avatar.normal }}" alt="">
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" ng-bind="user.username"><span class="fa fa-cog"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="#" ng-click="ShowPage(page.setting)">Settings</a>
+                                </li>
+                                <li ng-if="user.type_account == 1"><a href="/user/{{ user._id }}">Profile</a>
+                                </li>
+                                <li ng-if="user.type_account != 1"><a href="/u/{{ user._id }}">Profile</a>
+                                </li>
+                                <li><a href="#">Something else here</a>
+                                </li>
+                                <li class="divider"></li>
+                                <li><a href="/logout">Logout</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+        </div>
+        <!-- /.container -->
+    </nav>
+    <!-- Modal -->
+    <div class="modal fade" id="change-current-location-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Enter your city</h4>
+                </div>
+                <div class="modal-body">
+                    <input type="text" class="form-control" id="searchTextField">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" ng-click="SaveChangeLocation()">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,36 @@
+.tags ul{
+	display: inline-block;
+	list-style: none;
+}
+.tags ul li{
+	display: inline-block;
+	margin-right: 20px;
+	padding: 5px 10px;
+	background: #7f8c8d;
+	border-radius: 1px;
+}
+.tags ul li a{
+	text-decoration: none;
+	font-family: 'Proxima Nova';
+	color: #ecf0f1;
+}
+.tag-color{
+	color: #0084B4;
+}
+.job-tag-result{
+	border-bottom: 1px solid #eee;
+	margin-bottom: 20px;
+}
+.tag-result-body{
+	padding: 20px 30px 10px 30px;
+}
+.tag-like-share{
+	padding: 0px 30px 10px 30px;
+}
+.tag-image img{
+	width: 100%;
+}
+.tag-like-share ul{
+	width: 100%;
+	text-align: right;
+}
