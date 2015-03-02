@@ -82,15 +82,6 @@ module.exports				=	function(req, res){
               }
             )  
           }
-        },
-
-        function(next){
-          if (skype != '' && phone != '' && companyEmail != ''){
-            user_exist.Verify(skype, phone, companyEmail, function(){
-              next(null);
-            })
-          } else
-              next(null);
         }
 
       ], function(err){
