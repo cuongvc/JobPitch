@@ -1,6 +1,10 @@
 	var BASE_URL              = 'http://job.dev';
 	
+<<<<<<< HEAD
 	if(document.location.host == 'jobthrow.com') BASE_URL = 'http://jobthrow.com';
+=======
+	if(document.location.host == 'jobpitch.campcoders.com') BASE_URL = 'http://jobpitch.campcoders.com';
+>>>>>>> b604691a3d9b158401d818acac2790782976184e
 	
 	var STR_UPLOAD_IMAGE         = BASE_URL + '/api/upload_photo';
 	var STR_API_CREATE_JOB       = BASE_URL + '/api/create_job';

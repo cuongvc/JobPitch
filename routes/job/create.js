@@ -82,6 +82,7 @@ module.exports				=	function(req, res){
               }
             )  
           }
+<<<<<<< HEAD
         },
 
         function(next){
@@ -91,6 +92,8 @@ module.exports				=	function(req, res){
             })
           } else
               next(null);
+=======
+>>>>>>> b604691a3d9b158401d818acac2790782976184e
         }
 
       ], function(err){
@@ -102,8 +105,11 @@ module.exports				=	function(req, res){
                   position, link_direct, time, position.country.short_name, 
                   function(job) {
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> b604691a3d9b158401d818acac2790782976184e
                   job.save(function(err) {
                       user_exist.addJob(job._id);
                       respon_object(res, job);

@@ -60,7 +60,10 @@ var SearchService = angular.module('search.service',[]);
 			
 			if(value == undefined) return suggest_matches;
 			
+<<<<<<< HEAD
 			value = value.substring(1);
+=======
+>>>>>>> b604691a3d9b158401d818acac2790782976184e
 			value = value.toLowerCase();
 			var strLength = value.length;
 			hashtags.forEach(function(v,k){

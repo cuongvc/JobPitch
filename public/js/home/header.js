@@ -175,7 +175,11 @@ Header.controller('HeaderCtrl',function($rootScope,$scope,$http,$routeParams,SOC
 
 	
 	function addNewNotification(newNotifi){
+<<<<<<< HEAD
 		// notifications.list.unshift(newNotifi);
+=======
+		notifications.list.unshift(newNotifi);
+>>>>>>> b604691a3d9b158401d818acac2790782976184e
 		notifications.unread++;
 		$scope.notifications = notifications;
 		$scope.$apply();
@@ -331,7 +335,11 @@ Header.controller('HeaderCtrl',function($rootScope,$scope,$http,$routeParams,SOC
 
 
 		suggest_matches_hashtag = SEARCH.findSimilarSearchHashtag(suggest_hashtag,value);
+<<<<<<< HEAD
 		if(suggest_matches_hashtag.length > 0 && value.charAt(0) == '#'){
+=======
+		if(suggest_matches_hashtag.length > 0){
+>>>>>>> b604691a3d9b158401d818acac2790782976184e
 			showSuggestHashtag             = true;
 			$scope.showSuggestHashtag      = showSuggestHashtag;
 			$scope.suggest_matches_hashtag = suggest_matches_hashtag;
