@@ -1,6 +1,32 @@
 var LikeService = angular.module('like.service',[]);
 LikeService.service('LIKE',function($http,$q){
 	/*
+	* create Like Pitch Data
+	*/
+	this.createLikePitchData = function(user,pitch){
+		return {
+			user_id        : user._id,
+			token          : user.token,
+			type_like      : 2,
+			job_id         : '',
+			application_id :  pitch._id,
+			comment_id     :  '',
+		};
+	}
+	/*
+	* create like job data
+	*/
+	this.createLikeJobData = function(user,job){
+		return {
+			user_id        : user._id,
+			token          : user.token,
+			type_like      : 1,
+			job_id         : job._id,
+			application_id :  '',
+			comment_id     :  '',
+		};
+	}
+	/*
 	* like a pitch
 	*/
 	this.LikePitch = function(data){
@@ -13,23 +39,23 @@ LikeService.service('LIKE',function($http,$q){
 	/*
 	* LikePitchHandler
 	*/
-	this.LikePitchHandler = function(jobs,job,pitch,user_id){
-		var index_job = jobs.indexOf(job);
-		var index_pitch = job.applications.loadFromServer.indexOf(pitch);
-		var index_like_user = pitch.likes.list.indexOf(user_id);
-		if(pitch.likes.liked && index_like_user > -1){
-			pitch.likes.liked = false;
-			pitch.likes.list.splice(index_like_user,1);
-			pitch.likes.number--;
-		}else{
-			pitch.likes.liked = true;
-			pitch.likes.list.push(user_id);
-			pitch.likes.number++;
-		}
-		job.applications.loadFromServer[index_pitch] = pitch;
-		jobs[index_job] = job;
-		return jobs;
-	}
+	// this.LikePitchHandler = function(jobs,job,pitch,user_id){
+	// 	var index_job = jobs.indexOf(job);
+	// 	var index_pitch = job.applications.loadFromServer.indexOf(pitch);
+	// 	var index_like_user = pitch.likes.list.indexOf(user_id);
+	// 	if(pitch.likes.liked && index_like_user > -1){
+	// 		pitch.likes.liked = false;
+	// 		pitch.likes.list.splice(index_like_user,1);
+	// 		pitch.likes.number--;
+	// 	}else{
+	// 		pitch.likes.liked = true;
+	// 		pitch.likes.list.push(user_id);
+	// 		pitch.likes.number++;
+	// 	}
+	// 	job.applications.loadFromServer[index_pitch] = pitch;
+	// 	jobs[index_job] = job;
+	// 	return jobs;
+	// }
 	this.changeLikeSidebar = function(pitchs,pitch,user_id){
 		pitchs.forEach(function(v,k){
 			if(v._id == pitch._id){
@@ -47,6 +73,19 @@ LikeService.service('LIKE',function($http,$q){
 			}
 		})
 		return pitchs;
+	}
+	this.LikePitchHandle = function(pitch,user_id){
+		var index_like_user = pitch.likes.list.indexOf(user_id);
+		if(pitch.likes.liked && index_like_user > -1){
+			pitch.likes.liked = false;
+			pitch.likes.list.splice(index_like_user,1);
+			pitch.likes.number--;
+		}else{
+			pitch.likes.liked = true;
+			pitch.likes.list.push(user_id);
+			pitch.likes.number++;
+		}
+		return pitch;
 	}
 	/*
 	* like pitch
@@ -88,9 +127,37 @@ LikeService.service('LIKE',function($http,$q){
 		})
 		return defferer.promise;
 	}
-	this.LikeJobHandler = function(jobs,job,user){
-		var index           = jobs.indexOf(job);
-		var index_like_user = job.likes.list.indexOf(user._id);
+	// this.LikeJobHandler = function(jobs,job,user){
+	// 	var index           = jobs.indexOf(job);
+	// 	var index_like_user = job.likes.list.indexOf(user._id);
+	// 	if(job.likes.liked && index_like_user > -1){
+	// 		job.likes.liked = false;
+	// 		job.likes.number--;
+	// 		job.likes.list.splice(index_like_user,1);
+	// 		job.likes.users.forEach(function(v,k){
+	// 			if(v._id == user._id){
+	// 				job.likes.users.splice(k,1);
+	// 			}
+	// 		})
+	// 	}else{
+	// 		job.likes.liked = true;
+	// 		job.likes.list.push(user._id);
+	// 		job.likes.number++;
+	// 		var me = {
+	// 				_id: user._id,
+	// 				avatar: user.avatar.origin,
+	// 				avatar_small: user.avatar.small,
+	// 				avatar_normal: user.avatar.normal,
+	// 				userName: user.username,
+	// 			};
+	// 		job.likes.users.push(me);
+	// 	}
+	// 	job.likes.loaded = false;
+	// 	jobs[index] = job;
+	// 	return jobs;
+	// }
+	this.LikeJobHandle = function(job,user_id){
+		var index_like_user = job.likes.list.indexOf(user_id);
 		if(job.likes.liked && index_like_user > -1){
 			job.likes.liked = false;
 			job.likes.number--;
@@ -114,8 +181,7 @@ LikeService.service('LIKE',function($http,$q){
 			job.likes.users.push(me);
 		}
 		job.likes.loaded = false;
-		jobs[index] = job;
-		return jobs;
+		return job;
 	}
 	this.addLikeJob = function(jobs,job_id,id_user_make_notify){
 		jobs.forEach(function(v,k){
@@ -134,5 +200,17 @@ LikeService.service('LIKE',function($http,$q){
 			}
 		})
 		return jobs;
+	}
+	/*
+	* like pitch broadcast handle
+	*/
+	this.LikePitchBroadcastHandle = function(pitchs, pitch, user){
+		pitchs.forEach(function(v,k){
+			if(v._id == pitch._id){
+				pitchs.splice(k,1);
+				pitchs.unshift(pitch);
+			}
+		})
+		return pitchs;
 	}
 })

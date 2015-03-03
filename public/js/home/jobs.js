@@ -1,4 +1,4 @@
-var Jobs = angular.module('jobs',['nightfury-upload','application-sidebar','left-sidebar','user-service','ui.bootstrap.popover','pitch.service','job.service','hashtag.service','like.service','interest.service','route.service','socket.service']);
+var Jobs = angular.module('jobs',['nightfury-upload','application-sidebar','left-sidebar','user-service','ui.bootstrap.popover','pitch.service','job.service','hashtag.service','like.service','interest.service','route.service','socket.service','comment.service']);
 Jobs.directive('jobs',function(){
 	return {
 		restrict: 'E',
@@ -9,7 +9,7 @@ Jobs.directive('jobs',function(){
 		controller: 'JobCtrl',
 	}
 })
-Jobs.controller('JobCtrl',function($rootScope,$scope,$http,USER,PITCH,JOB,HASHTAG,LIKE,INTEREST,ROUTE,SOCKET){
+Jobs.controller('JobCtrl',function($rootScope,$scope,$http,USER,PITCH,JOB,HASHTAG,LIKE,INTEREST,ROUTE,SOCKET,COMMENT){
 	/*
 	* View user
 	*/
@@ -18,26 +18,6 @@ Jobs.controller('JobCtrl',function($rootScope,$scope,$http,USER,PITCH,JOB,HASHTA
 	}
 	
 	
-	/*************************************************************************************************************/
-											/*View Pitch*/
-	/*************************************************************************************************************/
-	$scope.ViewPitch = function(job){
-		var data = {
-		    user_id: $rootScope.user._id,
-		    token: $rootScope.user.token,
-		    job_id: job._id,
-		}
-		var PitchService = PITCH.getPitch(data);
-		PitchService.then(function(response){
-			if(response.error_code == 0){
-				jobs = PITCH.getPitchHandler(jobs,job,$rootScope.user._id,response.app);
-				console.log(jobs);
-				$scope.jobs = jobs;
-			}else{
-				alert(response.msg);
-			}
-		})
-	}
 
 	$scope.ViewCompanyProfile = function(evt,id){
 		evt.stopPropagation();
@@ -45,24 +25,24 @@ Jobs.controller('JobCtrl',function($rootScope,$scope,$http,USER,PITCH,JOB,HASHTA
 	/*************************************************************************************************************/
 											/*PITCH COMMENT*/
 	/*************************************************************************************************************/
-	$scope.getPitchComment = function(job,pitch){
-		if(pitch.loaded == true) return;
+	// $scope.getPitchComment = function(job,pitch){
+	// 	if(pitch.loaded == true) return;
 		
-		var data = {
-			user_id: $rootScope.user._id,
-			token: $rootScope.user.token,
-			comments: pitch.comment,
-		}
-		var JobService = PITCH.getPitchComment(data);
-			JobService.then(function(response){
-				if(response.error_code == 0){
-					jobs = PITCH.getPitchCommentHandler(jobs,job,pitch,response.comment);
-					$scope.jobs = jobs;
-				}else{
-					alert(response.msg);
-				}
-			})
-	}
+	// 	var data = {
+	// 		user_id: $rootScope.user._id,
+	// 		token: $rootScope.user.token,
+	// 		comments: pitch.comment,
+	// 	}
+	// 	var JobService = COMMENT.getPitchComment(data);
+	// 		JobService.then(function(response){
+	// 			if(response.error_code == 0){
+	// 				jobs = PITCH.getPitchCommentHandler(jobs,job,pitch,response.comment);
+	// 				$scope.jobs = jobs;
+	// 			}else{
+	// 				alert(response.msg);
+	// 			}
+	// 		})
+	// }
 	/*************************************************************************************************************/
 											/*PITCH*/
 	/*************************************************************************************************************/
@@ -83,28 +63,28 @@ Jobs.controller('JobCtrl',function($rootScope,$scope,$http,USER,PITCH,JOB,HASHTA
 	    if(height < 60) height = 60;
 	    $("#ApplyDesc").css({height: height});
 	}
-	$scope.Apply = function(job, ApplyDesc){
-		var data = {
-			user_id: $rootScope.user._id,
-			token: $rootScope.user.token,
-			job_id: job._id,
-			title: "",
-			description: ApplyDesc,
-			hash_tag: HASHTAG.findHashTag(ApplyDesc),
-			file: '',
-		};
-		console.log('post New Pitch:',data);
-		$('#ApplyDesc').val('');
-		PitchService = PITCH.postNewPitch(data);
-		PitchService.then(function(response){
-			if(response.error_code == 0){
-				jobs = PITCH.postNewPitchHandler(jobs,job,response.application);
-				$scope.jobs = jobs;
-			}else{
-				alert(response.msg);
-			}
-		})
-	}
+	// $scope.Apply = function(job, ApplyDesc){
+	// 	var data = {
+	// 		user_id: $rootScope.user._id,
+	// 		token: $rootScope.user.token,
+	// 		job_id: job._id,
+	// 		title: "",
+	// 		description: ApplyDesc,
+	// 		hash_tag: HASHTAG.findHashTag(ApplyDesc),
+	// 		file: '',
+	// 	};
+	// 	console.log('post New Pitch:',data);
+	// 	$('#ApplyDesc').val('');
+	// 	PitchService = PITCH.postNewPitch(data);
+	// 	PitchService.then(function(response){
+	// 		if(response.error_code == 0){
+	// 			jobs = PITCH.postNewPitchHandler(jobs,job,response.application);
+	// 			$scope.jobs = jobs;
+	// 		}else{
+	// 			alert(response.msg);
+	// 		}
+	// 	})
+	// }
 	
 	/*************************************************************************************************************/
 											/*SHARE*/
@@ -126,26 +106,7 @@ Jobs.controller('JobCtrl',function($rootScope,$scope,$http,USER,PITCH,JOB,HASHTA
 	/*************************************************************************************************************/
 											/*LIKE*/
 	/*************************************************************************************************************/
-	$scope.LikeJob = function(job){
-		var data = {
-			user_id        : $rootScope.user._id,
-			token          : $rootScope.user.token,
-			type_like      : 1,
-			job_id         : job._id,
-			application_id :  '',
-			comment_id     :  '',
-		};
-		var LikeService = LIKE.LikeJob(data);
-			LikeService.then(function(response){
-				if(response.error_code == 0){
-					jobs = LIKE.LikeJobHandler(jobs,job,$scope.user);
-					$scope.jobs = jobs;
-				}else{
-					alert(response.msg);
-				}
-			})
-		$scope.HiddenListLike(job);
-	}
+
 
 	$scope.ViewListLikeJob = function(job){
 		var users = job.likes.list;
@@ -179,23 +140,23 @@ Jobs.controller('JobCtrl',function($rootScope,$scope,$http,USER,PITCH,JOB,HASHTA
 	/*************************************************************************************************************/
 											/*PITCH COMMENT*/
 	/*************************************************************************************************************/
-	$scope.InterestPitch = function(pitch,job){
-		var data = {
-			user_id : $rootScope.user._id,
-			token   : $rootScope.user.token,
-			app_id  : pitch._id,
-		};
-		var InterestService = INTEREST.postInterest(data);
-		InterestService.then(function(response){
-			console.log(response);
-			if(response.error_code == 0){
-				jobs = INTEREST.postInterestHandler(jobs,job,pitch);
-				$scope.jobs = jobs;
-			}else{
-				alert(response.msg);
-			}
-		})
-	}
+	// $scope.InterestPitch = function(pitch,job){
+	// 	var data = {
+	// 		user_id : $rootScope.user._id,
+	// 		token   : $rootScope.user.token,
+	// 		app_id  : pitch._id,
+	// 	};
+	// 	var InterestService = INTEREST.postInterest(data);
+	// 	InterestService.then(function(response){
+	// 		console.log(response);
+	// 		if(response.error_code == 0){
+	// 			jobs = INTEREST.postInterestHandler(jobs,job,pitch);
+	// 			$scope.jobs = jobs;
+	// 		}else{
+	// 			alert(response.msg);
+	// 		}
+	// 	})
+	// }
 	/*************************************************************************************************************/
 											/*EDIT JOB*/
 	/*************************************************************************************************************/

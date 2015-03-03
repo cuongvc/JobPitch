@@ -8,7 +8,6 @@ var Notification = angular.module('notification.service',[]);
 			return defferer.promise;
 		}
 		this.getNotificationHandler = function(notifications,data){
-			console.log(data);
 			notifications.loaded = true;
 			if(notifications.list == undefined) notifications.list = new Object();
 			data.forEach(function(v,k){
@@ -17,23 +16,10 @@ var Notification = angular.module('notification.service',[]);
 					image: v.content.userAvatar_make_notify,
 					action: v.content.content,
 					content: v.content.short_content,
-				}
-				switch(v.type_notify){
-					case NOTIFY_TYPE.CREATE_JOB:
-								newNotifi.data = {url: '/job/' + v.content.job_id};
-								break;
-					case NOTIFY_TYPE.APPLY_JOB:
-								newNotifi.data = {url: '/job/' + v.content.job_id};
-								break;
-					case NOTIFY_TYPE.LIKE_JOB:
-								newNotifi.data = {url: '/job/' + v.content.job_id};
-								break;
-					case NOTIFY_TYPE.SHARE_JOB:
-								newNotifi.data = {url: '/job/' + v.content.job_id};
-								break;
-					case NOTIFY_TYPE.CHANGE_JOB_STATUS:
-								newNotifi.data = {url: '/job/' + v.content.job_id};
-								break;
+					data: {
+						url: '/job/' + v.content.job_id,
+						job_id: v.content.job_id,
+					},
 				}
 				notifications.list.push(newNotifi);
 			})

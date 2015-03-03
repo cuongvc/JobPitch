@@ -71,7 +71,7 @@ TemplateApp.controller('UserProfileCtrl',function($rootScope,$scope,$http,$route
 			token: $rootScope.user.token,
 			comments: pitch.comment,
 		}
-		var PitchService = PITCH.getPitchComment(data);
+		var PitchService = COMMENT.getPitchComment(data);
 		PitchService.then(function(response){
 			if(response.error_code == 0){
 				if(response.comment.length > 0){

@@ -20,7 +20,7 @@
                             <div class="notification-box hidden">
                                 <ul>
                                     <li ng-repeat="notification in notifications.list" class="cursor">
-                                        <a href="{{ notification.data.url }}" ng-click="ViewNotification(notification.data.url,$event)">
+                                        <a href="{{ notification.data.url }}" ng-click="ViewNotification(notification,$event)">
                                           <div class="notification-box-image pull-left">
                                               <img ng-src="{{ notification.image }}" alt="">
                                           </div>

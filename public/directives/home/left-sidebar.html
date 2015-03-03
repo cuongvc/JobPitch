@@ -12,7 +12,7 @@
 	<div class="left-sidebar-tags">
 		<h3 class="semibold">Top Companies</h3>
 		<ul>
-			<li ng-repeat="company in LeftSidebarCompanies"><a href="/user/{{ company._id }}" ng-click="ViewLeftSidebarCompany(company._id,$event)">@<span ng-bind="company.userName"></span></a></li>
+			<li ng-repeat="company in LeftSidebarCompanies"><a href="/user/{{ company._id }}" ng-click="ViewLeftSidebarCompany(company._id,$event)">@<span ng-bind="company.tagname"></span></a></li>
 		</ul>
 	</div>
 

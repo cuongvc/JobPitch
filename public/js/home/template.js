@@ -1,4 +1,4 @@
-var TemplateApp = angular.module('TemplateApp',['ngRoute','header','company-job','company-about','company-contact','jobs','create-job','setting','database','pitch.service','job.service','hashtag.service','company.service']);
+var TemplateApp = angular.module('TemplateApp',['ngRoute','header','company-job','company-about','company-contact','jobs','create-job','job-popup','setting','database','pitch.service','job.service','hashtag.service','company.service']);
 TemplateApp.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
 
 	$routeProvider.
@@ -44,4 +44,5 @@ TemplateApp.run(function($templateCache,$rootScope){
 	$rootScope.user     = user;
 	$rootScope.logedin  = logedin;
 	$rootScope.BASE_URL = BASE_URL;
+	$rootScope.JobPopup = new Array();
 })

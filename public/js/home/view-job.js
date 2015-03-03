@@ -1,6 +1,7 @@
-TemplateApp.controller('ViewJobCtrl',function($rootScope,$scope,$http,$routeParams,USER,PITCH,JOB,HASHTAG,LIKE,INTEREST,ROUTE,SOCKET){
+TemplateApp.controller('ViewJobCtrl',function($rootScope,$scope,$http,$routeParams,USER,PITCH,JOB,HASHTAG,LIKE,INTEREST,ROUTE,SOCKET,COMMENT){
 
-	var jobs = new Array();
+	var job = new Object();
+	$scope.job = job;
 	/*
 	* get Job & Pitch
 	*/
@@ -11,34 +12,15 @@ TemplateApp.controller('ViewJobCtrl',function($rootScope,$scope,$http,$routePara
 	};
 	var PitchService = PITCH.getPitch(data);
 	PitchService.then(function(response){
+		console.log("data from server",response);
 		if(response.error_code == 0){
-			jobs = [response.job];
-			jobs = PITCH.getPitchHandler(jobs,response.job,$rootScope.user._id,response.app);
-			$scope.jobs = jobs;
+			job = response.job;
+			PITCH.getPitchHandle(job,$rootScope.user._id,response.app);
+			$scope.job = job;
 		}else{
 			alert(response.msg);
 		}
 	})
-	/*************************************************************************************************************/
-											/*View Pitch*/
-	/*************************************************************************************************************/
-	$scope.ViewPitch = function(job){
-		var data = {
-		    user_id: $rootScope.user._id,
-		    token: $rootScope.user.token,
-		    job_id: job._id,
-		}
-		var PitchService = PITCH.getPitch(data);
-		PitchService.then(function(response){
-			if(response.error_code == 0){
-				jobs = PITCH.getPitchHandler(jobs,job,$rootScope.user._id,response.app);
-				console.log(jobs);
-				$scope.jobs = jobs;
-			}else{
-				alert(response.msg);
-			}
-		})
-	}
 
 	$scope.ViewCompanyProfile = function(evt,id){
 		evt.stopPropagation();
@@ -46,19 +28,14 @@ TemplateApp.controller('ViewJobCtrl',function($rootScope,$scope,$http,$routePara
 	/*************************************************************************************************************/
 											/*PITCH COMMENT*/
 	/*************************************************************************************************************/
-	$scope.getPitchComment = function(job,pitch){
+	$scope.getPitchComment_NEW = function(pitch){
 		if(pitch.loaded == true) return;
 		
-		var data = {
-			user_id: $rootScope.user._id,
-			token: $rootScope.user.token,
-			comments: pitch.comment,
-		}
-		var JobService = PITCH.getPitchComment(data);
+		var data = COMMENT.createGetPitchCommentData($rootScope.user,pitch);
+		var JobService = COMMENT.getPitchComment(data);
 			JobService.then(function(response){
 				if(response.error_code == 0){
-					jobs = PITCH.getPitchCommentHandler(jobs,job,pitch,response.comment);
-					$scope.jobs = jobs;
+					COMMENT.getPitchCommentHandle(pitch,response.comment);
 				}else{
 					alert(response.msg);
 				}
@@ -84,7 +61,7 @@ TemplateApp.controller('ViewJobCtrl',function($rootScope,$scope,$http,$routePara
 	    if(height < 60) height = 60;
 	    $("#ApplyDesc").css({height: height});
 	}
-	$scope.Apply = function(job, ApplyDesc){
+	$scope.Apply_NEW = function(job,ApplyDesc){
 		var data = {
 			user_id: $rootScope.user._id,
 			token: $rootScope.user.token,
@@ -95,12 +72,13 @@ TemplateApp.controller('ViewJobCtrl',function($rootScope,$scope,$http,$routePara
 			file: '',
 		};
 		console.log('post New Pitch:',data);
-		$('#ApplyDesc').val('');
+		$('.apply-box').val('');
 		PitchService = PITCH.postNewPitch(data);
 		PitchService.then(function(response){
 			if(response.error_code == 0){
-				jobs = PITCH.postNewPitchHandler(jobs,job,response.application);
-				$scope.jobs = jobs;
+				PITCH.postNewPitchHandle(job,response.application);
+			}else{
+				alert(response.msg);
 			}
 		})
 	}
@@ -149,58 +127,28 @@ TemplateApp.controller('ViewJobCtrl',function($rootScope,$scope,$http,$routePara
 	/*************************************************************************************************************/
 											/*LIKE*/
 	/*************************************************************************************************************/
-	$scope.LikeJob = function(job){
-		var data = {
-			user_id        : $rootScope.user._id,
-			token          : $rootScope.user.token,
-			type_like      : 1,
-			job_id         : job._id,
-			application_id :  '',
-			comment_id     :  '',
-		};
-		console.log(data);
-		$http.post(STR_API_LIKE,data).success(function(response){
-			if(response.error_code == 0){
-				var index = jobs.indexOf(job);
-				if(job.likes.liked){
-					jobs[index].likes.liked = false;
-					jobs[index].likes.number--;
-					jobs[index].likes.users.forEach(function(v,k){
-						if(v._id == $rootScope.user._id){
-							jobs[index].likes.users.splice(k,1);
-						}
-					})
+	$scope.LikeJob_NEW = function(job){
+		var data = LIKE.createLikeJobData($rootScope.user,job);
+		var LikeService = LIKE.LikeJob(data);
+			LikeService.then(function(response){
+				if(response.error_code == 0){
+					LIKE.LikeJobHandle(job,$rootScope.user._id);
 				}else{
-					jobs[index].likes.liked = true;
-					jobs[index].likes.number++;
-					var me = {
-								_id: $rootScope.user._id,
-								avatar: $rootScope.user.avatar.origin,
-								avatar_small: $rootScope.user.avatar.small,
-								avatar_normal: $rootScope.user.avatar.normal,
-								userName: $rootScope.user.username,
-							};
-					jobs[index].likes.users.push(me);
+					alert(response.msg);
 				}
-				$scope.jobs = jobs;
-			}else{
-				alert(response.msg);
-			}
-		})
+			})
+		$scope.HiddenListLike(job);
 	}
-	$scope.LikePitch = function(pitch,job){
-		var data = {
-			user_id        : $rootScope.user._id,
-			token          : $rootScope.user.token,
-			type_like      : 2,
-			job_id         : '',
-			application_id :  pitch._id,
-			comment_id     :  '',
-		};
+	$scope.LikePitch_NEW = function(pitch){
+		var data = LIKE.createLikePitchData($rootScope.user,pitch);
 		var LikeService = LIKE.LikePitch(data);
 			LikeService.then(function(response){
-				jobs = LIKE.LikePitchHandler(jobs,job,pitch);
-				$scope.jobs = jobs;
+				console.log(response);
+				if(response.error_code == 0){
+					LIKE.LikePitchHandle(pitch,$rootScope.user._id);
+				}else{
+					alert(response.msg);
+				}
 			})
 	}
 	$scope.ViewListLikeJob = function(job){

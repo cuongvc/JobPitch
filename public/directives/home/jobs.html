@@ -31,13 +31,13 @@
 					</div>
 					<div class="like-share small-text">
 						<ul>
-							<li class="pull-left" ng-click="ViewPitch(job)"><span ng-bind="job.applications.number"></span> <span>pitch<span ng-if="job.applications.number > 1">s</span></span></li>
+							<li class="pull-left" ng-click="ViewPitch_NEW(job)"><span ng-bind="job.applications.number"></span> <span>pitch<span ng-if="job.applications.number > 1">s</span></span></li>
 							
 							<li class="pull-right"><span ng-bind="job.shares.number"></span> <span>share</span></li>
 							<li class="pull-right transition_500ms" 
 								ng-mouseover="ViewListLikeJob(job)"
 								ng-mouseout="HiddenListLike(job)">
-								<span ng-bind="job.likes.number"></span> <span ng-click="LikeJob(job)">like</span>
+								<span ng-bind="job.likes.number"></span> <span ng-click="LikeJob_NEW(job)">like</span>
 								<div class="pvh-popover list-like-job pvh-popover-top hidden" ng-if="job.likes.number > 0">
 									<ul>
 										<li ng-repeat="user in job.likes.users" ng-bind="user.userName"></li>
@@ -51,13 +51,13 @@
 						</ul>
 					</div>
 					<!-- APPLY BOX -->
-					<div class="job-comment gray-border apply-box" ng-if="job.showApplyBox == true && user.account_type != 1">
+					<div class="job-comment gray-border apply-box" ng-if="job.showApplyBox == true && user.type_account != 1">
 						<div class="job-comment-avatar apply-box-avatar pull-left">
 							<img ng-src="{{ user.avatar.normal }}" alt="">
 						</div>
 						<div class="job-comment-body">
 							<div class="job-comment-body-textarea-group normal-text">
-								<textarea maxlength="144" ng-model="ApplyDesc" id="ApplyDesc" ng-keyup="ChangeApplyTextAreaHeight($event)" ng-change="ApplyTextAreaChange(ApplyDesc)" placeholder="Your pitch"></textarea>
+								<textarea maxlength="144" ng-model="ApplyDesc" id="ApplyDesc" class="apply-box" ng-keyup="ChangeApplyTextAreaHeight($event)" ng-change="ApplyTextAreaChange(ApplyDesc)" placeholder="Your pitch"></textarea>
 							</div>
 							<ul class="apply-box-info pull-left">
 								<li>
@@ -69,7 +69,7 @@
 							</ul>
 							<input id="attack-input" type="file" class="hidden">
 							<div class="apply-button-group">
-								<div class="btn-apply" ng-click="Apply(job,ApplyDesc)"><i class="fa fa-edit"></i> Pitch</div>
+								<div class="btn-apply" ng-click="Apply_NEW(job,ApplyDesc)"><i class="fa fa-edit"></i> Pitch</div>
 							</div>
 						</div>
 					</div>
@@ -82,9 +82,9 @@
 						<div class="job-comment-body normal-text">
 							<p class="job-comment-desc"><span><strong class="blue-text" ng-bind="pitch.userName"></strong></span> <span ng-bind="pitch.description" class="normal-text"></span></p>
 							<ul class="small-text pitch-like-share">
-								<li class="cursor pull-right" ng-click="getPitchComment(job,pitch)"><span ng-bind="pitch.comments.numberOfComment"></span> <span>comment</span></li>
+								<li class="cursor pull-right" ng-click="getPitchComment_NEW(pitch)"><span ng-bind="pitch.comments.numberOfComment"></span> <span>comment</span></li>
 								<li class="cursor pull-right"><span ng-bind="pitch.shares.number"></span> <span>share</span></li>
-								<li class="cursor pull-right"><span ng-bind="pitch.likes.number"></span> <span ng-click="LikePitch(pitch,job)">like</span></li>
+								<li class="cursor pull-right"><span ng-bind="pitch.likes.number"></span> <span ng-click="LikePitch_NEW(pitch,job)">like</span></li>
 								<li class="cursor pull-right"><span ng-bind="pitch.interests.number"></span> <span ng-click="InterestPitch(pitch,job)">interest</span></li>
 							</ul>
 							<div class="pitch-comment">
