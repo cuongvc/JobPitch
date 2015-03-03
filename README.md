@@ -63,6 +63,7 @@ Cache-Control: no-cache
     "job_id"        : "54f170967140be532aa025e3",
     "desc"          : "Quản lý toàn bộ công tác tuyển dụng nhân sự - Hỗ trợ thực hiện các hoạt động đào tạo và tái đào tạo- Quản lý giám sát hoạt động nhân sự trong Khách Sạn- Xây dựng, quản lý, tổ chức và thực hiện các chính sách nhân sự cho nhân viên theo quy định của Khách Sạn",
     "hash_tag"      : ["#manage", "#HR"],
+    "tagname"               : [{"name" : "cuongvu", "user_id" : "54f435281cfe64b129ddb436"}]
     "title"         : "TUYEN NHAN SU",
     "tagLine"       : "nhân sự",
     "position"      : 
@@ -167,22 +168,24 @@ Content-Type: form-data
 Cache-Control: no-cache
 
 {
-    "token"             : "$2a$08$cuGGBSy7CZOhCrnr5rrdhOwayH6Ka1rJdw91St8K/tvvVE2e/0kSy",
-    "user_id"           : "54eef31ef87632e72c4db927",
-    "type_account"      : "1",
-    "extension"         : "jpeg",
-    "address"           : "9 Nguyên Hồng, Thành Công, Ba Đình, Hà Nội, Việt Nam",
-    "contact"           : "",
-    "website"           : "",
-    "companyName"       : "",
-    "avatar"            : "",
-    "userFullname"      : "",
-    "industry"          : "",
-    "education"         : "",
-    "year_of_birth"     : "",
-    "skype"             : "campcoder",
-    "phone"             : "0987654321",
-    "companyEmail"      : "thanhah@campcoders.com",
+    "token"         : "$2a$08$cvbSzcj2VYQOxiqLL/3P6eory06f1M7SPlhnjd9/Yt9KdJz03nUeC",
+    "user_id"       : "54f1702d7140be532aa025e0",
+    "job_id"        : "54f170967140be532aa025e3",
+    "desc"          : "Quản lý toàn bộ công tác tuyển dụng nhân sự - Hỗ trợ thực hiện các hoạt động đào tạo và tái đào tạo- Quản lý giám sát hoạt động nhân sự trong Khách Sạn- Xây dựng, quản lý, tổ chức và thực hiện các chính sách nhân sự cho nhân viên theo quy định của Khách Sạn",
+    "hash_tag"      : ["#manage", "#HR"],
+    "tagname"               : [{"name" : "cuongvu", "user_id" : "54f435281cfe64b129ddb436"}],
+    "title"         : "TUYEN NHAN SU",
+    "tagLine"       : "nhân sự",
+    "position"      : 
+       { "lat": 21.0721265,
+         "lng": 105.81098910000003,
+         "formatted_address": "Khu Đô Thị Nam Thăng Long, Phú Thượng, Tây Hồ, Hà Nội, Việt Nam",
+         "state":   { "long_name": "Hà Nội", "short_name": "Hà Nội"},
+         "country": { "long_name": "Việt Nam", "short_name": "VN"},
+         "city": "" 
+        },    
+    "temp_path"     : "public/upload/upload_373aed611fac609e399e995d8b1baff7",
+    "extension"     : "jpeg" 
 }
 
 Tat ca cac truong khong sua doi thi gui noi dung cu. Neu khong upload image 
@@ -238,66 +241,13 @@ create job
             "HR",
             "Campcoders.com"
         ],
+        "tagname"               : [{"name" : "cuongvu", "user_id" : "54f435281cfe64b129ddb436"}],
         "title": "nhân sự",
         "userName": "Coders Camp",
         "image_normal": "http://job.dev/images/normal_size/JobImages/1422555163758.jpeg",
         "image_small": "http://job.dev/images/small_size/JobImages/1422555163758.jpeg",
         "image": "http://job.dev/images/full_size/JobImages/1422555163758.jpeg"
-    },
-    "app": [
-        {
-            "time": "2015-01-29T18:06:49.000Z",
-            "job_id": "54ca75ac393d050028ce49d9",
-            "user_avatar": "https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg",
-            "user_name": "eMenu Admin",
-            "user_id": "54c9ee8b202b449e430cc43c",
-            "_id": "54ca76b969b8c7b729d50edc",
-            "__v": 0,
-            "hires": 0,
-            "interviews": 0,
-            "shares": {
-                "list": [],
-                "number": 0
-            },
-            "likes": {
-                "list": [],
-                "number": 0
-            },
-            "description": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-            "hash_tag": [
-                "php",
-                "nodejs",
-                "android"
-            ],
-            "title": "I can do it"
-        },
-        {
-            "time": "2015-01-29T18:07:07.000Z",
-            "job_id": "54ca75ac393d050028ce49d9",
-            "user_avatar": "https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg",
-            "user_name": "eMenu Admin",
-            "user_id": "54c9ee8b202b449e430cc43c",
-            "_id": "54ca76cb69b8c7b729d50edd",
-            "__v": 0,
-            "hires": 0,
-            "interviews": 0,
-            "shares": {
-                "list": [],
-                "number": 0
-            },
-            "likes": {
-                "list": [],
-                "number": 0
-            },
-            "description": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-            "hash_tag": [
-                "php",
-                "nodejs",
-                "android"
-            ],
-            "title": "I can do it"
-        }
-    ]
+    }
 }
 
 ```
@@ -1234,14 +1184,10 @@ Cache-Control: no-cache
 
 {
   "tag" : "Nodejs",
-  "position" : 2,
   "country_short_name" : "VN
 }
 
-
-position = 1: search tag in jobs
-position = 2: search tag in applications
-position = 3: search tag in jobs and applications
+return jobs chua tag va tat ca application cua job do.
 
 ```
 ##### Regex
@@ -1255,14 +1201,32 @@ position = 3: search tag in jobs and applications
     "error_code": 0,
     "applications": [
         {
-            "time": "2015-02-02T14:21:13.000Z",
-            "job_id": "54cf85e0d6f0cebb214ed28d",
-            "user_avatar": "http://job.dev/images/full_size/TalentImages/default-avatar.png",
-            "user_name": "CuongVC93",
-            "user_id": "54cef3ee162f8f5428d2323b",
-            "_id": "54cf87d918bcddcc237a82a6",
+            "time": "2015-03-02T10:22:40.000Z",
+            "job_id": "54f183615f4cce5f38a1e0de",
+            "userTagName_own_job": "cuongvu.2",
+            "userName_own_job": "cuongvu",
+            "userId_own_job": "54f170167140be532aa025de",
+            "user_avatar": "https://lh5.googleusercontent.com/-IlI6TyJIlrs/AAAAAAAAAAI/AAAAAAAAAC8/AsmFVAZBIkw/photo.jpg",
+            "userTagName": "CuongVu.3",
+            "userName": "Cường Vũ",
+            "user_id": "54f19715b72e475a4354d6b2",
+            "_id": "54f439f019e0efab2eb443b4",
             "__v": 0,
-            "hires": 0,
+            "_keywords": [
+                "18",
+                "c",
+                "ng",
+                "v"
+            ],
+            "score": 0,
+            "comment": [],
+            "hires": {
+                "status": 0
+            },
+            "interests": {
+                "list": [],
+                "number": 0
+            },
             "interviews": 0,
             "shares": {
                 "list": [],
@@ -1272,14 +1236,123 @@ position = 3: search tag in jobs and applications
                 "list": [],
                 "number": 0
             },
-            "description": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-            "hash_tag": [
-                "Php",
-                "Nodejs",
-                "Android",
-                "Campcoders.com"
+            "file": "",
+            "description": "18",
+            "tagname": [],
+            "hash_tag": [],
+            "title": "",
+            "position": {
+                "city": {
+                    "types": [
+                        "locality",
+                        "political"
+                    ],
+                    "short_name": "Hà Noi",
+                    "long_name": "Hà Noi"
+                },
+                "country": {
+                    "types": [
+                        "country",
+                        "political"
+                    ],
+                    "short_name": "VN",
+                    "long_name": "Việt Nam"
+                },
+                "state": {
+                    "types": [
+                        "administrative_area_level_1",
+                        "political"
+                    ],
+                    "short_name": "Hà Nội",
+                    "long_name": "Hà Nội"
+                },
+                "formatted_address": "Hà Noi, Hoàn Kiếm, Hà Nội, Việt Nam",
+                "lng": 105.83415979999995,
+                "lat": 21.0277644
+            },
+            "job_title": "#nodejs #php #android #java"
+        }
+    ],
+    "jobs": [
+        {
+            "__v": 22,
+            "_id": "54f183615f4cce5f38a1e0de",
+            "time": "2015-02-28T08:59:12.000Z",
+            "user_id": "54f170167140be532aa025de",
+            "receive_notify": [
+                "54f19715b72e475a4354d6b2",
+                "54f1974db72e475a4354d6b4"
             ],
-            "title": "I can do it"
+            "contracts": {
+                "list": [],
+                "number": 0
+            },
+            "hires": 0,
+            "interviews": 0,
+            "applications": {
+                "list": [
+                    "54f19751b72e475a4354d6b6",
+                ],
+                "number": 1
+            },
+            "score": 22,
+            "shares": {
+                "list": [],
+                "number": 0
+            },
+            "likes": {
+                "list": [],
+                "number": 0
+            },
+            "status": 1,
+            "position": {
+                "city": {
+                    "types": [
+                        "locality",
+                        "political"
+                    ],
+                    "short_name": "Hà Noi",
+                    "long_name": "Hà Noi"
+                },
+                "country": {
+                    "types": [
+                        "country",
+                        "political"
+                    ],
+                    "short_name": "VN",
+                    "long_name": "Việt Nam"
+                },
+                "state": {
+                    "types": [
+                        "administrative_area_level_1",
+                        "political"
+                    ],
+                    "short_name": "Hà Nội",
+                    "long_name": "Hà Nội"
+                },
+                "formatted_address": "Hà Noi, Hoàn Kiếm, Hà Nội, Việt Nam",
+                "lng": 105.83415979999995,
+                "lat": 21.0277644
+            },
+            "description": "#nodejs #php #android #java",
+            "tagname": [],
+            "hash_tag": [
+                "#nodejs",
+                "#php",
+                "#android",
+                "#java",
+                "#nodejs",
+                "#php",
+                "#android",
+                "#java"
+            ],
+            "permalink": "",
+            "title": "#nodejs #php #android #java",
+            "userTagName": "cuongvu.2",
+            "userName": "cuongvu",
+            "image_normal": "http://job.dev/images/normal_size/JobImages/1425113959806.jpeg",
+            "image_small": "http://job.dev/images/small_size/JobImages/1425113959806.jpeg",
+            "image": "http://job.dev/images/full_size/JobImages/1425113959806.jpeg"
         }
     ]
 }
@@ -2688,11 +2761,12 @@ Content-Type: application/json
 Cache-Control: no-cache
 
 {
-    "token"                 : "$2a$08$V8Qcu7Ec4E5N9Dl.z4rUq.3n079IZoacTMu5e",
-    "user_id"               : "54deb68032f4c1f223bc6e72",
-    "comment_id"            : "54ec1c69dcc477911f240059",
+    "token"                 : "$2a$08$v0FLMpKIW9Q5sU6IQcjXj.GcJ0ZgUMe",
+    "user_id"               : "54f170167140be532aa025de",
+    "comment_id"            : "54f435281cfe64b129ddb436",
     "content"               : "Comment moi",
-    "hash_tag"              : ["Php", "Nodejs", "Android", "Campcoders.com"]
+    "hash_tag"              : ["Php", "Nodejs", "Android", "Campcoders.com"],
+    "tagname"               : [{"name" : "cuongvu", "user_id" : "54f435281cfe64b129ddb436"}]
 }
 
 
@@ -2708,14 +2782,14 @@ Cache-Control: no-cache
 {
     "error_code": 0,
     "comment": {
-        "__v": 2,
-        "_id": "54ec1c69dcc477911f240059",
-        "application_parent": "54ec0b97d5e8c0b512f3f27e",
-        "job_parent": "54ebee4da14809601ab0f81a",
-        "time": "2015-02-24T10:45:00.000Z",
+        "time": "2015-03-02T10:04:49.000Z",
+        "job_parent": "54f170967140be532aa025e3",
+        "application_parent": "54f17280a52151232deb1006",
+        "user_avatar": "http://job.dev/images/normal_size/UserImages/1425287021423.jpeg",
         "userName": "cuongvu",
-        "user_avatar": "http://job.dev/images/full_size/UserImages/default-avatar.png",
-        "user_id": "54deb68032f4c1f223bc6e72",
+        "user_id": "54f170167140be532aa025de",
+        "_id": "54f435281cfe64b129ddb436",
+        "__v": 1,
         "_keywords": [
             "comment",
             "moi",
@@ -2725,7 +2799,35 @@ Cache-Control: no-cache
             "campcod",
             "com"
         ],
-        "comments": [],
+        "position": {
+            "city": {
+                "types": [
+                    "locality",
+                    "political"
+                ],
+                "short_name": "Hà Noi",
+                "long_name": "Hà Noi"
+            },
+            "country": {
+                "types": [
+                    "country",
+                    "political"
+                ],
+                "short_name": "VN",
+                "long_name": "Việt Nam"
+            },
+            "state": {
+                "types": [
+                    "administrative_area_level_1",
+                    "political"
+                ],
+                "short_name": "Hà Nội",
+                "long_name": "Hà Nội"
+            },
+            "formatted_address": "Hà Noi, Hoàn Kiếm, Hà Nội, Việt Nam",
+            "lng": 105.83415979999995,
+            "lat": 21.0277644
+        },
         "shares": {
             "list": [],
             "number": 0
@@ -3219,3 +3321,5 @@ Cache-Control: no-cache
 }
 
 ```
+
+
